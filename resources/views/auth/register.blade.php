@@ -78,21 +78,7 @@
                     @endif
 
                     <div class="mb-4">
-                        <div class="flex flex-1">
-                            <x-ark-input
-                                type="password"
-                                name="password"
-                                label="Password"
-                                autocomplete="new-password"
-                                class="w-full"
-                                :required="true"
-                                :errors="$errors"
-                            />
-                        </div>
-
-                        @if (! request()->session()->get('errors'))
-                            <div class="text-sm text-theme-secondary-600">@lang('fortify::forms.update_password.requirements_notice')</div>
-                        @endif
+                        <livewire:auth.password-validator>
                     </div>
 
                     <div class="mb-4">

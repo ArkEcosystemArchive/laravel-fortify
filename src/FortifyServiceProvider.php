@@ -9,6 +9,7 @@ use ARKEcosystem\Fortify\Actions\UpdateUserProfileInformation;
 use ARKEcosystem\Fortify\Components\DeleteUserForm;
 use ARKEcosystem\Fortify\Components\ExportUserData;
 use ARKEcosystem\Fortify\Components\LogoutOtherBrowserSessionsForm;
+use ARKEcosystem\Fortify\Components\PasswordValidator;
 use ARKEcosystem\Fortify\Components\TwoFactorAuthenticationForm;
 use ARKEcosystem\Fortify\Components\UpdatePasswordForm;
 use ARKEcosystem\Fortify\Components\UpdateProfileInformationForm;
@@ -99,6 +100,7 @@ class FortifyServiceProvider extends ServiceProvider
         Livewire::component('profile.update-profile-information-form', UpdateProfileInformationForm::class);
         Livewire::component('profile.update-profile-photo-form', UpdateProfilePhotoForm::class);
         Livewire::component('profile.update-timezone-form', UpdateTimezoneForm::class);
+        Livewire::component('auth.password-validator', PasswordValidator::class);
     }
 
     /**

@@ -186,4 +186,3 @@ it('password require one special character', function () {
         $this->assertTrue($e->validator->errors()->has('password'));
     }
 });
-º

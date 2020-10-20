@@ -9,7 +9,7 @@ trait ValidatesPassword
     public array $passwordRules = [
         'needsLowercase' => false,
         'needsUppercase' => false,
-        'needsANumber' => false,
+        'needsNumeric' => false,
         'needsSpecialCharacter' => false,
         'isTooShort' => false,
     ];

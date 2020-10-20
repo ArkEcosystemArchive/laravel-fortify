@@ -151,7 +151,7 @@ it('password require an upercase letter', function () {
     }
 });
 
-it('password require one number', function () {
+it('should require one number', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
 
     try {

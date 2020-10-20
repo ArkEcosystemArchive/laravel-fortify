@@ -25,8 +25,6 @@ use Laravel\Fortify\Contracts\TwoFactorLoginResponse as TwoFactorLoginResponseCo
 use Laravel\Fortify\Fortify;
 use Livewire\Livewire;
 use ARKEcosystem\Fortify\Components\RegisterForm;
-use ARKEcosystem\Fortify\Components\PasswordRules;
-use Illuminate\Support\Facades\Blade;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -51,8 +49,6 @@ class FortifyServiceProvider extends ServiceProvider
 
         $this->registerPublishers();
 
-        $this->registerBladeComponents();
-        
         $this->registerLivewireComponents();
 
         $this->registerActions();
@@ -89,16 +85,6 @@ class FortifyServiceProvider extends ServiceProvider
         ], 'views');
     }
     
-    /**
-     * Register the Blade components.
-     *
-     * @return void
-     */
-    public function registerBladeComponents(): void
-    {
-        Blade::component('auth.password-rules', PasswordRules::class);
-    }
-
     /**
      * Register the Livewire components.
      *

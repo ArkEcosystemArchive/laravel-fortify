@@ -58,7 +58,7 @@
         </div>
     @endif
 
-    <x-auth.password-rules class="mb-4" :password-rules="$passwordRules">
+    <x:ark-fortify::password-rules class="mb-4" :password-rules="$passwordRules">
         <x-ark-input
             model="state.password"
             type="password"
@@ -69,7 +69,7 @@
             :required="true"
             :errors="$errors"
         />
-    </x-auth.password-rules>
+    </x:ark-fortify::password-rules>
 
     <div class="mb-4">
         <div class="flex flex-1">

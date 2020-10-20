@@ -1,3 +1,5 @@
+@props(['passwordRules'])
+
 <div {{ $attributes }}>
     <div class="flex flex-1">
         {{ $slot }}

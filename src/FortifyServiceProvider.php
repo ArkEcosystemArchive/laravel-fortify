@@ -9,6 +9,8 @@ use ARKEcosystem\Fortify\Actions\UpdateUserProfileInformation;
 use ARKEcosystem\Fortify\Components\DeleteUserForm;
 use ARKEcosystem\Fortify\Components\ExportUserData;
 use ARKEcosystem\Fortify\Components\LogoutOtherBrowserSessionsForm;
+use ARKEcosystem\Fortify\Components\PasswordRules;
+use ARKEcosystem\Fortify\Components\RegisterForm;
 use ARKEcosystem\Fortify\Components\TwoFactorAuthenticationForm;
 use ARKEcosystem\Fortify\Components\UpdatePasswordForm;
 use ARKEcosystem\Fortify\Components\UpdateProfileInformationForm;
@@ -18,13 +20,13 @@ use ARKEcosystem\Fortify\Responses\FailedTwoFactorLoginResponse;
 use ARKEcosystem\Fortify\Responses\TwoFactorLoginResponse;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Contracts\FailedTwoFactorLoginResponse as FailedTwoFactorLoginResponseContract;
 use Laravel\Fortify\Contracts\TwoFactorLoginResponse as TwoFactorLoginResponseContract;
 use Laravel\Fortify\Fortify;
 use Livewire\Livewire;
-use ARKEcosystem\Fortify\Components\RegisterForm;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -84,7 +86,7 @@ class FortifyServiceProvider extends ServiceProvider
             __DIR__.'/../resources/views/livewire' => resource_path('views/livewire'),
         ], 'views');
     }
-    
+
     /**
      * Register the Livewire components.
      *

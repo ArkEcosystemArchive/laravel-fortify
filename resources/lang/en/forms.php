@@ -16,10 +16,10 @@ return [
     ],
 
     'password_rules' => [
-        'needs_lowercase' => 'One lowercase character',
-        'needs_uppercase' => 'One uppercase character',
-        'needs_numeric' => 'One number',
+        'needs_lowercase'         => 'One lowercase character',
+        'needs_uppercase'         => 'One uppercase character',
+        'needs_numeric'           => 'One number',
         'needs_special_character' => 'One special character',
-        'is_too_short' => '12 characters minumum',
+        'is_too_short'            => '12 characters minumum',
     ],
 ];

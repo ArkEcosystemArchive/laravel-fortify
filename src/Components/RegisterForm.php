@@ -2,21 +2,21 @@
 
 namespace ARKEcosystem\Fortify\Components;
 
-use Livewire\Component;
-use ARKEcosystem\Fortify\Models;
 use ARKEcosystem\Fortify\Components\Concerns\ValidatesPassword;
+use ARKEcosystem\Fortify\Models;
+use Livewire\Component;
 
 class RegisterForm extends Component
 {
     use ValidatesPassword;
-    
+
     public array $state = [
-        'name' => '',
-        'username' => '',
-        'email' => '',
-        'password' => '',
+        'name'                  => '',
+        'username'              => '',
+        'email'                 => '',
+        'password'              => '',
         'password_confirmation' => '',
-        'terms' => false,
+        'terms'                 => false,
     ];
 
     public string $formUrl;
@@ -26,10 +26,10 @@ class RegisterForm extends Component
     public function mount()
     {
         $this->state = [
-            'name' => old('name', ''),
+            'name'     => old('name', ''),
             'username' => old('username', ''),
-            'email' => old('email', ''),
-            'terms' => old('terms', ''),
+            'email'    => old('email', ''),
+            'terms'    => old('terms', ''),
         ];
 
         $this->formUrl = request()->fullUrl();

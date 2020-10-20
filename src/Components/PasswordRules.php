@@ -11,7 +11,8 @@ class PasswordRules extends Component
     /**
      * Create the component instance.
      *
-     * @param  array  $passwordRules
+     * @param array $passwordRules
+     *
      * @return void
      */
     public function __construct(array $passwordRules)

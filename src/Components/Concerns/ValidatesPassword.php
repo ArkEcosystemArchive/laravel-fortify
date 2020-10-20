@@ -14,7 +14,7 @@ trait ValidatesPassword
         'isTooShort' => false,
     ];
 
-    public function updatedPassword($password)
+    public function updatedStatePassword($password)
     {
         $this->errorMessages = [];
 

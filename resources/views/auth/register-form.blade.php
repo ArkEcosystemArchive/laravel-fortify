@@ -11,6 +11,7 @@
         <div class="mb-4">
             <div class="flex flex-1">
                 <x-ark-input
+                    model="state.name"
                     name="name"
                     label="Name"
                     autocomplete="name"
@@ -26,6 +27,7 @@
     <div class="mb-4">
         <div class="flex flex-1">
             <x-ark-input
+                model="state.username"
                 type="text"
                 name="username"
                 label="Username"
@@ -43,6 +45,7 @@
         <div class="mb-4">
             <div class="flex flex-1">
                 <x-ark-input
+                    model="state.email"
                     type="email"
                     name="email"
                     label="Email"
@@ -57,6 +60,7 @@
 
     <x-auth.password-rules class="mb-4" :password-rules="$passwordRules">
         <x-ark-input
+            model="state.password"
             type="password"
             name="password"
             label="Password"
@@ -70,6 +74,7 @@
     <div class="mb-4">
         <div class="flex flex-1">
             <x-ark-input
+                model="state.password_confirmation"
                 type="password"
                 name="password_confirmation"
                 label="Confirm Password"
@@ -83,6 +88,7 @@
 
     <div class="mb-4">
         <x-ark-checkbox
+            model="state.terms"
             name="terms"
             :errors="$errors"
         >

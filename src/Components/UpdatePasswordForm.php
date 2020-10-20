@@ -48,11 +48,6 @@ class UpdatePasswordForm extends Component
         $this->emit('saved');
     }
 
-    public function updatedStatePassword(string $password): void
-    {
-        $this->updatedPassword($password);
-    }
-
     /**
      * Render the component.
      *

@@ -7,9 +7,9 @@
             <div class="space-y-4">
                 <x-ark-input type="password" name="currentPassword" model="state.current_password" :label="trans('fortify::forms.current_password')" :errors="$errors" />
                 
-                <x-auth.password-rules :password-rules="$passwordRules" class="w-full">
+                <x:ark-fortify::password-rules class="w-full" :password-rules="$passwordRules">
                     <x-ark-input type="password" name="password" model="state.password" class="w-full" :label="trans('fortify::forms.new_password')" :errors="$errors" />
-                </x-auth.password-rules>
+                </x:ark-fortify::password-rules>
 
                 <x-ark-input type="password" name="passwordConfirmation" model="state.password_confirmation" :label="trans('fortify::forms.confirm_password')" :errors="$errors" />
             </div>

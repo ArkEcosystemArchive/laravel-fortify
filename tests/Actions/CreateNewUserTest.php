@@ -9,7 +9,7 @@ beforeEach(function () {
     $this->validPassword = 'Pas3w05d&123456';
 });
 
-it('creates a valid user with the create user action', function () {
+it('should create a valid user with the create user action', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
 
     $user = (new CreateNewUser)->create([
@@ -27,7 +27,7 @@ it('creates a valid user with the create user action', function () {
     $this->assertTrue(Hash::check($this->validPassword, $user->password));
 });
 
-it('requires an username', function () {
+it('should require a username', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
 
     try {
@@ -44,7 +44,7 @@ it('requires an username', function () {
     }
 });
 
-it('requires an email', function () {
+it('should require an email', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
 
     try {
@@ -61,7 +61,7 @@ it('requires an email', function () {
     }
 });
 
-it('requires a valid email', function () {
+it('should require a valid email', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
 
     try {
@@ -79,7 +79,7 @@ it('requires a valid email', function () {
     }
 });
 
-it('must accept terms', function () {
+it('should require the terms to be accepted', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
 
     try {

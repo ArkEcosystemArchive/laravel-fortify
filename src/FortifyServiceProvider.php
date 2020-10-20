@@ -9,7 +9,6 @@ use ARKEcosystem\Fortify\Actions\UpdateUserProfileInformation;
 use ARKEcosystem\Fortify\Components\DeleteUserForm;
 use ARKEcosystem\Fortify\Components\ExportUserData;
 use ARKEcosystem\Fortify\Components\LogoutOtherBrowserSessionsForm;
-use ARKEcosystem\Fortify\Components\PasswordValidator;
 use ARKEcosystem\Fortify\Components\TwoFactorAuthenticationForm;
 use ARKEcosystem\Fortify\Components\UpdatePasswordForm;
 use ARKEcosystem\Fortify\Components\UpdateProfileInformationForm;

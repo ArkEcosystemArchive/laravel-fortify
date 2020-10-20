@@ -97,7 +97,7 @@ it('must accept terms', function () {
     }
 });
 
-it('password must match', function () {
+it('should match the confirmation', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
 
     try {
@@ -115,7 +115,7 @@ it('password must match', function () {
     }
 });
 
-it('password must be 12 chars longer', function () {
+it('should be equal to or longer than 12 characters', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
 
     try {
@@ -133,7 +133,7 @@ it('password must be 12 chars longer', function () {
     }
 });
 
-it('password require an upercase letter', function () {
+it('should require an uppercase letter', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
 
     try {
@@ -169,7 +169,7 @@ it('should require one number', function () {
     }
 });
 
-it('password require one special character', function () {
+it('should require one special character', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
 
     try {

@@ -25,6 +25,9 @@ use Laravel\Fortify\Contracts\FailedTwoFactorLoginResponse as FailedTwoFactorLog
 use Laravel\Fortify\Contracts\TwoFactorLoginResponse as TwoFactorLoginResponseContract;
 use Laravel\Fortify\Fortify;
 use Livewire\Livewire;
+use ARKEcosystem\Fortify\Components\RegisterForm;
+use ARKEcosystem\Fortify\Components\PasswordRules;
+use Illuminate\Support\Facades\Blade;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -101,6 +104,9 @@ class FortifyServiceProvider extends ServiceProvider
         Livewire::component('profile.update-profile-photo-form', UpdateProfilePhotoForm::class);
         Livewire::component('profile.update-timezone-form', UpdateTimezoneForm::class);
         Livewire::component('auth.password-validator', PasswordValidator::class);
+        Livewire::component('auth.register-form', RegisterForm::class);
+
+        Blade::component('auth.password-rules', PasswordRules::class);
     }
 
     /**
@@ -138,16 +144,7 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         Fortify::registerView(function ($request) {
-            $invitation = null;
-
-            if ($request->has('invitation')) {
-                $invitation = Models::invitation()::findByUuid($request->get('invitation'));
-            }
-
-            return view('ark-fortify::auth.register', [
-                'formUrl'    => $request->fullUrl(),
-                'invitation' => $invitation,
-            ]);
+            return view('ark-fortify::auth.register');
         });
 
         Fortify::requestPasswordResetLinkView(function () {

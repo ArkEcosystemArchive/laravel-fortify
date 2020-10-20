@@ -3,13 +3,16 @@
 namespace ARKEcosystem\Fortify\Components;
 
 use ARKEcosystem\Fortify\Components\Concerns\InteractsWithUser;
+use ARKEcosystem\Fortify\Components\Concerns\ValidatesPassword;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\Contracts\UpdatesUserPasswords;
 use Livewire\Component;
-
 class UpdatePasswordForm extends Component
 {
     use InteractsWithUser;
+    use ValidatesPassword;
+
+    protected $listeners = ['passwordUpdated' => 'passwordUpdated'];
 
     /**
      * The component's state.
@@ -42,6 +45,11 @@ class UpdatePasswordForm extends Component
         ];
 
         $this->emit('saved');
+    }
+
+    public function updatedStatePassword($password)
+    {
+        $this->updatedPassword($password);
     }
 
     /**

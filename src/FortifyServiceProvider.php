@@ -52,7 +52,9 @@ class FortifyServiceProvider extends ServiceProvider
 
         $this->registerPublishers();
 
-        $this->registerComponents();
+        $this->registerBladeComponents();
+        
+        $this->registerLivewireComponents();
 
         $this->registerActions();
 
@@ -87,13 +89,23 @@ class FortifyServiceProvider extends ServiceProvider
             __DIR__.'/../resources/views/livewire' => resource_path('views/livewire'),
         ], 'views');
     }
-
+    
     /**
-     * Register the components.
+     * Register the Blade components.
      *
      * @return void
      */
-    public function registerComponents(): void
+    public function registerBladeComponents(): void
+    {
+        Blade::component('auth.password-rules', PasswordRules::class);
+    }
+
+    /**
+     * Register the Livewire components.
+     *
+     * @return void
+     */
+    public function registerLivewireComponents(): void
     {
         Livewire::component('profile.delete-user-form', DeleteUserForm::class);
         Livewire::component('profile.export-user-data', ExportUserData::class);
@@ -103,10 +115,7 @@ class FortifyServiceProvider extends ServiceProvider
         Livewire::component('profile.update-profile-information-form', UpdateProfileInformationForm::class);
         Livewire::component('profile.update-profile-photo-form', UpdateProfilePhotoForm::class);
         Livewire::component('profile.update-timezone-form', UpdateTimezoneForm::class);
-        Livewire::component('auth.password-validator', PasswordValidator::class);
         Livewire::component('auth.register-form', RegisterForm::class);
-
-        Blade::component('auth.password-rules', PasswordRules::class);
     }
 
     /**

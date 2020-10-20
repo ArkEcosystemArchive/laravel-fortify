@@ -2,10 +2,10 @@
 
 namespace ARKEcosystem\Fortify\Components;
 
-use ARKEcosystem\Fortify\Components\Concerns\ValidatesPassword;
+use Livewire\Component;
 use ARKEcosystem\Fortify\Models;
 use Domain\Collaborator\Models\Invitation;
-use Livewire\Component;
+use ARKEcosystem\Fortify\Components\Concerns\ValidatesPassword;
 
 class RegisterForm extends Component
 {

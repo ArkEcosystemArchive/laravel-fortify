@@ -7,6 +7,7 @@ use ARKEcosystem\Fortify\Components\Concerns\ValidatesPassword;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\Contracts\UpdatesUserPasswords;
 use Livewire\Component;
+
 class UpdatePasswordForm extends Component
 {
     use InteractsWithUser;
@@ -47,7 +48,7 @@ class UpdatePasswordForm extends Component
         $this->emit('saved');
     }
 
-    public function updatedStatePassword($password)
+    public function updatedStatePassword(string $password): void
     {
         $this->updatedPassword($password);
     }

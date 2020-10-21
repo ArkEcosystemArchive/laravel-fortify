@@ -57,7 +57,7 @@
                                 autocomplete="email"
                                 class="w-full"
                                 :autofocus="true"
-                                :value="old(\Laravel\Fortify\Fortify::username())"
+                                :value="old($username)"
                                 :required="true"
                                 :errors="$errors"
                             />

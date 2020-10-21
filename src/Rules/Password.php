@@ -40,7 +40,7 @@ class Password extends Fortify
             return false;
         }
 
-        return $this->needsMinimumLength($value);
+        return ! $this->needsMinimumLength($value);
     }
 
     /**
@@ -118,7 +118,7 @@ class Password extends Fortify
 
     public function needsLowercase(string $value): bool
     {
-        if (! $this->requireUppercase) {
+        if (! $this->requireLowercase) {
             return false;
         }
 
@@ -127,7 +127,7 @@ class Password extends Fortify
 
     public function needsUppercase(string $value): bool
     {
-        if (! $this->requireLowercase) {
+        if (! $this->requireUppercase) {
             return false;
         }
 
@@ -154,6 +154,6 @@ class Password extends Fortify
 
     public function needsMinimumLength(string $value): bool
     {
-        return ! (Str::length($value) >= $this->length);
+        return Str::length($value) < $this->length;
     }
 }

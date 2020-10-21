@@ -11,7 +11,7 @@ beforeEach(function () {
 
 it('should create a valid user with the create user action', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
-    
+
     $user = (new CreateNewUser())->create([
         'name'                  => 'Alfonso Bribiesca',
         'username'              => 'alfonsobries',
@@ -29,7 +29,7 @@ it('should create a valid user with the create user action', function () {
 it('should create a valid user with username if the alt_username setting is set', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
     Config::set('fortify.alt_username', 'username');
-    
+
     $user = (new CreateNewUser())->create([
         'name'                  => 'Alfonso Bribiesca',
         'username'              => 'alfonsobries',

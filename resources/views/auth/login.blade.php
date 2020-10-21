@@ -35,13 +35,29 @@
 
                     <div class="mb-4">
                         <div class="flex flex-1">
+                            @php
+                                $username = \Laravel\Fortify\Fortify::username();
+                                $altUsername = Config::get('fortify.alt_username');
+                                $type = 'text';
+
+                                if ($altUsername) {
+                                    $label = __('fortify::forms.' . $username) . ' or ' . __('fortify::forms.' . $altUsername); 
+                                } else {
+                                    $label = __('fortify::forms.' . $username);
+                                    if ($username === 'email') {
+                                        $type = 'email';
+                                    }
+                                }
+                            @endphp
+
                             <x-ark-input
-                                name="email"
-                                label="Username or Email"
+                                :type="$type"
+                                :name="$username"
+                                :label="$label"
                                 autocomplete="email"
                                 class="w-full"
                                 :autofocus="true"
-                                :value="old('email')"
+                                :value="old(\Laravel\Fortify\Fortify::username())"
                                 :required="true"
                                 :errors="$errors"
                             />
@@ -53,7 +69,7 @@
                             <x-ark-input
                                 type="password"
                                 name="password"
-                                label="Password"
+                                :label="__('fortify::forms.password')"
                                 autocomplete="password"
                                 class="w-full"
                                 :required="true"

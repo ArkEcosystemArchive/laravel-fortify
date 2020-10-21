@@ -2,6 +2,7 @@
 
 namespace ARKEcosystem\Fortify;
 
+use ARKEcosystem\Fortify\Actions\AuthenticateUser;
 use ARKEcosystem\Fortify\Actions\CreateNewUser;
 use ARKEcosystem\Fortify\Actions\ResetUserPassword;
 use ARKEcosystem\Fortify\Actions\UpdateUserPassword;
@@ -17,16 +18,12 @@ use ARKEcosystem\Fortify\Components\UpdateProfilePhotoForm;
 use ARKEcosystem\Fortify\Components\UpdateTimezoneForm;
 use ARKEcosystem\Fortify\Responses\FailedTwoFactorLoginResponse;
 use ARKEcosystem\Fortify\Responses\TwoFactorLoginResponse;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Contracts\FailedTwoFactorLoginResponse as FailedTwoFactorLoginResponseContract;
 use Laravel\Fortify\Contracts\TwoFactorLoginResponse as TwoFactorLoginResponseContract;
 use Laravel\Fortify\Fortify;
 use Livewire\Livewire;
-use ARKEcosystem\Fortify\Actions\AuthenticateUser;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -185,6 +182,7 @@ class FortifyServiceProvider extends ServiceProvider
     {
         Fortify::authenticateUsing(function (Request $request) {
             $authenticator = new AuthenticateUser($request);
+
             return $authenticator->handle($request);
         });
     }

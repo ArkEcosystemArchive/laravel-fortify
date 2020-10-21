@@ -2,12 +2,12 @@
 
 namespace ARKEcosystem\Fortify\Actions;
 
+use ARKEcosystem\Fortify\Models;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Laravel\Fortify\Fortify;
-use ARKEcosystem\Fortify\Models;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Hash;
+use Laravel\Fortify\Fortify;
 
 class AuthenticateUser
 {
@@ -18,8 +18,8 @@ class AuthenticateUser
      */
     public function __construct(Request $request)
     {
-        $this->request = $request;
-        $this->username = Fortify::username();
+        $this->request     = $request;
+        $this->username    = Fortify::username();
         $this->altUsername = Config::get('fortify.alt_username');
     }
 

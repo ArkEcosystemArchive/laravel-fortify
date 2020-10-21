@@ -53,7 +53,7 @@ final class UserFactory extends Factory
      */
     public function withUsername()
     {
-        return $this->state(fn ()  => [
+        return $this->state(fn () => [
             'username'          => $this->faker->unique()->userName,
         ]);
     }

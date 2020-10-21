@@ -36,7 +36,6 @@
                     <div class="mb-4">
                         <div class="flex flex-1">
                             <x-ark-input
-                                type="email"
                                 name="email"
                                 label="Username or Email"
                                 autocomplete="email"

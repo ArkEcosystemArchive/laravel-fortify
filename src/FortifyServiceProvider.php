@@ -9,6 +9,7 @@ use ARKEcosystem\Fortify\Actions\UpdateUserProfileInformation;
 use ARKEcosystem\Fortify\Components\DeleteUserForm;
 use ARKEcosystem\Fortify\Components\ExportUserData;
 use ARKEcosystem\Fortify\Components\LogoutOtherBrowserSessionsForm;
+use ARKEcosystem\Fortify\Components\RegisterForm;
 use ARKEcosystem\Fortify\Components\TwoFactorAuthenticationForm;
 use ARKEcosystem\Fortify\Components\UpdatePasswordForm;
 use ARKEcosystem\Fortify\Components\UpdateProfileInformationForm;
@@ -48,7 +49,7 @@ class FortifyServiceProvider extends ServiceProvider
 
         $this->registerPublishers();
 
-        $this->registerComponents();
+        $this->registerLivewireComponents();
 
         $this->registerActions();
 
@@ -85,11 +86,11 @@ class FortifyServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the components.
+     * Register the Livewire components.
      *
      * @return void
      */
-    public function registerComponents(): void
+    public function registerLivewireComponents(): void
     {
         Livewire::component('profile.delete-user-form', DeleteUserForm::class);
         Livewire::component('profile.export-user-data', ExportUserData::class);
@@ -99,6 +100,7 @@ class FortifyServiceProvider extends ServiceProvider
         Livewire::component('profile.update-profile-information-form', UpdateProfileInformationForm::class);
         Livewire::component('profile.update-profile-photo-form', UpdateProfilePhotoForm::class);
         Livewire::component('profile.update-timezone-form', UpdateTimezoneForm::class);
+        Livewire::component('auth.register-form', RegisterForm::class);
     }
 
     /**
@@ -136,16 +138,7 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         Fortify::registerView(function ($request) {
-            $invitation = null;
-
-            if ($request->has('invitation')) {
-                $invitation = Models::invitation()::findByUuid($request->get('invitation'));
-            }
-
-            return view('ark-fortify::auth.register', [
-                'formUrl'    => $request->fullUrl(),
-                'invitation' => $invitation,
-            ]);
+            return view('ark-fortify::auth.register');
         });
 
         Fortify::requestPasswordResetLinkView(function () {

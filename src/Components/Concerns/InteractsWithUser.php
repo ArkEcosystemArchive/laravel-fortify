@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 trait InteractsWithUser
 {
-    public function getUserProperty(): ?\Illuminate\Contracts\Auth\Authenticatable
+    public function getUserProperty(): ?Authenticatable
     {
         return Auth::user();
     }

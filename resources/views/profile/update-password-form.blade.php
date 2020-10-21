@@ -6,7 +6,11 @@
         <form class="mt-8" wire:submit.prevent="updatePassword">
             <div class="space-y-4">
                 <x-ark-input type="password" name="currentPassword" model="state.current_password" :label="trans('fortify::forms.current_password')" :errors="$errors" />
-                <x-ark-input type="password" name="password" model="state.password" :label="trans('fortify::forms.new_password')" :errors="$errors" />
+                
+                <x:ark-fortify::password-rules class="w-full" :password-rules="$passwordRules">
+                    <x-ark-input type="password" name="password" model="state.password" class="w-full" :label="trans('fortify::forms.new_password')" :errors="$errors" />
+                </x:ark-fortify::password-rules>
+
                 <x-ark-input type="password" name="passwordConfirmation" model="state.password_confirmation" :label="trans('fortify::forms.confirm_password')" :errors="$errors" />
             </div>
             <div class="flex justify-end mt-8">

@@ -25,6 +25,7 @@ use Laravel\Fortify\Contracts\FailedTwoFactorLoginResponse as FailedTwoFactorLog
 use Laravel\Fortify\Contracts\TwoFactorLoginResponse as TwoFactorLoginResponseContract;
 use Laravel\Fortify\Fortify;
 use Livewire\Livewire;
+use Illuminate\Support\Facades\Config;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -181,23 +182,25 @@ class FortifyServiceProvider extends ServiceProvider
     private function registerAuthentication(): void
     {
         Fortify::authenticateUsing(function (Request $request) {
-            try {
-                $username = $request->get('email');
+            $username = $request->get('email');
 
-                if (\filter_var($username, \FILTER_VALIDATE_EMAIL)) {
-                    $user = Models::user()::where('email', $username)->firstOrFail();
-                } else {
-                    $user = Models::user()::where('username', $username)->firstOrFail();
-                }
+            $query = Models::user()::query();
 
-                if ($user && Hash::check($request->password, $user->password)) {
-                    $user->update(['last_login_at' => Carbon::now()]);
+            $query->where(Fortify::username(), $username);
 
-                    return $user;
-                }
-            } catch (\Throwable $th) {
-                return;
+            if ($altUsername = Config::get('fortify.alt_username')) {
+                $query->orWhere($altUsername, $username);
             }
+
+            $user = $query->first();
+
+            if ($user && Hash::check($request->password, $user->password)) {
+                $user->update(['last_login_at' => Carbon::now()]);
+
+                return $user;
+            }
+
+            return;
         });
     }
 

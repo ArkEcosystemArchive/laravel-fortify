@@ -122,7 +122,7 @@ class Password extends Fortify
             return false;
         }
 
-        return preg_match('/[A-Z]/', $value);
+        return ! preg_match('/[a-z]/', $value);
     }
 
     public function needsUppercase(string $value): bool
@@ -131,7 +131,7 @@ class Password extends Fortify
             return false;
         }
 
-        return preg_match('/[a-z]/', $value);
+        return ! preg_match('/[A-Z]/', $value);
     }
 
     public function needsNumeric(string $value): bool
@@ -140,7 +140,7 @@ class Password extends Fortify
             return false;
         }
 
-        return preg_match('/[0-9]/', $value);
+        return ! preg_match('/[0-9]/', $value);
     }
 
     public function needsSpecialCharacter(string $value): bool
@@ -149,7 +149,7 @@ class Password extends Fortify
             return false;
         }
 
-        return preg_match('/[\W_]/', $value);
+        return ! preg_match('/[\W_]/', $value);
     }
 
     public function needsMinimumLength(string $value): bool

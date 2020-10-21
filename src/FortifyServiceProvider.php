@@ -19,13 +19,13 @@ use ARKEcosystem\Fortify\Responses\FailedTwoFactorLoginResponse;
 use ARKEcosystem\Fortify\Responses\TwoFactorLoginResponse;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Contracts\FailedTwoFactorLoginResponse as FailedTwoFactorLoginResponseContract;
 use Laravel\Fortify\Contracts\TwoFactorLoginResponse as TwoFactorLoginResponseContract;
 use Laravel\Fortify\Fortify;
 use Livewire\Livewire;
-use Illuminate\Support\Facades\Config;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -200,8 +200,6 @@ class FortifyServiceProvider extends ServiceProvider
 
                 return $user;
             }
-
-            return;
         });
     }
 

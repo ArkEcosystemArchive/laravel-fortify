@@ -81,8 +81,9 @@ class FortifyServiceProvider extends ServiceProvider
         ], 'config');
 
         $this->publishes([
-            __DIR__.'/../resources/views/auth'     => resource_path('views/auth'),
-            __DIR__.'/../resources/views/livewire' => resource_path('views/livewire'),
+            __DIR__.'/../resources/views/auth'          => resource_path('views/auth'),
+            __DIR__.'/../resources/views/components'    => resource_path('views/components'),
+            __DIR__.'/../resources/views/profile'       => resource_path('views/profile'),
         ], 'views');
     }
 

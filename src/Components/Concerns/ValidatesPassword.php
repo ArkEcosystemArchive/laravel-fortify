@@ -7,11 +7,11 @@ use ARKEcosystem\Fortify\Rules\Password;
 trait ValidatesPassword
 {
     public array $passwordRules = [
-        'requireLowercase'        => false,
-        'requireUppercase'        => false,
-        'requireNumeric'          => false,
-        'requireSpecialCharacter' => false,
-        'isTooShort'              => false,
+        'needsLowercase'        => false,
+        'needsUppercase'        => false,
+        'needsNumeric'          => false,
+        'needsSpecialCharacter' => false,
+        'needsMinimumLength'    => false,
     ];
 
     public function updatedStatePassword($password)

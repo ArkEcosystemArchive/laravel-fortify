@@ -20,6 +20,6 @@ return [
         'needs_uppercase'         => 'One uppercase character',
         'needs_numeric'           => 'One number',
         'needs_special_character' => 'One special character',
-        'is_too_short'            => '12 characters minumum',
+        'needs_minimum_length'    => '12 characters minumum',
     ],
 ];

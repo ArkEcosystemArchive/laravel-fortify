@@ -24,23 +24,23 @@ class Password extends Fortify
      */
     public function passes($attribute, $value)
     {
-        if ($this->requireUppercase && ! preg_match('/[A-Z]/', $value)) {
+        if ($this->needsLowercase($value)) {
             return false;
         }
 
-        if ($this->requireLowercase && ! preg_match('/[a-z]/', $value)) {
+        if ($this->needsUppercase($value)) {
             return false;
         }
 
-        if ($this->requireNumeric && ! preg_match('/[0-9]/', $value)) {
+        if ($this->needsNumeric($value)) {
             return false;
         }
 
-        if ($this->requireSpecialCharacter && ! preg_match('/[\W_]/', $value)) {
+        if ($this->needsSpecialCharacter($value)) {
             return false;
         }
 
-        return Str::length($value) >= $this->length;
+        return $this->needsMinimumLength($value);
     }
 
     /**
@@ -114,5 +114,46 @@ class Password extends Fortify
         $this->requireLowercase = true;
 
         return $this;
+    }
+
+    public function needsLowercase(string $value): bool
+    {
+        if (! $this->requireUppercase) {
+            return false;
+        }
+
+        return preg_match('/[A-Z]/', $value);
+    }
+
+    public function needsUppercase(string $value): bool
+    {
+        if (! $this->requireLowercase) {
+            return false;
+        }
+
+        return preg_match('/[a-z]/', $value);
+    }
+
+    public function needsNumeric(string $value): bool
+    {
+        if (! $this->requireNumeric) {
+            return false;
+        }
+
+        return preg_match('/[0-9]/', $value);
+    }
+
+    public function needsSpecialCharacter(string $value): bool
+    {
+        if (! $this->requireSpecialCharacter) {
+            return false;
+        }
+
+        return preg_match('/[\W_]/', $value);
+    }
+
+    public function needsMinimumLength(string $value): bool
+    {
+        return ! (Str::length($value) >= $this->length);
     }
 }

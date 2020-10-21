@@ -2,7 +2,7 @@
 
 namespace ARKEcosystem\Fortify\Components\Concerns;
 
-use Laravel\Fortify\Rules\Password;
+use ARKEcosystem\Fortify\Rules\Password;
 
 trait ValidatesPassword
 {
@@ -11,7 +11,7 @@ trait ValidatesPassword
         'needsUppercase'        => false,
         'needsNumeric'          => false,
         'needsSpecialCharacter' => false,
-        'isTooShort'            => false,
+        'needsMinimumLength'    => false,
     ];
 
     public function updatedStatePassword($password)
@@ -20,13 +20,13 @@ trait ValidatesPassword
 
         $passwordValidator = (new Password())
             ->length(12)
+            ->requireLowercase()
             ->requireUppercase()
             ->requireNumeric()
             ->requireSpecialCharacter();
 
-        collect($this->passwordRules)
-            ->each(function ($val, $ruleName) use ($passwordValidator, $password) {
-                $this->passwordRules[$ruleName] = ! $passwordValidator->{$ruleName}($password);
-            });
+        foreach (array_keys($this->passwordRules) as $ruleName) {
+            $this->passwordRules[$ruleName] = ! $passwordValidator->{$ruleName}($password);
+        }
     }
 }

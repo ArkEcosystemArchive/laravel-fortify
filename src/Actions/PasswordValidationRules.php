@@ -2,7 +2,7 @@
 
 namespace ARKEcosystem\Fortify\Actions;
 
-use Laravel\Fortify\Rules\Password;
+use ARKEcosystem\Fortify\Rules\Password;
 
 trait PasswordValidationRules
 {
@@ -16,7 +16,12 @@ trait PasswordValidationRules
         return [
             'required',
             'string',
-            (new Password())->length(12)->requireUppercase()->requireNumeric()->requireSpecialCharacter(),
+            (new Password())
+                ->length(12)
+                ->requireLowercase()
+                ->requireUppercase()
+                ->requireNumeric()
+                ->requireSpecialCharacter(),
             'confirmed',
         ];
     }

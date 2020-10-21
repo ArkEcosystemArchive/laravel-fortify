@@ -26,6 +26,7 @@ use Laravel\Fortify\Contracts\FailedTwoFactorLoginResponse as FailedTwoFactorLog
 use Laravel\Fortify\Contracts\TwoFactorLoginResponse as TwoFactorLoginResponseContract;
 use Laravel\Fortify\Fortify;
 use Livewire\Livewire;
+use ARKEcosystem\Fortify\Actions\AuthenticateUser;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -183,23 +184,8 @@ class FortifyServiceProvider extends ServiceProvider
     private function registerAuthentication(): void
     {
         Fortify::authenticateUsing(function (Request $request) {
-            $username = $request->get('email');
-
-            $query = Models::user()::query();
-
-            $query->where(Fortify::username(), $username);
-
-            if ($altUsername = Config::get('fortify.alt_username')) {
-                $query->orWhere($altUsername, $username);
-            }
-
-            $user = $query->first();
-
-            if ($user && Hash::check($request->password, $user->password)) {
-                $user->update(['last_login_at' => Carbon::now()]);
-
-                return $user;
-            }
+            $authenticator = new AuthenticateUser($request);
+            return $authenticator->handle($request);
         });
     }
 

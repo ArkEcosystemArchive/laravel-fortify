@@ -24,6 +24,7 @@
         </div>
     @endif
 
+    @if(Config::get('fortify.alt_username'))
     <div class="mb-4">
         <div class="flex flex-1">
             <x-ark-input
@@ -38,6 +39,7 @@
             />
         </div>
     </div>
+    @endif
 
     @if($invitation)
         <input type="hidden" name="email" value="{{ $invitation->email }}" />

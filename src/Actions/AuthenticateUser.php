@@ -4,6 +4,7 @@ namespace ARKEcosystem\Fortify\Actions;
 
 use ARKEcosystem\Fortify\Models;
 use Carbon\Carbon;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
@@ -23,12 +24,17 @@ class AuthenticateUser
         $this->usernameAlt = Config::get('fortify.username_alt');
     }
 
-    public function handle(): Authenticatable
+    public function handle(): ?Authenticatable
     {
+        /** @var \Illuminate\Database\Eloquent\Model */
         $user = $this->fetchUser();
 
-        if (! $user || ! Hash::check($this->request->password, $user->password)) {
-            return;
+        if (! $user) {
+            return null;
+        }
+
+        if (! Hash::check($this->request->password, $user->password)) {
+            return null;
         }
 
         $user->update(['last_login_at' => Carbon::now()]);

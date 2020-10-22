@@ -41,9 +41,9 @@
                                 $type = 'text';
 
                                 if ($usernameAlt) {
-                                    $label = __('fortify::forms.' . $username) . ' or ' . __('fortify::forms.' . $altUsername); 
+                                    $label = __('fortify::forms.'.$username).' or '.__('fortify::forms.'.$usernameAlt);
                                 } else {
-                                    $label = __('fortify::forms.' . $username);
+                                    $label = __('fortify::forms.'.$username);
                                     if ($username === 'email') {
                                         $type = 'email';
                                     }

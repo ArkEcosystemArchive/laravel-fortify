@@ -26,7 +26,7 @@ it('should create a valid user with the create user action', function () {
     $this->assertTrue(Hash::check($this->validPassword, $user->password));
 });
 
-it('should create a valid user with username if the alt_username setting is set', function () {
+it('should create a valid user with username if the username_alt setting is set', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
     Config::set('fortify.username_alt', 'username');
 
@@ -48,7 +48,7 @@ it('should create a valid user with username if the alt_username setting is set'
 it('should require a username if alt username is set', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
 
-    Config::set('fortify.alt_username', 'username');
+    Config::set('fortify.username_alt', 'username');
 
     try {
         (new CreateNewUser())

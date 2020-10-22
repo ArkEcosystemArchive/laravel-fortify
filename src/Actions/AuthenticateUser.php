@@ -45,7 +45,7 @@ class AuthenticateUser
         $query->where(Fortify::username(), $username);
 
         if ($usernameAlt = Config::get('fortify.username_alt')) {
-            $query->orWhere($altUsername, $username);
+            $query->orWhere($usernameAlt, $username);
         }
 
         return $query->first();

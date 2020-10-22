@@ -24,7 +24,7 @@
         </div>
     @endif
 
-    @if(Config::get('fortify.alt_username'))
+    @if(Config::get('fortify.username_alt'))
     <div class="mb-4">
         <div class="flex flex-1">
             <x-ark-input

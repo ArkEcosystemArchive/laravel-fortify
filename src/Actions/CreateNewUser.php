@@ -38,7 +38,7 @@ class CreateNewUser implements CreatesNewUsers
         ];
 
         if ($usernameAlt = Config::get('fortify.username_alt')) {
-            $rules[$altUsername] = ['required', 'string', 'max:255', 'unique:users'];
+            $rules[$usernameAlt] = ['required', 'string', 'max:255', 'unique:users'];
         }
 
         return Validator::make($input, $rules);
@@ -53,7 +53,7 @@ class CreateNewUser implements CreatesNewUsers
         ];
 
         if ($usernameAlt = Config::get('fortify.username_alt')) {
-            $userData[$usernameAlt] = $input[$altUsername];
+            $userData[$usernameAlt] = $input[$usernameAlt];
         }
 
         return $userData;

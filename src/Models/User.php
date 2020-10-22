@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Spatie\PersonalDataExport\ExportsPersonalData;
 use Spatie\PersonalDataExport\PersonalDataSelection;
+use Tests\Database\Factories\UserFactory;
 
 class User extends Authenticatable implements ExportsPersonalData, MustVerifyEmail
 {
@@ -46,6 +47,16 @@ class User extends Authenticatable implements ExportsPersonalData, MustVerifyEma
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    protected static function newFactory()
+    {
+        return new UserFactory();
+    }
 
     /**
      * @codeCoverageIgnore

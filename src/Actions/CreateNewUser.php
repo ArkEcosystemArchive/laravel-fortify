@@ -3,9 +3,12 @@
 namespace ARKEcosystem\Fortify\Actions;
 
 use ARKEcosystem\Fortify\Models;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Validator as ValidationValidator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
+use Laravel\Fortify\Fortify;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -20,19 +23,50 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
-        Validator::make($input, [
-            'name'     => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:255', 'unique:users'],
-            'email'    => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => $this->passwordRules(),
-            'terms'    => ['required', 'accepted'],
-        ])->validate();
+        $input = $this->buildValidator($input)->validate();
 
-        return Models::user()::create([
-            'name'     => $input['name'],
-            'username' => $input['username'],
-            'email'    => $input['email'],
-            'password' => Hash::make($input['password']),
-        ]);
+        return Models::user()::create($this->getUserData($input));
+    }
+
+    private function buildValidator(array $input): ValidationValidator
+    {
+        $rules = [
+            'name'              => ['required', 'string', 'max:255'],
+            Fortify::username() => $this->usernameRules(),
+            'password'          => $this->passwordRules(),
+            'terms'             => ['required', 'accepted'],
+        ];
+
+        if ($usernameAlt = Config::get('fortify.username_alt')) {
+            $rules[$usernameAlt] = ['required', 'string', 'max:255', 'unique:users'];
+        }
+
+        return Validator::make($input, $rules);
+    }
+
+    private function getUserData(array $input): array
+    {
+        $userData = [
+            'name'              => $input['name'],
+            Fortify::username() => $input[Fortify::username()],
+            'password'          => Hash::make($input['password']),
+        ];
+
+        if ($usernameAlt = Config::get('fortify.username_alt')) {
+            $userData[$usernameAlt] = $input[$usernameAlt];
+        }
+
+        return $userData;
+    }
+
+    private function usernameRules(): array
+    {
+        $rules = ['required', 'string', 'max:255', 'unique:users'];
+
+        if (Fortify::username() === 'email') {
+            $rules[] = 'email';
+        }
+
+        return $rules;
     }
 }

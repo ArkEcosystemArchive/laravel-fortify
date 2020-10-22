@@ -26,3 +26,19 @@
 Laravel\Fortify\FortifyServiceProvider::class,
 ARKEcosystem\Fortify\FortifyServiceProvider::class,
 ```
+
+5. Enable or disable the login/register with username or email by using the `username_alt` setting in the `config/fortify.php` file
+
+```php
+<?php
+
+return [
+    // ...
+    'username_alt' => 'username',
+    // Or set that setting to `null` so the user can only login/register with email:
+    // 'username_alt' => null,
+    // ...
+];
+```
+
+**Note:** If you use the `username_alt` setting, you need to ensure that your users table has that column.

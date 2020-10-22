@@ -21,14 +21,34 @@ it('should create a valid user with the create user action', function () {
         'terms'                 => true,
     ]);
 
-    $this->assertSame('alfonsobries', $user->username);
     $this->assertSame('alfonso@ark.io', $user->email);
     $this->assertSame('Alfonso Bribiesca', $user->name);
     $this->assertTrue(Hash::check($this->validPassword, $user->password));
 });
 
-it('should require a username', function () {
+it('should create a valid user with username if the username_alt setting is set', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
+    Config::set('fortify.username_alt', 'username');
+
+    $user = (new CreateNewUser())->create([
+        'name'                  => 'Alfonso Bribiesca',
+        'username'              => 'alfonsobries',
+        'email'                 => 'alfonso@ark.io',
+        'password'              => $this->validPassword,
+        'password_confirmation' => $this->validPassword,
+        'terms'                 => true,
+    ]);
+
+    $this->assertSame('alfonso@ark.io', $user->email);
+    $this->assertSame('alfonsobries', $user->username);
+    $this->assertSame('Alfonso Bribiesca', $user->name);
+    $this->assertTrue(Hash::check($this->validPassword, $user->password));
+});
+
+it('should require a username if alt username is set', function () {
+    Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
+
+    Config::set('fortify.username_alt', 'username');
 
     try {
         (new CreateNewUser())

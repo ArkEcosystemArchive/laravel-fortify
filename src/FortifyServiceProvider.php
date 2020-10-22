@@ -2,6 +2,7 @@
 
 namespace ARKEcosystem\Fortify;
 
+use ARKEcosystem\Fortify\Actions\AuthenticateUser;
 use ARKEcosystem\Fortify\Actions\CreateNewUser;
 use ARKEcosystem\Fortify\Actions\ResetUserPassword;
 use ARKEcosystem\Fortify\Actions\UpdateUserPassword;
@@ -17,9 +18,7 @@ use ARKEcosystem\Fortify\Components\UpdateProfilePhotoForm;
 use ARKEcosystem\Fortify\Components\UpdateTimezoneForm;
 use ARKEcosystem\Fortify\Responses\FailedTwoFactorLoginResponse;
 use ARKEcosystem\Fortify\Responses\TwoFactorLoginResponse;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Contracts\FailedTwoFactorLoginResponse as FailedTwoFactorLoginResponseContract;
 use Laravel\Fortify\Contracts\TwoFactorLoginResponse as TwoFactorLoginResponseContract;
@@ -80,8 +79,9 @@ class FortifyServiceProvider extends ServiceProvider
         ], 'config');
 
         $this->publishes([
-            __DIR__.'/../resources/views/auth'     => resource_path('views/auth'),
-            __DIR__.'/../resources/views/livewire' => resource_path('views/livewire'),
+            __DIR__.'/../resources/views/auth'          => resource_path('views/auth'),
+            __DIR__.'/../resources/views/components'    => resource_path('views/components'),
+            __DIR__.'/../resources/views/profile'       => resource_path('views/profile'),
         ], 'views');
     }
 
@@ -181,23 +181,9 @@ class FortifyServiceProvider extends ServiceProvider
     private function registerAuthentication(): void
     {
         Fortify::authenticateUsing(function (Request $request) {
-            try {
-                $username = $request->get('email');
+            $authenticator = new AuthenticateUser($request);
 
-                if (\filter_var($username, \FILTER_VALIDATE_EMAIL)) {
-                    $user = Models::user()::where('email', $username)->firstOrFail();
-                } else {
-                    $user = Models::user()::where('username', $username)->firstOrFail();
-                }
-
-                if ($user && Hash::check($request->password, $user->password)) {
-                    $user->update(['last_login_at' => Carbon::now()]);
-
-                    return $user;
-                }
-            } catch (\Throwable $th) {
-                return;
-            }
+            return (new AuthenticateUser($request))->handle($request);
         });
     }
 

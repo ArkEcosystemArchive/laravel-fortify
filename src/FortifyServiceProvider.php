@@ -183,7 +183,7 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::authenticateUsing(function (Request $request) {
             $authenticator = new AuthenticateUser($request);
 
-            return $authenticator->handle($request);
+            return (new AuthenticateUser($request))->handle($request);
         });
     }
 

@@ -37,10 +37,10 @@
                         <div class="flex flex-1">
                             @php
                                 $username = \Laravel\Fortify\Fortify::username();
-                                $altUsername = Config::get('fortify.alt_username');
+                                $usernameAlt = Config::get('fortify.username_alt');
                                 $type = 'text';
 
-                                if ($altUsername) {
+                                if ($usernameAlt) {
                                     $label = __('fortify::forms.' . $username) . ' or ' . __('fortify::forms.' . $altUsername); 
                                 } else {
                                     $label = __('fortify::forms.' . $username);

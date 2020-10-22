@@ -37,7 +37,7 @@ class CreateNewUser implements CreatesNewUsers
             'terms'             => ['required', 'accepted'],
         ];
 
-        if ($altUsername = Config::get('fortify.alt_username')) {
+        if ($usernameAlt = Config::get('fortify.username_alt')) {
             $rules[$altUsername] = ['required', 'string', 'max:255', 'unique:users'];
         }
 
@@ -52,8 +52,8 @@ class CreateNewUser implements CreatesNewUsers
             'password'          => Hash::make($input['password']),
         ];
 
-        if ($altUsername = Config::get('fortify.alt_username')) {
-            $userData[$altUsername] = $input[$altUsername];
+        if ($usernameAlt = Config::get('fortify.username_alt')) {
+            $userData[$usernameAlt] = $input[$altUsername];
         }
 
         return $userData;

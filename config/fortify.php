@@ -47,7 +47,7 @@ return [
 
     'username' => 'email',
 
-    'alt_username' => 'username',
+    'username_alt' => 'username',
 
     'email' => 'email',
 

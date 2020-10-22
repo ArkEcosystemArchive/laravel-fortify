@@ -28,7 +28,7 @@ it('should create a valid user with the create user action', function () {
 
 it('should create a valid user with username if the alt_username setting is set', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
-    Config::set('fortify.alt_username', 'username');
+    Config::set('fortify.username_alt', 'username');
 
     $user = (new CreateNewUser())->create([
         'name'                  => 'Alfonso Bribiesca',

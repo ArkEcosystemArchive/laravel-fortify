@@ -20,10 +20,10 @@ class AuthenticateUser
     {
         $this->request     = $request;
         $this->username    = Fortify::username();
-        $this->altUsername = Config::get('fortify.alt_username');
+        $this->usernameAlt = Config::get('fortify.username_alt');
     }
 
-    public function handle()
+    public function handle(): Authenticatable
     {
         $user = $this->fetchUser();
 
@@ -36,7 +36,7 @@ class AuthenticateUser
         return $user;
     }
 
-    private function fetchUser()
+    private function fetchUser(): ?Authenticatable
     {
         $username = $this->getUsername();
 
@@ -44,14 +44,14 @@ class AuthenticateUser
 
         $query->where(Fortify::username(), $username);
 
-        if ($altUsername = Config::get('fortify.alt_username')) {
+        if ($usernameAlt = Config::get('fortify.username_alt')) {
             $query->orWhere($altUsername, $username);
         }
 
         return $query->first();
     }
 
-    private function getUsername()
+    private function getUsername(): ?string
     {
         return $this->request->get($this->username);
     }

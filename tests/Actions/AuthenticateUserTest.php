@@ -26,7 +26,7 @@ it('login the user by default username (email)', function () {
 
 it('login the user by the email when alt username is set', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
-    Config::set('fortify.alt_username', 'username');
+    Config::set('fortify.username_alt', 'username');
 
     $user = User::factory()->withUsername()->create();
 
@@ -46,7 +46,7 @@ it('login the user by the email when alt username is set', function () {
 
 it('login the user by the alt username (username)', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
-    Config::set('fortify.alt_username', 'username');
+    Config::set('fortify.username_alt', 'username');
 
     $user = User::factory()->withUsername()->create();
 
@@ -66,7 +66,7 @@ it('login the user by the alt username (username)', function () {
 
 it('doesnt login the user by the alt username if not set (username)', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
-    Config::set('fortify.alt_username', null);
+    Config::set('fortify.username_alt', null);
 
     $user = User::factory()->withUsername()->create();
 

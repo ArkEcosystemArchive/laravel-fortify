@@ -17,7 +17,12 @@ return [
         'update_timezone_title'            => 'Timezone',
         'update_timezone_description'      => 'Select a Timezone below and update it by clicking the update button.',
         'timezone_updated'                 => 'Timezone was successfully updated',
-
+        'password_information_title'       => 'Password',
+        'password_information_description' => 'Ensure your account is using a long, random password to stay secure.',
+        'contact_information_title'        => 'Contact Information',
+        'contact_information_description'  => "Update your account's contact information and email address.",
+        'gdpr_title'                       => 'General Data Protection Regulation (GDPR)',
+        'gdpr_description'                 => 'This will will create a zip containing all personal data to respect your right to data portability. You will receive the zip file on the email address linked to your Deployer account.',
     ],
 
 ];

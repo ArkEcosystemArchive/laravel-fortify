@@ -29,7 +29,7 @@
                             <x-ark-input
                                 type="password"
                                 name="code"
-                                :label="__('fortify::forms.code')"
+                                :label="trans('fortify::forms.code')"
                                 class="w-full"
                                 :errors="$errors"
                             />
@@ -41,7 +41,7 @@
                             <x-ark-input
                                 type="password"
                                 name="recovery_code"
-                                :label="__('fortify::forms.recovery_code')"
+                                :label="trans('fortify::forms.recovery_code')"
                                 class="w-full"
                                 :errors="$errors"
                             />

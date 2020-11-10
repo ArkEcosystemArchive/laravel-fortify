@@ -41,9 +41,9 @@
                                 $type = 'text';
 
                                 if ($usernameAlt) {
-                                    $label = __('fortify::forms.'.$username).' or '.__('fortify::forms.'.$usernameAlt);
+                                    $label = trans('fortify::forms.'.$username).' or '.trans('fortify::forms.'.$usernameAlt);
                                 } else {
-                                    $label = __('fortify::forms.'.$username);
+                                    $label = trans('fortify::forms.'.$username);
                                     if ($username === 'email') {
                                         $type = 'email';
                                     }
@@ -69,7 +69,7 @@
                             <x-ark-input
                                 type="password"
                                 name="password"
-                                :label="__('fortify::forms.password')"
+                                :label="trans('fortify::forms.password')"
                                 autocomplete="password"
                                 class="w-full"
                                 :required="true"

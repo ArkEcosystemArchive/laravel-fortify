@@ -31,7 +31,7 @@
                             <x-ark-input
                                 type="email"
                                 name="email"
-                                :label="__('fortify::forms.email')"
+                                :label="trans('fortify::forms.email')"
                                 autocomplete="email"
                                 class="w-full"
                                 :autofocus="true"
@@ -48,7 +48,7 @@
                             <x-ark-input
                                 type="password"
                                 name="password"
-                                :label="__('fortify::forms.password')"
+                                :label="trans('fortify::forms.password')"
                                 autocomplete="new-password"
                                 class="w-full"
                                 :required="true"
@@ -65,7 +65,7 @@
                             <x-ark-input
                                 type="password"
                                 name="password_confirmation"
-                                :label="__('fortify::forms.confirm_password')"
+                                :label="trans('fortify::forms.confirm_password')"
                                 autocomplete="new-password"
                                 class="w-full"
                                 :required="true"

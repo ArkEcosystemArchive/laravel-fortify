@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('title')
-    @lang('fortify::metatags.verify')
+    {{ trans('metatags.verify') ?? trans('fortify::metatags.verify') }}
 @endsection
 
 @section('back-bar')
     <x-breadcrumbs :crumbs="[
-        ['route' => 'login', 'label' => trans('fortify::menu.sign-in')],
+        ['route' => 'login', 'label' => trans('menu.sign-in') ?? trans('fortify::menu.sign-in')],
         ['label' => trans('fortify::menu.verify')],
     ]" />
 @endsection

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ trans('metatags.login-with-two-factor') ?? trans('fortify::metatags.login-with-two-factor') }}
+    {{ $metaTitle ?? trans('fortify::metatags.login-with-two-factor') }}
 @endsection
 
 @section('back-bar')

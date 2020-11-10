@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ trans('metatags.register') ?? trans('fortify::metatags.register') }}
+    {{ $metaTitle ?? trans('fortify::metatags.register') }}
 @endsection
 
 @section('back-bar')

@@ -41,6 +41,6 @@ return [
 
     'confirming-logout' => [
         'title'          => 'Logout Other Browser Sessions',
-        'content'    => 'Please enter your password to confirm you would like to logout of your other browser sessions across all of your devices.',
+        'content'        => 'Please enter your password to confirm you would like to logout of your other browser sessions across all of your devices.',
     ],
 ];

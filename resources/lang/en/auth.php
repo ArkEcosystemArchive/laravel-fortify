@@ -14,13 +14,13 @@ return [
         'page_header'      => 'Sign In',
         'page_description' => 'Log in to MarketSquare and connect with a growing community of like-minded blockchain enthusiasts and developers.',
         'forgot_password'  => 'Forgot password?',
-        'register_now'     => 'Not a member? <a href=":route" class="link">Sign up now</a>'
+        'register_now'     => 'Not a member? <a href=":route" class="link">Sign up now</a>',
     ],
 
-    'register-form' =>  [
+    'register-form' => [
         'conditions'         => "Creating an account means you're okay with our <a href=':termsOfServiceRoute' class='link'>Terms of Service</a> and <a href=':privacyPolicyRoute' class='link'>Privacy Policy</a>.",
         'create_account'     => 'Create Account',
-        'already_member'     => 'Already a member? <a href=":route" class="link">Sign in</a>'
+        'already_member'     => 'Already a member? <a href=":route" class="link">Sign in</a>',
     ],
 
     'register' => [

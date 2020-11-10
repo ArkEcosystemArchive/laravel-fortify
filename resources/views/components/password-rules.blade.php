@@ -11,7 +11,7 @@
                 <span class="block w-2 h-2 mr-2 rounded-full @if($ruleIsValid) bg-theme-primary-500 @else bg-theme-secondary-400 @endif"></span>
 
                 <span>
-                    @lang('fortify::forms.password_rules.' . Str::snake($ruleName))
+                    @lang('fortify::forms.password-rules.' . Str::snake($ruleName))
                 </span>
             </div>
         @endforeach

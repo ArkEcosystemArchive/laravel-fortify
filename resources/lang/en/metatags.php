@@ -1,11 +1,9 @@
 <?php
 
 return [
-
-    'reset-password'        => 'Reset Password',
+    'reset_password'        => 'Reset Password',
     'login'                 => 'Login',
     'register'              => 'Register',
-    'login-with-two-factor' => 'Login With Two Factor',
+    'login_with_two_factor' => 'Login With Two Factor',
     'verify'                => 'Verify',
-
 ];

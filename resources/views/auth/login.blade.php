@@ -7,7 +7,7 @@
 @section('back-bar')
     <x-breadcrumbs :crumbs="[
         ['route' => 'home', 'label' => trans('fortify::menu.home')],
-        ['label' => trans('menu.sign-in') ?? trans('fortify::menu.sign-in')],
+        ['label' => trans('menu.sign_in') ?? trans('fortify::menu.sign_in')],
     ]" />
 @endsection
 

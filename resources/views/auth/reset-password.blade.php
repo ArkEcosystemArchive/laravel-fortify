@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @slot('title')
-    {{ trans('metatags.reset-password') ?? trans('fortify::metatags.reset-password') }}
+    {{ trans('metatags.reset_password') ?? trans('fortify::metatags.reset_password') }}
 @endslot
 
 @section('back-bar')
     <x-breadcrumbs :crumbs="[
-        ['route' => 'login', 'label' => trans('menu.sign-in') ?? trans('fortify::menu.sign-in')],
-        ['label' => trans('fortify::menu.reset-password')],
+        ['route' => 'login', 'label' => trans('menu.sign_in') ?? trans('fortify::menu.sign_in')],
+        ['label' => trans('fortify::menu.reset_password')],
     ]" />
 @endsection
 
@@ -56,7 +56,7 @@
                             />
                         </div>
                         @if (! request()->session()->get('errors'))
-                            <div class="text-sm text-theme-secondary-600">@lang('fortify::forms.update_password.requirements_notice')</div>
+                            <div class="text-sm text-theme-secondary-600">@lang('fortify::forms.update-password.requirements_notice')</div>
                         @endif
                     </div>
 

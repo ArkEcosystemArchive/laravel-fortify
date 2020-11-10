@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ $metaTitle ?? trans('fortify::metatags.reset-password') }}
+    {{ $metaTitle ?? trans('fortify::metatags.reset_password') }}
 @endsection
 
 @section('back-bar')
     <x-breadcrumbs :crumbs="[
-        ['route' => 'login', 'label' => trans('menu.sign-in') ?? trans('fortify::menu.sign-in')],
-        ['label' => trans('fortify::menu.password-reset-email')],
+        ['route' => 'login', 'label' => trans('menu.sign_in') ?? trans('fortify::menu.sign_in')],
+        ['label' => trans('fortify::menu.password_reset_email')],
     ]" />
 @endsection
 

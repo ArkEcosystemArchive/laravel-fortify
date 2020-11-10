@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     'confirm_password' => 'Confirm Password',
     'current_password' => 'Current Password',
     'email_address'    => 'Email Address',
@@ -13,11 +12,11 @@ return [
     'code'             => 'Code',
     'recovery_code'    => 'Recovery Code',
 
-    'update_password' => [
+    'update-password' => [
         'requirements_notice' => 'Password must be 12–128 characters, and include a number, a symbol, a lower and an upper case letter.',
     ],
 
-    'password_rules' => [
+    'password-rules' => [
         'needs_lowercase'         => 'One lowercase character',
         'needs_uppercase'         => 'One uppercase character',
         'needs_numeric'           => 'One number',

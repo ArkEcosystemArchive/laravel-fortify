@@ -9,5 +9,5 @@ return [
     'sign-in'              => 'Sign In to MarketSquare',
     'sign-up'              => 'Sign Up to MarketSquare',
     'verify'               => 'Verify Email',
-
+    'home'                 => 'Home',
 ];

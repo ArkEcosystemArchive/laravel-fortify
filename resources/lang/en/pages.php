@@ -3,7 +3,6 @@
 return [
 
     'user-settings' => [
-
         '2fa_title'                        => 'Two Factor Authentication',
         '2fa_description'                  => 'Add additional security to your account using two factor authentication.',
         '2fa_enabled_title'                => 'You have enabled two factor authentication.',
@@ -23,6 +22,10 @@ return [
         'contact_information_description'  => "Update your account's contact information and email address.",
         'gdpr_title'                       => 'General Data Protection Regulation (GDPR)',
         'gdpr_description'                 => 'This will will create a zip containing all personal data to respect your right to data portability. You will receive the zip file on the email address linked to your Deployer account.',
+    ],
+
+    'user-settings' => [
+
     ],
 
 ];

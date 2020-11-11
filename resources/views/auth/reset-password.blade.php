@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @slot('title')
-    {{ trans('fortify::metatags.reset_password') }}
+    <x-data-bag key="fortify-content" resolver="path" view="page-title" />
 @endslot
 
 @section('breadcrumbs')

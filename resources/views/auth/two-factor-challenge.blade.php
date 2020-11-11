@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ trans('fortify::metatags.login_with_two_factor') }}
+    <x-data-bag key="fortify-content" resolver="path" view="page-title" />
 @endsection
 
 @section('breadcrumbs')

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ trans('fortify::metatags.verify') }}
+    <x-data-bag key="fortify-content" resolver="path" view="page-title" />
 @endsection
 
 @section('breadcrumbs')

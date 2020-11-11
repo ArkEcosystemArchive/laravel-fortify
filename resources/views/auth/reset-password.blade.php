@@ -4,7 +4,7 @@
     {{ trans('fortify::metatags.reset_password') }}
 @endslot
 
-@section('back-bar')
+@section('breadcrumbs')
     <x-breadcrumbs :crumbs="[
         ['route' => 'login', 'label' => trans('fortify::menu.sign_in')],
         ['label' => trans('fortify::menu.reset_password')],

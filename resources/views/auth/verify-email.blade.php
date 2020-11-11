@@ -4,7 +4,7 @@
     {{ trans('fortify::metatags.verify') }}
 @endsection
 
-@section('back-bar')
+@section('breadcrumbs')
     <x-breadcrumbs :crumbs="[
         ['route' => 'login', 'label' =>trans('fortify::menu.sign_in')],
         ['label' => trans('fortify::menu.verify')],

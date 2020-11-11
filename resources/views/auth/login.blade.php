@@ -4,7 +4,7 @@
     {{ trans('fortify::metatags.login') }}
 @endsection
 
-@section('back-bar')
+@section('breadcrumbs')
     <x-breadcrumbs :crumbs="[
         ['route' => 'home', 'label' => trans('fortify::menu.home')],
         ['label' => trans('fortify::menu.sign_in')],

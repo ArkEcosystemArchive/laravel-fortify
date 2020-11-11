@@ -4,7 +4,7 @@
     {{ trans('fortify::metatags.login_with_two_factor') }}
 @endsection
 
-@section('back-bar')
+@section('breadcrumbs')
     <x-breadcrumbs :crumbs="[
         ['route' => 'login', 'label' => trans('fortify::menu.sign_in')],
         ['label' => trans('fortify::menu.2fa')],

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @slot('title')
-    <x-data-bag key="fortify-content" resolver="name" view="page-title" />
+    <x-data-bag key="fortify-content" resolver="name" view="ark-fortify::components.page-title" />
 @endslot
 
 @section('breadcrumbs')

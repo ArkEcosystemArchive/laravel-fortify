@@ -11,8 +11,6 @@ return [
     ],
 
     'sign-in' => [
-        'page_header'      => 'Sign In',
-        'page_description' => 'Log in to MarketSquare and connect with a growing community of like-minded blockchain enthusiasts and developers.',
         'forgot_password'  => 'Forgot password?',
         'register_now'     => 'Not a member? <a href=":route" class="link">Sign up now</a>',
     ],
@@ -25,7 +23,6 @@ return [
 
     'register' => [
         'page_header'      => 'Sign Up',
-        'page_description' => 'Sign up to MarketSquare and connect with a growing community of like-minded blockchain enthusiasts and developers.',
     ],
 
     'reset-password' => [

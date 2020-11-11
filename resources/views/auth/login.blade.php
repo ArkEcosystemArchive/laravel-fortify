@@ -80,7 +80,7 @@
                     <div class="flex justify-between">
                         @if(Route::has('password.request'))
                             <div class="flex-1 m-auto">
-                                <a href="{{ route('password.request') }}" class="link">{{ trans('fortify::auth.sign-in.forgot_password') }}</a>
+                                <a href="{{ route('password.request') }}" class="link">@lang('fortify::auth.sign-in.forgot_password')</a>
                             </div>
                         @endif
 

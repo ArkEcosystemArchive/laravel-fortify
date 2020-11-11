@@ -58,7 +58,7 @@
                                     recovery = true;
                                     $nextTick(() => { $refs.recovery_code.focus() })
                                 ">
-                                {{ trans('fortify::actions.use_recovery_code') }}
+                                @lang('fortify::actions.use_recovery_code')
                             </button>
 
                             <button type="button" class="text-sm text-gray-600 underline cursor-pointer hover:text-gray-900"
@@ -67,7 +67,7 @@
                                                 recovery = false;
                                                 $nextTick(() => { $refs.code.focus() })
                                             ">
-                                {{ trans('fortify::actions.use_authentication_code') }}
+                                @lang('fortify::actions.use_authentication_code')
                             </button>
                         </div>
 

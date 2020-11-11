@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2e8aa9aa211c6dd0ef342b589eeb8a47",
+    "content-hash": "2f2a772122c9cbfe48b5934b1b6339ff",
     "packages": [
         {
             "name": "arkecosystem/ui",
@@ -933,6 +933,79 @@
                 }
             ],
             "time": "2020-06-13T08:05:20+00:00"
+        },
+        {
+            "name": "konceiver/laravel-data-bags",
+            "version": "1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/konceiver/laravel-data-bags.git",
+                "reference": "3c75e0990c64874f01c295fb24b061b763714b85"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/konceiver/laravel-data-bags/zipball/3c75e0990c64874f01c295fb24b061b763714b85",
+                "reference": "3c75e0990c64874f01c295fb24b061b763714b85",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^8.0",
+                "illuminate/support": "^8.0",
+                "illuminate/view": "^8.0",
+                "php": "^7.4"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.16",
+                "graham-campbell/analyzer": "^3.0",
+                "pestphp/pest": "^0.3",
+                "phpunit/phpunit": "^9.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Konceiver\\DataBags\\Providers\\DataBagsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Konceiver\\DataBags\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brian Faust",
+                    "email": "brian@konceiver.dev",
+                    "homepage": "https://konceiver.dev",
+                    "role": "Developer"
+                }
+            ],
+            "description": ":package_description",
+            "homepage": "https://github.com/konceiver/laravel-data-bags",
+            "keywords": [
+                "konceiver",
+                "laravel-data-bags"
+            ],
+            "support": {
+                "issues": "https://github.com/konceiver/laravel-data-bags/issues",
+                "source": "https://github.com/konceiver/laravel-data-bags/tree/1.1.2"
+            },
+            "funding": [
+                {
+                    "url": "https://konceiver.dev/open-source/support-us",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/faustbrian",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-11-04T03:11:55+00:00"
         },
         {
             "name": "laravel/fortify",

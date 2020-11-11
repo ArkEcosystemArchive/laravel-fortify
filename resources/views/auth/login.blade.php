@@ -1,21 +1,20 @@
 @extends('layouts.app')
 
 @section('title')
-    @lang('fortify::metatags.login')
+    <x-data-bag key="fortify-content" resolver="name" view="ark-fortify::components.page-title" />
 @endsection
 
-@section('back-bar')
+@section('breadcrumbs')
     <x-breadcrumbs :crumbs="[
         ['route' => 'home', 'label' => trans('fortify::menu.home')],
-        ['label' => trans('fortify::menu.sign-in')],
+        ['label' => trans('fortify::menu.sign_in')],
     ]" />
 @endsection
 
 @section('content')
     <div class="container mx-auto">
         <div class="mx-auto my-8 md:w-3/4 lg:w-3/5 xl:w-1/2">
-            <h1 class="mx-4 text-2xl font-bold md:text-4xl md:mx-8 xl:mx-16">Sign in</h1>
-            <div class="mx-4 mt-2 text-theme-secondary-700 md:mx-8 xl:mx-16">Log in to MarketSquare and connect with a growing community of like-minded blockchain enthusiasts and developers.</div>
+            <x-data-bag key="fortify-content" resolver="name" view="ark-fortify::components.component-heading" />
 
             <div class="mt-5 lg:mt-8">
                 <form
@@ -41,9 +40,9 @@
                                 $type = 'text';
 
                                 if ($usernameAlt) {
-                                    $label = __('fortify::forms.'.$username).' or '.__('fortify::forms.'.$usernameAlt);
+                                    $label = trans('fortify::forms.'.$username).' or '.trans('fortify::forms.'.$usernameAlt);
                                 } else {
-                                    $label = __('fortify::forms.'.$username);
+                                    $label = trans('fortify::forms.'.$username);
                                     if ($username === 'email') {
                                         $type = 'email';
                                     }
@@ -69,7 +68,7 @@
                             <x-ark-input
                                 type="password"
                                 name="password"
-                                :label="__('fortify::forms.password')"
+                                :label="trans('fortify::forms.password')"
                                 autocomplete="password"
                                 class="w-full"
                                 :required="true"
@@ -81,19 +80,19 @@
                     <div class="flex justify-between">
                         @if(Route::has('password.request'))
                             <div class="flex-1 m-auto">
-                                <a href="{{ route('password.request') }}" class="link">Forgot password?</a>
+                                <a href="{{ route('password.request') }}" class="link">@lang('fortify::auth.sign-in.forgot_password')</a>
                             </div>
                         @endif
 
                         <button type="submit" class="button-primary">
-                            Sign In
+                            @lang('fortify::actions.sign_in')
                         </button>
                     </div>
 
                     @if(Route::has('register'))
                         <div class="text-center">
                             <div class="pt-4 mt-8 border-t border-theme-secondary-200">
-                                Not a member? <a href="{{ route('register') }}" class="link">Sign up now</a>
+                                @lang('fortify::auth.sign-in.register_now', ['route' => route('register')])
                             </div>
                         </div>
                     @endif

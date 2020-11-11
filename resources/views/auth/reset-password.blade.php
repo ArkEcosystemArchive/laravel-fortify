@@ -1,20 +1,20 @@
 @extends('layouts.app')
 
 @slot('title')
-    @lang('fortify::metatags.reset-password')
+    <x-data-bag key="fortify-content" resolver="name" view="ark-fortify::components.page-title" />
 @endslot
 
-@section('back-bar')
+@section('breadcrumbs')
     <x-breadcrumbs :crumbs="[
-        ['route' => 'login', 'label' => trans('fortify::menu.sign-in')],
-        ['label' => trans('fortify::menu.reset-password')],
+        ['route' => 'login', 'label' => trans('fortify::menu.sign_in')],
+        ['label' => trans('fortify::menu.reset_password')],
     ]" />
 @endsection
 
 @section('content')
     <div class="container mx-auto">
         <div class="mx-auto my-8 md:w-3/4 lg:w-3/5 xl:w-1/2">
-            <h1 class="mx-4 text-2xl font-bold md:text-4xl md:mx-8 xl:mx-16">Reset Password</h1>
+            <h1 class="mx-4 text-2xl font-bold md:text-4xl md:mx-8 xl:mx-16">@lang('fortify::auth.reset-password.page_header')</h1>
 
             <div class="mt-5 lg:mt-8">
                 <form
@@ -31,7 +31,7 @@
                             <x-ark-input
                                 type="email"
                                 name="email"
-                                label="Email"
+                                :label="trans('fortify::forms.email')"
                                 autocomplete="email"
                                 class="w-full"
                                 :autofocus="true"
@@ -48,7 +48,7 @@
                             <x-ark-input
                                 type="password"
                                 name="password"
-                                label="Password"
+                                :label="trans('fortify::forms.password')"
                                 autocomplete="new-password"
                                 class="w-full"
                                 :required="true"
@@ -56,7 +56,7 @@
                             />
                         </div>
                         @if (! request()->session()->get('errors'))
-                            <div class="text-sm text-theme-secondary-600">@lang('fortify::forms.update_password.requirements_notice')</div>
+                            <div class="text-sm text-theme-secondary-600">@lang('fortify::forms.update-password.requirements_notice')</div>
                         @endif
                     </div>
 
@@ -65,7 +65,7 @@
                             <x-ark-input
                                 type="password"
                                 name="password_confirmation"
-                                label="Confirm Password"
+                                :label="trans('fortify::forms.confirm_password')"
                                 autocomplete="new-password"
                                 class="w-full"
                                 :required="true"
@@ -76,7 +76,7 @@
 
                     <div class="text-right">
                         <button type="submit" class="w-full button-primary md:w-auto">
-                            Reset Password
+                            @lang('fortify::actions.reset_password')
                         </button>
                     </div>
                 </form>

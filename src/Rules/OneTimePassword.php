@@ -25,6 +25,6 @@ class OneTimePassword implements Rule
 
     public function message()
     {
-        return 'We were not able to enable two-factor authentication with this one-time password.';
+        return trans('fortify::validation.messages.one_time_password');
     }
 }

@@ -16,7 +16,7 @@ class FailedTwoFactorLoginResponse implements Responsable
      */
     public function toResponse($request)
     {
-        $message = __('The provided two factor authentication code was invalid.');
+        $message = trans('fortify::messages.invalid_2fa_authentication_code');
 
         if ($request->wantsJson()) {
             throw ValidationException::withMessages([

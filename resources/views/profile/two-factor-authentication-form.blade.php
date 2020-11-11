@@ -121,11 +121,11 @@
         @else
             @if ($showingRecoveryCodes)
                 <button class="mr-3" wire:click="regenerateRecoveryCodes">
-                    {{ __('Regenerate Recovery Codes') }}
+                    {{ trans('Regenerate Recovery Codes') }}
                 </button>
             @else
                 <button class="mr-3" wire:click="showRecoveryCodes">
-                    {{ __('Show Recovery Codes') }}
+                    {{ trans('Show Recovery Codes') }}
                 </button>
             @endif
 

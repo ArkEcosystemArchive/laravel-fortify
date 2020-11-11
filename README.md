@@ -42,3 +42,58 @@ return [
 ```
 
 **Note:** If you use the `username_alt` setting, you need to ensure that your users table has that column.
+
+6. Register databags in your `AppServiceProvider` that are used by the auth pages
+
+```php
+use Konceiver\DataBags\DataBag;
+
+...
+
+public function boot()
+{
+    ...
+
+    $this->registerDataBags();
+}
+
+private function registerDataBags(): void
+{
+    DataBag::register('fortify-content', [
+        'register' => [
+            'pageTitle' => '',
+            'title' => '',
+            'description' => '',
+        ],
+        'login' => [
+            'pageTitle' => '',
+            'title' => '',
+            'description' => '',
+        ],
+        'password' => [
+            'reset' => [
+                'pageTitle' => '',
+            ],
+            'request' => [
+                'pageTitle' => '',
+            ],
+        ],
+        'verification' => [
+            'notice' => [
+                'pageTitle' => '',
+            ],
+            'verify' => [
+                'pageTitle' => '',
+            ],
+            'send' => [
+                'pageTitle' => '',
+            ],
+        ],
+        'two-factor' => [
+            'login' => [
+                'pageTitle' => '',
+            ],
+        ],
+    ]);
+}
+```

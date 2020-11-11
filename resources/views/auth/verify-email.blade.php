@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('title')
-    @lang('fortify::metatags.verify')
+    <x-data-bag key="fortify-content" resolver="name" view="ark-fortify::components.page-title" />
 @endsection
 
-@section('back-bar')
+@section('breadcrumbs')
     <x-breadcrumbs :crumbs="[
-        ['route' => 'login', 'label' => trans('fortify::menu.sign-in')],
+        ['route' => 'login', 'label' =>trans('fortify::menu.sign_in')],
         ['label' => trans('fortify::menu.verify')],
     ]" />
 @endsection

@@ -13,7 +13,7 @@
                 <x-ark-input
                     model="state.name"
                     name="name"
-                    label="Name"
+                    :label="trans('fortify::forms.name')"
                     autocomplete="name"
                     class="w-full"
                     :autofocus="true"
@@ -25,20 +25,20 @@
     @endif
 
     @if(Config::get('fortify.username_alt'))
-    <div class="mb-4">
-        <div class="flex flex-1">
-            <x-ark-input
-                model="state.username"
-                type="text"
-                name="username"
-                label="Username"
-                autocomplete="username"
-                class="w-full"
-                :required="true"
-                :errors="$errors"
-            />
+        <div class="mb-4">
+            <div class="flex flex-1">
+                <x-ark-input
+                    model="state.username"
+                    type="text"
+                    name="username"
+                    :label="trans('fortify::forms.username')"
+                    autocomplete="username"
+                    class="w-full"
+                    :required="true"
+                    :errors="$errors"
+                />
+            </div>
         </div>
-    </div>
     @endif
 
     @if($invitation)
@@ -50,7 +50,7 @@
                     model="state.email"
                     type="email"
                     name="email"
-                    label="Email"
+                    :label="trans('fortify::forms.email')"
                     autocomplete="email"
                     class="w-full"
                     :required="true"
@@ -65,7 +65,7 @@
             model="state.password"
             type="password"
             name="password"
-            label="Password"
+            :label="trans('fortify::forms.password')"
             autocomplete="new-password"
             class="w-full"
             :required="true"
@@ -79,7 +79,7 @@
                 model="state.password_confirmation"
                 type="password"
                 name="password_confirmation"
-                label="Confirm Password"
+                :label="trans('fortify::forms.confirm_password')"
                 autocomplete="new-password"
                 class="w-full"
                 :required="true"
@@ -95,9 +95,7 @@
             :errors="$errors"
         >
             @slot('label')
-                Creating an account means you're okay with our
-                <a href="{{ route('terms-of-service') }}" class="link">Terms of Service</a> and
-                <a href="{{ route('privacy-policy') }}" class="link">Privacy Policy</a>.
+                @lang('auth.register-form.conditions', ['termsOfServiceRoute' => route('terms-of-service'), 'privacyPolicyRoute' => route('privacy-policy')])
             @endslot
         </x-ark-checkbox>
 
@@ -108,13 +106,13 @@
 
     <div class="mt-4 text-right">
         <button type="submit" class="w-full button-primary md:w-auto">
-            Create Account
+            @lang('fortify::auth.register-form.create_account')
         </button>
     </div>
 
     <div class="text-center">
         <div class="pt-4 mt-8 border-t border-theme-secondary-200">
-            Already a member? <a href="/login" class="link">Sign in</a>
+            @lang('fortify::auth.register-form.already_member', ['route' => route('login')])
         </div>
     </div>
 </form>

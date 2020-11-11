@@ -31,7 +31,7 @@
                     <x-jet-input
                         type="password"
                         class="mt-1 block w-3/4"
-                        placeholder="{{ trans('fortify::forms.password') }}"
+                        :placeholder="{{ trans('fortify::forms.password') }}"
                         x-ref="password"
                         wire:model.defer="password"
                         wire:keydown.enter="deleteUser"

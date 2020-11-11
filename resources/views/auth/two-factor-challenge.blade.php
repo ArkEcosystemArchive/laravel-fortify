@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ $metaTitle ?? trans('fortify::metatags.login_with_two_factor') }}
+    {{ trans('fortify::metatags.login_with_two_factor') }}
 @endsection
 
 @section('back-bar')
     <x-breadcrumbs :crumbs="[
-        ['route' => 'login', 'label' => trans('menu.sign_in') ?? trans('fortify::menu.sign_in')],
+        ['route' => 'login', 'label' => trans('fortify::menu.sign_in')],
         ['label' => trans('fortify::menu.2fa')],
     ]" />
 @endsection

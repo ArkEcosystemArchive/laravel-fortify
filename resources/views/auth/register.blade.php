@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ $metaTitle ?? trans('fortify::metatags.register') }}
+    {{ trans('fortify::metatags.register') }}
 @endsection
 
-@section('back-bar')
+@section('breadcrumbs')
     <x-breadcrumbs :crumbs="[
-        ['route' => 'login', 'label' => trans('menu.sign_in') ?? trans('fortify::menu.sign_in')],
-        ['label' => trans('menu.sign_up') ?? trans('fortify::menu.sign_up')],
+        ['route' => 'login', 'label' => trans('fortify::menu.sign_in')],
+        ['label' => trans('fortify::menu.sign_up')],
     ]" />
 @endsection
 

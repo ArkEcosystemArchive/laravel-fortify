@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @slot('title')
-    <x-data-bag key="fortify-content" resolver="path" view="page-title" />
+    <x-data-bag key="fortify-content" resolver="name" view="page-title" />
 @endslot
 
 @section('breadcrumbs')

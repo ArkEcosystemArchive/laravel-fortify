@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    <x-data-bag key="fortify-content" resolver="path" view="page-title" />
+    <x-data-bag key="fortify-content" resolver="name" view="page-title" />
 @endsection
 
 @section('breadcrumbs')

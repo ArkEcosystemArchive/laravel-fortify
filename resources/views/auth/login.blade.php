@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    <x-data-bag key="fortify-content" resolver="path" view="page-title" />
+    <x-data-bag key="fortify-content" resolver="name" view="page-title" />
 @endsection
 
 @section('breadcrumbs')
@@ -14,7 +14,7 @@
 @section('content')
     <div class="container mx-auto">
         <div class="mx-auto my-8 md:w-3/4 lg:w-3/5 xl:w-1/2">
-            <x-data-bag key="fortify-content" resolver="path" view="components.component-heading" />
+            <x-data-bag key="fortify-content" resolver="name" view="components.component-heading" />
 
             <div class="mt-5 lg:mt-8">
                 <form

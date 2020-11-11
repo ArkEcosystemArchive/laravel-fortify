@@ -204,4 +204,26 @@ class FortifyServiceProvider extends ServiceProvider
             TwoFactorLoginResponse::class
         );
     }
+
+    /**
+     * Register the response bindings.
+     *
+     * @return void
+     */
+    private function registerPages()
+    {
+        LoginPage::configure('title', 'description');
+
+        TwoFactorChallengePage::configure('title', 'description');
+
+        RegisterPage::configure('title', 'description');
+
+        RequestPasswordResetLinkPage::configure('title', 'description');
+
+        ResetPasswordPage::configure('title', 'description');
+
+        VerifyEmailPage::configure('title', 'description');
+
+        ConfirmPasswordPage::configure('title', 'description');
+    }
 }

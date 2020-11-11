@@ -43,7 +43,7 @@ return [
 
 **Note:** If you use the `username_alt` setting, you need to ensure that your users table has that column.
 
-6. Register databags in your  that are used by the auth pages
+6. Register databags in your `AppServiceProvider` that are used by the auth pages
 
 ```php
 use Konceiver\DataBags\DataBag;

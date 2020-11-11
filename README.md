@@ -70,20 +70,29 @@ private function registerDataBags(): void
             'title' => '',
             'description' => '',
         ],
-        'two-factor-challenge' => [
-            'pageTitle' => '',
+        'password' => [
+            'reset' => [
+                'pageTitle' => '',
+            ],
+            'request' => [
+                'pageTitle' => '',
+            ],
         ],
-        'forgot-password' => [
-            'pageTitle' => '',
+        'verification' => [
+            'notice' => [
+                'pageTitle' => '',
+            ],
+            'verify' => [
+                'pageTitle' => '',
+            ],
+            'send' => [
+                'pageTitle' => '',
+            ],
         ],
-        'reset-password' => [
-            'pageTitle' => '',
-        ],
-        'verify-email' => [
-            'pageTitle' => '',
-        ],
-        'confirm-password' => [
-            'pageTitle' => '',
+        'two-factor' => [
+            'login' => [
+                'pageTitle' => '',
+            ],
         ],
     ]);
 }

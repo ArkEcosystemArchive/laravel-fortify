@@ -74,7 +74,9 @@
                         </div>
                     </div>
 
-                    <div class="text-right">
+                    <div class="flex flex-col md:flex-row w-full justify-between items-center space-y-2 md:space-y-0">
+                        <a href="{{ route('login') }}" class="link">@lang('fortify::actions.cancel')</a>
+
                         <button type="submit" class="w-full button-primary md:w-auto">
                             @lang('fortify::actions.reset_password')
                         </button>

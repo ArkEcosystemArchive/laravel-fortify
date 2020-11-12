@@ -1,55 +1,46 @@
-<x-jet-action-section>
-    <x-slot name="title">
-        @lang('fortify::forms.delete-user.title')
-    </x-slot>
+<div>
+    <div class="flex flex-col">
+        <span class="text-2xl font-semibold text-theme-secondary-900">@lang('fortify::pages.delete_account_title')</span>
+        <span>
+            @lang('fortify::pages.delete_account_description')
+        </span>
 
-    <x-slot name="description">
-        @lang('fortify::forms.delete-user.description')
-    </x-slot>
-
-    <x-slot name="content">
-        <div class="max-w-xl text-sm text-gray-600">
-            @lang('fortify::forms.delete-user.content')
+        <div class="flex flex-row justify-end mt-8">
+            <button type="submit" class="inline-flex items-center space-x-2 button-secondary"
+                wire:click="confirmUserDeletion">
+                @svg('trash', 'h-4 w-4')
+                <span>@lang('fortify::actions.delete_account')</span>
+            </button>
         </div>
+    </div>
 
-        <div class="mt-5">
-            <x-jet-danger-button wire:click="confirmUserDeletion" wire:loading.attr="disabled">
-                @lang('fortify::actions.delete_account')
-            </x-jet-danger-button>
-        </div>
-
-        <!-- Delete User Confirmation Modal -->
-        <x-jet-dialog-modal wire:model="confirmingUserDeletion">
+    @if($this->confirmingUserDeletion)
+        <x-ark-modal>
             <x-slot name="title">
-                @lang('fortify::actions.delete_account')
+                @lang('fortify::forms.delete-user.title')
             </x-slot>
 
-            <x-slot name="content">
-                @lang('fortify::forms.delete-user.confirmation')
-
-                <div class="mt-4" x-data="{}" x-on:confirming-delete-user.window="setTimeout(() => $refs.password.focus(), 250)">
-                    <x-jet-input
-                        type="password"
-                        class="mt-1 block w-3/4"
-                        :placeholder="{{ trans('fortify::forms.password') }}"
-                        x-ref="password"
-                        wire:model.defer="password"
-                        wire:keydown.enter="deleteUser"
-                    />
-
-                    <x-jet-input-error for="password" class="mt-2" />
+            <x-slot name="description">
+                <div class="flex flex-col mt-4">
+                    <div class="flex justify-center w-full">
+                        <img src="{{ asset("images/modal/delete.svg") }}" />
+                    </div>
+                    <span>
+                        @lang('fortify::forms.delete-user.confirmation')
+                    </span>
                 </div>
             </x-slot>
 
-            <x-slot name="footer">
-                <x-jet-secondary-button wire:click="$toggle('confirmingUserDeletion')" wire:loading.attr="disabled">
-                    @lang('fortify::actions.nevermind')
-                </x-jet-secondary-button>
-
-                <x-jet-danger-button class="ml-2" wire:click="deleteUser" wire:loading.attr="disabled">
-                    @lang('fortify::actions.delete_account')
-                </x-jet-danger-button>
+            <x-slot name="buttons">
+                <div class="flex flex-col w-full sm:flex-row justify-end mt-5 space-y-4 sm:space-y-0 sm:space-x-3">
+                    <button class="button-secondary"
+                        wire:click="$toggle('confirmingUserDeletion')">@lang('actions.cancel')</button>
+                    <button class="inline-flex justify-center items-center button-primary" wire:click="destroy">
+                        @svg('trash', 'h-4 w-4')
+                        <span class="ml-2">@lang('actions.delete')</span>
+                    </button>
+                </div>
             </x-slot>
-        </x-jet-dialog-modal>
-    </x-slot>
-</x-jet-action-section>
+        </x-ark-modal>
+    @endif
+</div>

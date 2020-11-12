@@ -16,4 +16,5 @@ return [
     'nevermind'               => 'Nevermind',
     'done'                    => 'Done',
     'confirm_logout'          => 'Logout Other Browser Sessions',
+    'cancel'                  => 'Cancel',
 ];

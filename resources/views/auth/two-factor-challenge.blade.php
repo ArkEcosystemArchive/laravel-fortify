@@ -48,29 +48,7 @@
                         </div>
                     </div>
 
-                    <div class="flex justify-between mt-4">
-                        <div class="flex-1 m-auto">
-                            <button
-                                type="button"
-                                class="text-sm text-gray-600 underline cursor-pointer hover:text-gray-900"
-                                x-show="! recovery"
-                                x-on:click="
-                                    recovery = true;
-                                    $nextTick(() => { $refs.recovery_code.focus() })
-                                ">
-                                @lang('fortify::actions.use_recovery_code')
-                            </button>
-
-                            <button type="button" class="text-sm text-gray-600 underline cursor-pointer hover:text-gray-900"
-                                            x-show="recovery"
-                                            x-on:click="
-                                                recovery = false;
-                                                $nextTick(() => { $refs.code.focus() })
-                                            ">
-                                @lang('fortify::actions.use_authentication_code')
-                            </button>
-                        </div>
-
+                    <div class="text-right mt-4">
                         <button type="submit" class="w-full button-primary md:w-auto">
                             @lang('fortify::actions.verify')
                         </button>

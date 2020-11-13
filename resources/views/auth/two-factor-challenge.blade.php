@@ -27,11 +27,14 @@
                     <div class="mb-4" x-show="! recovery">
                         <div class="flex flex-1">
                             <x-ark-input
-                                type="password"
+                                type="text"
                                 name="code"
                                 :label="trans('fortify::forms.code')"
                                 class="w-full"
                                 :errors="$errors"
+                                autocomplete="one-time-code"
+                                input-mode="numeric"
+                                pattern="[0-9]*"
                             />
                         </div>
                     </div>

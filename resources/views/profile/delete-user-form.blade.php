@@ -23,11 +23,11 @@
             <x-slot name="description">
                 <div class="flex flex-col mt-4">
                     <div class="flex justify-center w-full">
-                        <img src="{{ asset("images/modal/delete.svg") }}" />
+                        <img class="w-2/3" src="{{ asset("images/modal/delete-account.svg") }}" />
                     </div>
-                    <span>
+                    <div class="mt-4">
                         @lang('fortify::forms.delete-user.confirmation')
-                    </span>
+                    </div>
                 </div>
             </x-slot>
 

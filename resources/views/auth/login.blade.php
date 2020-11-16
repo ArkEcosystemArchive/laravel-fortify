@@ -84,7 +84,7 @@
                             </div>
                         @endif
 
-                        <button type="submit" class="button-primary">
+                        <button type="submit" class="button-secondary">
                             @lang('fortify::actions.sign_in')
                         </button>
                     </div>

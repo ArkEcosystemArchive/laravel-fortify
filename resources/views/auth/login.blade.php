@@ -32,7 +32,7 @@
                         </x-ark-alert>
                     @endif
 
-                    <div class="mb-4">
+                    <div class="mb-8">
                         <div class="flex flex-1">
                             @php
                                 $username = \Laravel\Fortify\Fortify::username();
@@ -63,7 +63,7 @@
                         </div>
                     </div>
 
-                    <div class="mb-4">
+                    <div class="mb-8">
                         <div class="flex flex-1">
                             <x-ark-input
                                 type="password"
@@ -77,9 +77,9 @@
                         </div>
                     </div>
 
-                    <div class="flex justify-between">
+                    <div class="flex flex-col-reverse space-y-4 sm:space-y-0 sm:flex-row justify-between">
                         @if(Route::has('password.request'))
-                            <div class="flex-1 m-auto">
+                            <div class="flex-1 m-auto mt-8 sm:mt-0">
                                 <a href="{{ route('password.request') }}" class="link">@lang('fortify::auth.sign-in.forgot_password')</a>
                             </div>
                         @endif
@@ -88,15 +88,15 @@
                             @lang('fortify::actions.sign_in')
                         </button>
                     </div>
-
-                    @if(Route::has('register'))
-                        <div class="text-center">
-                            <div class="pt-4 mt-8 border-t border-theme-secondary-200">
-                                @lang('fortify::auth.sign-in.register_now', ['route' => route('register')])
-                            </div>
-                        </div>
-                    @endif
                 </form>
+
+                @if(Route::has('register'))
+                    <div class="text-center">
+                        <div class="pt-4 mt-4">
+                            @lang('fortify::auth.sign-in.register_now', ['route' => route('register')])
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

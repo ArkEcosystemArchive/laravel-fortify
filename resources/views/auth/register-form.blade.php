@@ -2,6 +2,7 @@
     method="POST"
     action="{{ $formUrl }}"
     class="flex flex-col p-8 mx-4 border rounded-lg border-theme-secondary-200 md:mx-0 lg:p-8 xl:mx-8"
+    x-data="{isTyping: false}"
 >
     @csrf
 
@@ -60,7 +61,7 @@
         </div>
     @endif
 
-    <x:ark-fortify::password-rules class="mb-4" :password-rules="$passwordRules">
+    <x:ark-fortify::password-rules class="mb-4" :password-rules="$passwordRules" is-typing="isTyping">
         <x-ark-input
             model="state.password"
             type="password"
@@ -69,6 +70,7 @@
             autocomplete="new-password"
             class="w-full mb-2"
             :required="true"
+            on-any-keydown="isTyping=true"
             :errors="$errors"
         />
     </x:ark-fortify::password-rules>

@@ -1,39 +1,35 @@
 <div>
-    @if (!$this->enabled)
+    @if (! $this->enabled)
         <div class="flex flex-col">
             <span class="text-2xl font-semibold leading-9 text-theme-secondary-900">@lang('fortify::pages.user-settings.2fa_title')</span>
             <span class="paragraph-description">@lang('fortify::pages.user-settings.2fa_description')</span>
 
             <div class="flex justify-start mt-8">
-                <div class="flex sm:divide-x sm:divide-gray-200">
-                    <div class="flex-col items-center justify-center hidden mr-10 md:flex">
-                        <div class="flex items-center justify-center border border-gray-400 rounded">
-                            <div class="p-1">
-                                {!! $this->twoFactorQrCodeSvg !!}
-                            </div>
+                <div class="flex md:divide-x md:divide-theme-secondary-400">
+                    <div class="hidden md:flex flex-col justify-center items-center border border-theme-secondary-400 mr-10">
+                        <div class="py-2 px-2">
+                            {!! $this->twoFactorQrCodeSvg !!}
                         </div>
-
-                        <div class="input-wrapper">
-                            <span class="form-input two-fa-secret">{{ $this->state['two_factor_secret'] }}</span>
+                        <div class="border-t border-theme-secondary-400 w-full text-center mt-1 py-2 bg-theme-secondary-100">
+                            <span class="two-fa-secret text-theme-secondary-900">{{ $this->state['two_factor_secret'] }}</span>
                         </div>
                     </div>
 
                     <div class="flex flex-col justify-between sm:pl-10">
                         <div class="flex flex-col">
-                            <span class="text-lg font-bold leading-7 text-gray-900">@lang('fortify::pages.user-settings.2fa_not_enabled_title')</span>
+                            <span class="text-lg font-bold leading-7 text-theme-secondary-900">@lang('fortify::pages.user-settings.2fa_not_enabled_title')</span>
 
                             <div class="mt-2 text-base leading-7 text-theme-secondary-600">
                                 @lang('fortify::pages.user-settings.2fa_summary')
                             </div>
                         </div>
-                        <div class="flex flex-col items-center mt-4 md:hidden">
-                            <div class="flex flex-col">
-                                <div class="flex justify-center p-1 border border-gray-400 rounded">
+                        <div class="flex flex-col items-start mt-4 md:hidden">
+                            <div class="flex flex-col justify-center items-center border border-theme-secondary-400 mr-10">
+                                <div class="py-2 px-2">
                                     {!! $this->twoFactorQrCodeSvg !!}
                                 </div>
-
-                                <div class="input-wrapper">
-                                    <span class="flex justify-center form-input two-fa-secret">{{ $this->state['two_factor_secret'] }}</span>
+                                <div class="border-t border-theme-secondary-400 w-full text-center mt-1 py-2 bg-theme-secondary-100">
+                                    <span class="two-fa-secret text-theme-secondary-900">{{ $this->state['two_factor_secret'] }}</span>
                                 </div>
                             </div>
                         </div>

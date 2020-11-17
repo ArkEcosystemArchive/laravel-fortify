@@ -13,8 +13,8 @@
 
                 <x-ark-input type="password" name="passwordConfirmation" model="state.password_confirmation" :label="trans('fortify::forms.confirm_password')" :errors="$errors" />
             </div>
-            <div class="flex justify-end mt-8">
-                <button type="submit" class="button-secondary">@lang('fortify::actions.update')</button>
+            <div class="flex sm:justify-end mt-8 w-full">
+                <button type="submit" class="button-secondary w-full sm:w-auto">@lang('fortify::actions.update')</button>
             </div>
         </form>
     </div>

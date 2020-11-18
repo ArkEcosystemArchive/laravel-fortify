@@ -24,7 +24,7 @@
                 >
                     @csrf
 
-                    <div class="mb-4" x-show="! recovery">
+                    <div class="mb-8" x-show="! recovery">
                         <div class="flex flex-1">
                             <x-ark-input
                                 type="text"
@@ -39,7 +39,7 @@
                         </div>
                     </div>
 
-                    <div class="mb-4" x-show="recovery">
+                    <div class="mb-8" x-show="recovery">
                         <div class="flex flex-1">
                             <x-ark-input
                                 type="password"
@@ -51,7 +51,7 @@
                         </div>
                     </div>
 
-                    <div class="text-right mt-4">
+                    <div class="text-right mt-8">
                         <button type="submit" class="w-full button-primary sm:w-auto">
                             @lang('fortify::actions.verify')
                         </button>

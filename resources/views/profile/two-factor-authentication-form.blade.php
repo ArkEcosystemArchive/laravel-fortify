@@ -39,7 +39,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flex justify-end mt-5">
+            <div class="flex justify-end mt-8">
                 <button type="button" class="button-secondary" wire:click="enableTwoFactorAuthentication">@lang('fortify::actions.enable')</button>
             </div>
         </div>

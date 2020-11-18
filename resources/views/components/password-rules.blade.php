@@ -7,7 +7,7 @@
     <div class="flex flex-col text-sm mb-8">
             <span x-show="!isTyping">@lang('fortify::forms.update-password.requirements_notice')</span>
 
-            <div x-show="isTyping">
+            <div x-show="isTyping" x-cloak>
                 @foreach($passwordRules as $ruleName => $ruleIsValid)
                     <div class="flex items-center w-full mt-4 space-x-2">
                         @if ($ruleIsValid)

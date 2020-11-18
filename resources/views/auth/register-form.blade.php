@@ -61,7 +61,7 @@
         </div>
     @endif
 
-    <x:ark-fortify::password-rules class="mb-4" :password-rules="$passwordRules" is-typing="isTyping">
+    <x:ark-fortify::password-rules :password-rules="$passwordRules" is-typing="isTyping">
         <x-ark-input
             model="state.password"
             type="password"
@@ -106,9 +106,9 @@
         @enderror
     </div>
 
-    <div class="mt-4 pb-4 text-right">
+    <div class="text-right">
         <button type="submit" class="w-full button-secondary sm:w-auto">
-            @lang('fortify::auth.register-form.sign_up')
+            @lang('fortify::actions.sign_up')
         </button>
     </div>
 </form>

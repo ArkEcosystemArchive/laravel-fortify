@@ -4,7 +4,7 @@
         <span>@lang('fortify::forms.update-password.requirements_notice')</span>
 
         <form class="mt-8" wire:submit.prevent="updatePassword">
-            <div class="space-y-4">
+            <div class="space-y-8">
                 <x-ark-input type="password" name="currentPassword" model="state.current_password" :label="trans('fortify::forms.current_password')" :errors="$errors" />
 
                 <x:ark-fortify::password-rules class="w-full" :password-rules="$passwordRules">

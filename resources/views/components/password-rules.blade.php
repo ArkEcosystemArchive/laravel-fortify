@@ -4,7 +4,7 @@
         {{ $slot }}
     </div>
 
-    <div class="flex flex-col text-sm mb-8">
+    <div class="flex flex-col text-sm">
             <span x-show="!isTyping">@lang('fortify::forms.update-password.requirements_notice')</span>
 
             <div x-show="isTyping" x-cloak>

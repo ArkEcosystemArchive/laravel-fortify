@@ -11,11 +11,11 @@
                             {!! $this->twoFactorQrCodeSvg !!}
                         </div>
                         <div class="border-t border-theme-secondary-400 w-full text-center mt-1 py-2 bg-theme-secondary-100">
-                            <span class="two-fa-secret text-theme-secondary-900">{{ $this->state['two_factor_secret'] }}</span>
+                            <span class="text-theme-secondary-900">{{ $this->state['two_factor_secret'] }}</span>
                         </div>
                     </div>
 
-                    <div class="flex flex-col justify-between sm:pl-10">
+                    <div class="flex flex-col justify-between md:pl-10">
                         <div class="flex flex-col">
                             <span class="text-lg font-bold leading-7 text-theme-secondary-900">@lang('fortify::pages.user-settings.2fa_not_enabled_title')</span>
 
@@ -23,13 +23,13 @@
                                 @lang('fortify::pages.user-settings.2fa_summary')
                             </div>
                         </div>
-                        <div class="flex flex-col items-start mt-4 md:hidden">
+                        <div class="flex flex-col items-start mt-8 md:hidden">
                             <div class="flex flex-col justify-center items-center border border-theme-secondary-400 mr-10">
                                 <div class="py-2 px-2">
                                     {!! $this->twoFactorQrCodeSvg !!}
                                 </div>
                                 <div class="border-t border-theme-secondary-400 w-full text-center mt-1 py-2 bg-theme-secondary-100">
-                                    <span class="two-fa-secret text-theme-secondary-900">{{ $this->state['two_factor_secret'] }}</span>
+                                    <span class="text-theme-secondary-900">{{ $this->state['two_factor_secret'] }}</span>
                                 </div>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
             <span class="text-2xl font-semibold text-theme-secondary-900">@lang('fortify::pages.user-settings.2fa_title')</span>
             <span>@lang('fortify::pages.user-settings.2fa_description')</span>
 
-            <div class="flex mt-3">
+            <div class="flex mt-8">
                 <div class="flex flex-col">
                     <strong>@lang('fortify::pages.user-settings.2fa_enabled_title')</strong>
                     <div class="mt-2 text-sm text-theme-secondary-600">

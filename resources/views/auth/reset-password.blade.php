@@ -26,7 +26,7 @@
 
                     <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-                    <div class="mb-4">
+                    <div class="mb-8">
                         <div class="flex flex-1">
                             <x-ark-input
                                 type="email"
@@ -43,7 +43,7 @@
                         </div>
                     </div>
 
-                    <div class="mb-4">
+                    <div class="mb-8">
                         <div class="flex flex-1">
                             <x-ark-input
                                 type="password"
@@ -60,7 +60,7 @@
                         @endif
                     </div>
 
-                    <div class="mb-4">
+                    <div class="mb-8">
                         <div class="flex flex-1">
                             <x-ark-input
                                 type="password"

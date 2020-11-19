@@ -18,4 +18,5 @@ return [
     'done'                    => 'Done',
     'confirm_logout'          => 'Logout Other Browser Sessions',
     'cancel'                  => 'Cancel',
+    'delete'                  => 'Delete',
 ];

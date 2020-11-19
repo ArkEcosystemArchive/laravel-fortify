@@ -1,5 +1,5 @@
 <div>
-    <div class="flex flex-col px-8 lg:p-8 xl:mx-8">
+    <div class="flex flex-col">
         <span class="text-2xl font-semibold text-theme-secondary-900">@lang('fortify::pages.user-settings.update_timezone_title')</span>
         <span>@lang('fortify::pages.user-settings.update_timezone_description')</span>
         <div>

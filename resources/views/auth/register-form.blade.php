@@ -2,13 +2,14 @@
     method="POST"
     action="{{ $formUrl }}"
     class="flex flex-col p-8 mx-4 border rounded-lg border-theme-secondary-200 md:mx-0 lg:p-8 xl:mx-8"
+    x-data="{isTyping: false}"
 >
     @csrf
 
     @if($invitation)
         <input type="hidden" name="name" value="{{ $invitation->name }}" />
     @else
-        <div class="mb-4">
+        <div class="mb-8">
             <div class="flex flex-1">
                 <x-ark-input
                     model="state.name"
@@ -17,7 +18,7 @@
                     autocomplete="name"
                     class="w-full"
                     :autofocus="true"
-                    :required="true"
+                    required="true"
                     :errors="$errors"
                 />
             </div>
@@ -25,7 +26,7 @@
     @endif
 
     @if(Config::get('fortify.username_alt'))
-        <div class="mb-4">
+        <div class="mb-8">
             <div class="flex flex-1">
                 <x-ark-input
                     model="state.username"
@@ -34,7 +35,7 @@
                     :label="trans('fortify::forms.username')"
                     autocomplete="username"
                     class="w-full"
-                    :required="true"
+                    required="true"
                     :errors="$errors"
                 />
             </div>
@@ -44,7 +45,7 @@
     @if($invitation)
         <input type="hidden" name="email" value="{{ $invitation->email }}" />
     @else
-        <div class="mb-4">
+        <div class="mb-8">
             <div class="flex flex-1">
                 <x-ark-input
                     model="state.email"
@@ -53,27 +54,28 @@
                     :label="trans('fortify::forms.email')"
                     autocomplete="email"
                     class="w-full"
-                    :required="true"
+                    required="true"
                     :errors="$errors"
                 />
             </div>
         </div>
     @endif
 
-    <x:ark-fortify::password-rules class="mb-4" :password-rules="$passwordRules">
+    <x:ark-fortify::password-rules class="mb-8" :password-rules="$passwordRules" is-typing="isTyping">
         <x-ark-input
             model="state.password"
             type="password"
             name="password"
             :label="trans('fortify::forms.password')"
             autocomplete="new-password"
-            class="w-full"
-            :required="true"
+            class="w-full mb-2"
+            required="true"
+            @keydown="isTyping=true"
             :errors="$errors"
         />
     </x:ark-fortify::password-rules>
 
-    <div class="mb-4">
+    <div class="mb-8">
         <div class="flex flex-1">
             <x-ark-input
                 model="state.password_confirmation"
@@ -82,20 +84,20 @@
                 :label="trans('fortify::forms.confirm_password')"
                 autocomplete="new-password"
                 class="w-full"
-                :required="true"
+                required="true"
                 :errors="$errors"
             />
         </div>
     </div>
 
-    <div class="mb-4">
+    <div class="mb-8">
         <x-ark-checkbox
             model="state.terms"
             name="terms"
             :errors="$errors"
         >
             @slot('label')
-                @lang('auth.register-form.conditions', ['termsOfServiceRoute' => route('terms-of-service'), 'privacyPolicyRoute' => route('privacy-policy')])
+                @lang('fortify::auth.register-form.conditions', ['termsOfServiceRoute' => route('terms-of-service'), 'privacyPolicyRoute' => route('privacy-policy'), 'notificationSettingsRoute' => route('notification-settings')])
             @endslot
         </x-ark-checkbox>
 
@@ -104,15 +106,9 @@
         @enderror
     </div>
 
-    <div class="mt-4 text-right">
-        <button type="submit" class="w-full button-primary md:w-auto">
-            @lang('fortify::auth.register-form.create_account')
+    <div class="text-right">
+        <button type="submit" class="w-full button-secondary sm:w-auto">
+            @lang('fortify::actions.sign_up')
         </button>
-    </div>
-
-    <div class="text-center">
-        <div class="pt-4 mt-8 border-t border-theme-secondary-200">
-            @lang('fortify::auth.register-form.already_member', ['route' => route('login')])
-        </div>
     </div>
 </form>

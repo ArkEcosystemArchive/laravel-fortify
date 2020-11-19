@@ -8,6 +8,7 @@ return [
     'update'                  => 'Update',
     'select_timezone'         => 'Select Timezone',
     'sign_in'                 => 'Sign In',
+    'sign_up'                 => 'Sign Up',
     'reset_password'          => 'Reset Password',
     'use_recovery_code'       => 'Use a recovery code',
     'use_authentication_code' => 'Use an authentication code',
@@ -16,4 +17,5 @@ return [
     'nevermind'               => 'Nevermind',
     'done'                    => 'Done',
     'confirm_logout'          => 'Logout Other Browser Sessions',
+    'cancel'                  => 'Cancel',
 ];

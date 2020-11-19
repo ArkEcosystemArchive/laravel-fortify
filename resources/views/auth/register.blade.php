@@ -18,6 +18,12 @@
 
             <div class="mt-5 lg:mt-8">
                 <livewire:auth.register-form />
+
+                <div class="text-center">
+                    <div class="pb-8 mt-8">
+                        @lang('fortify::auth.register-form.already_member', ['route' => route('login')])
+                    </div>
+                </div>
             </div>
         </div>
     </div>

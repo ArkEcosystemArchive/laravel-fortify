@@ -28,7 +28,7 @@
                 >
                     @csrf
 
-                    <div class="mb-4">
+                    <div class="mb-8">
                         <div class="flex flex-1">
                             <x-ark-input
                                 type="email"
@@ -42,8 +42,10 @@
                         </div>
                     </div>
 
-                    <div class="text-right">
-                        <button type="submit" class="w-full button-primary md:w-auto">
+                    <div class="flex flex-col-reverse sm:flex-row w-full justify-between items-center space-y-2 sm:space-y-0">
+                        <a href="{{ route('login') }}" class="link mt-8 sm:mt-0">Cancel</a>
+
+                        <button type="submit" class="w-full button-secondary sm:w-auto">
                             @lang('fortify::auth.forgot-password.reset_link')
                         </button>
                     </div>

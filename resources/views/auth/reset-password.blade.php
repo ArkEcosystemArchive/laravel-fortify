@@ -26,7 +26,7 @@
 
                     <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-                    <div class="mb-4">
+                    <div class="mb-8">
                         <div class="flex flex-1">
                             <x-ark-input
                                 type="email"
@@ -43,7 +43,7 @@
                         </div>
                     </div>
 
-                    <div class="mb-4">
+                    <div class="mb-8">
                         <div class="flex flex-1">
                             <x-ark-input
                                 type="password"
@@ -60,7 +60,7 @@
                         @endif
                     </div>
 
-                    <div class="mb-4">
+                    <div class="mb-8">
                         <div class="flex flex-1">
                             <x-ark-input
                                 type="password"
@@ -74,7 +74,9 @@
                         </div>
                     </div>
 
-                    <div class="text-right">
+                    <div class="flex flex-col md:flex-row w-full justify-between items-center space-y-2 md:space-y-0">
+                        <a href="{{ route('login') }}" class="link">@lang('fortify::actions.cancel')</a>
+
                         <button type="submit" class="w-full button-primary md:w-auto">
                             @lang('fortify::actions.reset_password')
                         </button>

@@ -85,7 +85,7 @@ class FortifyServiceProvider extends ServiceProvider
         ], 'views');
 
         $this->publishes([
-            __DIR__ . '/../resources/images' => resource_path('images'),
+            __DIR__.'/../resources/images' => resource_path('images'),
         ], 'images');
     }
 

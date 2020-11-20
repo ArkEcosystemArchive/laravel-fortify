@@ -15,7 +15,7 @@
     </div>
 
     @if($this->confirmingUserDeletion)
-        <x-ark-modal>
+        <x-ark-modal title-class="header-2">
             <x-slot name="title">
                 @lang('fortify::forms.delete-user.title')
             </x-slot>

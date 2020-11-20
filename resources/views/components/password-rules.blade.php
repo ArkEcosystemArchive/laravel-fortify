@@ -1,13 +1,11 @@
-@props(['passwordRules', 'isTyping'])
+@props(['passwordRules'])
 <div {{ $attributes }}>
     <div class="flex flex-1">
         {{ $slot }}
     </div>
 
     <div class="flex flex-col text-sm">
-            <span x-show="!isTyping">@lang('fortify::forms.update-password.requirements_notice')</span>
-
-            <div x-show="isTyping" x-cloak>
+            <div>
                 @foreach($passwordRules as $ruleName => $ruleIsValid)
                     <div class="flex items-center w-full mt-4 space-x-2">
                         @if ($ruleIsValid)

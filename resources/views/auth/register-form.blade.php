@@ -66,8 +66,7 @@
 
     <x:ark-fortify::password-rules class="mb-8" :password-rules="$passwordRules" is-typing="isTyping">
         <x-ark-input
-            wire:model.defer="state.password"
-            no-model
+            model="state.password"
             type="password"
             name="password"
             :label="trans('fortify::forms.password')"
@@ -82,8 +81,7 @@
     <div class="mb-8">
         <div class="flex flex-1">
             <x-ark-input
-                wire:model.defer="state.password_confirmation"
-                no-model
+                model="state.password_confirmation"
                 type="password"
                 name="password_confirmation"
                 :label="trans('fortify::forms.confirm_password')"

@@ -1,7 +1,7 @@
 <div>
     <div class="flex flex-col">
-        <span class="text-2xl font-semibold text-theme-secondary-900">@lang('fortify::pages.user-settings.delete_account_title')</span>
-        <span>
+        <span class="text-lg sm:text-2xl font-bold text-theme-secondary-900">@lang('fortify::pages.user-settings.delete_account_title')</span>
+        <span class="mt-4">
             @lang('fortify::pages.user-settings.delete_account_description')
         </span>
 

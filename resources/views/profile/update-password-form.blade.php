@@ -1,7 +1,14 @@
 <div x-data="{isTyping: false}">
     <div class="flex flex-col">
-        <span class="text-2xl font-semibold text-theme-secondary-900">@lang('fortify::pages.user-settings.password_information_title')</span>
-        <span>@lang('fortify::forms.update-password.requirements_notice')</span>
+        <div class="my-8">
+            <x-ark-alert type="warning">
+                <x-slot name="message">
+                    @lang('fortify::pages.user-settings.update_password_alert_description')
+                </x-slot>
+            </x-ark-alert>
+        </div>
+        <span class="text-lg sm:text-2xl font-bold text-theme-secondary-900">@lang('fortify::pages.user-settings.password_information_title')</span>
+        <span class="mt-4">@lang('fortify::forms.update-password.requirements_notice')</span>
 
         <form class="mt-8" wire:submit.prevent="updatePassword">
             <div class="space-y-4">

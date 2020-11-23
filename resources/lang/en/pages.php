@@ -22,6 +22,6 @@ return [
         'gdpr_title'                       => 'General Data Protection Regulation (GDPR)',
         'gdpr_description'                 => 'This will will create a zip containing all personal data to respect your right to data portability. You will receive the zip file on the email address linked to your account.',
         'delete_account_title'             => 'Delete Account',
-        'delete_account_description'       => 'Deletion of the account will result in the loss of your data. We remind you that in the first 30 days you have the opportunity to restore your account, after which all your data will be completely deleted.',
+        'delete_account_description'       => 'Deletion of the account will result in the loss of your data instantly and your account will be unrecoverable.',
     ],
 ];

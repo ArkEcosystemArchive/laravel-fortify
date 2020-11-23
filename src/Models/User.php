@@ -6,7 +6,6 @@ use ARKEcosystem\Fortify\Models\Concerns\HasLocalizedTimestamps;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Spatie\PersonalDataExport\ExportsPersonalData;
@@ -17,7 +16,6 @@ class User extends Authenticatable implements ExportsPersonalData, MustVerifyEma
 {
     use HasFactory;
     use HasLocalizedTimestamps;
-    use Notifiable;
     use TwoFactorAuthenticatable;
 
     /**

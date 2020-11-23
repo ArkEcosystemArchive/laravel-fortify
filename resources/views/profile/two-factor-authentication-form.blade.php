@@ -64,7 +64,7 @@
     @endif
 
     @if($showingRecoveryCodes)
-        <x-ark-modal>
+        <x-ark-modal title-class="header-2">
             @slot('title')
                 @lang('fortify::pages.user-settings.2fa_reset_code_title')
             @endslot

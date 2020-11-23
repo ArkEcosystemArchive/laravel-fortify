@@ -28,7 +28,7 @@ return [
         'title'        => 'Delete Account',
         'description'  => 'Permanently delete your account.',
         'content'      => 'Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.',
-        'confirmation' => 'Are you sure you want to delete your account? Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.',
+        'confirmation' => 'Are you sure you want to delete your account? Deleting your account is irreversible and all deleted data is unrecoverable.',
     ],
 
     'logout-sessions' => [

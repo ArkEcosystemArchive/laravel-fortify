@@ -1,5 +1,5 @@
 <div>
-    <div class="flex flex-col px-8 lg:p-8 xl:mx-8">
+    <div class="flex flex-col">
         <span class="text-2xl font-semibold text-theme-secondary-900">@lang('fortify::pages.user-settings.delete_account_title')</span>
         <span>
             @lang('fortify::pages.user-settings.delete_account_description')
@@ -15,7 +15,7 @@
     </div>
 
     @if($this->confirmingUserDeletion)
-        <x-ark-modal>
+        <x-ark-modal title-class="header-2" width-class="max-w-xl">
             <x-slot name="title">
                 @lang('fortify::forms.delete-user.title')
             </x-slot>

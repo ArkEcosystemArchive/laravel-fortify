@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2f2a772122c9cbfe48b5934b1b6339ff",
+    "content-hash": "9edd3fa3b119a902acf357c9329c8920",
     "packages": [
         {
             "name": "arkecosystem/ui",
@@ -13390,7 +13390,9 @@
     "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": "^7.4"
+    },
     "platform-dev": [],
     "plugin-api-version": "2.0.0"
 }

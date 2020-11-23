@@ -1,7 +1,7 @@
 <div>
     @if (! $this->enabled)
         <div class="flex flex-col">
-            <span class="text-lg sm:text-2xl font-bold leading-9 text-theme-secondary-900">@lang('fortify::pages.user-settings.2fa_title')</span>
+            <span class="header-4">@lang('fortify::pages.user-settings.2fa_title')</span>
             <span class="mt-4">@lang('fortify::pages.user-settings.2fa_description')</span>
 
             <div class="flex justify-start mt-8">
@@ -45,7 +45,7 @@
         </div>
     @else
         <div class="flex flex-col">
-            <span class="text-lg sm:text-2xl font-bold text-theme-secondary-900">@lang('fortify::pages.user-settings.2fa_title')</span>
+            <span class="header-4">@lang('fortify::pages.user-settings.2fa_title')</span>
             <span class="mt-4">@lang('fortify::pages.user-settings.2fa_description')</span>
 
             <div class="flex mt-8">

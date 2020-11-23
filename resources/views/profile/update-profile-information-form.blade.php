@@ -1,6 +1,6 @@
 <div>
     <div class="flex flex-col">
-        <span class="text-lg font-bold text-theme-secondary-900 mt-4">@lang('fortify::pages.user-settings.contact_information_title')</span>
+        <span class="header-4 mt-4">@lang('fortify::pages.user-settings.contact_information_title')</span>
         <span class="mt-4">@lang('fortify::pages.user-settings.contact_information_description')</span>
 
         <form class="mt-8" wire:submit.prevent="updateProfileInformation">

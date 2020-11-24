@@ -17,10 +17,12 @@ use ARKEcosystem\Fortify\Components\UpdateProfileInformationForm;
 use ARKEcosystem\Fortify\Components\UpdateProfilePhotoForm;
 use ARKEcosystem\Fortify\Components\UpdateTimezoneForm;
 use ARKEcosystem\Fortify\Responses\FailedTwoFactorLoginResponse;
+use ARKEcosystem\Fortify\Responses\Register;
 use ARKEcosystem\Fortify\Responses\TwoFactorLoginResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Contracts\FailedTwoFactorLoginResponse as FailedTwoFactorLoginResponseContract;
+use Laravel\Fortify\Contracts\RegisterResponse as RegisterResponseContract;
 use Laravel\Fortify\Contracts\TwoFactorLoginResponse as TwoFactorLoginResponseContract;
 use Laravel\Fortify\Fortify;
 use Livewire\Livewire;
@@ -198,6 +200,11 @@ class FortifyServiceProvider extends ServiceProvider
      */
     private function registerResponseBindings()
     {
+        $this->app->singleton(
+            RegisterResponseContract::class,
+            RegisterResponse::class
+        );
+
         $this->app->singleton(
             FailedTwoFactorLoginResponseContract::class,
             FailedTwoFactorLoginResponse::class

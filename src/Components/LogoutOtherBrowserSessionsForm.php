@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ARKEcosystem\Fortify\Components;
 
 use Illuminate\Contracts\Auth\StatefulGuard;

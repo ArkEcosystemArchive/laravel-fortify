@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use ARKEcosystem\Fortify\Actions\AuthenticateUser;
 use ARKEcosystem\Fortify\Models\User;
 use Illuminate\Http\Request;

@@ -12,7 +12,8 @@
         <div class="mb-8">
             <div class="flex flex-1">
                 <x-ark-input
-                    model="state.name"
+                    wire:model.defer="state.name"
+                    no-model
                     name="name"
                     :label="trans('fortify::forms.name')"
                     autocomplete="name"
@@ -29,7 +30,8 @@
         <div class="mb-8">
             <div class="flex flex-1">
                 <x-ark-input
-                    model="state.username"
+                    wire:model.defer="state.username"
+                    no-model
                     type="text"
                     name="username"
                     :label="trans('fortify::forms.username')"
@@ -48,7 +50,8 @@
         <div class="mb-8">
             <div class="flex flex-1">
                 <x-ark-input
-                    model="state.email"
+                    wire:model.defer="state.email"
+                    no-model
                     type="email"
                     name="email"
                     :label="trans('fortify::forms.email')"

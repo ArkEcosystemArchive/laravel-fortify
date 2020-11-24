@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use ARKEcosystem\Fortify\Components\UpdateTimezoneForm;
 use Livewire\Livewire;
 

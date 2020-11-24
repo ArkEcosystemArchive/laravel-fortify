@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'confirm-password' => [
         'page_header' => 'Confirm Password',

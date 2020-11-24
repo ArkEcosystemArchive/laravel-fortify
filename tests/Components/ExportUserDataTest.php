@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use ARKEcosystem\Fortify\Components\ExportUserData;
 use Livewire\Livewire;
 use Spatie\PersonalDataExport\Jobs\CreatePersonalDataExportJob;

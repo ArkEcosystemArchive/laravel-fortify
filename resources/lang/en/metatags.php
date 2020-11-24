@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'reset_password'        => 'Reset Password',
     'login'                 => 'Login',

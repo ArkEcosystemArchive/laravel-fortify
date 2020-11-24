@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     '2fa'                  => 'Two Factor Authentication',
     'password_reset_email' => 'Password Reset Email',

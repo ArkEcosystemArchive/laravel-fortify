@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'user-settings' => [
         '2fa_title'                         => 'Two Factor Authentication',

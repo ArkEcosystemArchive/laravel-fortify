@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Database\Factories;
+namespace Database\Factories;
 
 use ARKEcosystem\Fortify\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;

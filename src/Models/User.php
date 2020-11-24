@@ -3,6 +3,7 @@
 namespace ARKEcosystem\Fortify\Models;
 
 use ARKEcosystem\Fortify\Models\Concerns\HasLocalizedTimestamps;
+use Database\Factories\UserFactory;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -10,7 +11,6 @@ use Illuminate\Support\Str;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Spatie\PersonalDataExport\ExportsPersonalData;
 use Spatie\PersonalDataExport\PersonalDataSelection;
-use Tests\Database\Factories\UserFactory;
 
 class User extends Authenticatable implements ExportsPersonalData, MustVerifyEmail
 {

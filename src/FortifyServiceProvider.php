@@ -17,7 +17,7 @@ use ARKEcosystem\Fortify\Components\UpdateProfileInformationForm;
 use ARKEcosystem\Fortify\Components\UpdateProfilePhotoForm;
 use ARKEcosystem\Fortify\Components\UpdateTimezoneForm;
 use ARKEcosystem\Fortify\Responses\FailedTwoFactorLoginResponse;
-use ARKEcosystem\Fortify\Responses\Register;
+use ARKEcosystem\Fortify\Responses\RegisterResponse;
 use ARKEcosystem\Fortify\Responses\TwoFactorLoginResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;

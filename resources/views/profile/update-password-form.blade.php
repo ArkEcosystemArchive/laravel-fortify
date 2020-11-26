@@ -3,7 +3,10 @@
         <div class="my-8">
             <x-ark-alert type="warning" :message="trans('fortify::pages.user-settings.update_password_alert_description')" />
         </div>
-        <span class="header-4">@lang('fortify::pages.user-settings.password_information_title')</span>
+        <div>
+            <x-ark-flash />
+        </div>
+        <span class="mt-4 header-4">@lang('fortify::pages.user-settings.password_information_title')</span>
         <span class="mt-4">@lang('fortify::forms.update-password.requirements_notice')</span>
 
         <form class="mt-8" wire:submit.prevent="updatePassword">

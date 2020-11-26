@@ -48,6 +48,8 @@ class UpdatePasswordForm extends Component
         ];
 
         $this->emit('saved');
+
+        flash()->success(trans('fortify::pages.user-settings.password_updated'));
     }
 
     /**

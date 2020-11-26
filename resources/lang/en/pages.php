@@ -26,5 +26,6 @@ return [
         'delete_account_title'              => 'Delete Account',
         'delete_account_description'        => 'Deletion of the account will result in the loss of your data instantly and your account will be unrecoverable.',
         'update_password_alert_description' => 'The Security Settings allow you to change your passwords and enable or disable 2FA. Please remember the changes made for when you next sign in.',
+        'password_updated'                  => 'Password was successfully updated',
     ],
 ];

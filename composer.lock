@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a75305b617154722afcbb9b4ad7e91f5",
+    "content-hash": "596afff92ebf5829ba1835cfaaa365d0",
     "packages": [
         {
             "name": "arkecosystem/ui",

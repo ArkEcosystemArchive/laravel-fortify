@@ -11,7 +11,7 @@ class ResetPasswordForm extends Component
 {
     use ValidatesPassword;
 
-    public $token; 
+    public $token;
 
     public array $state = [
         'email'                 => '',
@@ -21,7 +21,7 @@ class ResetPasswordForm extends Component
 
     public function mount()
     {
-        $this->token = request()->route('token');
+        $this->token          = request()->route('token');
         $this->state['email'] = old('email', request()->email);
     }
 

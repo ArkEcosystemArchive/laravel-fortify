@@ -14,7 +14,9 @@
 @section('content')
     <div class="container mx-auto" x-data="{ recovery: false }">
         <div class="mx-auto my-8 md:w-3/4 lg:w-3/5 xl:w-1/2">
-            <h1 class="mx-4 text-2xl font-bold md:text-4xl md:mx-8 xl:mx-16">@lang('fortify::auth.two-factor.page_header')</h1>
+            <h1 class="mx-4 text-2xl font-bold md:text-4xl md:mx-8 xl:mx-16 text-center">
+                @lang('fortify::auth.two-factor.page_header')
+            </h1>
 
             <div class="mt-5 lg:mt-8">
                 <form
@@ -52,7 +54,7 @@
                     </div>
 
                     <div class="text-right mt-8">
-                        <button type="submit" class="w-full button-primary sm:w-auto">
+                        <button type="submit" class="w-full button-secondary sm:w-auto">
                             @lang('fortify::actions.verify')
                         </button>
                     </div>

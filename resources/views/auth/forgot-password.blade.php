@@ -14,7 +14,9 @@
 @section('content')
     <div class="container mx-auto">
         <div class="mx-auto my-8 md:w-3/4 lg:w-3/5 xl:w-1/2">
-            <h1 class="mx-4 text-2xl font-bold md:text-4xl md:mx-8 xl:mx-16">@lang('fortify::auth.forgot-password.page_header')</h1>
+            <h1 class="mx-4 text-2xl font-bold md:text-4xl md:mx-8 xl:mx-16 text-center">
+                @lang('fortify::auth.forgot-password.page_header')
+            </h1>
 
             <div class="px-8">
                 <x-ark-flash />
@@ -42,10 +44,12 @@
                         </div>
                     </div>
 
-                    <div class="flex flex-col-reverse sm:flex-row w-full justify-between items-center space-y-2 sm:space-y-0">
-                        <a href="{{ route('login') }}" class="link mt-8 sm:mt-0">Cancel</a>
+                    <div class="flex flex-col-reverse space-y-4 sm:space-y-0 sm:flex-row items-center justify-between">
+                        <div class="flex-1 mt-8 sm:mt-0">
+                            <a href="{{ route('login') }}" class="link">@lang('fortify::actions.cancel')</a>
+                        </div>
 
-                        <button type="submit" class="w-full button-secondary sm:w-auto">
+                        <button type="submit" class="w-full button-secondary md:w-auto">
                             @lang('fortify::auth.forgot-password.reset_link')
                         </button>
                     </div>

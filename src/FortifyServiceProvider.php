@@ -28,6 +28,10 @@ use Laravel\Fortify\Contracts\RegisterResponse as RegisterResponseContract;
 use Laravel\Fortify\Contracts\TwoFactorLoginResponse as TwoFactorLoginResponseContract;
 use Laravel\Fortify\Fortify;
 use Livewire\Livewire;
+use ARKEcosystem\Fortify\Http\Responses\FailedPasswordResetLinkRequestResponse as FortifyFailedPasswordResetLinkRequestResponse;
+use ARKEcosystem\Fortify\Http\Responses\SuccessfulPasswordResetLinkRequestResponse as FortifySuccessfulPasswordResetLinkRequestResponse;
+use Laravel\Fortify\Contracts\FailedPasswordResetLinkRequestResponse;
+use Laravel\Fortify\Contracts\SuccessfulPasswordResetLinkRequestResponse;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -215,6 +219,16 @@ class FortifyServiceProvider extends ServiceProvider
         $this->app->singleton(
             TwoFactorLoginResponseContract::class,
             TwoFactorLoginResponse::class
+        );
+
+        $this->app->singleton(
+            FailedPasswordResetLinkRequestResponse::class,
+            FortifyFailedPasswordResetLinkRequestResponse::class
+        );
+
+        $this->app->singleton(
+            SuccessfulPasswordResetLinkRequestResponse::class,
+            FortifySuccessfulPasswordResetLinkRequestResponse::class
         );
     }
 }

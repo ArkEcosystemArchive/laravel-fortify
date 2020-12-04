@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ARKEcosystem\Fortify\Http\Responses;
 
+use Illuminate\Http\JsonResponse;
 use Laravel\Fortify\Http\Responses\SuccessfulPasswordResetLinkRequestResponse as LaravelSuccessfulPasswordResetLinkRequestResponse;
 
 class SuccessfulPasswordResetLinkRequestResponse extends LaravelSuccessfulPasswordResetLinkRequestResponse

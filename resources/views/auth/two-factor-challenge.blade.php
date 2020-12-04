@@ -54,7 +54,7 @@
                     </div>
 
                     <div class="text-right mt-8">
-                        <button type="submit" class="w-full button-primary sm:w-auto">
+                        <button type="submit" class="w-full button-secondary sm:w-auto">
                             @lang('fortify::actions.verify')
                         </button>
                     </div>

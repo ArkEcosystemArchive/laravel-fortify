@@ -44,10 +44,12 @@
                         </div>
                     </div>
 
-                    <div class="flex flex-col-reverse sm:flex-row w-full justify-between items-center space-y-2 sm:space-y-0">
-                        <a href="{{ route('login') }}" class="link mt-8 sm:mt-0">Cancel</a>
+                    <div class="flex flex-col-reverse space-y-4 sm:space-y-0 sm:flex-row items-center justify-between">
+                        <div class="flex-1 mt-8 sm:mt-0">
+                            <a href="{{ route('login') }}" class="link">@lang('fortify::actions.cancel')</a>
+                        </div>
 
-                        <button type="submit" class="w-full button-secondary sm:w-auto">
+                        <button type="submit" class="w-full button-secondary md:w-auto">
                             @lang('fortify::auth.forgot-password.reset_link')
                         </button>
                     </div>

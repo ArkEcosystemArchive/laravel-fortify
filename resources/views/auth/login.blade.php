@@ -77,14 +77,14 @@
                         </div>
                     </div>
 
-                    <div class="flex flex-col-reverse space-y-4 sm:space-y-0 sm:flex-row justify-between">
+                    <div class="flex flex-col-reverse space-y-4 sm:space-y-0 sm:flex-row items-center justify-between">
                         @if(Route::has('password.request'))
-                            <div class="flex-1 m-auto mt-8 sm:mt-0">
+                            <div class="flex-1 mt-8 sm:mt-0">
                                 <a href="{{ route('password.request') }}" class="link">@lang('fortify::auth.sign-in.forgot_password')</a>
                             </div>
                         @endif
 
-                        <button type="submit" class="button-secondary">
+                        <button type="submit" class="w-full button-secondary md:w-auto">
                             @lang('fortify::actions.sign_in')
                         </button>
                     </div>

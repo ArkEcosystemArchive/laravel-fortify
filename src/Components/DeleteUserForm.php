@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace ARKEcosystem\Fortify\Components;
 
-use ARKEcosystem\Fortify\Actions\DeleteUser;
-use Illuminate\Contracts\Auth\StatefulGuard;
+use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Contracts\Auth\StatefulGuard;
+use ARKEcosystem\Fortify\Contracts\DeleteUser;
 use Illuminate\Validation\ValidationException;
-use Livewire\Component;
 
 class DeleteUserForm extends Component
 {
@@ -35,14 +35,14 @@ class DeleteUserForm extends Component
     /**
      * Delete the current user.
      *
-     * @param \ARKEcosystem\Fortify\Actions\DeleteUser $deleter
+     * @param \ARKEcosystem\Fortify\Contracts $deleter
      * @param \Illuminate\Contracts\Auth\StatefulGuard $auth
      *
      * @return void
      */
     public function deleteUser(DeleteUser $deleter, StatefulGuard $auth)
     {
-        $deleter->delete(Auth::user()->fresh());
+        resolve(DeleteUser::class)->delete(Auth::user()->fresh());
 
         $auth->logout();
 

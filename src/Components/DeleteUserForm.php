@@ -42,8 +42,6 @@ class DeleteUserForm extends Component
      */
     public function deleteUser(DeleteUser $deleter, StatefulGuard $auth)
     {
-        $this->resetErrorBag();
-
         $deleter->delete(Auth::user()->fresh());
 
         $auth->logout();

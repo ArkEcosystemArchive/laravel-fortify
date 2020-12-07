@@ -7,8 +7,6 @@ namespace ARKEcosystem\Fortify\Components;
 use ARKEcosystem\Fortify\Actions\DeleteUser;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 
 class DeleteUserForm extends Component

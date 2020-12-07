@@ -5,7 +5,7 @@
 @endslot
 
 @section('breadcrumbs')
-    <x-breadcrumbs :crumbs="[
+    <x-ark-breadcrumbs :crumbs="[
         ['route' => 'login', 'label' => trans('fortify::menu.sign_in')],
         ['label' => trans('fortify::menu.reset_password')],
     ]" />

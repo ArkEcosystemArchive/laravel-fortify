@@ -5,7 +5,7 @@
 @endsection
 
 @section('breadcrumbs')
-    <x-breadcrumbs :crumbs="[
+    <x-ark-breadcrumbs :crumbs="[
         ['route' => 'home', 'label' => trans('fortify::menu.home')],
         ['label' => trans('fortify::menu.sign_in')],
     ]" />

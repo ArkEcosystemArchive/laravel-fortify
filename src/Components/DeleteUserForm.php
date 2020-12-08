@@ -34,7 +34,7 @@ class DeleteUserForm extends Component
      * Delete the current user.
      *
      * @param \ARKEcosystem\Fortify\Contracts\DeleteUser $deleter
-     * @param \Illuminate\Contracts\Auth\StatefulGuard $auth
+     * @param \Illuminate\Contracts\Auth\StatefulGuard   $auth
      *
      * @return void
      */

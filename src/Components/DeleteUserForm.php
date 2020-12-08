@@ -7,8 +7,6 @@ namespace ARKEcosystem\Fortify\Components;
 use ARKEcosystem\Fortify\Actions\DeleteUser;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 
 class DeleteUserForm extends Component
@@ -21,21 +19,12 @@ class DeleteUserForm extends Component
     public $confirmingUserDeletion = false;
 
     /**
-     * The user's current password.
-     *
-     * @var string
-     */
-    public $password = '';
-
-    /**
      * Confirm that the user would like to delete their account.
      *
      * @return void
      */
     public function confirmUserDeletion()
     {
-        $this->password = '';
-
         $this->dispatchBrowserEvent('confirming-delete-user');
 
         $this->confirmingUserDeletion = true;
@@ -51,14 +40,6 @@ class DeleteUserForm extends Component
      */
     public function deleteUser(DeleteUser $deleter, StatefulGuard $auth)
     {
-        $this->resetErrorBag();
-
-        if (! Hash::check($this->password, Auth::user()->password)) {
-            throw ValidationException::withMessages([
-                'password' => [trans('fortify::validation.password_doesnt_match_records')],
-            ]);
-        }
-
         $deleter->delete(Auth::user()->fresh());
 
         $auth->logout();

@@ -33,9 +33,11 @@
 
             <x-slot name="buttons">
                 <div class="flex flex-col w-full sm:flex-row justify-end mt-5 space-y-4 sm:space-y-0 sm:space-x-3">
-                    <button class="button-secondary"
-                        wire:click="$toggle('confirmingUserDeletion')">@lang('fortify::actions.cancel')</button>
-                    <button class="inline-flex justify-center items-center button-primary" wire:click="destroy">
+                    <button class="button-secondary" wire:click="$toggle('confirmingUserDeletion')">
+                        @lang('fortify::actions.cancel')
+                    </button>
+
+                    <button class="inline-flex justify-center items-center button-primary" wire:click="deleteUser">
                         @svg('trash', 'h-4 w-4')
                         <span class="ml-2">@lang('fortify::actions.delete')</span>
                     </button>
@@ -44,4 +46,3 @@
         </x-ark-modal>
     @endif
 </div>
-

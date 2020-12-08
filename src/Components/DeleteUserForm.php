@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace ARKEcosystem\Fortify\Components;
 
-use Livewire\Component;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Contracts\Auth\StatefulGuard;
 use ARKEcosystem\Fortify\Contracts\DeleteUser;
+use Illuminate\Contracts\Auth\StatefulGuard;
+use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
 
 class DeleteUserForm extends Component
 {

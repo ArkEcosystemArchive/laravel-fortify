@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ARKEcosystem\Fortify\Actions;
+namespace ARKEcosystem\Fortify\Contracts;
 
-class DeleteUser
+interface DeleteUser
 {
     /**
      * Delete the given user.
@@ -13,8 +13,5 @@ class DeleteUser
      *
      * @return void
      */
-    public function delete($user)
-    {
-        $user->delete();
-    }
+    public function delete($user);
 }

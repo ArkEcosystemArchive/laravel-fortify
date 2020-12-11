@@ -1,4 +1,5 @@
 <x-jet-action-section>
+    {{-- TODO: rewrite to our components --}}
     <x-slot name="title">
         @lang('fortify::forms.logout-sessions.title')
     </x-slot>

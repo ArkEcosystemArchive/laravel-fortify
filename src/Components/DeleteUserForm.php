@@ -5,18 +5,14 @@ declare(strict_types=1);
 namespace ARKEcosystem\Fortify\Components;
 
 use ARKEcosystem\Fortify\Contracts\DeleteUser;
+use ARKEcosystem\UserInterface\Http\Livewire\Concerns\HasModal;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class DeleteUserForm extends Component
 {
-    /**
-     * Indicates if user deletion is being confirmed.
-     *
-     * @var bool
-     */
-    public $confirmingUserDeletion = false;
+    use HasModal;
 
     /**
      * Confirm that the user would like to delete their account.
@@ -27,7 +23,7 @@ class DeleteUserForm extends Component
     {
         $this->dispatchBrowserEvent('confirming-delete-user');
 
-        $this->confirmingUserDeletion = true;
+        $this->openModal();
     }
 
     /**

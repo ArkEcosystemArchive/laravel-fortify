@@ -63,7 +63,7 @@
         </div>
     @endif
 
-    @if($showingRecoveryCodes)
+    @if($this->modalShown)
         <x-ark-modal title-class="header-2">
             @slot('title')
                 @lang('fortify::pages.user-settings.2fa_reset_code_title')

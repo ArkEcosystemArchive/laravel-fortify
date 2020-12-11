@@ -8,6 +8,7 @@ use ARKEcosystem\Fortify\Actions\EnableTwoFactorAuthentication;
 use ARKEcosystem\Fortify\Actions\GenerateTwoFactorAuthenticationSecretKey;
 use ARKEcosystem\Fortify\Components\Concerns\InteractsWithUser;
 use ARKEcosystem\Fortify\Rules\OneTimePassword;
+use ARKEcosystem\UserInterface\Http\Livewire\Concerns\HasModal;
 use BaconQrCode\Renderer\Color\Rgb;
 use BaconQrCode\Renderer\Image\SvgImageBackEnd;
 use BaconQrCode\Renderer\ImageRenderer;
@@ -23,6 +24,7 @@ use Livewire\Component;
 class TwoFactorAuthenticationForm extends Component
 {
     use InteractsWithUser;
+    use HasModal;
 
     /**
      * Indicates if two factor authentication QR code is being displayed.
@@ -30,13 +32,6 @@ class TwoFactorAuthenticationForm extends Component
      * @var bool
      */
     public $showingQrCode = false;
-
-    /**
-     * Indicates if two factor authentication recovery codes are being displayed.
-     *
-     * @var bool
-     */
-    public $showingRecoveryCodes = false;
 
     /**
      * The component's state.
@@ -82,8 +77,8 @@ class TwoFactorAuthenticationForm extends Component
 
         app(EnableTwoFactorAuthentication::class)(Auth::user(), $this->state['two_factor_secret']);
 
-        $this->showingQrCode        = true;
-        $this->showingRecoveryCodes = true;
+        $this->showingQrCode = true;
+        $this->showRecoveryCodes();
     }
 
     /**
@@ -93,7 +88,7 @@ class TwoFactorAuthenticationForm extends Component
      */
     public function showRecoveryCodes()
     {
-        $this->showingRecoveryCodes = true;
+        $this->openModal();
     }
 
     /**
@@ -105,7 +100,7 @@ class TwoFactorAuthenticationForm extends Component
     {
         app(GenerateNewRecoveryCodes::class)(Auth::user());
 
-        $this->showingRecoveryCodes = true;
+        $this->showRecoveryCodes();
     }
 
     /**
@@ -168,7 +163,7 @@ class TwoFactorAuthenticationForm extends Component
      */
     public function hideRecoveryCodes()
     {
-        $this->showingRecoveryCodes = false;
+        $this->closeModal();
     }
 
     /**

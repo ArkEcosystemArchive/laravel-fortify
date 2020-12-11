@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    @if($this->confirmingUserDeletion)
+    @if($this->modalShown)
         <x-ark-modal title-class="header-2" width-class="max-w-xl">
             <x-slot name="title">
                 @lang('fortify::forms.delete-user.title')
@@ -33,7 +33,7 @@
 
             <x-slot name="buttons">
                 <div class="flex flex-col w-full sm:flex-row justify-end mt-5 space-y-4 sm:space-y-0 sm:space-x-3">
-                    <button class="button-secondary" wire:click="$toggle('confirmingUserDeletion')">
+                    <button class="button-secondary" wire:click="closeModal">
                         @lang('fortify::actions.cancel')
                     </button>
 

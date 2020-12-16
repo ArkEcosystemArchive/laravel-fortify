@@ -5,7 +5,6 @@ declare(strict_types=1);
 use ARKEcosystem\Fortify\Actions\CreateNewUser;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
 
 use function Tests\expectValidationError;
 

@@ -13,7 +13,7 @@ it('should reset the user password', function () {
     expect($user->password)->toBe('$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi');
 
     resolve(ResetUserPassword::class)->reset($user, [
-        'password' => 'Pas3w05d&123456',
+        'password'              => 'Pas3w05d&123456',
         'password_confirmation' => 'Pas3w05d&123456',
     ]);
 
@@ -48,7 +48,7 @@ it('should throw an exception if the password confirmation does not match', func
     $user = createUserModel();
 
     expectValidationError(fn () => resolve(ResetUserPassword::class)->reset($user, [
-        'password' => 'Pas3w05d&123456',
+        'password'              => 'Pas3w05d&123456',
         'password_confirmation' => 'password',
     ]), 'password', 'The password confirmation does not match.');
 });

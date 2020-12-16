@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use Closure;
-use Illuminate\Support\Str;
 use ARKEcosystem\Fortify\Models\User;
 use Carbon\Carbon;
+use Closure;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
 function createUserModel(string $userClass = User::class)

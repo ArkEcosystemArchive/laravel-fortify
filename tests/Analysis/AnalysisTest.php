@@ -24,6 +24,9 @@ class AnalysisTest extends TestCase
 
     public function getIgnored(): array
     {
-        return ['Tests\createUserModel'];
+        return [
+            'Tests\createUserModel',
+            'Tests\expectValidationError',
+        ];
     }
 }

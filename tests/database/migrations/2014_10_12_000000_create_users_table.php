@@ -18,6 +18,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamp('last_login_at')->nullable();
             $table->string('password');
+            $table->text('two_factor_secret')->after('password')->nullable();
+            $table->text('two_factor_recovery_codes')->after('two_factor_secret')->nullable();
             $table->string('timezone')->default('UTC')->nullable();
             $table->rememberToken();
             $table->timestamps();

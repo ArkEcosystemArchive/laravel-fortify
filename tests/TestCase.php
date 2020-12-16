@@ -6,6 +6,7 @@ namespace Tests;
 
 use ARKEcosystem\Fortify\FortifyServiceProvider;
 use ARKEcosystem\UserInterface\UserInterfaceServiceProvider;
+use Laravel\Fortify\FortifyServiceProvider as LaravelFortifyServiceProvider;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
@@ -26,6 +27,7 @@ class TestCase extends Orchestra
         return [
             LivewireServiceProvider::class,
             UserInterfaceServiceProvider::class,
+            LaravelFortifyServiceProvider::class,
             FortifyServiceProvider::class,
         ];
     }

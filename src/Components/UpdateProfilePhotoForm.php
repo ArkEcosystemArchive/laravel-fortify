@@ -14,7 +14,9 @@ class UpdateProfilePhotoForm extends Component
     use WithFileUploads;
 
     public $alignment;
+
     public $photo;
+
     public $dimensions;
 
     /**

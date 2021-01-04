@@ -1,4 +1,10 @@
-<div x-data="{ isUploading: false, select() { document.getElementById('photo').click(); } }" x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false" x-on:livewire-upload-error="isUploading = false" class="relative flex flex-col items-center mb-4 md:items-start">
+<div
+    x-data="{ isUploading: false, select() { document.getElementById('photo').click(); } }"
+    x-on:livewire-upload-start="isUploading = true"
+    x-on:livewire-upload-finish="isUploading = false"
+    x-on:livewire-upload-error="isUploading = false"
+    class="relative flex flex-col {{ $alignment ?? 'items-center mb-4 md:items-start' }}"
+>
     <form wire:submit.prevent="store" id="livewire-form">
         <div
             style="background-image: url('{{ $this->user->photo }}')"

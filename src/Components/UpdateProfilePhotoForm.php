@@ -13,7 +13,11 @@ class UpdateProfilePhotoForm extends Component
     use InteractsWithUser;
     use WithFileUploads;
 
+    public $alignment;
+
     public $photo;
+
+    public $dimensions;
 
     /**
      * Render the component.

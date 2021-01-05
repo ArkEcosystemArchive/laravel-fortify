@@ -9,7 +9,7 @@
 ## Installation
 
 1. Require with composer: `composer require arkecosystem/fortify`
-2. Publish all the assets / views with `php artisan vendor:publish --provider="ARKEcosystem\Fortify\FortifyServiceProvider" --tag=config`.
+2. Publish all the assets / views with `php artisan vendor:publish --provider="ARKEcosystem\Fortify\FortifyServiceProvider" --tag=config --tag=images`.
 3. Disable auto-discovery for all fortify packages. This step is required so that we can control the loading order of `laravel/fortify` and `arkecosystem/fortify`.
 
 ```json

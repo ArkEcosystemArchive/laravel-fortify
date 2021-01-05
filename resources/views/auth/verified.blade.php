@@ -3,7 +3,7 @@
 @section('content')
 <div class="flex max-w-md p-8 mx-auto my-6 bg-white rounded-lg">
     <div class="flex flex-col w-full text-center">
-        <img class="mb-5" src="/images/placeholders/verified-email.svg" />
+        <img class="mb-5" src="/images/auth/verified-email.svg" />
         <h2>@lang('fortify::auth.verified.page_header')</h2>
         <p>
             @lang('fortify::auth.verified.page_description')

@@ -77,9 +77,9 @@
                         </div>
                     </div>
 
-                    <div class="flex flex-col-reverse space-y-4 sm:space-y-0 sm:flex-row items-center justify-between">
+                    <div class="flex flex-col-reverse space-y-4 md:space-y-0 md:flex-row items-center justify-between">
                         @if(Route::has('password.request'))
-                            <div class="flex-1 mt-8 sm:mt-0">
+                            <div class="flex-1 mt-8 md:mt-0">
                                 <a href="{{ route('password.request') }}" class="link">@lang('fortify::auth.sign-in.forgot_password')</a>
                             </div>
                         @endif

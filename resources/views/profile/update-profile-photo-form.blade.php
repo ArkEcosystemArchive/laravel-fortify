@@ -6,7 +6,6 @@
     class="relative flex flex-col {{ $alignment ?? 'items-center mb-4 md:items-start' }}"
 >
     <form wire:submit.prevent="store" id="livewire-form">
-        {{-- TODO: Add max file size & min image size --}}
         <x-ark-upload-image
             :image="$this->user->photo"
             :upload-text="__('fortify::forms.upload-avatar.upload_avatar')"

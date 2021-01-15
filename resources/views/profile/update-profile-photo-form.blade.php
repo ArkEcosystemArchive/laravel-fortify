@@ -10,6 +10,7 @@
             :image="$this->user->photo"
             :upload-text="__('fortify::forms.upload-avatar.upload_avatar')"
             :delete-tooltip="__('fortify::forms.upload-avatar.delete_avatar')"
+            :dimensions="$dimensions"
         />
     </form>
 

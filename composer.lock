@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "arkecosystem/ui",
-            "version": "1.5.5",
+            "version": "1.5.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ArkEcosystem/laravel-ui.git",
-                "reference": "77852aba310e2cda03596da1cd1e61827f315aa3"
+                "reference": "346b5e54af71d10a2b22204e4728760b4f04ea4b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ArkEcosystem/laravel-ui/zipball/77852aba310e2cda03596da1cd1e61827f315aa3",
-                "reference": "77852aba310e2cda03596da1cd1e61827f315aa3",
+                "url": "https://api.github.com/repos/ArkEcosystem/laravel-ui/zipball/346b5e54af71d10a2b22204e4728760b4f04ea4b",
+                "reference": "346b5e54af71d10a2b22204e4728760b4f04ea4b",
                 "shasum": ""
             },
             "require": {
@@ -77,9 +77,9 @@
             "description": "User-Interface Scaffolding for Laravel. Powered by TailwindCSS.",
             "support": {
                 "issues": "https://github.com/ArkEcosystem/laravel-ui/issues",
-                "source": "https://github.com/ArkEcosystem/laravel-ui/tree/1.5.5"
+                "source": "https://github.com/ArkEcosystem/laravel-ui/tree/1.5.7"
             },
-            "time": "2021-01-21T13:51:16+00:00"
+            "time": "2021-01-21T16:19:42+00:00"
         },
         {
             "name": "bacon/bacon-qr-code",

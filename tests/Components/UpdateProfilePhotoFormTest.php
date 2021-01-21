@@ -18,7 +18,7 @@ it('can upload a photo', function () {
 
     Livewire::actingAs(MediaUser::fake())
         ->test(UpdateProfilePhotoForm::class)
-        ->set('photo', $photo);
+        ->set('imageSingle', $photo);
 });
 
 it('cannot upload a photo with disallowed extension', function () {
@@ -26,8 +26,8 @@ it('cannot upload a photo with disallowed extension', function () {
 
     Livewire::actingAs(MediaUser::fake())
         ->test(UpdateProfilePhotoForm::class)
-        ->set('photo', $photo)
-        ->assertHasErrors('photo');
+        ->set('imageSingle', $photo)
+        ->assertHasErrors('imageSingle');
 });
 
 it('cannot upload a photo that is too large', function () {
@@ -35,28 +35,6 @@ it('cannot upload a photo that is too large', function () {
 
     Livewire::actingAs(MediaUser::fake())
         ->test(UpdateProfilePhotoForm::class)
-        ->set('photo', $photo)
-        ->assertHasErrors('photo');
-});
-
-it('can have custom dimensions', function () {
-    Livewire::actingAs(MediaUser::fake())
-        ->test(UpdateProfilePhotoForm::class)
-        ->assertSet('dimensions', null)
-        ->assertSee('w-48 h-48')
-        ->assertDontSee('w-24 h-24')
-        ->set('dimensions', 'w-24 h-24')
-        ->assertSet('dimensions', 'w-24 h-24')
-        ->assertSee('w-24 h-24');
-});
-
-it('can have a custom alignment', function () {
-    Livewire::actingAs(MediaUser::fake())
-        ->test(UpdateProfilePhotoForm::class)
-        ->assertSet('alignment', null)
-        ->assertSee('items-center mb-4 md:items-start')
-        ->set('alignment', 'items-end')
-        ->assertSet('alignment', 'items-end')
-        ->assertSee('items-end')
-        ->assertDontSee('items-center mb-4 md:items-start');
+        ->set('imageSingle', $photo)
+        ->assertHasErrors('imageSingle');
 });

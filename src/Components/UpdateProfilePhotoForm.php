@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace ARKEcosystem\Fortify\Components;
 
 use ARKEcosystem\Fortify\Components\Concerns\InteractsWithUser;
-use ARKEcosystem\UserInterface\Components\UploadImage;
+use ARKEcosystem\UserInterface\Components\UploadImageSingle;
+use Livewire\Component;
 
-class UpdateProfilePhotoForm extends UploadImage
+class UpdateProfilePhotoForm extends Component
 {
     use InteractsWithUser;
+    use UploadImageSingle;
 
     /**
      * Render the component.
@@ -21,19 +23,19 @@ class UpdateProfilePhotoForm extends UploadImage
         return view('ark-fortify::profile.update-profile-photo-form');
     }
 
-    public function store()
+    public function updatedImageSingle()
     {
         $this->validate([
-            'photo' => $this->validators(),
+            'imageSingle' => $this->imageSingleValidators,
         ]);
 
-        $file = $this->photo->storePubliclyAs('uploads', $this->photo->hashName());
+        $file = $this->imageSingle->storePubliclyAs('uploads', $this->imageSingle->hashName());
 
         $this->user->addMediaFromDisk($file)->toMediaCollection('photo');
         $this->user->refresh();
     }
 
-    public function delete()
+    public function deleteImageSingle()
     {
         $this->user->getFirstMedia('photo')->delete();
         $this->user->refresh();

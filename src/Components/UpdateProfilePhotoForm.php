@@ -26,7 +26,7 @@ class UpdateProfilePhotoForm extends Component
     public function updatedImageSingle()
     {
         $this->validate([
-            'imageSingle' => $this->imageSingleValidators,
+            'imageSingle' => $this->imageSingleValidators(),
         ]);
 
         $file = $this->imageSingle->storePubliclyAs('uploads', $this->imageSingle->hashName());

@@ -84,3 +84,21 @@ it('doesnt login the user by the alt username if not set (username)', function (
 
     $this->assertNull($loggedUser);
 });
+
+it('doesnt login the user if password is incorrect', function () {
+    Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
+
+    $user = User::factory()->create();
+
+    $request = new Request();
+
+    $request->replace([
+        'email'    => $user->email,
+        'password' => 'wrong-password',
+    ]);
+
+    $authenticator = new AuthenticateUser($request);
+    $loggedUser = $authenticator->handle();
+
+    $this->assertNull($loggedUser);
+});

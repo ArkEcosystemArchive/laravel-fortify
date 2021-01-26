@@ -7,12 +7,9 @@ namespace Tests\Models\Concerns;
 use ARKEcosystem\Fortify\Responses\RegisterResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Request;
 use Mockery;
-use Mockery\Mock;
 
 it('can return json', function () {
-
     $request = Mockery::mock(\Illuminate\Http\Request::class);
     $request->shouldReceive('wantsJson')
         ->once()
@@ -25,7 +22,6 @@ it('can return json', function () {
 });
 
 it('can return redirect', function () {
-
     $request = Mockery::mock(\Illuminate\Http\Request::class);
     $request->shouldReceive('wantsJson')
         ->once()

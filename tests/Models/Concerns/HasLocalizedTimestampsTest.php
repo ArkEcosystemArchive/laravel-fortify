@@ -8,9 +8,7 @@ use ARKEcosystem\Fortify\Models\Concerns\HasLocalizedTimestamps;
 use ARKEcosystem\Fortify\Models\Concerns\HasPhoto;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Config;
-use Mockery;
 use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\MediaCollections\MediaCollection;
 use Tests\MediaUser;
 
 /**

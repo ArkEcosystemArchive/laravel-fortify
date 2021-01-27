@@ -15,6 +15,7 @@
             <directory suffix=".php">./src</directory>
         </include>
         <exclude>
+            <file>./src/FortifyServiceProvider.php</file>
             <file>./src/Components/LogoutOtherBrowserSessionsForm.php</file>
         </exclude>
 

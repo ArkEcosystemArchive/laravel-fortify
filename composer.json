@@ -44,7 +44,7 @@
             "vendor/bin/php-cs-fixer fix"
         ],
         "test": [
-            "./vendor/bin/pest --coverage --coverage-html=.coverage --coverage-clover=coverage.xml"
+            "./vendor/bin/pest --coverage --min=100 --coverage-html=.coverage --coverage-clover=coverage.xml"
         ]
     },
     "require-dev": {

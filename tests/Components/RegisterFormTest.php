@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 use Spatie\MediaLibrary\MediaCollections\Models\Concerns\HasUuid;
 
-it('can register if all validations ok', function () {
+it('can interact with the form', function () {
     Config::set('fortify.models.invitation', RegisterFormTest::class);
     Route::get('terms-of-service', function () {
         return view('');

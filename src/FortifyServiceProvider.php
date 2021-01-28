@@ -195,9 +195,7 @@ class FortifyServiceProvider extends ServiceProvider
     private function registerAuthentication(): void
     {
         Fortify::authenticateUsing(function (Request $request) {
-            $authenticator = new AuthenticateUser($request);
-
-            return (new AuthenticateUser($request))->handle($request);
+            return (new AuthenticateUser($request))->handle();
         });
     }
 

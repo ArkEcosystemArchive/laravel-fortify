@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace ARKEcosystem\Fortify\Responses;
 
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Response;
 use Laravel\Fortify\Contracts\RegisterResponse as RegisterResponseContract;
 
 final class RegisterResponse implements RegisterResponseContract

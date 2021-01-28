@@ -171,7 +171,7 @@ it('should require one special character', function () {
 
 it('handles the invitation parameter', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
-    Config::set('fortify.models.invitation', InvitationModelTest::class);
+    Config::set('fortify.models.invitation', CreateNewUserTest::class);
 
     $user = (new CreateNewUser())->create([
         'name'                  => 'John Doe',

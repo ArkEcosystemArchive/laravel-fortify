@@ -23,7 +23,7 @@ class RegisterForm extends Component
 
     public string $formUrl;
 
-    protected $invitation = null;
+    public ?string $invitationId = null;
 
     public function mount()
     {
@@ -36,9 +36,7 @@ class RegisterForm extends Component
 
         $this->formUrl = request()->fullUrl();
 
-        if (request()->has('invitation')) {
-            $this->invitation = Models::invitation()::findByUuid(request()->get('invitation'));
-        }
+        $this->invitationId = request()->get('invitation');
     }
 
     /**
@@ -49,7 +47,7 @@ class RegisterForm extends Component
     public function render()
     {
         return view('ark-fortify::auth.register-form', [
-            'invitation' => $this->invitation,
+            'invitation' => Models::invitation()::findByUuid($this->invitationId),
         ]);
     }
 }

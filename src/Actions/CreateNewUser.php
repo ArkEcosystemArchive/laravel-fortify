@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace ARKEcosystem\Fortify\Actions;
 
-use Laravel\Fortify\Fortify;
 use ARKEcosystem\Fortify\Models;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Validator;
-use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Illuminate\Validation\Validator as ValidationValidator;
+use Laravel\Fortify\Contracts\CreatesNewUsers;
+use Laravel\Fortify\Fortify;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -26,7 +26,7 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
-        $input = $this->buildValidator($input)->validate();
+        $input      = $this->buildValidator($input)->validate();
         $invitation = null;
 
         if (array_key_exists('invitation', $input)) {

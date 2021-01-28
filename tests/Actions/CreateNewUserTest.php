@@ -2,16 +2,15 @@
 
 declare(strict_types=1);
 
-use Mockery\MockInterface;
-use Illuminate\Support\Arr;
+use ARKEcosystem\Fortify\Actions\CreateNewUser;
 use ARKEcosystem\Fortify\Models;
 
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Database\Eloquent\Model;
-use function Tests\expectValidationError;
-use ARKEcosystem\Fortify\Actions\CreateNewUser;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Hash;
 use Spatie\MediaLibrary\MediaCollections\Models\Concerns\HasUuid;
+use function Tests\expectValidationError;
 
 beforeEach(function () {
     $this->validPassword = 'Pas3w05d&123456';
@@ -173,7 +172,7 @@ it('should require one special character', function () {
 it('handles the invitation parameter', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
     Config::set('fortify.models.invitation', InvitationModelTest::class);
-    
+
     $user = (new CreateNewUser())->create([
         'name'                  => 'John Doe',
         'username'              => 'alfonsobries',
@@ -181,7 +180,7 @@ it('handles the invitation parameter', function () {
         'password'              => $this->validPassword,
         'password_confirmation' => $this->validPassword,
         'terms'                 => true,
-        'invitation'            => 'uuid-uuid-uuid-uuid'
+        'invitation'            => 'uuid-uuid-uuid-uuid',
     ]);
 
     $invitation = Models::invitation()::findByUuid('uuid-uuid-uuid-uuid');
@@ -192,11 +191,12 @@ it('handles the invitation parameter', function () {
 /**
  * @coversNothing
  */
-class InvitationModelTest extends Model
+class CreateNewUserTest extends Model
 {
     use HasUuid;
 
     public ?string $uuid = null;
+
     public ?int $user_id = null;
 
     protected $guarded = [];
@@ -208,7 +208,7 @@ class InvitationModelTest extends Model
         if (self::$model) {
             return self::$model;
         }
-        
+
         self::$model = new self(compact('uuid'));
 
         return self::$model;
@@ -217,6 +217,6 @@ class InvitationModelTest extends Model
     public function update(array $attributes = [], array $options = [])
     {
         $this->user_id = Arr::get($attributes, 'user_id', $this->user_id);
-        $this->uuid = Arr::get($attributes, 'uuid', $this->uuid);
+        $this->uuid    = Arr::get($attributes, 'uuid', $this->uuid);
     }
 }

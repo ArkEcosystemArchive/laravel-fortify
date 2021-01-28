@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace ARKEcosystem\Fortify\Actions;
 
-use ARKEcosystem\Fortify\Models;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Validator as ValidationValidator;
-use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Fortify\Fortify;
+use ARKEcosystem\Fortify\Models;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Validator;
+use Laravel\Fortify\Contracts\CreatesNewUsers;
+use Illuminate\Validation\Validator as ValidationValidator;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -26,8 +27,23 @@ class CreateNewUser implements CreatesNewUsers
     public function create(array $input)
     {
         $input = $this->buildValidator($input)->validate();
+        $invitation = null;
 
-        return Models::user()::create($this->getUserData($input));
+        if (array_key_exists('invitation', $input)) {
+            $invitationId = $input['invitation'];
+            unset($input['invitation']);
+            $invitation = Models::invitation()::findByUuid($invitationId);
+        }
+
+        return DB::transaction(function () use ($input, $invitation) {
+            $user = Models::user()::create($this->getUserData($input));
+
+            if ($invitation) {
+                $invitation->update(['user_id' => $user->id]);
+            }
+
+            return $user;
+        });
     }
 
     private function buildValidator(array $input): ValidationValidator
@@ -37,6 +53,7 @@ class CreateNewUser implements CreatesNewUsers
             Fortify::username() => $this->usernameRules(),
             'password'          => $this->passwordRules(),
             'terms'             => ['required', 'accepted'],
+            'invitation'        => ['sometimes', 'required', 'string'],
         ];
 
         if ($usernameAlt = Config::get('fortify.username_alt')) {

@@ -47,7 +47,7 @@ class RegisterForm extends Component
     public function render()
     {
         return view('ark-fortify::auth.register-form', [
-            'invitation' => Models::invitation()::findByUuid($this->invitationId),
+            'invitation' => $this->invitationId ? Models::invitation()::findByUuid($this->invitationId) : null,
         ]);
     }
 }

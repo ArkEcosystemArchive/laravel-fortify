@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace Tests\Models\Concerns;
 
-use ARKEcosystem\Fortify\Responses\RegisterResponse;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
 use Mockery;
+use Mockery\MockInterface;
+use ARKEcosystem\Fortify\Models;
+use Illuminate\Http\JsonResponse;
+use ARKEcosystem\Fortify\Models\User;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Config;
+use ARKEcosystem\Fortify\Responses\RegisterResponse;
 
 it('can return json', function () {
     $request = Mockery::mock(\Illuminate\Http\Request::class);
@@ -26,10 +30,53 @@ it('can return redirect', function () {
     $request->shouldReceive('wantsJson')
         ->once()
         ->andReturnFalse();
+    
+    $request->shouldReceive('get')
+        ->with('invitation')
+        ->once()
+        ->andReturn(null);
 
     $response = (new RegisterResponse())->toResponse($request);
 
     expect($response)->toBeInstanceOf(RedirectResponse::class);
     expect($response->status())->toBe(302);
     expect($response->content())->toContain(route('verification.notice'));
+});
+
+it('redirects to the accept invite route', function () {
+    Config::set('fortify.models.invitation', \Tests\stubs\TestUser::class);
+    Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
+
+    $user = User::factory()->create();
+
+    // Initialize the invitation
+    $invitation = Models::invitation()::findByUuid('uuid-uuid-uuid-uuid');
+    $invitation->update(['user_id' => $user->id]);
+
+    $this->mock(\Illuminate\Contracts\Routing\UrlGenerator::class, function (MockInterface $mock) use ($invitation) {
+        $mock->shouldReceive('route')
+            ->with('invitations.accept', $invitation)
+            ->andReturn('http://localhost/accept-invite');
+    });
+
+    $request = Mockery::mock(\Illuminate\Http\Request::class);
+    
+    $request->shouldReceive('wantsJson')
+        ->once()
+        ->andReturnFalse();
+
+    $request->shouldReceive('get')
+        ->with('invitation')
+        ->once()
+        ->andReturn('uuid-uuid-uuid-uuid');
+
+    $request->shouldReceive('user')
+        ->once()
+        ->andReturn($user);
+    
+    $response = (new RegisterResponse())->toResponse($request);
+
+    expect($response)->toBeInstanceOf(RedirectResponse::class);
+    expect($response->status())->toBe(302);
+    expect($response->content())->toContain('http://localhost/accept-invite');
 });

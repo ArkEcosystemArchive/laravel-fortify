@@ -13,13 +13,6 @@ class UpdateProfilePhotoForm extends Component
     use InteractsWithUser;
     use UploadImageSingle;
 
-    protected $listeners = ['uploadError'];
-
-    public function uploadError(): void
-    {
-        $this->emit('toastMessage', [trans('fortify::forms.upload-avatar.upload_error'), 'error']);
-    }
-
     public function render(): \Illuminate\View\View
     {
         return view('ark-fortify::profile.update-profile-photo-form');

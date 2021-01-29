@@ -3,9 +3,13 @@
 declare(strict_types=1);
 
 use ARKEcosystem\Fortify\Actions\CreateNewUser;
+use ARKEcosystem\Fortify\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
-
+use Spatie\MediaLibrary\MediaCollections\Models\Concerns\HasUuid;
 use function Tests\expectValidationError;
 
 beforeEach(function () {
@@ -164,3 +168,55 @@ it('should require one special character', function () {
         'terms'                 => true,
     ]), 'password', 'The password must be at least 12 characters and contain at least one uppercase character, one number, and one special character.');
 });
+
+it('handles the invitation parameter', function () {
+    Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
+    Config::set('fortify.models.invitation', CreateNewUserTest::class);
+
+    $user = (new CreateNewUser())->create([
+        'name'                  => 'John Doe',
+        'username'              => 'alfonsobries',
+        'email'                 => 'john@doe.com',
+        'password'              => $this->validPassword,
+        'password_confirmation' => $this->validPassword,
+        'terms'                 => true,
+        'invitation'            => 'uuid-uuid-uuid-uuid',
+    ]);
+
+    $invitation = Models::invitation()::findByUuid('uuid-uuid-uuid-uuid');
+
+    $this->assertSame($user->id, $invitation->user_id);
+});
+
+/**
+ * @coversNothing
+ */
+class CreateNewUserTest extends Model
+{
+    use HasUuid;
+
+    public ?string $uuid = null;
+
+    public ?int $user_id = null;
+
+    protected $guarded = [];
+
+    public static $model = null;
+
+    public static function findByUuid(string $uuid): ?Model
+    {
+        if (self::$model) {
+            return self::$model;
+        }
+
+        self::$model = new self(compact('uuid'));
+
+        return self::$model;
+    }
+
+    public function update(array $attributes = [], array $options = [])
+    {
+        $this->user_id = Arr::get($attributes, 'user_id', $this->user_id);
+        $this->uuid    = Arr::get($attributes, 'uuid', $this->uuid);
+    }
+}

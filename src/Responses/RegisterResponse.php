@@ -8,7 +8,6 @@ use ARKEcosystem\Fortify\Models;
 use Illuminate\Contracts\Routing\UrlGenerator;
 use Illuminate\Http\JsonResponse;
 use Laravel\Fortify\Contracts\RegisterResponse as RegisterResponseContract;
-use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
 final class RegisterResponse implements RegisterResponseContract
 {
@@ -31,7 +30,8 @@ final class RegisterResponse implements RegisterResponseContract
                 $invitation = Models::invitation()::findByUuid($invitationId);
                 if ($invitation->user()->is($request->user())) {
                     $urlGenerator = app(UrlGenerator::class);
-                    $url = $urlGenerator->route(config('fortify.accept_invitation_route'), $invitation);
+                    $url          = $urlGenerator->route(config('fortify.accept_invitation_route'), $invitation);
+
                     return redirect()->to($url);
                 }
             }

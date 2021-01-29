@@ -31,11 +31,6 @@ it('can return redirect', function () {
         ->once()
         ->andReturnFalse();
 
-    $request->shouldReceive('get')
-        ->with('invitation')
-        ->once()
-        ->andReturn(null);
-
     $response = (new RegisterResponse())->toResponse($request);
 
     expect($response)->toBeInstanceOf(RedirectResponse::class);
@@ -46,6 +41,7 @@ it('can return redirect', function () {
 it('redirects to the accept invite route', function () {
     Config::set('fortify.models.invitation', \Tests\stubs\TestUser::class);
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
+    Config::set('fortify.accept_invitation_route', 'invitations.accept');
 
     $user = User::factory()->create();
 
@@ -79,4 +75,28 @@ it('redirects to the accept invite route', function () {
     expect($response)->toBeInstanceOf(RedirectResponse::class);
     expect($response->status())->toBe(302);
     expect($response->content())->toContain('http://localhost/accept-invite');
+});
+
+it('redirects to the default url if no route for accept an invitation is set', function () {
+    Config::set('fortify.models.invitation', \Tests\stubs\TestUser::class);
+    Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
+    Config::set('fortify.accept_invitation_route', null);
+
+    $user = User::factory()->create();
+
+    // Initialize the invitation
+    $invitation = Models::invitation()::findByUuid('uuid-uuid-uuid-uuid');
+    $invitation->update(['user_id' => $user->id]);
+
+    $request = Mockery::mock(\Illuminate\Http\Request::class);
+
+    $request->shouldReceive('wantsJson')
+        ->once()
+        ->andReturnFalse();
+
+    $response = (new RegisterResponse())->toResponse($request);
+
+    expect($response)->toBeInstanceOf(RedirectResponse::class);
+    expect($response->status())->toBe(302);
+    expect($response->content())->toContain(route('verification.notice'));
 });

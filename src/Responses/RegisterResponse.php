@@ -25,19 +25,14 @@ final class RegisterResponse implements RegisterResponseContract
             return new JsonResponse('', 201);
         }
 
-        $invitationId = $request->get('invitation');
-        if ($invitationId) {
-            $invitation = Models::invitation()::findByUuid($invitationId);
-            if ($invitation->user()->is($request->user())) {
-                $urlGenerator = app(UrlGenerator::class);
-
-                try {
-                    $url = $urlGenerator->route('invitations.accept', $invitation);
-
+        if (config('fortify.accept_invitation_route')) {
+            $invitationId = $request->get('invitation');
+            if ($invitationId) {
+                $invitation = Models::invitation()::findByUuid($invitationId);
+                if ($invitation->user()->is($request->user())) {
+                    $urlGenerator = app(UrlGenerator::class);
+                    $url = $urlGenerator->route(config('fortify.accept_invitation_route'), $invitation);
                     return redirect()->to($url);
-                } catch (RouteNotFoundException $e) {
-                    // If the route is not defined it can continue to the default
-                    // route
                 }
             }
         }

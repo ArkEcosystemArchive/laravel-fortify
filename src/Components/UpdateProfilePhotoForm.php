@@ -13,6 +13,13 @@ class UpdateProfilePhotoForm extends Component
     use InteractsWithUser;
     use UploadImageSingle;
 
+    protected $listeners = ['uploadError'];
+
+    public function uploadError()
+    {
+        $this->emit('toastMessage', [trans('fortify::forms.upload-avatar.upload_error'), 'error']);
+    }
+
     /**
      * Render the component.
      *

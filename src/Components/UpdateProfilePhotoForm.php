@@ -13,17 +13,12 @@ class UpdateProfilePhotoForm extends Component
     use InteractsWithUser;
     use UploadImageSingle;
 
-    /**
-     * Render the component.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function render()
+    public function render(): \Illuminate\View\View
     {
         return view('ark-fortify::profile.update-profile-photo-form');
     }
 
-    public function updatedImageSingle()
+    public function updatedImageSingle(): void
     {
         $this->validate([
             'imageSingle' => $this->imageSingleValidators(),
@@ -35,7 +30,7 @@ class UpdateProfilePhotoForm extends Component
         $this->user->refresh();
     }
 
-    public function deleteImageSingle()
+    public function deleteImageSingle(): void
     {
         $this->user->getFirstMedia('photo')->delete();
         $this->user->refresh();

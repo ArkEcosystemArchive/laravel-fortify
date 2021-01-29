@@ -188,6 +188,38 @@ it('handles the invitation parameter', function () {
     $this->assertSame($user->id, $invitation->user_id);
 });
 
+it('marks the user email as verified if has an invitation', function () {
+    Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
+    Config::set('fortify.models.invitation', CreateNewUserTest::class);
+
+    $user = (new CreateNewUser())->create([
+        'name'                  => 'John Doe',
+        'username'              => 'alfonsobries',
+        'email'                 => 'john@doe.com',
+        'password'              => $this->validPassword,
+        'password_confirmation' => $this->validPassword,
+        'terms'                 => true,
+        'invitation'            => 'uuid-uuid-uuid-uuid',
+    ]);
+
+    $this->assertNotNull($user->email_verified_at);
+});
+
+it('doesnt mark the user email as verified if no ivitation ', function () {
+    Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
+    
+    $user = (new CreateNewUser())->create([
+        'name'                  => 'John Doe',
+        'username'              => 'alfonsobries',
+        'email'                 => 'john@doe.com',
+        'password'              => $this->validPassword,
+        'password_confirmation' => $this->validPassword,
+        'terms'                 => true,
+    ]);
+
+    $this->assertNull($user->email_verified_at);
+});
+
 /**
  * @coversNothing
  */

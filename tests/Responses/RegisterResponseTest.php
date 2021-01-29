@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Tests\Models\Concerns;
 
-use Mockery;
-use Mockery\MockInterface;
 use ARKEcosystem\Fortify\Models;
-use Illuminate\Http\JsonResponse;
 use ARKEcosystem\Fortify\Models\User;
+use ARKEcosystem\Fortify\Responses\RegisterResponse;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Config;
-use ARKEcosystem\Fortify\Responses\RegisterResponse;
+use Mockery;
+use Mockery\MockInterface;
 
 it('can return json', function () {
     $request = Mockery::mock(\Illuminate\Http\Request::class);
@@ -30,7 +30,7 @@ it('can return redirect', function () {
     $request->shouldReceive('wantsJson')
         ->once()
         ->andReturnFalse();
-    
+
     $request->shouldReceive('get')
         ->with('invitation')
         ->once()
@@ -60,7 +60,7 @@ it('redirects to the accept invite route', function () {
     });
 
     $request = Mockery::mock(\Illuminate\Http\Request::class);
-    
+
     $request->shouldReceive('wantsJson')
         ->once()
         ->andReturnFalse();
@@ -73,7 +73,7 @@ it('redirects to the accept invite route', function () {
     $request->shouldReceive('user')
         ->once()
         ->andReturn($user);
-    
+
     $response = (new RegisterResponse())->toResponse($request);
 
     expect($response)->toBeInstanceOf(RedirectResponse::class);

@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace ARKEcosystem\Fortify\Responses;
 
 use ARKEcosystem\Fortify\Models;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Contracts\Routing\UrlGenerator;
-use Symfony\Component\Routing\Exception\RouteNotFoundException;
+use Illuminate\Http\JsonResponse;
 use Laravel\Fortify\Contracts\RegisterResponse as RegisterResponseContract;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
 final class RegisterResponse implements RegisterResponseContract
 {
@@ -30,8 +30,10 @@ final class RegisterResponse implements RegisterResponseContract
             $invitation = Models::invitation()::findByUuid($invitationId);
             if ($invitation->user()->is($request->user())) {
                 $urlGenerator = app(UrlGenerator::class);
+
                 try {
                     $url = $urlGenerator->route('invitations.accept', $invitation);
+
                     return redirect()->to($url);
                 } catch (RouteNotFoundException $e) {
                     // If the route is not defined it can continue to the default

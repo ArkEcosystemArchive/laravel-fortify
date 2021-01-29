@@ -1,11 +1,12 @@
-<?php 
+<?php
+
 declare(strict_types=1);
 
 namespace Tests\stubs;
 
-use Illuminate\Support\Arr;
 use ARKEcosystem\Fortify\Models;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Spatie\MediaLibrary\MediaCollections\Models\Concerns\HasUuid;
 
 /**
@@ -39,11 +40,11 @@ final class TestUser extends Model
         $this->user_id = Arr::get($attributes, 'user_id', $this->user_id);
         $this->uuid    = Arr::get($attributes, 'uuid', $this->uuid);
     }
-    
+
     public function user()
     {
-        if (!$this->user_id) {
-          return null;
+        if (! $this->user_id) {
+            return;
         }
 
         return Models::user()::find($this->user_id);

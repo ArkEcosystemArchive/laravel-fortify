@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-use Tests\stubs\TestUser;
+use ARKEcosystem\Fortify\Actions\CreateNewUser;
 use ARKEcosystem\Fortify\Models;
 
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Hash;
 use function Tests\expectValidationError;
-use ARKEcosystem\Fortify\Actions\CreateNewUser;
+use Tests\stubs\TestUser;
 
 beforeEach(function () {
     $this->validPassword = 'Pas3w05d&123456';
@@ -205,7 +205,7 @@ it('marks the user email as verified if has an invitation', function () {
 
 it('doesnt mark the user email as verified if no ivitation ', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
-    
+
     $user = (new CreateNewUser())->create([
         'name'                  => 'John Doe',
         'username'              => 'alfonsobries',
@@ -217,4 +217,3 @@ it('doesnt mark the user email as verified if no ivitation ', function () {
 
     $this->assertNull($user->email_verified_at);
 });
-

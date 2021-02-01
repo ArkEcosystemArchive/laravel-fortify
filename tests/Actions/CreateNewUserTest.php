@@ -5,12 +5,10 @@ declare(strict_types=1);
 use ARKEcosystem\Fortify\Actions\CreateNewUser;
 use ARKEcosystem\Fortify\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
-use Spatie\MediaLibrary\MediaCollections\Models\Concerns\HasUuid;
 use function Tests\expectValidationError;
+use Tests\stubs\TestUser;
 
 beforeEach(function () {
     $this->validPassword = 'Pas3w05d&123456';
@@ -171,7 +169,7 @@ it('should require one special character', function () {
 
 it('handles the invitation parameter', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
-    Config::set('fortify.models.invitation', CreateNewUserTest::class);
+    Config::set('fortify.models.invitation', TestUser::class);
 
     $user = (new CreateNewUser())->create([
         'name'                  => 'John Doe',
@@ -188,35 +186,34 @@ it('handles the invitation parameter', function () {
     $this->assertSame($user->id, $invitation->user_id);
 });
 
-/**
- * @coversNothing
- */
-class CreateNewUserTest extends Model
-{
-    use HasUuid;
+it('marks the user email as verified if has an invitation', function () {
+    Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
+    Config::set('fortify.models.invitation', TestUser::class);
 
-    public ?string $uuid = null;
+    $user = (new CreateNewUser())->create([
+        'name'                  => 'John Doe',
+        'username'              => 'alfonsobries',
+        'email'                 => 'john@doe.com',
+        'password'              => $this->validPassword,
+        'password_confirmation' => $this->validPassword,
+        'terms'                 => true,
+        'invitation'            => 'uuid-uuid-uuid-uuid',
+    ]);
 
-    public ?int $user_id = null;
+    $this->assertNotNull($user->email_verified_at);
+});
 
-    protected $guarded = [];
+it('doesnt mark the user email as verified if no ivitation ', function () {
+    Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
 
-    public static $model = null;
+    $user = (new CreateNewUser())->create([
+        'name'                  => 'John Doe',
+        'username'              => 'alfonsobries',
+        'email'                 => 'john@doe.com',
+        'password'              => $this->validPassword,
+        'password_confirmation' => $this->validPassword,
+        'terms'                 => true,
+    ]);
 
-    public static function findByUuid(string $uuid): ?Model
-    {
-        if (self::$model) {
-            return self::$model;
-        }
-
-        self::$model = new self(compact('uuid'));
-
-        return self::$model;
-    }
-
-    public function update(array $attributes = [], array $options = [])
-    {
-        $this->user_id = Arr::get($attributes, 'user_id', $this->user_id);
-        $this->uuid    = Arr::get($attributes, 'uuid', $this->uuid);
-    }
-}
+    $this->assertNull($user->email_verified_at);
+});

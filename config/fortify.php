@@ -68,6 +68,17 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Accept invitation route name
+    |--------------------------------------------------------------------------
+    |
+    | If there is a route for accept an user invitation it should be defined
+    | here. Note that the route should accept the `$invitation` object
+    |
+    */
+    'accept_invitation_route' => 'invitations.accept',
+
+    /*
+    |--------------------------------------------------------------------------
     | Fortify Routes Middleware
     |--------------------------------------------------------------------------
     |

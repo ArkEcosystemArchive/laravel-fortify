@@ -40,6 +40,8 @@ class CreateNewUser implements CreatesNewUsers
 
             if ($invitation) {
                 $invitation->update(['user_id' => $user->id]);
+
+                $user->markEmailAsVerified();
             }
 
             return $user;

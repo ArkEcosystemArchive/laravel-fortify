@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace ARKEcosystem\Fortify\Responses;
 
+use ARKEcosystem\Fortify\Models;
+use Illuminate\Contracts\Routing\UrlGenerator;
 use Illuminate\Http\JsonResponse;
 use Laravel\Fortify\Contracts\RegisterResponse as RegisterResponseContract;
 
@@ -20,6 +22,19 @@ final class RegisterResponse implements RegisterResponseContract
     {
         if ($request->wantsJson()) {
             return new JsonResponse('', 201);
+        }
+
+        if (config('fortify.accept_invitation_route')) {
+            $invitationId = $request->get('invitation');
+            if ($invitationId) {
+                $invitation = Models::invitation()::findByUuid($invitationId);
+                if ($invitation->user()->is($request->user())) {
+                    $urlGenerator = app(UrlGenerator::class);
+                    $url          = $urlGenerator->route(config('fortify.accept_invitation_route'), $invitation);
+
+                    return redirect()->to($url);
+                }
+            }
         }
 
         return redirect()->route('verification.notice');

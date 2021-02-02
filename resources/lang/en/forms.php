@@ -48,6 +48,6 @@ return [
     'upload-avatar' => [
         'upload_avatar' => 'Upload Avatar',
         'delete_avatar' => 'Delete Avatar',
-        'upload_error'  => 'Uploading error. Image size may not be greater than 2048 kilobytes and must be of type jpeg, png or svg.',
+        'upload_error'  => 'Failed to upload image. Image size can be not be greater than 2MB and must be of type jpeg, png or svg.',
     ],
 ];

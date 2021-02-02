@@ -1,7 +1,7 @@
 <form
     method="POST"
     action="{{ $formUrl }}"
-    class="flex flex-col p-8 mx-4 border rounded-lg border-theme-secondary-200 md:mx-0 lg:p-8 xl:mx-8"
+    class="flex flex-col p-8 mx-4 border-2 rounded-lg border-theme-secondary-200"
     x-data="{isTyping: false}"
 >
     @csrf
@@ -19,8 +19,9 @@
                     autocomplete="name"
                     class="w-full"
                     :autofocus="true"
-                    required="true"
+                    required
                     :errors="$errors"
+                    hide-required-indicator
                 />
             </div>
         </div>
@@ -37,8 +38,9 @@
                     :label="trans('fortify::forms.username')"
                     autocomplete="username"
                     class="w-full"
-                    required="true"
+                    required
                     :errors="$errors"
+                    hide-required-indicator
                 />
             </div>
         </div>
@@ -57,8 +59,9 @@
                     :label="trans('fortify::forms.email')"
                     autocomplete="email"
                     class="w-full"
-                    required="true"
+                    required
                     :errors="$errors"
+                    hide-required-indicator
                 />
             </div>
         </div>
@@ -72,13 +75,14 @@
             :label="trans('fortify::forms.password')"
             autocomplete="new-password"
             class="w-full mb-2"
-            required="true"
+            required
             @keydown="isTyping=true"
             :errors="$errors"
+            hide-required-indicator
         />
     </x:ark-fortify::password-rules>
 
-    <div class="mb-8">
+    <div class="mb-4">
         <div class="flex flex-1">
             <x-ark-input
                 model="state.password_confirmation"
@@ -87,8 +91,9 @@
                 :label="trans('fortify::forms.confirm_password')"
                 autocomplete="new-password"
                 class="w-full"
-                required="true"
+                required
                 :errors="$errors"
+                hide-required-indicator
             />
         </div>
     </div>

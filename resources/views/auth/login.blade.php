@@ -55,9 +55,7 @@
                         class="w-full"
                         :autofocus="true"
                         :value="old($username)"
-                        required
                         :errors="$errors"
-                        hide-required-indicator
                     />
                 </div>
             </div>
@@ -70,8 +68,6 @@
                         :label="trans('fortify::forms.password')"
                         autocomplete="password"
                         class="w-full"
-                        required
-                        
                         :errors="$errors"
                     />
                 </div>

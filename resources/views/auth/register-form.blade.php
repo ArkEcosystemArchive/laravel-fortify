@@ -19,9 +19,7 @@
                     autocomplete="name"
                     class="w-full"
                     :autofocus="true"
-                    required
                     :errors="$errors"
-                    hide-required-indicator
                 />
             </div>
         </div>
@@ -38,9 +36,7 @@
                     :label="trans('fortify::forms.username')"
                     autocomplete="username"
                     class="w-full"
-                    required
                     :errors="$errors"
-                    hide-required-indicator
                 />
             </div>
         </div>
@@ -59,9 +55,7 @@
                     :label="trans('fortify::forms.email')"
                     autocomplete="email"
                     class="w-full"
-                    required
                     :errors="$errors"
-                    hide-required-indicator
                 />
             </div>
         </div>
@@ -75,10 +69,8 @@
             :label="trans('fortify::forms.password')"
             autocomplete="new-password"
             class="w-full mb-2"
-            required
             @keydown="isTyping=true"
             :errors="$errors"
-            hide-required-indicator
         />
     </x:ark-fortify::password-rules>
 
@@ -91,9 +83,7 @@
                 :label="trans('fortify::forms.confirm_password')"
                 autocomplete="new-password"
                 class="w-full"
-                required
                 :errors="$errors"
-                hide-required-indicator
             />
         </div>
     </div>

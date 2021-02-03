@@ -94,7 +94,6 @@
             <div class="text-center">
                 <div class="pt-4 mt-4">
                     <x-data-bag key="fortify-content" resolver="name" view="ark-fortify::components.register-now" />
-                    {{-- @lang('fortify::auth.sign-in.register_now', ['route' => route('register')]) --}}
                 </div>
             </div>
         @endif

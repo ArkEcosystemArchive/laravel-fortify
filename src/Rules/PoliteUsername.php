@@ -9,11 +9,9 @@ use Snipe\BanBuilder\CensorWords;
 
 final class PoliteUsername implements Rule
 {
-    public function __construct(private CensorWords $censor)
+    public function __construct(public CensorWords $censor)
     {
-        if(config('profanities.' . config('app.locale'))) {
-            $this->censor->addFromArray(config('profanities.' . config('app.locale')));
-        }
+        $this->censor->badwords = config('profanities.' . config('app.locale'));
     }
 
     public function passes($attribute, $value)

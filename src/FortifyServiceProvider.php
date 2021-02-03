@@ -85,8 +85,12 @@ class FortifyServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/../config/fortify.php' => config_path('fortify.php'),
-            __DIR__.'/../config/profanities.php' => config_path('profanities.php'),
         ], 'config');
+
+        $this->mergeConfigFrom(
+            __DIR__ . '/../config/profanities.php',
+            'profanities'
+        );
 
         $this->publishes([
             __DIR__.'/../resources/views/auth'          => resource_path('views/auth'),

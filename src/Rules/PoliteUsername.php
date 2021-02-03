@@ -11,8 +11,8 @@ final class PoliteUsername implements Rule
 {
     public function __construct(private CensorWords $censor)
     {
-        if(config('profanities.' . config('app.locale'))) {
-            $this->censor->addFromArray(config('profanities.' . config('app.locale')));
+        if (config('profanities.'.config('app.locale'))) {
+            $this->censor->addFromArray(config('profanities.'.config('app.locale')));
         }
     }
 

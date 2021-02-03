@@ -11,7 +11,7 @@ final class PoliteUsername implements Rule
 {
     public function __construct(public CensorWords $censor)
     {
-        $this->censor->badwords = config('profanities.' . config('app.locale'));
+        $this->censor->badwords = config('profanities.'.config('app.locale'));
     }
 
     public function passes($attribute, $value)

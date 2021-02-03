@@ -88,7 +88,7 @@ class FortifyServiceProvider extends ServiceProvider
         ], 'config');
 
         $this->mergeConfigFrom(
-            __DIR__ . '/../config/profanities.php',
+            __DIR__.'/../config/profanities.php',
             'profanities'
         );
 

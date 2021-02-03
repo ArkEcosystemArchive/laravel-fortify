@@ -27,8 +27,6 @@ it('should use a default profanities list', function () {
     $subject = new PoliteUsername(new CensorWords());
     $defaultConfig = config('profanities.en');
 
-
     expect($subject->censor->badwords)->toBeArray();
     expect($subject->censor->badwords)->toBe($defaultConfig);
-
 });

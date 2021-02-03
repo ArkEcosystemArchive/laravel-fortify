@@ -14,13 +14,13 @@ return [
 
     'sign-in' => [
         'forgot_password'  => 'Forgot password?',
-        'register_now'     => 'Not a member? <a href=":route" class="link">Sign up now</a>',
+        'register_now'     => 'Not a member? <a href=":route" class="underline link semibold">Sign up</a>',
     ],
 
     'register-form' => [
         'conditions'         => "Creating an account means you're okay with our <a href=':termsOfServiceRoute' class='link'>Terms of Service</a>, <a href=':privacyPolicyRoute' class='link'>Privacy Policy</a> and our default <a href=':notificationSettingsRoute' class='link'>Notification Settings</a>.",
         'create_account'     => 'Create Account',
-        'already_member'     => 'Already a member? <a href=":route" class="link">Sign in</a>',
+        'already_member'     => 'Already have an account? <a href=":route" class="underline link semibold">Sign in</a>',
     ],
 
     'register' => [

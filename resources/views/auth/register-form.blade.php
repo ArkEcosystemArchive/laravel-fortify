@@ -15,7 +15,7 @@
                     wire:model.defer="state.name"
                     no-model
                     name="name"
-                    :label="trans('fortify::forms.name')"
+                    :label="trans('fortify::forms.username')"
                     autocomplete="name"
                     class="w-full"
                     :autofocus="true"
@@ -33,7 +33,7 @@
                     no-model
                     type="text"
                     name="username"
-                    :label="trans('fortify::forms.username')"
+                    :label="trans('fortify::forms.display_name')"
                     autocomplete="username"
                     class="w-full"
                     :errors="$errors"

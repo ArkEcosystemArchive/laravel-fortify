@@ -11,6 +11,7 @@ return [
     'new_password'     => 'New Password',
     'password'         => 'Password',
     'username'         => 'Username',
+    'display_name'     => 'Display Name',
     'code'             => 'Code',
     'recovery_code'    => 'Recovery Code',
 

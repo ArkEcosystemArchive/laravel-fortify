@@ -48,6 +48,5 @@ return [
     'upload-avatar' => [
         'upload_avatar' => 'Upload Avatar',
         'delete_avatar' => 'Delete Avatar',
-        'upload_error'  => 'Failed to upload image. Image size cannot be greater than 2MB and must be of type jpeg, png or svg.',
     ],
 ];

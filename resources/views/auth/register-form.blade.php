@@ -6,6 +6,23 @@
 >
     @csrf
 
+    @if(Config::get('fortify.username_alt'))
+        <div class="mb-8">
+            <div class="flex flex-1">
+                <x-ark-input
+                    wire:model.defer="state.username"
+                    no-model
+                    type="text"
+                    name="username"
+                    :label="trans('fortify::forms.username')"
+                    autocomplete="username"
+                    class="w-full"
+                    :errors="$errors"
+                />
+            </div>
+        </div>
+    @endif
+
     @if($invitation)
         <input type="hidden" name="name" value="{{ $invitation->name }}" />
     @else
@@ -15,27 +32,10 @@
                     wire:model.defer="state.name"
                     no-model
                     name="name"
-                    :label="trans('fortify::forms.username')"
+                    :label="trans('fortify::forms.display_name')"
                     autocomplete="name"
                     class="w-full"
                     :autofocus="true"
-                    :errors="$errors"
-                />
-            </div>
-        </div>
-    @endif
-
-    @if(Config::get('fortify.username_alt'))
-        <div class="mb-8">
-            <div class="flex flex-1">
-                <x-ark-input
-                    wire:model.defer="state.username"
-                    no-model
-                    type="text"
-                    name="username"
-                    :label="trans('fortify::forms.display_name')"
-                    autocomplete="username"
-                    class="w-full"
                     :errors="$errors"
                 />
             </div>

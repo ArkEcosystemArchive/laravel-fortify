@@ -85,3 +85,12 @@ it('should throw an exception if the email is not an email', function () {
         'email' => str_repeat('#', 256),
     ]), 'email', 'The email must be a valid email address.');
 });
+
+it('should not update the profile information if the name of the user contain profanity', function () {
+    $user = createUserModel();
+
+    expectValidationError(fn () => resolve(UpdateUserProfileInformation::class)->update($user, [
+        'name'  => 'Penis Doe',
+        'email' => 'jane@doe.com',
+    ]), 'name', trans('fortify::validation.messages.polite_username'));
+});

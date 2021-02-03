@@ -8,5 +8,6 @@ return [
 
     'messages' => [
         'one_time_password' => 'We were not able to enable two-factor authentication with this one-time password.',
+        'polite_username'  => 'The given username contains words with profanities.',
     ],
 ];

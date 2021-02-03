@@ -19,7 +19,8 @@
         "arkecosystem/ui": "^1.0",
         "spatie/laravel-personal-data-export": "^2.0",
         "spatie/laravel-medialibrary": "^9.4",
-        "konceiver/laravel-data-bags": "^1.1"
+        "konceiver/laravel-data-bags": "^1.1",
+        "snipe/banbuilder": "^2.3"
     },
     "autoload": {
         "psr-4": {

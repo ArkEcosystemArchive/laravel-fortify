@@ -69,6 +69,8 @@ private function registerDataBags(): void
             'pageTitle' => '',
             'title' => '',
             'description' => '',
+            // Optional
+            // 'signupLink'  => '',
         ],
         'password' => [
             'reset' => [

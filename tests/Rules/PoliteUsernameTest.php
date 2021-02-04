@@ -15,6 +15,8 @@ it('can fail validation', function () {
     $subject = new PoliteUsername(new CensorWords());
 
     expect($subject->passes('name', 'penis'))->toBeFalse();
+    expect($subject->passes('name', 'pEniS'))->toBeFalse();
+    expect($subject->passes('name', 'p3n1S'))->toBeFalse();
 });
 
 it('shows the correct validation message', function () {

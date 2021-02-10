@@ -23,7 +23,7 @@ return [
         'contact_information_description'   => "Update your account's contact information and email address.",
         'gdpr_title'                        => 'General Data Protection Regulation (GDPR)',
         'gdpr_description'                  => 'This will will create a zip containing all personal data to respect your right to data portability. You will receive the zip file on the email address linked to your account.',
-        'delete_account_title'              => 'Delete Account',
+        'delete_account_title'              => 'Account Deletion',
         'delete_account_description'        => 'Deletion of the account will result in the loss of your data instantly and your account will be unrecoverable.',
         'update_password_alert_description' => 'The Security Settings allow you to change your passwords and enable or disable 2FA. Please remember the changes made for when you next sign in.',
         'password_updated'                  => 'Password was successfully updated',

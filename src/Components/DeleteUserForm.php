@@ -14,6 +14,15 @@ class DeleteUserForm extends Component
 {
     use HasModal;
 
+    public string $username;
+
+    public string $usernameConfirmation = '';
+
+    public function mount()
+    {
+        $this->username = Auth::user()->username;
+    }
+
     /**
      * Confirm that the user would like to delete their account.
      *
@@ -36,11 +45,22 @@ class DeleteUserForm extends Component
      */
     public function deleteUser(DeleteUser $deleter, StatefulGuard $auth)
     {
-        $deleter->delete(Auth::user()->fresh());
+        if ($this->usernameConfirmed) {
+            $deleter->delete(Auth::user()->fresh());
+            $auth->logout();
 
-        $auth->logout();
+            return redirect('/feedback');
+        }
+    }
 
-        return redirect('/');
+    /**
+     * Check if the inserted username is equals to the logged in user.
+     *
+     * @return bool
+     */
+    public function getUsernameConfirmedProperty(): bool
+    {
+        return $this->username === $this->usernameConfirmation;
     }
 
     /**

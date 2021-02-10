@@ -3,17 +3,18 @@
 declare(strict_types=1);
 
 return [
-    'confirm_password' => 'Confirm Password',
-    'current_password' => 'Current Password',
-    'email_address'    => 'Email Address',
-    'email'            => 'Email',
-    'name'             => 'Name',
-    'new_password'     => 'New Password',
-    'password'         => 'Password',
-    'username'         => 'Username',
-    'display_name'     => 'Display Name',
-    'code'             => 'Code',
-    'recovery_code'    => 'Recovery Code',
+    'confirm_password'         => 'Confirm Password',
+    'current_password'         => 'Current Password',
+    'email_address'            => 'Email Address',
+    'email'                    => 'Email',
+    'name'                     => 'Name',
+    'new_password'             => 'New Password',
+    'password'                 => 'Password',
+    'username'                 => 'Username',
+    'display_name'             => 'Display Name',
+    'code'                     => 'Code',
+    'recovery_code'            => 'Recovery Code',
+    'confirm_username'         => 'Your Username',
 
     'update-password' => [
         'requirements_notice' => 'Password must be 12–128 characters, and include a number, a symbol, a lower and an upper case letter.',
@@ -28,10 +29,11 @@ return [
     ],
 
     'delete-user' => [
-        'title'        => 'Delete Account',
-        'description'  => 'Permanently delete your account.',
-        'content'      => 'Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.',
-        'confirmation' => 'Are you sure you want to delete your account? Deleting your account is irreversible and all deleted data is unrecoverable.',
+        'title'                    => 'Delete Account',
+        'description'              => 'Permanently delete your account.',
+        'content'                  => 'Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.',
+        'confirmation'             => 'After 30 days your account will be permanently deleted and become unrecoverable. To confirm this action, enter your username below.',
+        'confirmation_placeholder' => 'Enter your username to confirm deletion',
     ],
 
     'logout-sessions' => [

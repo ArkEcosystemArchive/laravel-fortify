@@ -20,8 +20,26 @@ it('can interact with the form', function () {
         ->test(DeleteUserForm::class)
         ->assertViewIs('ark-fortify::profile.delete-user-form')
         ->call('confirmUserDeletion')
-        ->assertSee('Are you sure you want to delete your account? Deleting your account is irreversible and all deleted data is unrecoverable')
+        ->assertSee('After 30 days your account will be permanently deleted and become unrecoverable. To confirm this action, enter your username below.')
+        ->set('usernameConfirmation', $user->username)
         ->call('deleteUser')
-        ->assertRedirect('/');
+        ->assertRedirect('/feedback');
     $this->assertNull(Auth::user());
+});
+
+it('cant delete user without filling in the username', function () {
+    $user = createUserModel();
+
+    $this->mock(DeleteUser::class)
+        ->shouldReceive('delete');
+
+    Livewire::actingAs($user)
+        ->test(DeleteUserForm::class)
+        ->assertViewIs('ark-fortify::profile.delete-user-form')
+        ->call('confirmUserDeletion')
+        ->assertSee('After 30 days your account will be permanently deleted and become unrecoverable. To confirm this action, enter your username below.')
+        ->call('deleteUser')
+        ->set('usernameConfirmation', 'invalid-username')
+        ->call('deleteUser');
+    $this->assertNotNull(Auth::user());
 });

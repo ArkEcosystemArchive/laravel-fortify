@@ -18,6 +18,6 @@
         </x-ark-select>
     </div>
     <div class="flex justify-end mt-8">
-        <button type="submit" class="button-secondary" wire:click="updateTimezone">@lang('fortify::actions.update')</button>
+        <button type="submit" class="w-full sm:w-auto button-secondary" wire:click="updateTimezone">@lang('fortify::actions.update')</button>
     </div>
 </div>

@@ -20,7 +20,7 @@ it('can interact with the form', function () {
         ->test(DeleteUserForm::class)
         ->assertViewIs('ark-fortify::profile.delete-user-form')
         ->call('confirmUserDeletion')
-        ->assertSee('After 30 days your account will be permanently deleted and become unrecoverable. To confirm this action, enter your username below.')
+        ->assertSee(trans('fortify::pages.user-settings.delete_account_description'))
         ->set('usernameConfirmation', $user->username)
         ->call('deleteUser')
         ->assertRedirect('/feedback');
@@ -37,7 +37,7 @@ it('cant delete user without filling in the username', function () {
         ->test(DeleteUserForm::class)
         ->assertViewIs('ark-fortify::profile.delete-user-form')
         ->call('confirmUserDeletion')
-        ->assertSee('After 30 days your account will be permanently deleted and become unrecoverable. To confirm this action, enter your username below.')
+        ->assertSee(trans('fortify::pages.user-settings.delete_account_description'))
         ->call('deleteUser')
         ->set('usernameConfirmation', 'invalid-username')
         ->call('deleteUser');

@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Mail\SendFeedback;
 use ARKEcosystem\Fortify\Components\SendFeedbackForm;
+use ARKEcosystem\Fortify\Mail\SendFeedback;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Livewire;
 

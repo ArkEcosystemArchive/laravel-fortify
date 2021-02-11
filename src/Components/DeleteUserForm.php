@@ -23,11 +23,6 @@ class DeleteUserForm extends Component
         $this->username = Auth::user()->username;
     }
 
-    /**
-     * Confirm that the user would like to delete their account.
-     *
-     * @return void
-     */
     public function confirmUserDeletion()
     {
         $this->dispatchBrowserEvent('confirming-delete-user');
@@ -35,39 +30,17 @@ class DeleteUserForm extends Component
         $this->openModal();
     }
 
-    /**
-     * Delete the current user.
-     *
-     * @param \ARKEcosystem\Fortify\Contracts\DeleteUser $deleter
-     * @param \Illuminate\Contracts\Auth\StatefulGuard   $auth
-     *
-     * @return void
-     */
     public function deleteUser(DeleteUser $deleter, StatefulGuard $auth)
     {
-        if ($this->usernameConfirmed) {
+        if ($this->username === $this->usernameConfirmation) {
             $deleter->delete(Auth::user()->fresh());
+
             $auth->logout();
 
             return redirect('/feedback');
         }
     }
 
-    /**
-     * Check if the inserted username is equals to the logged in user.
-     *
-     * @return bool
-     */
-    public function getUsernameConfirmedProperty(): bool
-    {
-        return $this->username === $this->usernameConfirmation;
-    }
-
-    /**
-     * Render the component.
-     *
-     * @return \Illuminate\View\View
-     */
     public function render()
     {
         return view('ark-fortify::profile.delete-user-form');

@@ -6,7 +6,7 @@
         </span>
 
         <div class="flex flex-row justify-end mt-8">
-            <button type="submit" class="w-full sm:w-auto inline-flex items-center space-x-2 button-cancel"
+            <button type="submit" class="w-full sm:w-auto inline-flex justify-center items-center space-x-2 button-cancel"
                 wire:click="confirmUserDeletion">
                 @svg('trash', 'h-4 w-4')
                 <span>@lang('fortify::actions.delete_account')</span>

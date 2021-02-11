@@ -8,6 +8,7 @@ use ARKEcosystem\Fortify\Contracts\DeleteUser;
 use ARKEcosystem\UserInterface\Http\Livewire\Concerns\HasModal;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 use Livewire\Component;
 
 class DeleteUserForm extends Component
@@ -37,7 +38,7 @@ class DeleteUserForm extends Component
 
             $auth->logout();
 
-            return redirect('/feedback');
+            $this->redirect(URL::signedRoute('profile.feedback'));
         }
     }
 

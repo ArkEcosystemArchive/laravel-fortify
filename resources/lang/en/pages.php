@@ -28,4 +28,15 @@ return [
         'update_password_alert_description' => 'The Security Settings allow you to change your passwords and enable or disable 2FA. Please remember the changes made for when you next sign in.',
         'password_updated'                  => 'Password was successfully updated',
     ],
+
+    'feedback' => [
+        'title'       => 'Provide feedback and help us improve!',
+        'description' => 'We value every member of our community and would love to know what we did wrong. Please leave an email address if you would like us to contact you directly.',
+    ],
+
+    'feedback_thank_you' => [
+        'title'       => 'Thank you for the feedback',
+        'description' => 'We are sad to see you go but you are welcome back any time. After 30 days you will be required to create a new account.',
+        'home_page'   => 'Home page',
+    ],
 ];

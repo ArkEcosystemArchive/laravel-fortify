@@ -14,6 +14,7 @@ use ARKEcosystem\Fortify\Components\ExportUserData;
 use ARKEcosystem\Fortify\Components\LogoutOtherBrowserSessionsForm;
 use ARKEcosystem\Fortify\Components\RegisterForm;
 use ARKEcosystem\Fortify\Components\ResetPasswordForm;
+use ARKEcosystem\Fortify\Components\SendFeedbackForm;
 use ARKEcosystem\Fortify\Components\TwoFactorAuthenticationForm;
 use ARKEcosystem\Fortify\Components\UpdatePasswordForm;
 use ARKEcosystem\Fortify\Components\UpdateProfileInformationForm;
@@ -25,6 +26,7 @@ use ARKEcosystem\Fortify\Responses\FailedTwoFactorLoginResponse;
 use ARKEcosystem\Fortify\Responses\RegisterResponse;
 use ARKEcosystem\Fortify\Responses\TwoFactorLoginResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Contracts\FailedPasswordResetLinkRequestResponse;
 use Laravel\Fortify\Contracts\FailedTwoFactorLoginResponse as FailedTwoFactorLoginResponseContract;
@@ -64,6 +66,8 @@ class FortifyServiceProvider extends ServiceProvider
         $this->registerViews();
 
         $this->registerAuthentication();
+
+        $this->registerRoutes();
     }
 
     /**
@@ -118,6 +122,7 @@ class FortifyServiceProvider extends ServiceProvider
         Livewire::component('profile.update-profile-information-form', UpdateProfileInformationForm::class);
         Livewire::component('profile.update-profile-photo-form', UpdateProfilePhotoForm::class);
         Livewire::component('profile.update-timezone-form', UpdateTimezoneForm::class);
+        Livewire::component('profile.send-feedback-form', SendFeedbackForm::class);
         Livewire::component('auth.register-form', RegisterForm::class);
         Livewire::component('auth.reset-password-form', ResetPasswordForm::class);
     }
@@ -235,5 +240,11 @@ class FortifyServiceProvider extends ServiceProvider
             SuccessfulPasswordResetLinkRequestResponse::class,
             FortifySuccessfulPasswordResetLinkRequestResponse::class
         );
+    }
+
+    public function registerRoutes(): void
+    {
+        Route::view(config('fortify.routes.feedback'), 'ark-fortify::profile.feedback')->name('profile.feedback')->middelware('signed');
+        Route::view(config('fortify.routes.feedback_thank_you'), 'ark-fortify::profile.feedback-thank-you')->name('profile.feedback.thank.you')->middelware('signed');
     }
 }

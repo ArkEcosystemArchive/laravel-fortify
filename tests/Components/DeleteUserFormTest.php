@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Tests\Components;
 
+use ARKEcosystem\Fortify\Components\DeleteUserForm;
+use ARKEcosystem\Fortify\Contracts\DeleteUser;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 use Livewire\Livewire;
 use function Tests\createUserModel;
-use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Facades\Auth;
-use ARKEcosystem\Fortify\Contracts\DeleteUser;
-use ARKEcosystem\Fortify\Components\DeleteUserForm;
 
 it('can interact with the form', function () {
     $user = createUserModel();

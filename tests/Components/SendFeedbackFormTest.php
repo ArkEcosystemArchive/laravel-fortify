@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-use Livewire\Livewire;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\URL;
+use ARKEcosystem\Fortify\Components\SendFeedbackForm;
+use ARKEcosystem\Fortify\Mail\SendFeedback;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
-use ARKEcosystem\Fortify\Mail\SendFeedback;
-use ARKEcosystem\Fortify\Components\SendFeedbackForm;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
+use Livewire\Livewire;
 
 it('can submit a feedback', function () {
     Route::get('/', fn () => [])->name('home');

@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Tests\Components;
 
-use ARKEcosystem\Fortify\Components\DeleteUserForm;
-use ARKEcosystem\Fortify\Contracts\DeleteUser;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Livewire;
 use function Tests\createUserModel;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Auth;
+use ARKEcosystem\Fortify\Contracts\DeleteUser;
+use ARKEcosystem\Fortify\Components\DeleteUserForm;
 
 it('can interact with the form', function () {
     $user = createUserModel();
@@ -23,7 +24,7 @@ it('can interact with the form', function () {
         ->assertSee(trans('fortify::pages.user-settings.delete_account_description'))
         ->set('usernameConfirmation', $user->username)
         ->call('deleteUser')
-        ->assertRedirect('/feedback');
+        ->assertRedirect(URL::signedRoute('profile.feedback'));
     $this->assertNull(Auth::user());
 });
 

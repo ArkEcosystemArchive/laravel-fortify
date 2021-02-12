@@ -27,7 +27,10 @@ it('can return json', function () {
 
 it('can return redirect', function () {
     $request = Mockery::mock(\Illuminate\Http\Request::class);
-    $request->shouldReceive('wantsJson')
+    $request
+        ->shouldReceive('get')
+        ->once()
+        ->shouldReceive('wantsJson')
         ->once()
         ->andReturnFalse();
 

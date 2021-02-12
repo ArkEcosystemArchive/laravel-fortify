@@ -5,9 +5,14 @@ declare(strict_types=1);
 use ARKEcosystem\Fortify\Components\SendFeedbackForm;
 use ARKEcosystem\Fortify\Mail\SendFeedback;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
 use Livewire\Livewire;
 
 it('can submit a feedback', function () {
+    Route::get('/', fn () => [])->name('home');
+
     Mail::fake();
 
     Livewire::test(SendFeedbackForm::class)
@@ -15,7 +20,7 @@ it('can submit a feedback', function () {
         ->set('message', 'message')
         ->call('submit')
         ->assertHasNoErrors()
-        ->assertRedirect(route('profile.feedback.thank.you'));
+        ->assertRedirect(URL::signedRoute('profile.feedback.thank.you'));
 
     Mail::assertQueued(SendFeedback::class, function ($mail) {
         return $mail->hasTo(config('fortify.mail.feedback.address')) &&
@@ -25,6 +30,8 @@ it('can submit a feedback', function () {
 });
 
 it('cannot submit a feedback without subject', function () {
+    Route::get('/', fn () => [])->name('home');
+
     Mail::fake();
 
     Livewire::test(SendFeedbackForm::class)
@@ -37,6 +44,8 @@ it('cannot submit a feedback without subject', function () {
 });
 
 it('cannot submit a feedback without message', function () {
+    Route::get('/', fn () => [])->name('home');
+
     Mail::fake();
 
     Livewire::test(SendFeedbackForm::class)
@@ -49,11 +58,13 @@ it('cannot submit a feedback without message', function () {
 });
 
 it('cannot submit a feedback with message greater than 500 characters long', function () {
+    Route::get('/', fn () => [])->name('home');
+
     Mail::fake();
 
     Livewire::test(SendFeedbackForm::class)
         ->set('subject', 'reason')
-        ->set('message', $this->faker->text(999))
+        ->set('message', Str::random(999))
         ->call('submit')
         ->assertHasErrors(['message']);
 

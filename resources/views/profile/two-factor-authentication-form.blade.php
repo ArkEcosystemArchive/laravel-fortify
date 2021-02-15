@@ -6,11 +6,11 @@
 
             <div class="flex justify-start mt-8">
                 <div class="flex md:divide-x md:divide-theme-secondary-400">
-                    <div class="hidden md:flex flex-col justify-center items-center border border-theme-secondary-400 mr-10">
+                    <div class="hidden md:flex flex-col justify-center items-center border border-theme-secondary-400 rounded-md mr-10">
                         <div class="py-2 px-2">
                             {!! $this->twoFactorQrCodeSvg !!}
                         </div>
-                        <div class="border-t border-theme-secondary-400 w-full text-center mt-1 py-2 bg-theme-secondary-100">
+                        <div class="border-t border-theme-secondary-400 w-full text-center mt-1 py-2 bg-theme-secondary-100 rounded-b-md">
                             <span class="text-theme-secondary-900">{{ $this->state['two_factor_secret'] }}</span>
                         </div>
                     </div>
@@ -24,11 +24,11 @@
                             </div>
                         </div>
                         <div class="flex flex-col items-start mt-8 md:hidden">
-                            <div class="flex flex-col justify-center items-center border border-theme-secondary-400 mr-10">
+                            <div class="flex flex-col justify-center items-center border border-theme-secondary-400 rounded-md mr-10">
                                 <div class="py-2 px-2">
                                     {!! $this->twoFactorQrCodeSvg !!}
                                 </div>
-                                <div class="border-t border-theme-secondary-400 w-full text-center mt-1 py-2 bg-theme-secondary-100">
+                                <div class="border-t border-theme-secondary-400 w-full text-center mt-1 py-2 bg-theme-secondary-100 rounded-b-md">
                                     <span class="text-theme-secondary-900">{{ $this->state['two_factor_secret'] }}</span>
                                 </div>
                             </div>

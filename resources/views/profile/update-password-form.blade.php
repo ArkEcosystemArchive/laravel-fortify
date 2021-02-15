@@ -1,8 +1,5 @@
 <div x-data="{isTyping: false}">
-    <div class="flex flex-col space-y-4">
-        <div>
-            <x-ark-alert type="warning" :message="trans('fortify::pages.user-settings.update_password_alert_description')" />
-        </div>
+    <div class="flex flex-col space-y-4 mt-4">
         <div>
             <x-ark-flash />
         </div>

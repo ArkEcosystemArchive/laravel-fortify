@@ -8,7 +8,7 @@ return [
         '2fa_description'                   => 'Add additional security to your account using two factor authentication.',
         '2fa_enabled_title'                 => 'You have enabled two factor authentication.',
         '2fa_not_enabled_title'             => 'You have not enabled two factor authentication.',
-        '2fa_summary'                       => "When two factor authentication is enabled, you will be prompted for a secure, random token during authentication. You may retrieve this token from your phone's <a href='https://authy.com' target='_blank' class='font-bold'>Authy</a> or <a href='https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2' target='_blank' class='font-bold'>Google Authenticator</a> application.",
+        '2fa_summary'                       => "When two factor authentication is enabled, you will be prompted for a secure, random token during authentication. You may retrieve this token from your phone's <a href='https://authy.com' target='_blank' class='font-bold link'>Authy</a> or <a href='https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2' target='_blank' class='font-bold link'>Google Authenticator</a> application.",
         'one_time_password'                 => 'One-Time Password',
         '2fa_reset_code_title'              => 'Two-Factor Authentication Reset Code',
         '2fa_reset_code_description'        => 'Reset Code',

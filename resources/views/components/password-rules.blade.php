@@ -19,7 +19,7 @@
                             @svg('exclamation', 'text-theme-danger-500 h-5 w-5')
                     @endif
                         </div>
-                    <span class="text-theme-secondary-900">@lang('fortify::forms.password-rules.' .Str::snake($ruleName))</span>
+                    <span class="@if ($ruleIsValid) text-theme-success-600 @else text-theme-secondary-900 @endif font-semibold">@lang('fortify::forms.password-rules.' .Str::snake($ruleName))</span>
                 </div>
             @endforeach
         </div>

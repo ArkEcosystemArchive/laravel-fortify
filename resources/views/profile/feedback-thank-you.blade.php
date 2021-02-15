@@ -6,7 +6,7 @@
 
 @section('content')
 
-<x-generic.container>
+<x-ark-container>
     <div class="mx-auto flex flex-col items-center w-full text-center">
         <img src="{{ asset('/images/profile/feedback/thank-you.svg') }}" alt="">
 
@@ -15,6 +15,6 @@
 
         <a href="{{ route('home') }}" class="mt-8 w-full sm:w-auto button-secondary">@lang('fortify::pages.feedback_thank_you.home_page')</a>
     </div>
-</x-generic.container>
+</x-ark-container>
 
 @endsection

@@ -30,9 +30,7 @@ return [
 
     'delete-user' => [
         'title'                    => 'Delete Account',
-        'description'              => 'Permanently delete your account.',
-        'content'                  => 'Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.',
-        'confirmation'             => 'After 30 days your account will be permanently deleted and become unrecoverable. To confirm this action, enter your username below.',
+        'confirmation'             => 'Are you sure you want to delete your account? This action cannot be undone. Please input your username  to proceed or click cancel to go back.',
         'confirmation_placeholder' => 'Enter your username to confirm deletion',
     ],
 

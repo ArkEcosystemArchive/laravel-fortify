@@ -151,13 +151,13 @@ return [
 
     'mail' => [
         'default' => [
-            'address' => env('MAIL_DEFAULT_ADDRESS', 'noreply@ark.io'),
             'name'    => env('MAIL_DEFAULT_NAME', 'ARK Ecosystem'),
+            'address' => env('MAIL_DEFAULT_ADDRESS', 'noreply@ark.io'),
         ],
 
         'feedback' => [
-            'address' => env('MAIL_FEEDBACK_ADDRESS', 'feedback@marketsquare.io'),
             'name'    => env('MAIL_FEEDBACK_NAME', 'ARK Ecosystem'),
+            'address' => env('MAIL_FEEDBACK_ADDRESS', 'feedback@marketsquare.io'),
         ],
     ],
 

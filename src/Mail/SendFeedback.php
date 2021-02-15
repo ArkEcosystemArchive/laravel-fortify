@@ -12,13 +12,10 @@ final class SendFeedback extends Mailable implements ShouldQueue
 {
     use Queueable;
 
-    public string $reason;
-
     public string $message;
 
-    public function __construct(string $reason, string $message)
+    public function __construct(string $message)
     {
-        $this->reason  = $reason;
         $this->message = $message;
     }
 
@@ -26,7 +23,7 @@ final class SendFeedback extends Mailable implements ShouldQueue
     {
         return $this
             ->from(config('fortify.mail.default'))
-            ->subject($this->reason)
+            ->subject(trans('fortify::mails.feedback_subject'))
             ->markdown('ark-fortify::mails.profile.feedback');
     }
 }

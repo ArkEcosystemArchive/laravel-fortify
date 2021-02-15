@@ -13,19 +13,16 @@ use Livewire\Component;
 
 final class SendFeedbackForm extends Component
 {
-    public string $subject = '';
-
     public string $message = '';
 
     public function submit(): void
     {
         $this->validate([
-            'subject'    => ['required', 'string'],
             'message'    => ['required', 'string', 'min:5', 'max:500'],
         ]);
 
         Mail::to(config('fortify.mail.feedback'))
-            ->send(new SendFeedback($this->subject, $this->message));
+            ->send(new SendFeedback($this->message));
 
         $this->redirect(URL::signedRoute('profile.feedback.thank.you'));
     }

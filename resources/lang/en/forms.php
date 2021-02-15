@@ -52,18 +52,9 @@ return [
     ],
 
     'feedback' => [
-        'subject' => [
-            'label'       => 'Subject',
-            'placeholder' => 'Select the type of reason',
-            'options'     => [
-                'reason1'             => 'Reason 1',
-                'reason2'             => 'Reason 2',
-                'reason3'             => 'Reason 3',
-            ],
-        ],
         'message' => [
-            'label'       => 'Message',
-            'placeholder' => 'Tell us about the problem',
+            'label'       => 'Feedback',
+            'placeholder' => 'Describe your feedback here',
         ],
     ],
 ];

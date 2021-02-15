@@ -16,7 +16,6 @@ it('can submit a feedback', function () {
     Mail::fake();
 
     Livewire::test(SendFeedbackForm::class)
-        ->set('subject', 'reason')
         ->set('message', 'message')
         ->call('submit')
         ->assertHasNoErrors()
@@ -24,23 +23,8 @@ it('can submit a feedback', function () {
 
     Mail::assertQueued(SendFeedback::class, function ($mail) {
         return $mail->hasTo(config('fortify.mail.feedback.address')) &&
-            $mail->reason === 'reason' &&
             $mail->message === 'message';
     });
-});
-
-it('cannot submit a feedback without subject', function () {
-    Route::get('/', fn () => [])->name('home');
-
-    Mail::fake();
-
-    Livewire::test(SendFeedbackForm::class)
-        ->set('subject', '')
-        ->set('message', 'message')
-        ->call('submit')
-        ->assertHasErrors(['subject']);
-
-    Mail::assertNotQueued(SendFeedback::class);
 });
 
 it('cannot submit a feedback without message', function () {
@@ -49,7 +33,6 @@ it('cannot submit a feedback without message', function () {
     Mail::fake();
 
     Livewire::test(SendFeedbackForm::class)
-        ->set('subject', 'reason')
         ->set('message', '')
         ->call('submit')
         ->assertHasErrors(['message']);
@@ -63,7 +46,6 @@ it('cannot submit a feedback with message greater than 500 characters long', fun
     Mail::fake();
 
     Livewire::test(SendFeedbackForm::class)
-        ->set('subject', 'reason')
         ->set('message', Str::random(999))
         ->call('submit')
         ->assertHasErrors(['message']);

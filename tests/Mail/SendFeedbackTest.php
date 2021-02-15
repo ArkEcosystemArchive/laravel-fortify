@@ -10,5 +10,9 @@ it('sends_the_mail_to_the_marketsquare_team', function () {
 
     Mail::to(config('fortify.mail.feedback'))->send(new SendFeedback('feedback'));
 
-    Mail::assertQueued(SendFeedback::class, fn ($mail) => $mail->hasTo(config('fortify.mail.feedback.address')));
+    Mail::assertQueued(SendFeedback::class, function ($mail): bool {
+        return $mail->hasTo(config('fortify.mail.feedback.address')) &&
+            $mail->subject === trans('fortify::mails.feedback_subject') &&
+            $mail->from === config('fortify::mail.default');
+    });
 });

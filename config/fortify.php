@@ -143,4 +143,33 @@ return [
         'invitation' => '',
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Mails
+    |--------------------------------------------------------------------------
+    */
+
+    'mail' => [
+        'default' => [
+            'name'    => env('MAIL_DEFAULT_NAME', 'ARK Ecosystem'),
+            'address' => env('MAIL_DEFAULT_ADDRESS', 'noreply@ark.io'),
+        ],
+
+        'feedback' => [
+            'name'    => env('MAIL_FEEDBACK_NAME', 'ARK Ecosystem'),
+            'address' => env('MAIL_FEEDBACK_ADDRESS', 'feedback@marketsquare.io'),
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Routes
+    |--------------------------------------------------------------------------
+    */
+
+    'routes' => [
+        'feedback'           => env('ROUTE_FEEDBACK', '/feedback'),
+        'feedback_thank_you' => env('ROUTE_FEEDBACK_THANK_YOU', '/feedback/thank-you'),
+    ],
+
 ];

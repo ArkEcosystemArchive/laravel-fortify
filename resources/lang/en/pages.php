@@ -24,8 +24,19 @@ return [
         'gdpr_title'                        => 'General Data Protection Regulation (GDPR)',
         'gdpr_description'                  => 'This will will create a zip containing all personal data to respect your right to data portability. You will receive the zip file on the email address linked to your account.',
         'delete_account_title'              => 'Account Deletion',
-        'delete_account_description'        => 'Deletion of the account will result in the loss of your data instantly and your account will be unrecoverable.',
+        'delete_account_description'        => 'Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.',
         'update_password_alert_description' => 'The Security Settings allow you to change your passwords and enable or disable 2FA. Please remember the changes made for when you next sign in.',
         'password_updated'                  => 'Password was successfully updated',
+    ],
+
+    'feedback' => [
+        'title'       => 'Provide feedback and help us improve!',
+        'description' => 'We are sad to see you go! Help us improve by providing the reason for your departure.',
+    ],
+
+    'feedback_thank_you' => [
+        'title'       => 'Thank you for your feedback',
+        'description' => 'We\'re sorry to see you go. You can return anytime by creating a new account.',
+        'home_page'   => 'Home page',
     ],
 ];

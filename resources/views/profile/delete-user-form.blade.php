@@ -23,7 +23,7 @@
             <x-slot name="description">
                 <div class="flex flex-col mt-4">
                     <div class="flex justify-center w-full">
-                        <img class="w-2/3" src="{{ asset("images/modal/delete-account.svg") }}" />
+                        @svg('fortify-modal.delete-account', 'text-theme-primary-600 w-2/3')
                     </div>
                     <div class="mt-4">
                         @lang('fortify::forms.delete-user.confirmation')
@@ -38,7 +38,7 @@
             </x-slot>
 
             <x-slot name="buttons">
-                <div class="flex flex-col w-full sm:flex-row justify-end mt-5 space-y-4 sm:space-y-0 sm:space-x-3">
+                <div class="flex flex-col w-full sm:flex-row justify-end space-y-4 sm:space-y-0 sm:space-x-3">
                     <button class="button-secondary" wire:click="closeModal">
                         @lang('fortify::actions.cancel')
                     </button>

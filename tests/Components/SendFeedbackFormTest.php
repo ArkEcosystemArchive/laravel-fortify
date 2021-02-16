@@ -6,7 +6,6 @@ use ARKEcosystem\Fortify\Components\SendFeedbackForm;
 use ARKEcosystem\Fortify\Mail\SendFeedback;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 use Livewire\Livewire;
 

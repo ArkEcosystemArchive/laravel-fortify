@@ -7,7 +7,6 @@ namespace ARKEcosystem\Fortify\Components;
 use ARKEcosystem\Fortify\Mail\SendFeedback;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View as ViewFacade;
 use Livewire\Component;
 

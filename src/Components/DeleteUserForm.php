@@ -8,17 +8,22 @@ use ARKEcosystem\Fortify\Contracts\DeleteUser;
 use ARKEcosystem\UserInterface\Http\Livewire\Concerns\HasModal;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 use Livewire\Component;
 
 class DeleteUserForm extends Component
 {
     use HasModal;
 
-    /**
-     * Confirm that the user would like to delete their account.
-     *
-     * @return void
-     */
+    public string $username;
+
+    public string $usernameConfirmation = '';
+
+    public function mount()
+    {
+        $this->username = Auth::user()->username;
+    }
+
     public function confirmUserDeletion()
     {
         $this->dispatchBrowserEvent('confirming-delete-user');
@@ -26,28 +31,17 @@ class DeleteUserForm extends Component
         $this->openModal();
     }
 
-    /**
-     * Delete the current user.
-     *
-     * @param \ARKEcosystem\Fortify\Contracts\DeleteUser $deleter
-     * @param \Illuminate\Contracts\Auth\StatefulGuard   $auth
-     *
-     * @return void
-     */
     public function deleteUser(DeleteUser $deleter, StatefulGuard $auth)
     {
-        $deleter->delete(Auth::user()->fresh());
+        if ($this->username === $this->usernameConfirmation) {
+            $deleter->delete(Auth::user()->fresh());
 
-        $auth->logout();
+            $auth->logout();
 
-        return redirect('/');
+            $this->redirect(URL::signedRoute('profile.feedback'));
+        }
     }
 
-    /**
-     * Render the component.
-     *
-     * @return \Illuminate\View\View
-     */
     public function render()
     {
         return view('ark-fortify::profile.delete-user-form');

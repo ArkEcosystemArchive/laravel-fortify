@@ -29,11 +29,17 @@
                         @lang('fortify::forms.delete-user.confirmation')
                     </div>
                 </div>
+                <form class="mt-8">
+                    <div class="space-y-2">
+                        <x-ark-input input-class="text-center" type="text" name="username" model="username" :label="trans('fortify::forms.confirm_username')" readonly />
+                        <x-ark-input type="text" name="username_confirmation" model="usernameConfirmation" :palceholder="trans('fortify::forms.delete-user.confirmation_placeholder')" :errors="$errors" hide-label />
+                    </div>
+                </form>
             </x-slot>
 
             <x-slot name="buttons">
                 <div class="flex flex-col w-full sm:flex-row justify-end mt-5 space-y-4 sm:space-y-0 sm:space-x-3">
-                    <button class="button-secondary" wire:click="closeModal">
+                    <button class="button-cancel" wire:click="closeModal">
                         @lang('fortify::actions.cancel')
                     </button>
 

@@ -38,7 +38,7 @@ class DeleteUserForm extends Component
 
             $auth->logout();
 
-            $this->redirect(URL::signedRoute('profile.feedback'));
+            $this->redirect(URL::temporarySignedRoute('profile.feedback', now()->addMinutes(15)));
         }
     }
 

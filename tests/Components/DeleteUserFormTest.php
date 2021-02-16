@@ -24,7 +24,7 @@ it('can interact with the form', function () {
         ->assertSee(trans('fortify::pages.user-settings.delete_account_description'))
         ->set('usernameConfirmation', $user->username)
         ->call('deleteUser')
-        ->assertRedirect(URL::signedRoute('profile.feedback'));
+        ->assertRedirect(URL::temporarySignedRoute('profile.feedback', now()->addMinutes(15)));
     $this->assertNull(Auth::user());
 });
 

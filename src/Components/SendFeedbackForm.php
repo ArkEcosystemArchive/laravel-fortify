@@ -24,7 +24,7 @@ final class SendFeedbackForm extends Component
         Mail::to(config('fortify.mail.feedback'))
             ->send(new SendFeedback($this->message));
 
-        $this->redirect(URL::temporarySignedRoute('profile.feedback.thank.you', now()->addMinutes(15)));
+        $this->redirect(route('profile.feedback.thank-you'));
     }
 
     public function render(): View

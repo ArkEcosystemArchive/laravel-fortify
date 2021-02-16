@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 use Livewire\Livewire;
 
-it('can submit a feedback', function () {
+it('can submit a feedback form', function () {
     Route::get('/', fn () => [])->name('home');
 
     Mail::fake();
@@ -19,7 +19,7 @@ it('can submit a feedback', function () {
         ->set('message', 'message')
         ->call('submit')
         ->assertHasNoErrors()
-        ->assertRedirect(URL::signedRoute('profile.feedback.thank.you'));
+        ->assertRedirect(route('profile.feedback.thank-you'));
 
     Mail::assertQueued(SendFeedback::class, function ($mail) {
         return $mail->hasTo(config('fortify.mail.feedback.address')) &&
@@ -27,7 +27,7 @@ it('can submit a feedback', function () {
     });
 });
 
-it('cannot submit a feedback without message', function () {
+it('cannot submit a feedback form without message', function () {
     Route::get('/', fn () => [])->name('home');
 
     Mail::fake();

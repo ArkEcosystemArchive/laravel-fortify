@@ -42,7 +42,7 @@
                     </div>
                 </div>
 
-                <div class="flex h-64 w-1 bg-theme-primary-100 mr-10"></div>
+                <div class="hidden sm:flex h-64 w-1 bg-theme-primary-100 mr-10"></div>
 
                 <div class="hidden sm:flex flex-col">
                     <span class="text-lg font-bold leading-7 text-theme-secondary-900">
@@ -110,32 +110,32 @@
         </div>
     @endif
 
-    @if($this->modalShown)
-        <x-ark-modal class="mb-20" title-class="header-2">
+    @if(!$this->modalShown)
+        <x-ark-modal title-class="header-2">
             @slot('title')
                 @lang('fortify::pages.user-settings.2fa_reset_code_title')
             @endslot
 
             @slot('description')
-                <div class="flex flex-col space-y-2">
-                    <x-ark-alert type="alert-warning">
+                <div class="flex flex-col space-y-4 mt-8">
+                    <x-ark-alert type="warning">
                         <x-slot name="message">
                             @lang('fortify::pages.user-settings.2fa_warning_text')
                         </x-slot>
                     </x-ark-alert>
-                    <div class="grid grid-cols-2 grid-flow-row gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 grid-flow-row gap-x-4 gap-y-4">
                         @foreach (json_decode(decrypt($this->user->two_factor_recovery_codes), true) as $code)
-                        <div class="input-group">
-                            <div class="input-wrapper">
-                                <input
-                                    type="text"
+                            <div class="flex border border-theme-secondary-300 rounded font-semibold text-theme-secondary-900 h-12 items-center">
+                                <span class="flex bg-theme-secondary-100 h-full w-8 justify-center items-center">
+                                    {{ $loop->index + 1 }}
+                                </span>
+                                <span
                                     id="resetCode_{{ $loop->index }}"
-                                    class="input-text"
-                                    value="{{ $code }}"
-                                    readonly
-                                />
+                                    class="ml-4 whitespace-nowrap"
+                                >
+                                    {{ $code }}
+                                </span>
                             </div>
-                        </div>
                         @endforeach
                         {{-- TODO: check if we need this or not --}}
                         {{-- <div class="mt-6">
@@ -146,8 +146,18 @@
             @endslot
 
             @slot('buttons')
-                <div class="flex justify-center">
-                    <button class="button-secondary" wire:click="hideRecoveryCodes">@lang('fortify::actions.understand')</button>
+                <div class="flex flex-col-reverse sm:flex-row w-full sm:justify-between">
+                    <div class="flex justify-center">
+                        <button class="flex button-secondary justify-center items-center w-full mt-4 sm:mt-0 sm:w-auto" wire:click="hideRecoveryCodes">
+                            <x-ark-icon name="download" size="md" class="mr-2" />
+                            @lang('fortify::actions.download')
+                        </button>
+                    </div>
+                    <div class="flex justify-center">
+                        <button class="button-primary items-center w-full sm:w-auto" wire:click="hideRecoveryCodes">
+                            @lang('fortify::actions.understand')
+                        </button>
+                    </div>
                 </div>
             @endslot
         </x-ark-modal>

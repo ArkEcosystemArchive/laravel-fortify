@@ -37,6 +37,6 @@ return [
     'feedback_thank_you' => [
         'title'       => 'Thank you for your feedback',
         'description' => 'We\'re sorry to see you go. You can return anytime by creating a new account.',
-        'home_page'   => 'Home page',
+        'home_page'   => 'Return Home',
     ],
 ];

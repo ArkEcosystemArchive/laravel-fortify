@@ -39,7 +39,7 @@
 
             <x-slot name="buttons">
                 <div class="flex flex-col w-full sm:flex-row justify-end mt-5 space-y-4 sm:space-y-0 sm:space-x-3">
-                    <button class="button-secondary" wire:click="closeModal">
+                    <button class="button-cancel" wire:click="closeModal">
                         @lang('fortify::actions.cancel')
                     </button>
 

@@ -21,4 +21,6 @@ return [
     'confirm_logout'          => 'Logout Other Browser Sessions',
     'cancel'                  => 'Cancel',
     'delete'                  => 'Delete',
+    'send'                    => 'Send',
+    'skip'                    => 'Skip',
 ];

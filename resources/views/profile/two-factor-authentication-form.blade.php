@@ -125,16 +125,17 @@
                     </x-ark-alert>
                     <div class="grid grid-cols-1 sm:grid-cols-2 grid-flow-row gap-x-4 gap-y-4">
                         @foreach (json_decode(decrypt($this->user->two_factor_recovery_codes), true) as $code)
-                            <div class="flex border border-theme-secondary-300 rounded font-semibold text-theme-secondary-900 h-12 items-center">
-                                <span class="flex bg-theme-secondary-100 h-full w-8 justify-center items-center">
+                            <div class="flex border border-theme-secondary-300 rounded font-medium text-theme-secondary-900 h-12 items-center">
+                                <span class="flex bg-theme-secondary-100 h-full w-8 justify-center items-center rounded-l">
                                     {{ $loop->index + 1 }}
                                 </span>
-                                <span
+                                <input
+                                    type="text"
                                     id="resetCode_{{ $loop->index }}"
-                                    class="ml-4 whitespace-nowrap"
-                                >
-                                    {{ $code }}
-                                </span>
+                                    class="ml-4 w-full"
+                                    value="{{ $code }}"
+                                    readonly
+                                />
                             </div>
                         @endforeach
                         {{-- TODO: check if we need this or not --}}
@@ -147,11 +148,14 @@
 
             @slot('buttons')
                 <div class="flex flex-col-reverse sm:flex-row w-full sm:justify-between">
-                    <div class="flex justify-center">
-                        <button class="flex button-secondary justify-center items-center w-full mt-4 sm:mt-0 sm:w-auto" wire:click="hideRecoveryCodes">
-                            <x-ark-icon name="download" size="md" class="mr-2" />
-                            @lang('fortify::actions.download')
-                        </button>
+                    <div class="flex justify-center w-full mt-3 sm:mt-0">
+                        <x-ark-file-download
+                            :filename="'2fa_recovery_code_' . $this->user->name"
+                            :content="implode('\n', json_decode(decrypt($this->user->two_factor_recovery_codes)))"
+                            :title="trans('fortify::actions.download')"
+                            wrapper-class="w-full"
+                            class="w-full justify-center"
+                        />
                     </div>
                     <div class="flex justify-center">
                         <button class="button-primary items-center w-full sm:w-auto" wire:click="hideRecoveryCodes">

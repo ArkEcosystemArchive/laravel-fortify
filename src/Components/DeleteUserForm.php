@@ -31,9 +31,14 @@ class DeleteUserForm extends Component
         $this->openModal();
     }
 
+    public function hasConfirmedName(): bool
+    {
+        return $this->username === $this->usernameConfirmation;
+    }
+
     public function deleteUser(DeleteUser $deleter, StatefulGuard $auth)
     {
-        if ($this->username === $this->usernameConfirmation) {
+        if ($this->hasConfirmedName()) {
             $deleter->delete(Auth::user()->fresh());
 
             $auth->logout();

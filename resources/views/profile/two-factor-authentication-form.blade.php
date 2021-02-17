@@ -148,17 +148,17 @@
 
             @slot('buttons')
                 <div class="flex flex-col-reverse sm:flex-row w-full sm:justify-between">
-                    <div class="flex justify-center w-full mt-3 sm:mt-0">
+                    <div class="flex justify-center sm:justify-start w-full mt-3 sm:mt-0">
                         <x-ark-file-download
                             :filename="'2fa_recovery_code_' . $this->user->name"
                             :content="implode('\n', json_decode(decrypt($this->user->two_factor_recovery_codes)))"
                             :title="trans('fortify::actions.download')"
-                            wrapper-class="w-full"
+                            wrapper-class="w-full sm:w-auto"
                             class="w-full justify-center"
                         />
                     </div>
                     <div class="flex justify-center">
-                        <button class="button-primary items-center w-full sm:w-auto" wire:click="hideRecoveryCodes">
+                        <button class="button-primary items-center w-full sm:w-auto whitespace-nowrap" wire:click="hideRecoveryCodes">
                             @lang('fortify::actions.understand')
                         </button>
                     </div>

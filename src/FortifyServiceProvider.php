@@ -249,7 +249,7 @@ class FortifyServiceProvider extends ServiceProvider
 
     public function registerRoutes(): void
     {
-        Route::middlewae('web')->group(function () {
+        Route::middleware('web')->group(function () {
             Route::view(config('fortify.routes.feedback'), 'ark-fortify::profile.feedback')
                 ->name('profile.feedback')
                 ->middleware('signed');

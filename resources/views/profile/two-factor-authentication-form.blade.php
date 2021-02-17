@@ -2,7 +2,7 @@
     @if (! $this->enabled)
         <div class="flex flex-col w-full space-y-8">
             <div class="flex flex-col">
-                <span class="text-lg font-bold leading-7 text-theme-secondary-900 md:header-4">
+                <span class="header-4">
                     @lang('fortify::pages.user-settings.2fa_title')
                 </span>
                 <span class="mt-4">
@@ -11,7 +11,7 @@
             </div>
 
             <div class="flex flex-col sm:hidden">
-                <span class="text-lg font-bold leading-7 text-theme-secondary-900">
+                <span class="header-4">
                     @lang('fortify::pages.user-settings.2fa_not_enabled_title')
                 </span>
                 <div class="mt-2 text-base leading-7 text-theme-secondary-600">

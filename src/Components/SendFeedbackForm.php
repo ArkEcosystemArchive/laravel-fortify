@@ -7,7 +7,6 @@ namespace ARKEcosystem\Fortify\Components;
 use ARKEcosystem\Fortify\Mail\SendFeedback;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View as ViewFacade;
 use Livewire\Component;
 
@@ -24,7 +23,7 @@ final class SendFeedbackForm extends Component
         Mail::to(config('fortify.mail.feedback'))
             ->send(new SendFeedback($this->message));
 
-        $this->redirect(URL::signedRoute('profile.feedback.thank.you'));
+        $this->redirect(route('profile.feedback.thank-you'));
     }
 
     public function render(): View

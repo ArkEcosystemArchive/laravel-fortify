@@ -23,4 +23,5 @@ return [
     'delete'                  => 'Delete',
     'send'                    => 'Send',
     'skip'                    => 'Skip',
+    'download'                => 'Download',
 ];

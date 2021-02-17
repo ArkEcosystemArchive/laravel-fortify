@@ -43,7 +43,7 @@
                         @lang('fortify::actions.cancel')
                     </button>
 
-                    <button class="inline-flex justify-center items-center button-cancel" wire:click="deleteUser">
+                    <button class="inline-flex justify-center items-center button-cancel" wire:click="deleteUser" {{ ! $this->hasConfirmedName() ? 'disabled' : ''}}>
                         @svg('trash', 'h-4 w-4')
                         <span class="ml-2">@lang('fortify::actions.delete')</span>
                     </button>

@@ -120,7 +120,7 @@
                 <div class="flex flex-col space-y-4 mt-8">
                     <x-ark-alert type="warning">
                         <x-slot name="message">
-                            <span class="text-sm">@lang('fortify::pages.user-settings.2fa_warning_text')</span>
+                            @lang('fortify::pages.user-settings.2fa_warning_text')
                         </x-slot>
                     </x-ark-alert>
                     <div class="grid grid-cols-1 sm:grid-cols-2 grid-flow-row gap-x-4 gap-y-4">

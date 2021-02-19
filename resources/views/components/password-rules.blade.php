@@ -5,7 +5,6 @@
     </div>
 
     <div class="flex flex-col text-sm">
-        <span x-show="!isTyping ">@lang('fortify::forms.update-password.requirements_notice')</span>
         <div class="{{ $rulesWrapperClass }}" x-show="isTyping" x-cloak>
             @foreach($passwordRules as $ruleName => $ruleIsValid)
                 <div class="flex items-center space-x-2 min-w-1/3">

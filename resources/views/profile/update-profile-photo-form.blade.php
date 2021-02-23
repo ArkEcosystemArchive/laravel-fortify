@@ -1,5 +1,5 @@
-<div class="relative flex flex-col {{ $alignment ?? 'items-center mb-4 md:items-start' }}">
-    <form wire:submit.prevent="store" id="livewire-form">
+<div class="relative flex flex-col {{ $alignment }}">
+    <form wire:submit.prevent="store" id="livewire-form" class="{{ $formClass }}">
         <x-ark-upload-image-single
             id="profile-image"
             :readonly="$readonly"

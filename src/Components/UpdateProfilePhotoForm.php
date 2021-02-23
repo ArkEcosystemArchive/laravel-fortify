@@ -17,10 +17,13 @@ class UpdateProfilePhotoForm extends Component
 
     public string $alignment = '';
 
-    public function mount(string $dimensions = 'w-48 h-48', string $alignment = 'items-center mb-4 md:items-start')
+    public string $formClass = '';
+
+    public function mount(string $dimensions = 'w-48 h-48', string $alignment = 'items-center mb-4 md:items-start', string $formClass = '')
     {
         $this->dimensions = $dimensions;
         $this->alignment  = $alignment;
+        $this->formClass  = $formClass;
     }
 
     public function render(): \Illuminate\View\View

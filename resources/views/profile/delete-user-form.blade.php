@@ -15,7 +15,7 @@
     </div>
 
     @if($this->modalShown)
-        <x-ark-modal title-class="header-2" width-class="max-w-xl">
+        <x-ark-modal title-class="header-2" width-class="max-w-xl" wire-close="closeModal">
             <x-slot name="title">
                 @lang('fortify::forms.delete-user.title')
             </x-slot>

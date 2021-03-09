@@ -61,7 +61,7 @@
         </div>
     @endif
 
-    <x:ark-fortify::password-rules class="mb-8" :password-rules="$passwordRules" is-typing="isTyping">
+    <x:ark-fortify::password-rules class="mb-8" :password-rules="$passwordRules" is-typing="isTyping" rules-wrapper-class="grid gap-4 mt-4 grid-cols-1">
         <x-ark-input
             model="state.password"
             type="password"

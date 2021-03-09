@@ -12,13 +12,13 @@
                         <div class="flex items-center justify-center flex-shrink-0 w-5 h-5 rounded-full bg-theme-success-200">
                             @svg('checkmark', 'text-theme-success-500 h-2 w-2')
                     @elseif(! $ruleIsValid)
-                        <div class="flex items-center justify-center flex-shrink-0 w-5 h-5 border-2 rounded-full border-theme-secondary-700">
+                        <div class="flex items-center justify-center flex-shrink-0 w-5 h-5 border-2 rounded-full border-theme-secondary-600">
                     @else
                         <div class="flex items-center justify-center flex-shrink-0 w-5 h-5 rounded-full bg-theme-danger-200">
                             @svg('exclamation', 'text-theme-danger-500 h-5 w-5')
                     @endif
                         </div>
-                    <span class="@if ($ruleIsValid) text-theme-success-600 @else text-theme-secondary-900 @endif font-semibold">@lang('fortify::forms.password-rules.' .Str::snake($ruleName))</span>
+                    <span class="@if ($ruleIsValid) text-theme-success-600 @else text-theme-secondary-600 @endif font-semibold">@lang('fortify::forms.password-rules.' .Str::snake($ruleName))</span>
                 </div>
             @endforeach
         </div>

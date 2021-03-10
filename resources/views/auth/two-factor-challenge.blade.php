@@ -43,7 +43,7 @@
                 </div>
             </div>
 
-            <div class="mb-8" x-show="recovery">
+            <div class="mb-8" x-show="recovery" x-cloak>
                 <div class="flex flex-1">
                     <x-ark-input
                         type="password"
@@ -59,7 +59,7 @@
                 <button x-show="recovery === false" @click="recovery = true" type="button" class="w-full font-semibold link sm:w-auto">
                     @lang('fortify::actions.enter_recovery_code')
                 </button>
-                <button x-show="recovery === true" @click="recovery = false" type="button" class="w-full font-semibold link sm:w-auto">
+                <button x-show="recovery === true" @click="recovery = false" type="button" class="w-full font-semibold link sm:w-auto" x-cloak>
                     @lang('fortify::actions.enter_2fa_code')
                 </button>
 

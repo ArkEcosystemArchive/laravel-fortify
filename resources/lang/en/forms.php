@@ -13,6 +13,7 @@ return [
     'username'                 => 'Username',
     'display_name'             => 'Display Name',
     'code'                     => 'Code',
+    '2fa_code'                 => '2FA Verification Code',
     'recovery_code'            => 'Recovery Code',
     'confirm_username'         => 'Your Username',
 

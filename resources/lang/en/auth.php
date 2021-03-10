@@ -32,7 +32,8 @@ return [
     ],
 
     'two-factor' => [
-        'page_header' => 'Two-Factor Authentication',
+        'page_header'      => '2FA Authentication',
+        'page_description' => 'Enter your 2FA code below to sign in.',
     ],
 
     'verified' => [

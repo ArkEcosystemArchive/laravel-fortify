@@ -18,7 +18,7 @@ return [
     ],
 
     'register-form' => [
-        'conditions'         => "Creating an account means you're okay with our <a href=':termsOfServiceRoute' class='link'>Terms of Service</a>, <a href=':privacyPolicyRoute' class='link'>Privacy Policy</a> and our default <a href=':notificationSettingsRoute' class='link'>Notification Settings</a>.",
+        'conditions'         => "Creating an account means you're okay with our <a href=':termsOfServiceRoute' class='link'>Terms of Service</a>, <a href=':privacyPolicyRoute' class='link'>Privacy Policy</a>.",
         'create_account'     => 'Create Account',
         'already_member'     => 'Already have an account? <a href=":route" class="underline link semibold">Sign in</a>',
     ],

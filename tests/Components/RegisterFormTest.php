@@ -20,7 +20,7 @@ it('can interact with the form', function () {
     Route::get('privacy-policy', function () {
         return view('');
     })->name('privacy-policy');
-    
+
     $invitationUuid = Uuid::uuid();
 
     Livewire::withQueryParams(['invitation' => $invitationUuid])

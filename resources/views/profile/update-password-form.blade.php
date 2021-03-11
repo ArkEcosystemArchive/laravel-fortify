@@ -1,4 +1,4 @@
-<div x-data="{isTyping: false}">
+<div x-data="{isTyping: false}" dusk="update-password-form">
     <div class="flex flex-col space-y-4 mt-4">
         <div>
             <x-ark-flash />
@@ -17,7 +17,7 @@
             <x-ark-input type="password" name="password_confirmation" model="state.password_confirmation" :label="trans('fortify::forms.confirm_password')" :errors="$errors" />
         </div>
         <div class="flex w-full mt-8 sm:justify-end">
-            <button type="submit" class="w-full button-secondary sm:w-auto">@lang('fortify::actions.update')</button>
+            <button dusk="update-password-form-submit" type="submit" class="w-full button-secondary sm:w-auto">@lang('fortify::actions.update')</button>
         </div>
     </form>
 </div>

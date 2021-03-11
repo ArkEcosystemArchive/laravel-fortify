@@ -39,11 +39,11 @@
 
             <x-slot name="buttons">
                 <div class="flex flex-col w-full sm:flex-row justify-end space-y-4 sm:space-y-0 sm:space-x-3">
-                    <button class="button-secondary" wire:click="closeModal">
+                    <button dusk="delete-user-form-cancel" class="button-secondary" wire:click="closeModal">
                         @lang('fortify::actions.cancel')
                     </button>
 
-                    <button class="inline-flex justify-center items-center button-cancel" wire:click="deleteUser" {{ ! $this->hasConfirmedName() ? 'disabled' : ''}}>
+                    <button dusk="delete-user-form-submit" class="inline-flex justify-center items-center button-cancel" wire:click="deleteUser" {{ ! $this->hasConfirmedName() ? 'disabled' : ''}}>
                         @svg('trash', 'h-4 w-4')
                         <span class="ml-2">@lang('fortify::actions.delete')</span>
                     </button>

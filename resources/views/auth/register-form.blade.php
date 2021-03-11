@@ -61,7 +61,7 @@
         </div>
     @endif
 
-    <x:ark-fortify::password-rules class="mb-8" :password-rules="$passwordRules" is-typing="isTyping">
+    <x:ark-fortify::password-rules class="mb-8" :password-rules="$passwordRules" is-typing="isTyping" rules-wrapper-class="grid grid-cols-1 gap-4 mt-4">
         <x-ark-input
             model="state.password"
             type="password"
@@ -95,7 +95,7 @@
             :errors="$errors"
         >
             @slot('label')
-                @lang('fortify::auth.register-form.conditions', ['termsOfServiceRoute' => route('terms-of-service'), 'privacyPolicyRoute' => route('privacy-policy'), 'notificationSettingsRoute' => route('notification-settings')])
+                @lang('fortify::auth.register-form.conditions', ['termsOfServiceRoute' => route('terms-of-service'), 'privacyPolicyRoute' => route('privacy-policy')])
             @endslot
         </x-ark-checkbox>
 

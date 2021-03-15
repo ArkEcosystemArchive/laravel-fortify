@@ -8,6 +8,7 @@ use ARKEcosystem\Fortify\Models\Concerns\HasPhoto;
 use Mockery;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\MediaCollections\MediaCollection;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /**
  * @coversNothing
@@ -18,12 +19,13 @@ class HasPhotoTest implements HasMedia
 }
 
 it('can access the photo', function () {
+    $media = new Media();
     $subject = $this->getMockForTrait(HasPhoto::class, [], '', true, true, true, ['getFirstMedia']);
     $subject->expects($this->any())
         ->method('getFirstMedia')
-        ->will($this->returnValue(null));
+        ->will($this->returnValue($media));
 
-    expect($subject->getPhotoAttribute())->toBe('');
+    expect($subject->getPhoto())->toBe($media);
 });
 
 it('can access the photo url', function () {

@@ -17,7 +17,7 @@ class HasPhotoTest implements HasMedia
     use HasPhoto;
 }
 
-it('can access the photo', function () {
+it('can access the photo url', function () {
     $subject = $this->getMockForTrait(HasPhoto::class, [], '', true, true, true, ['getFirstMediaUrl']);
     $subject->expects($this->any())
         ->method('getFirstMediaUrl')

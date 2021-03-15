@@ -18,7 +18,7 @@ trait HasPhoto
 
     public function getPhotoAttribute(): string
     {
-        return optional($this->getPhoto())->getUrl() ?: '';
+        return $this->getFirstMediaUrl('photo');
     }
 
     public function registerMediaCollections(): void

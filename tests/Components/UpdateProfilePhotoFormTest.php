@@ -14,9 +14,7 @@ use Tests\MediaUser;
 it('can upload a photo', function () {
     $this
         ->mock(FileAdderFactory::class)
-        ->shouldReceive('createFromDisk->withResponsiveImages')
-        ->once()
-        ->shouldReceive('createFromDisk->toMediaCollection')
+        ->shouldReceive('createFromDisk->withResponsiveImages->toMediaCollection')
         ->once();
 
     $photo = UploadedFile::fake()->image('logo.jpeg');
@@ -47,9 +45,7 @@ it('cannot upload a photo that is too large', function () {
 it('can delete a photo', function () {
     $this
         ->mock(FileAdderFactory::class)
-        ->shouldReceive('createFromDisk->withResponsiveImages')
-        ->once()
-        ->shouldReceive('createFromDisk->toMediaCollection')
+        ->shouldReceive('createFromDisk->withResponsiveImages->toMediaCollection')
         ->once();
 
     $media = Mockery::mock(Media::class);

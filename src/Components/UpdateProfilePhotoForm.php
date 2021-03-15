@@ -37,7 +37,7 @@ class UpdateProfilePhotoForm extends Component
 
         $file = $this->imageSingle->storePubliclyAs('uploads', $this->imageSingle->hashName());
 
-        $this->user->addMediaFromDisk($file)->toMediaCollection('photo');
+        $this->user->addMediaFromDisk($file)->withResponsiveImages()->toMediaCollection('photo');
         $this->user->refresh();
     }
 

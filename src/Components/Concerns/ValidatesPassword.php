@@ -31,4 +31,11 @@ trait ValidatesPassword
             $this->passwordRules[$ruleName] = ! $passwordValidator->{$ruleName}($password);
         }
     }
+
+    private function resetRules(): void
+    {
+        foreach (array_keys($this->passwordRules) as $ruleName) {
+            $this->passwordRules[$ruleName] = false;
+        }
+    }
 }

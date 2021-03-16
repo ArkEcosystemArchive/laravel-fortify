@@ -28,32 +28,36 @@
         >
             @csrf
 
-            <div class="mb-8" x-show="! recovery">
-                <div class="flex flex-1">
-                    <x-ark-input
-                        type="text"
-                        name="code"
-                        :label="trans('fortify::forms.2fa_code')"
-                        class="w-full"
-                        :errors="$errors"
-                        autocomplete="one-time-code"
-                        input-mode="numeric"
-                        pattern="[0-9]*"
-                    />
+            <template x-if="! recovery">
+                <div class="mb-8">
+                    <div class="flex flex-1">
+                        <x-ark-input
+                            type="text"
+                            name="code"
+                            :label="trans('fortify::forms.2fa_code')"
+                            class="w-full"
+                            :errors="$errors"
+                            autocomplete="one-time-code"
+                            input-mode="numeric"
+                            pattern="[0-9]*"
+                        />
+                    </div>
                 </div>
-            </div>
+            </template>
 
-            <div class="mb-8" x-show="recovery" x-cloak>
-                <div class="flex flex-1">
-                    <x-ark-input
-                        type="password"
-                        name="recovery_code"
-                        :label="trans('fortify::forms.recovery_code')"
-                        class="w-full"
-                        :errors="$errors"
-                    />
+            <template x-if="recovery">
+                <div class="mb-8" x-cloak>
+                    <div class="flex flex-1">
+                        <x-ark-input
+                            type="password"
+                            name="recovery_code"
+                            :label="trans('fortify::forms.recovery_code')"
+                            class="w-full"
+                            :errors="$errors"
+                        />
+                    </div>
                 </div>
-            </div>
+            </template>
 
             <div class="flex flex-col-reverse items-center justify-between space-y-4 md:space-y-0 md:flex-row">
                 <button x-show="recovery === false" @click="recovery = true" type="button" class="w-full font-semibold link sm:w-auto">

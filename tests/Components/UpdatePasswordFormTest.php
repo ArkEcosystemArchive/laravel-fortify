@@ -25,3 +25,28 @@ it('can interact with the form', function () {
         ->call('updatePassword')
         ->assertEmitted('saved');
 });
+
+it('clears password rules on update', function () {
+    $user = createUserModel();
+
+    Livewire::actingAs($user)
+        ->test(UpdatePasswordForm::class)
+        ->set('state.current_password', 'password')
+        ->set('state.password', 'abcd1234ABCD%')
+        ->set('state.password_confirmation', 'abcd1234ABCD%')
+        ->assertSet('passwordRules', [
+            'needsLowercase'        => true,
+            'needsUppercase'        => true,
+            'needsNumeric'          => true,
+            'needsSpecialCharacter' => true,
+            'needsMinimumLength'    => true,
+        ])
+        ->call('updatePassword')
+        ->assertSet('passwordRules', [
+            'needsLowercase'        => false,
+            'needsUppercase'        => false,
+            'needsNumeric'          => false,
+            'needsSpecialCharacter' => false,
+            'needsMinimumLength'    => false,
+        ]);
+});

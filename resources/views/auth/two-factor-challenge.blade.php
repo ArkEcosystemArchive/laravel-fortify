@@ -19,45 +19,33 @@
         </div>
     </div>
 
-    <div class="max-w-xl p-8 mx-auto">
+    <div
+        x-data="{ recovery: @json($errors->has('recovery_code')) }"
+        x-cloak
+        class="max-w-xl p-8 mx-auto"
+    >
         <form
-            x-data="{ recovery: @json($errors->has('recovery_code')) }"
+            x-show="!recovery"
             method="POST"
             action="{{ route('two-factor.login') }}"
             class="flex flex-col p-8 mx-4 border-2 rounded-lg border-theme-secondary-200"
         >
             @csrf
 
-            <template x-if="! recovery">
-                <div class="mb-8">
-                    <div class="flex flex-1">
-                        <x-ark-input
-                            type="text"
-                            name="code"
-                            :label="trans('fortify::forms.2fa_code')"
-                            class="w-full"
-                            :errors="$errors"
-                            autocomplete="one-time-code"
-                            input-mode="numeric"
-                            pattern="[0-9]*"
-                        />
-                    </div>
+            <div class="mb-8">
+                <div class="flex flex-1">
+                    <x-ark-input
+                        type="text"
+                        name="code"
+                        :label="trans('fortify::forms.2fa_code')"
+                        class="w-full"
+                        :errors="$errors"
+                        autocomplete="one-time-code"
+                        input-mode="numeric"
+                        pattern="[0-9]*"
+                    />
                 </div>
-            </template>
-
-            <template x-if="recovery">
-                <div class="mb-8" x-cloak>
-                    <div class="flex flex-1">
-                        <x-ark-input
-                            type="password"
-                            name="recovery_code"
-                            :label="trans('fortify::forms.recovery_code')"
-                            class="w-full"
-                            :errors="$errors"
-                        />
-                    </div>
-                </div>
-            </template>
+            </div>
 
             <div class="flex flex-col-reverse items-center justify-between sm:flex-row">
                 <button x-show="recovery === false" @click="recovery = true" type="button" class="w-full mt-4 font-semibold link sm:w-auto sm:mt-0">
@@ -74,6 +62,40 @@
             </div>
         </form>
 
+        <form
+            x-show="recovery"
+            method="POST"
+            action="{{ route('two-factor.login') }}"
+            class="flex flex-col p-8 mx-4 border-2 rounded-lg border-theme-secondary-200"
+        >
+            @csrf
+
+            <div class="mb-8" >
+                <div class="flex flex-1">
+                    <x-ark-input
+                        type="password"
+                        name="recovery_code"
+                        :label="trans('fortify::forms.recovery_code')"
+                        class="w-full"
+                        :errors="$errors"
+                    />
+                </div>
+            </div>
+
+            <div class="flex flex-col-reverse items-center justify-between sm:flex-row">
+                <button x-show="recovery === false" @click="recovery = true" type="button" class="w-full mt-4 font-semibold link sm:w-auto sm:mt-0">
+                    @lang('fortify::actions.enter_recovery_code')
+                </button>
+                
+                <button x-show="recovery === true" @click="recovery = false" type="button" class="w-full mt-4 font-semibold link sm:w-auto sm:mt-0" x-cloak>
+                    @lang('fortify::actions.enter_2fa_code')
+                </button>
+
+                <button type="submit" class="w-full button-secondary sm:w-auto">
+                    @lang('fortify::actions.sign_in')
+                </button>
+            </div>
+        </form>
     </div>
 
 @endsection

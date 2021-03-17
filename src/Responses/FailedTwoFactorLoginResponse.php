@@ -20,16 +20,19 @@ class FailedTwoFactorLoginResponse implements Responsable
     {
         $message = trans('fortify::messages.invalid_2fa_authentication_code');
 
+        $params = collect($request->only(['code', 'recovery_code']))
+            ->filter()
+            ->map(fn () => $message)
+            ->all();
+
         if ($request->wantsJson()) {
-            throw ValidationException::withMessages([
-                'code' => [$message],
-            ]);
+            throw ValidationException::withMessages($params);
         }
 
         $request->session()->put([
             'login.id' => $request->session()->get('login.idFailure'),
         ]);
 
-        return back()->withErrors(['code' => $message]);
+        return back()->withErrors($params);
     }
 }

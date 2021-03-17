@@ -21,7 +21,7 @@
 
     <div class="max-w-xl p-8 mx-auto">
         <form
-            x-data="{ recovery: false }"
+            x-data="{ recovery: @json($errors->has('recovery_code')) }"
             method="POST"
             action="{{ route('two-factor.login') }}"
             class="flex flex-col p-8 mx-4 border-2 rounded-lg border-theme-secondary-200"
@@ -68,7 +68,7 @@
                 </button>
             </div>
         </form>
-        
+
     </div>
-    
+
 @endsection

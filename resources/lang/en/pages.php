@@ -12,7 +12,7 @@ return [
         'one_time_password'                 => 'One-Time Password',
         '2fa_reset_code_title'              => 'Two-Factor Authentication Reset Code',
         '2fa_reset_code_description'        => 'Reset Code',
-        '2fa_warning_text'                  => 'If you lose your two-factor authentication device, you may use this emergency reset token to disable two-factor authentication on your account. <strong>This is the only time this token will be displayed, so be sure not to lose it!</strong>',
+        '2fa_warning_text'                  => 'If you lose your two-factor authentication device, you may use these emergency recovery codes to sign-in to your MarketSquare account. <strong>Each reset code can only be used once.</strong>',
         'reset_link_email'                  => 'Request submitted. If your email address is associated with an account, you will receive an email with instructions on how to reset your password.',
         'update_timezone_title'             => 'Timezone',
         'update_timezone_description'       => 'Select a Timezone below and update it by clicking the update button.',

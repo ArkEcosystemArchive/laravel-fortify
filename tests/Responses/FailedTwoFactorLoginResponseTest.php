@@ -11,11 +11,14 @@ use Mockery;
 
 it('refuses to return json', function () {
     $request = Mockery::mock(\Illuminate\Http\Request::class);
+    $request->shouldReceive('only')
+        ->once()
+        ->andReturn(['key' => 'value']);
     $request->shouldReceive('wantsJson')
         ->once()
         ->andReturnTrue();
 
-    $response = (new FailedTwoFactorLoginResponse())->toResponse($request);
+    (new FailedTwoFactorLoginResponse())->toResponse($request);
 })->throws(ValidationException::class, 'The given data was invalid.');
 
 it('can return redirect back', function () {
@@ -31,6 +34,9 @@ it('can return redirect back', function () {
         ]);
 
     $request = Mockery::mock(\Illuminate\Http\Request::class);
+    $request->shouldReceive('only')
+        ->once()
+        ->andReturn(['key' => 'value']);
     $request->shouldReceive('wantsJson')
         ->once()
         ->andReturnFalse();

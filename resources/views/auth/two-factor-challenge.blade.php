@@ -48,14 +48,10 @@
             </div>
 
             <div class="flex flex-col-reverse items-center justify-between sm:flex-row">
-                <button x-show="recovery === false" @click="recovery = true" type="button" class="w-full mt-4 font-semibold link sm:w-auto sm:mt-0">
+                <button @click="recovery = true" type="button" class="w-full mt-4 font-semibold link sm:w-auto sm:mt-0">
                     @lang('fortify::actions.enter_recovery_code')
                 </button>
                 
-                <button x-show="recovery === true" @click="recovery = false" type="button" class="w-full mt-4 font-semibold link sm:w-auto sm:mt-0" x-cloak>
-                    @lang('fortify::actions.enter_2fa_code')
-                </button>
-
                 <button type="submit" class="w-full button-secondary sm:w-auto">
                     @lang('fortify::actions.sign_in')
                 </button>
@@ -83,11 +79,7 @@
             </div>
 
             <div class="flex flex-col-reverse items-center justify-between sm:flex-row">
-                <button x-show="recovery === false" @click="recovery = true" type="button" class="w-full mt-4 font-semibold link sm:w-auto sm:mt-0">
-                    @lang('fortify::actions.enter_recovery_code')
-                </button>
-                
-                <button x-show="recovery === true" @click="recovery = false" type="button" class="w-full mt-4 font-semibold link sm:w-auto sm:mt-0" x-cloak>
+                <button @click="recovery = false" type="button" class="w-full mt-4 font-semibold link sm:w-auto sm:mt-0" x-cloak>
                     @lang('fortify::actions.enter_2fa_code')
                 </button>
 

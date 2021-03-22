@@ -13,5 +13,6 @@ it('can export the user data', function () {
 
     Livewire::actingAs(createUserModel())
         ->test(ExportUserData::class)
-        ->call('export');
+        ->call('export')
+        ->assertSee(trans('fortify::pages.user-settings.data_exported'));
 });

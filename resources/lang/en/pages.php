@@ -27,6 +27,7 @@ return [
         'delete_account_description'        => 'Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.',
         'update_password_alert_description' => 'The Security Settings allow you to change your passwords and enable or disable 2FA. Please remember the changes made for when you next sign in.',
         'password_updated'                  => 'Password was successfully updated',
+        'data_exported'                     => 'Personal Data has been sent to your MarketSquare e-mail address.',
     ],
 
     'feedback' => [

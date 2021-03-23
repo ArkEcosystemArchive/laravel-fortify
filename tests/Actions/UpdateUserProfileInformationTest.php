@@ -54,9 +54,9 @@ it('should throw an exception if the name is too long', function () {
     $user = createUserModel();
 
     expectValidationError(fn () => resolve(UpdateUserProfileInformation::class)->update($user, [
-        'name'  => str_repeat('#', 256),
+        'name'  => str_repeat('a', 33),
         'email' => 'jane@doe.com',
-    ]), 'name', 'The name may not be greater than 255 characters.');
+    ]), 'name', 'The name may not be greater than 32 characters.');
 });
 
 it('should throw an exception if the email is missing', function () {
@@ -101,5 +101,5 @@ it('should not update the profile information if the name of the user is only co
     expectValidationError(fn () => resolve(UpdateUserProfileInformation::class)->update($user, [
         'name'  => '.',
         'email' => 'jane@doe.com',
-    ]), 'name', trans('fortify::validation.messages.polite_username'));
+    ]), 'name', trans('fortify::validation.messages.allowed_characters_username'));
 });

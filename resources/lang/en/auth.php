@@ -36,12 +36,6 @@ return [
         'page_description' => 'Enter your 2FA code below to sign in.',
     ],
 
-    'verified' => [
-        'page_header'      => 'Congratulations!',
-        'page_description' => 'Your email address has been verified.',
-        'cta'              => 'Homepage',
-    ],
-
     'verify' => [
         'page_header'         => 'Verify Your Email Address',
         'link_description'    => 'A verification link has been sent to your email address.',

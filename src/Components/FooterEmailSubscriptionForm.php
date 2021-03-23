@@ -30,4 +30,14 @@ final class FooterEmailSubscriptionForm extends Component
 
         $this->email = null;
     }
+
+    /**
+     * Render the component.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function render()
+    {
+        return view('ark-fortify::newsletter.footer-subscription-form');
+    }
 }

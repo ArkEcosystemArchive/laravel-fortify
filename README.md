@@ -20,14 +20,22 @@
 },
 ```
 
-4. Register the service providers in this exact order. This will ensure that our package can overwrite any bindings that `laravel/fortify` created.
+4. Required Image
+
+Projects require an image to be provided: `resources/images/auth/verify-email.svg`
+
+This is omitted from fortify to prevent it being overwritten, but allows for it to be customised per project.
+
+In the future, a config file may be a better route if there are multiple instances of images being required.
+
+5. Register the service providers in this exact order. This will ensure that our package can overwrite any bindings that `laravel/fortify` created.
 
 ```php
 Laravel\Fortify\FortifyServiceProvider::class,
 ARKEcosystem\Fortify\FortifyServiceProvider::class,
 ```
 
-5. Enable or disable the login/register with username or email by using the `username_alt` setting in the `config/fortify.php` file
+6. Enable or disable the login/register with username or email by using the `username_alt` setting in the `config/fortify.php` file
 
 ```php
 <?php
@@ -43,7 +51,7 @@ return [
 
 **Note:** If you use the `username_alt` setting, you need to ensure that your users table has that column.
 
-6. Register databags in your `AppServiceProvider` that are used by the auth pages
+7. Register databags in your `AppServiceProvider` that are used by the auth pages
 
 ```php
 use Konceiver\DataBags\DataBag;

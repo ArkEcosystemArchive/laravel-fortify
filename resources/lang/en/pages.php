@@ -17,6 +17,7 @@ return [
         'update_timezone_title'             => 'Timezone',
         'update_timezone_description'       => 'Select a Timezone below and update it by clicking the update button.',
         'timezone_updated'                  => 'Timezone was successfully updated',
+        'data_exported'                     => 'We are processing your request. You should shortly receive an email with your data.',
         'password_information_title'        => 'Password',
         'password_information_description'  => 'Ensure your account is using a long, random password to stay secure.',
         'contact_information_title'         => 'Contact Information',

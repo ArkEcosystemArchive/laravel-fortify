@@ -20,6 +20,8 @@ class ExportUserData extends Component
     public function export(): void
     {
         dispatch(new CreatePersonalDataExportJob($this->user));
+
+        flash()->success(trans('fortify::pages.user-settings.data_exported'));
     }
 
     /**

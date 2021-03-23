@@ -94,3 +94,12 @@ it('should not update the profile information if the name of the user contain pr
         'email' => 'jane@doe.com',
     ]), 'name', trans('fortify::validation.messages.polite_username'));
 });
+
+it('should not update the profile information if the name of the user is only composed of special characters', function () {
+    $user = createUserModel();
+
+    expectValidationError(fn () => resolve(UpdateUserProfileInformation::class)->update($user, [
+        'name'  => '.',
+        'email' => 'jane@doe.com',
+    ]), 'name', trans('fortify::validation.messages.polite_username'));
+});

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ARKEcosystem\Fortify\Actions;
 
 use ARKEcosystem\Fortify\Models;
+use ARKEcosystem\Fortify\Rules\AllowedCharactersUsername;
 use ARKEcosystem\Fortify\Rules\PoliteUsername;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
@@ -52,7 +53,7 @@ class CreateNewUser implements CreatesNewUsers
     private function buildValidator(array $input): ValidationValidator
     {
         $rules = [
-            'name'              => ['required', 'string', 'max:255', resolve(PoliteUsername::class)],
+            'name'              => ['required', 'string', 'min:6', 'max:32', resolve(PoliteUsername::class), resolve(AllowedCharactersUsername::class)],
             Fortify::username() => $this->usernameRules(),
             'password'          => $this->passwordRules(),
             'terms'             => ['required', 'accepted'],
@@ -60,7 +61,7 @@ class CreateNewUser implements CreatesNewUsers
         ];
 
         if ($usernameAlt = Config::get('fortify.username_alt')) {
-            $rules[$usernameAlt] = ['required', 'string', 'max:255', 'unique:users', resolve(PoliteUsername::class)];
+            $rules[$usernameAlt] = ['required', 'string', 'min:6', 'max:32', 'unique:users', resolve(PoliteUsername::class), resolve(AllowedCharactersUsername::class)];
         }
 
         return Validator::make($input, $rules);
@@ -83,7 +84,7 @@ class CreateNewUser implements CreatesNewUsers
 
     private function usernameRules(): array
     {
-        $rules = ['required', 'string', 'max:255', 'unique:users', resolve(PoliteUsername::class)];
+        $rules = ['required', 'string', 'min:6', 'max:32', 'unique:users', resolve(PoliteUsername::class), resolve(AllowedCharactersUsername::class)];
 
         if (Fortify::username() === 'email') {
             $rules[] = 'email';

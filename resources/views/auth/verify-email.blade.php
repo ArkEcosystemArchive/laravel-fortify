@@ -12,18 +12,20 @@
 @endsection
 
 @section('content')
-    <div class="flex max-w-md p-8 mx-auto my-6 bg-white rounded-lg">
-        <div class="flex flex-col w-full">
-            <img class="mb-5" src="/images/auth/verify-email.svg" />
-            <h2>@lang('fortify::auth.verify.page_header')</h2>
-            <p>
-                @lang('fortify::auth.verify.link_description')
-            </p>
+    <div class="flex max-w-xl p-8 mx-auto my-6 bg-white rounded-lg">
+        <div class="flex flex-col w-full text-center space-y-6">
+            <div class="space-y-4">
+                <h1>@lang('fortify::auth.verify.page_header')</h1>
+
+                <p>@lang('fortify::auth.verify.link_description')</p>
+            </div>
+
+            <img class="mb-5 mx-12" src="/images/auth/verify-email.svg" />
 
             <form method="POST" action="{{ route('verification.send') }}">
                 @csrf
 
-                <p class="mt-5 text-sm text-theme-secondary-600">
+                <p class="text-sm text-theme-secondary-600 lg:no-wrap-span-children">
                     @lang('fortify::auth.verify.resend_verification')
                 </p>
             </form>

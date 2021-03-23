@@ -50,6 +50,15 @@ it('should throw an exception if the name is missing', function () {
     ]), 'name', 'The name field is required.');
 });
 
+it('should throw an exception if the name is too short', function () {
+    $user = createUserModel();
+
+    expectValidationError(fn () => resolve(UpdateUserProfileInformation::class)->update($user, [
+        'name'  => str_repeat('a', 2),
+        'email' => 'jane@doe.com',
+    ]), 'name', 'The name must be at least 3 characters.');
+});
+
 it('should throw an exception if the name is too long', function () {
     $user = createUserModel();
 

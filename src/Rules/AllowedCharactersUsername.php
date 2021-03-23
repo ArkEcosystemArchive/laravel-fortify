@@ -10,12 +10,11 @@ final class AllowedCharactersUsername implements Rule
 {
     public function passes($attribute, $value)
     {
-        return preg_match("/^\W+$/", $value) === 0;
+        return preg_match('/^[a-z\d](?:[a-z\d ]|-(?=[a-z\d])){0,38}$/i', $value) === 1;
     }
 
     public function message()
     {
-        // TODO : Waiting for Sammie
         return trans('fortify::validation.messages.allowed_characters_username');
     }
 }

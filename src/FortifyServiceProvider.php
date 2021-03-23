@@ -93,6 +93,11 @@ class FortifyServiceProvider extends ServiceProvider
         ], 'config');
 
         $this->mergeConfigFrom(
+            __DIR__.'/../config/newsletter.php',
+            'newsletter'
+        );
+
+        $this->mergeConfigFrom(
             __DIR__.'/../config/fortify.php',
             'fortify'
         );

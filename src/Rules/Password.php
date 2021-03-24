@@ -26,6 +26,9 @@ class Password extends Fortify
      */
     public function passes($attribute, $value)
     {
+        // Handle potential NULL values
+        $value = $value ?: '';
+
         if ($this->needsLowercase($value)) {
             return false;
         }

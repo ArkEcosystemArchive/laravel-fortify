@@ -50,3 +50,27 @@ it('clears password rules on update', function () {
             'needsMinimumLength'    => false,
         ]);
 });
+
+it('handles password being null', function () {
+    $user = createUserModel();
+
+    Livewire::actingAs($user)
+        ->test(UpdatePasswordForm::class)
+        ->assertSet('state', [
+            'current_password'      => '',
+            'password'              => '',
+            'password_confirmation' => '',
+        ])
+        ->assertViewIs('ark-fortify::profile.update-password-form')
+        ->set('state.current_password', 'password')
+        ->set('state.password', null)
+        ->set('state.password_confirmation', null)
+        ->call('updatePassword')
+        ->assertSet('passwordRules', [
+            'needsLowercase'        => false,
+            'needsUppercase'        => false,
+            'needsNumeric'          => false,
+            'needsSpecialCharacter' => false,
+            'needsMinimumLength'    => false,
+        ]);
+});

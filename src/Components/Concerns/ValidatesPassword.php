@@ -18,6 +18,10 @@ trait ValidatesPassword
 
     public function updatedStatePassword($password)
     {
+        if (is_null($password)) {
+            return;
+        }
+
         $this->errorMessages = [];
 
         $passwordValidator = (new Password())

@@ -11,6 +11,7 @@ use ARKEcosystem\Fortify\Actions\UpdateUserPassword;
 use ARKEcosystem\Fortify\Actions\UpdateUserProfileInformation;
 use ARKEcosystem\Fortify\Components\DeleteUserForm;
 use ARKEcosystem\Fortify\Components\ExportUserData;
+use ARKEcosystem\Fortify\Components\FooterEmailSubscriptionForm;
 use ARKEcosystem\Fortify\Components\LogoutOtherBrowserSessionsForm;
 use ARKEcosystem\Fortify\Components\RegisterForm;
 use ARKEcosystem\Fortify\Components\ResetPasswordForm;
@@ -92,6 +93,11 @@ class FortifyServiceProvider extends ServiceProvider
         ], 'config');
 
         $this->mergeConfigFrom(
+            __DIR__.'/../config/newsletter.php',
+            'newsletter'
+        );
+
+        $this->mergeConfigFrom(
             __DIR__.'/../config/fortify.php',
             'fortify'
         );
@@ -130,6 +136,7 @@ class FortifyServiceProvider extends ServiceProvider
         Livewire::component('profile.send-feedback-form', SendFeedbackForm::class);
         Livewire::component('auth.register-form', RegisterForm::class);
         Livewire::component('auth.reset-password-form', ResetPasswordForm::class);
+        Livewire::component('newsletter.footer-subscription-form', FooterEmailSubscriptionForm::class);
     }
 
     /**

@@ -4,6 +4,12 @@ declare(strict_types=1);
 
 use ARKEcosystem\Fortify\Rules\Password;
 
+it('handle null values', function () {
+    $rule = (new Password())->requireUppercase()->requireNumeric()->requireSpecialCharacter();
+
+    expect($rule->passes('password', null))->toBeFalse();
+});
+
 it('can check for lowercase requirements', function () {
     $rule = (new Password())->requireLowercase();
 

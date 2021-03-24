@@ -9,6 +9,7 @@ use ARKEcosystem\UserInterface\UserInterfaceServiceProvider;
 use Laravel\Fortify\FortifyServiceProvider as LaravelFortifyServiceProvider;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Spatie\Newsletter\NewsletterServiceProvider;
 
 /**
  * @coversNothing
@@ -29,6 +30,7 @@ class TestCase extends Orchestra
             UserInterfaceServiceProvider::class,
             LaravelFortifyServiceProvider::class,
             FortifyServiceProvider::class,
+            NewsletterServiceProvider::class,
         ];
     }
 }

@@ -60,3 +60,8 @@ it('will reject if the value is too short', function () {
     expect((new Username())->message())
         ->toBe(':attribute must be at least 3 characters.');
 });
+
+it('can handle a customized message', function () {
+    expect((new Username())->withMessage('foo')->message())
+        ->toBe('foo');
+});

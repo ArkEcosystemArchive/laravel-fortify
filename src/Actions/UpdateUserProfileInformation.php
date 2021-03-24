@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace ARKEcosystem\Fortify\Actions;
 
-use ARKEcosystem\Fortify\Rules\AllowedCharactersUsername;
 use ARKEcosystem\Fortify\Rules\PoliteUsername;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Validator;

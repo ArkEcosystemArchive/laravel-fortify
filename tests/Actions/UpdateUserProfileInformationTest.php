@@ -16,27 +16,27 @@ it('should update the profile information', function () {
     expect($user->email)->toBe('john@doe.com');
 
     resolve(UpdateUserProfileInformation::class)->update($user, [
-        'name'  => 'Jane Doe',
+        'name'  => 'JaneDoe',
         'email' => 'jane@doe.com',
     ]);
 
-    expect($user->name)->toBe('Jane Doe');
+    expect($user->name)->toBe('JaneDoe');
     expect($user->email)->toBe('jane@doe.com');
 });
 
 it('should update the profile information for a user that requires verification', function () {
     $user = createUserModel(UserWithNotifications::class);
 
-    expect($user->name)->toBe('John Doe');
+    expect($user->name)->toBe('JohnDoe');
     expect($user->email)->toBe('john@doe.com');
     expect($user->email_verified_at)->not()->toBeNull();
 
     resolve(UpdateUserProfileInformation::class)->update($user, [
-        'name'  => 'Jane Doe',
+        'name'  => 'JaneDoe',
         'email' => 'jane@doe.com',
     ]);
 
-    expect($user->name)->toBe('Jane Doe');
+    expect($user->name)->toBe('JaneDoe');
     expect($user->email)->toBe('jane@doe.com');
     expect($user->email_verified_at)->toBeNull();
 });

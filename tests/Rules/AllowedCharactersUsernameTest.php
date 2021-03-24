@@ -47,6 +47,7 @@ it('can fail validation', function () {
     expect($subject->passes('name', 'foo-bar'))->toBeFalse();
     expect($subject->passes('name', 'foo..bar'))->toBeFalse();
     expect($subject->passes('name', 'foo--bar'))->toBeFalse();
+    expect($subject->passes('name', 'foo bar'))->toBeFalse();
     expect($subject->passes('name', str_repeat('f', 31)))->toBeFalse();
 });
 

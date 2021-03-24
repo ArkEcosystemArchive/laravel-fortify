@@ -26,23 +26,26 @@ class Password extends Fortify
      */
     public function passes($attribute, $value)
     {
-        if ($this->needsLowercase($value ?: '')) {
+        // Handle potential NULL values
+        $value = $value ?: '';
+
+        if ($this->needsLowercase($value)) {
             return false;
         }
 
-        if ($this->needsUppercase($value ?: '')) {
+        if ($this->needsUppercase($value)) {
             return false;
         }
 
-        if ($this->needsNumeric($value ?: '')) {
+        if ($this->needsNumeric($value)) {
             return false;
         }
 
-        if ($this->needsSpecialCharacter($value ?: '')) {
+        if ($this->needsSpecialCharacter($value)) {
             return false;
         }
 
-        return ! $this->needsMinimumLength($value ?: '');
+        return ! $this->needsMinimumLength($value);
     }
 
     /**

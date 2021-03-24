@@ -10,7 +10,7 @@ final class AllowedCharactersUsername implements Rule
 {
     public function passes($attribute, $value)
     {
-        return preg_match('/^[a-z\d](?:[a-z\d ]|-(?=[a-z\d])){0,38}$/i', $value) === 1;
+        return preg_match('/^[a-z\d](?:[a-z\d]|[_|\.](?=[a-z\d])){2,29}$/i', $value) === 1;
     }
 
     public function message()

@@ -8,7 +8,7 @@ final class Constants
 {
     const MAX_DISPLAY_NAME_CHARACTERS = 40;
 
-    const MAX_NAME_CHARACTERS = 30;
+    const MAX_USERNAME_CHARACTERS = 30;
 
-    const MIN_NAME_CHARACTERS = 3;
+    const MIN_USERNAME_CHARACTERS = 3;
 }

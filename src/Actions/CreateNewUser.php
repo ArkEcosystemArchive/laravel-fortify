@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace ARKEcosystem\Fortify\Actions;
 
 use ARKEcosystem\Fortify\Models;
-use ARKEcosystem\Fortify\Rules\AllowedCharactersUsername;
 use ARKEcosystem\Fortify\Rules\PoliteUsername;
+use ARKEcosystem\Fortify\Rules\Username;
 use ARKEcosystem\Fortify\Support\Enums\Constants;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
@@ -54,7 +54,7 @@ class CreateNewUser implements CreatesNewUsers
     private function buildValidator(array $input): ValidationValidator
     {
         $rules = [
-            'name'              => ['required', 'string', 'min:' . Constants::MIN_NAME_CHARACTERS, 'max:' . Constants::MAX_NAME_CHARACTERS, resolve(PoliteUsername::class)],
+            'name'              => ['required', 'string', 'min:' . Constants::MIN_USERNAME_CHARACTERS, 'max:' . Constants::MAX_USERNAME_CHARACTERS, resolve(PoliteUsername::class)],
             Fortify::username() => $this->usernameRules(),
             'password'          => $this->passwordRules(),
             'terms'             => ['required', 'accepted'],
@@ -62,7 +62,9 @@ class CreateNewUser implements CreatesNewUsers
         ];
 
         if ($usernameAlt = Config::get('fortify.username_alt')) {
-            $rules[$usernameAlt] = ['required', 'string', 'min:' . Constants::MIN_NAME_CHARACTERS, 'max:' . Constants::MAX_NAME_CHARACTERS, 'unique:users', resolve(PoliteUsername::class), resolve(AllowedCharactersUsername::class)];
+            $rules[$usernameAlt] = [
+                'required', 'string', 'min:' . Constants::MIN_USERNAME_CHARACTERS, 'max:' . Constants::MAX_USERNAME_CHARACTERS, 'unique:users', resolve(PoliteUsername::class), resolve(Username::class)
+            ];
         }
 
         return Validator::make($input, $rules);
@@ -85,12 +87,12 @@ class CreateNewUser implements CreatesNewUsers
 
     private function usernameRules(): mixed
     {
-        $rules = ['required', 'string', 'min:' . Constants::MIN_NAME_CHARACTERS, 'max:' . Constants::MAX_NAME_CHARACTERS, 'unique:users', resolve(PoliteUsername::class)];
+        $rules = ['required', 'string', 'min:' . Constants::MIN_USERNAME_CHARACTERS, 'max:' . Constants::MAX_USERNAME_CHARACTERS, 'unique:users', resolve(PoliteUsername::class)];
 
         if (Fortify::username() === 'email') {
             $rules[] = 'email';
         } else {
-            $rules[] = resolve(AllowedCharactersUsername::class);
+            $rules[] = resolve(Username::class);
         }
 
         return $rules;

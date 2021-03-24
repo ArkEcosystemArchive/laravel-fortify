@@ -54,7 +54,7 @@ class CreateNewUser implements CreatesNewUsers
     private function buildValidator(array $input): ValidationValidator
     {
         $rules = [
-            'name'              => ['required', 'string', 'min:' . Constants::MIN_NAME_CHARACTERS, 'max:' . Constants::MAX_NAME_CHARACTERS, resolve(PoliteUsername::class)],
+            'name'              => ['required', 'string', 'min:'.Constants::MIN_NAME_CHARACTERS, 'max:'.Constants::MAX_NAME_CHARACTERS, resolve(PoliteUsername::class)],
             Fortify::username() => $this->usernameRules(),
             'password'          => $this->passwordRules(),
             'terms'             => ['required', 'accepted'],
@@ -62,7 +62,7 @@ class CreateNewUser implements CreatesNewUsers
         ];
 
         if ($usernameAlt = Config::get('fortify.username_alt')) {
-            $rules[$usernameAlt] = ['required', 'string', 'min:' . Constants::MIN_NAME_CHARACTERS, 'max:' . Constants::MAX_NAME_CHARACTERS, 'unique:users', resolve(PoliteUsername::class), resolve(AllowedCharactersUsername::class)];
+            $rules[$usernameAlt] = ['required', 'string', 'min:'.Constants::MIN_NAME_CHARACTERS, 'max:'.Constants::MAX_NAME_CHARACTERS, 'unique:users', resolve(PoliteUsername::class), resolve(AllowedCharactersUsername::class)];
         }
 
         return Validator::make($input, $rules);
@@ -85,7 +85,7 @@ class CreateNewUser implements CreatesNewUsers
 
     private function usernameRules(): mixed
     {
-        $rules = ['required', 'string', 'min:' . Constants::MIN_NAME_CHARACTERS, 'max:' . Constants::MAX_NAME_CHARACTERS, 'unique:users', resolve(PoliteUsername::class)];
+        $rules = ['required', 'string', 'min:'.Constants::MIN_NAME_CHARACTERS, 'max:'.Constants::MAX_NAME_CHARACTERS, 'unique:users', resolve(PoliteUsername::class)];
 
         if (Fortify::username() === 'email') {
             $rules[] = 'email';

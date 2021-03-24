@@ -24,7 +24,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     public function update($user, array $input)
     {
         Validator::make($input, [
-            'name'  => ['required', 'string', 'min:3', 'max:30', resolve(PoliteUsername::class), resolve(AllowedCharactersUsername::class)],
+            'name'  => ['required', 'string', 'min:3', 'max:30', resolve(PoliteUsername::class)],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
         ])->validateWithBag('updateProfileInformation');
 

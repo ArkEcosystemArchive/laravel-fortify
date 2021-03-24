@@ -16,27 +16,27 @@ it('should update the profile information', function () {
     expect($user->email)->toBe('john@doe.com');
 
     resolve(UpdateUserProfileInformation::class)->update($user, [
-        'name'  => 'JaneDoe',
+        'name'  => 'Jane Doe',
         'email' => 'jane@doe.com',
     ]);
 
-    expect($user->name)->toBe('JaneDoe');
+    expect($user->name)->toBe('Jane Doe');
     expect($user->email)->toBe('jane@doe.com');
 });
 
 it('should update the profile information for a user that requires verification', function () {
     $user = createUserModel(UserWithNotifications::class);
 
-    expect($user->name)->toBe('JohnDoe');
+    expect($user->name)->toBe('John Doe');
     expect($user->email)->toBe('john@doe.com');
     expect($user->email_verified_at)->not()->toBeNull();
 
     resolve(UpdateUserProfileInformation::class)->update($user, [
-        'name'  => 'JaneDoe',
+        'name'  => 'Jane Doe',
         'email' => 'jane@doe.com',
     ]);
 
-    expect($user->name)->toBe('JaneDoe');
+    expect($user->name)->toBe('Jane Doe');
     expect($user->email)->toBe('jane@doe.com');
     expect($user->email_verified_at)->toBeNull();
 });
@@ -63,9 +63,9 @@ it('should throw an exception if the name is too long', function () {
     $user = createUserModel();
 
     expectValidationError(fn () => resolve(UpdateUserProfileInformation::class)->update($user, [
-        'name'  => str_repeat('a', 33),
+        'name'  => 'a'.str_repeat('a', 30),
         'email' => 'jane@doe.com',
-    ]), 'name', 'The name may not be greater than 32 characters.');
+    ]), 'name', 'The name may not be greater than 30 characters.');
 });
 
 it('should throw an exception if the email is missing', function () {
@@ -102,13 +102,4 @@ it('should not update the profile information if the name of the user contain pr
         'name'  => 'Penis Doe',
         'email' => 'jane@doe.com',
     ]), 'name', trans('fortify::validation.messages.polite_username'));
-});
-
-it('should not update the profile information if the name of the user is only composed of special characters', function () {
-    $user = createUserModel();
-
-    expectValidationError(fn () => resolve(UpdateUserProfileInformation::class)->update($user, [
-        'name'  => '.',
-        'email' => 'jane@doe.com',
-    ]), 'name', trans('fortify::validation.messages.allowed_characters_username'));
 });

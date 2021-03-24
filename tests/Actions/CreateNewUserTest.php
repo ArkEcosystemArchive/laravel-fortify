@@ -231,15 +231,15 @@ it('should require to not have any profanity in the name', function () {
     ]), 'name', trans('fortify::validation.messages.polite_username'));
 });
 
-it('should require to not have only special characters in the name', function () {
+it('should require to not have only special characters in the username', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
 
     expectValidationError(fn () => (new CreateNewUser())->create([
-        'name'                  => '.',
-        'username'              => 'alfonsobries',
+        'name'                  => 'John Doe',
+        'username'              => '._._._',
         'email'                 => 'john@doe.com',
         'password'              => 'sec$r2t12345',
         'password_confirmation' => 'sec$r2t12345',
         'terms'                 => true,
-    ]), 'name', trans('fortify::validation.messages.allowed_characters_username'));
+    ]), 'username', trans('fortify::validation.messages.allowed_characters_username'));
 });

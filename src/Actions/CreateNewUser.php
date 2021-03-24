@@ -84,10 +84,12 @@ class CreateNewUser implements CreatesNewUsers
 
     private function usernameRules(): mixed
     {
-        $rules = ['required', 'string', 'min:3', 'max:30', 'unique:users', resolve(PoliteUsername::class), resolve(AllowedCharactersUsername::class)];
+        $rules = ['required', 'string', 'min:3', 'max:30', 'unique:users', resolve(PoliteUsername::class)];
 
         if (Fortify::username() === 'email') {
             $rules[] = 'email';
+        } else {
+            $rules[] = resolve(AllowedCharactersUsername::class);
         }
 
         return $rules;

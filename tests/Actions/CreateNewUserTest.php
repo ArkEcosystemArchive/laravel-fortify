@@ -7,7 +7,6 @@ use ARKEcosystem\Fortify\Models;
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
-use Laravel\Fortify\Fortify;
 
 use function Tests\expectValidationError;
 use Tests\stubs\TestUser;

@@ -16,7 +16,7 @@ return [
             'consecutive_special_characters'  => 'Username must not contain consecutive special characters',
             'forbidden_special_characters'    => 'Username must only contain letters, numbers and _ .',
             'max_length'                      => 'Username may not have more than :length characters.',
-            'min_length'                      => 'Username must be at least :length characters.'
+            'min_length'                      => 'Username must be at least :length characters.',
         ],
     ],
 ];

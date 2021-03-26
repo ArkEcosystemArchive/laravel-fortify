@@ -3,65 +3,87 @@
 declare(strict_types=1);
 
 use ARKEcosystem\Fortify\Rules\Username;
+use ARKEcosystem\Fortify\Support\Enums\Constants;
 
 it('handle null values', function () {
-    $rule = new Username();
+    $subject = new Username();
 
-    expect($rule->passes('username', null))->toBeFalse();
+    expect($subject->passes('username', null))->toBeFalse();
 });
 
 it('will reject if the value starts with a special character', function () {
-    $rule = new Username();
+    $subject = new Username();
 
-    expect($rule->passes('username', '-foo'))->toBeFalse();
-    expect($rule->passes('username', '_foo'))->toBeFalse();
-    expect($rule->passes('username', '=foo'))->toBeFalse();
-    expect($rule->passes('username', '!foo'))->toBeFalse();
-    expect($rule->passes('username', '.foo'))->toBeFalse();
+    expect($subject->passes('username', '_foo'))->toBeFalse();
+    expect($subject->passes('username', '.foo'))->toBeFalse();
 
-    expect($rule->message())->toBe(trans('fortify::validation.messages.username.special_character_start'));
+    expect($subject->message())->toBe(trans('fortify::validation.messages.username.special_character_start'));
 });
 
 it('will reject if the value ends with a special character', function () {
-    $rule = new Username();
+    $subject = new Username();
 
-    expect($rule->passes('username', 'foo-'))->toBeFalse();
-    expect($rule->passes('username', 'foo_'))->toBeFalse();
-    expect($rule->passes('username', 'foo='))->toBeFalse();
-    expect($rule->passes('username', 'foo!'))->toBeFalse();
-    expect($rule->passes('username', 'foo.'))->toBeFalse();
+    expect($subject->passes('username', 'foo_'))->toBeFalse();
+    expect($subject->passes('username', 'foo.'))->toBeFalse();
 
-    expect($rule->message())->toBe(trans('fortify::validation.messages.username.special_character_end'));
+    expect($subject->message())->toBe(trans('fortify::validation.messages.username.special_character_end'));
 });
 
 it('will reject if the value contains consecutive special chars', function () {
-    $rule = new Username();
+    $subject = new Username();
 
-    expect($rule->passes('username', 'foo__bar'))->toBeFalse();
-    expect($rule->passes('username', 'foo--bar'))->toBeFalse();
-    expect($rule->passes('username', 'foo..bar'))->toBeFalse();
-    expect($rule->passes('username', 'foo-bar__baz'))->toBeFalse();
+    expect($subject->passes('username', 'foo__bar'))->toBeFalse();
+    expect($subject->passes('username', 'foo..bar'))->toBeFalse();
+    expect($subject->passes('username', 'foo_bar__baz'))->toBeFalse();
+    expect($subject->passes('username', 'foo.bar..baz'))->toBeFalse();
 
-    expect($rule->message())->toBe(trans('fortify::validation.messages.username.consecutive_special_characters'));
+    expect($subject->message())->toBe(trans('fortify::validation.messages.username.consecutive_special_characters'));
 });
 
 it('will reject if the value contains any forbidden special chars', function () {
-    $rule = new Username();
+    $subject = new Username();
 
-    expect($rule->passes('username', 'foo!bar'))->toBeFalse();
-    expect($rule->passes('username', 'foo=bar'))->toBeFalse();
-    expect($rule->passes('username', 'foo?bar'))->toBeFalse();
-    expect($rule->passes('username', 'foo&baz'))->toBeFalse();
+    expect($subject->passes('username', 'foo!bar'))->toBeFalse();
+    expect($subject->passes('username', 'foo=bar'))->toBeFalse();
+    expect($subject->passes('username', 'foo?bar'))->toBeFalse();
+    expect($subject->passes('username', 'foo&baz'))->toBeFalse();
+    expect($subject->passes('username', 'foo,baz'))->toBeFalse();
+    expect($subject->passes('username', 'foo;baz'))->toBeFalse();
 
-    expect($rule->message())->toBe(trans('fortify::validation.messages.username.forbidden_special_characters'));
+    expect($subject->message())->toBe(trans('fortify::validation.messages.username.forbidden_special_characters'));
 });
 
 it('will reject if the value is too short', function () {
-    expect((new Username())->message())
-        ->toBe(':attribute must be at least 3 characters.');
+    $subject = new Username();
+
+    expect($subject->passes('username', 'a'))->toBeFalse();
+
+    expect($subject->message())
+        ->toBe(trans('fortify::validation.messages.username.min_length', [
+            'length'    => Constants::MIN_USERNAME_CHARACTERS,
+        ]));
 });
 
-it('can handle a customized message', function () {
-    expect((new Username())->withMessage('foo')->message())
-        ->toBe('foo');
+it('will reject if the value is too long', function () {
+    $subject = new Username();
+
+    expect($subject->passes('username', str_repeat('a', 31)))->toBeFalse();
+
+    expect($subject->message())
+        ->toBe(trans('fortify::validation.messages.username.max_length', [
+            'length'    => Constants::MAX_USERNAME_CHARACTERS,
+        ]));
+});
+
+it('would not reject if value is using allowed characters', function () {
+    $subject = new Username();
+
+    expect($subject->passes('username', 'foo_bar'))->toBeTrue();
+    expect($subject->passes('username', 'foo.bar'))->toBeTrue();
+    expect($subject->passes('username', 'foo_bar.baz'))->toBeTrue();
+    expect($subject->passes('username', 'foo.bar_baz'))->toBeTrue();
+    expect($subject->passes('username', 'foo_123'))->toBeTrue();
+    expect($subject->passes('username', 'foo.123'))->toBeTrue();
+    expect($subject->passes('username', 'foo_123.baz'))->toBeTrue();
+    expect($subject->passes('username', 'foo.123_baz'))->toBeTrue();
 });

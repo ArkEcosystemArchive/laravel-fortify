@@ -39,6 +39,13 @@ class Username extends Fortify
     protected $withConsecutiveSpecialChars = false;
 
     /**
+     * Indicates if the username contains consecutive special characters.
+     *
+     * @var bool
+     */
+    public $hasReachedMaxLength = false;
+
+    /**
      * Determine if the validation rule passes.
      *
      * @param string $attribute
@@ -75,6 +82,12 @@ class Username extends Fortify
             return false;
         }
 
+        if ($this->needsMaximumLength($value)) {
+            $this->hasReachedMaxLength = true;
+
+            return false;
+        }
+
         return ! $this->needsMinimumLength($value);
     }
 
@@ -83,12 +96,8 @@ class Username extends Fortify
      *
      * @return string
      */
-    public function message()
+    public function message(): string
     {
-        if ($this->message) {
-            return $this->message;
-        }
-
         switch (true) {
             case $this->withSpecialCharAtTheStart:
                 return trans('fortify::validation.messages.username.special_character_start');
@@ -102,8 +111,13 @@ class Username extends Fortify
             case $this->withForbiddenSpecialChars:
                 return trans('fortify::validation.messages.username.forbidden_special_characters');
 
+            case $this->hasReachedMaxLength:
+                return trans('fortify::validation.messages.username.max_length', [
+                    'length'    => Constants::MAX_USERNAME_CHARACTERS,
+                ]);
+
             default:
-                return trans(':attribute must be at least :length characters.', [
+                return trans('fortify::validation.messages.username.min_length', [
                     'length' => Constants::MIN_USERNAME_CHARACTERS,
                 ]);
         }
@@ -111,7 +125,7 @@ class Username extends Fortify
 
     public function withForbiddenSpecialChars(string $value): bool
     {
-        return preg_match('/\W+/', $value) === 1;
+        return preg_match('/[^\w.]/', $value) === 1;
     }
 
     public function withSpecialCharAtTheStart(string $value): bool
@@ -126,11 +140,16 @@ class Username extends Fortify
 
     public function withConsecutiveSpecialChars(string $value): bool
     {
-        return preg_match('/^(?!.*([._%+-])\1)[A-Za-z0-9._%+-]+$/', $value) === 0;
+        return preg_match('/^(?!.*([._])\1)[A-Za-z0-9._]+$/', $value) === 0;
     }
 
     public function needsMinimumLength(string $value): bool
     {
         return Str::length($value) < Constants::MIN_USERNAME_CHARACTERS;
+    }
+
+    public function needsMaximumLength(string $value): bool
+    {
+        return Str::length($value) > Constants::MAX_USERNAME_CHARACTERS;
     }
 }

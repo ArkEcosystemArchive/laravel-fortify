@@ -63,7 +63,7 @@ class CreateNewUser implements CreatesNewUsers
 
         if ($usernameAlt = Config::get('fortify.username_alt')) {
             $rules[$usernameAlt] = [
-                'required', 'string', 'min:'.Constants::MIN_USERNAME_CHARACTERS, 'max:'.Constants::MAX_USERNAME_CHARACTERS, 'unique:users', resolve(PoliteUsername::class), resolve(Username::class),
+                'required', 'string', 'unique:users', resolve(PoliteUsername::class), resolve(Username::class),
             ];
         }
 

@@ -8,11 +8,10 @@
         keydown-enter="subscribe"
         autocomplete="email"
         input-class="w-full"
-        container-class="overflow-hidden rounded-lg"
         :errors="$errors"
         :hide-label="true"
     >
-        <button type="submit" class="block px-2 text-theme-secondary-500">
+        <button type="submit" class="block px-2 text-theme-secondary-500 bg-white">
             @svg('paper-plane', 'w-5 h-5')
         </button>
     </x-ark-input-with-icon>

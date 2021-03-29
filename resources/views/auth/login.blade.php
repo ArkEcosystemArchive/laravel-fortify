@@ -52,6 +52,7 @@
                         :name="$username"
                         :label="$label"
                         autocomplete="email"
+                        autocapitalize="none"
                         class="w-full"
                         :autofocus="true"
                         :value="old($username)"

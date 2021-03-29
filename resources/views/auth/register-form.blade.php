@@ -16,6 +16,7 @@
                     name="username"
                     :label="trans('fortify::forms.username')"
                     autocomplete="username"
+                    autocapitalize="none"
                     class="w-full"
                     :errors="$errors"
                 />
@@ -34,6 +35,7 @@
                     name="name"
                     :label="trans('fortify::forms.display_name')"
                     autocomplete="name"
+                    autocapitalize="none"
                     class="w-full"
                     :autofocus="true"
                     :errors="$errors"
@@ -54,6 +56,7 @@
                     name="email"
                     :label="trans('fortify::forms.email')"
                     autocomplete="email"
+                    autocapitalize="none"
                     class="w-full"
                     :errors="$errors"
                 />

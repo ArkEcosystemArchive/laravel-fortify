@@ -17,6 +17,7 @@
                 name="email"
                 :label="trans('fortify::forms.email')"
                 autocomplete="email"
+                autocapitalize="none"
                 class="w-full"
                 :autofocus="true"
                 :required="true"

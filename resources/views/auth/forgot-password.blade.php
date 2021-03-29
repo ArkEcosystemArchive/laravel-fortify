@@ -37,6 +37,7 @@
                                 name="email"
                                 label="Email"
                                 autocomplete="email"
+                                autocapitalize="none"
                                 class="w-full"
                                 :autofocus="true"
                                 :required="true"

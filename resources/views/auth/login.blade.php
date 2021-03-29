@@ -22,15 +22,15 @@
         >
             @csrf
 
-            @if (session('status'))
-                <x-ark-alert type="alert-success">
-                    <x-slot name="message">
-                        {{ session('status') }}
-                    </x-slot>
-                </x-ark-alert>
-            @endif
+            <div class="flex flex-col space-y-8">
+                @if (session('status'))
+                    <x-ark-alert type="success">
+                        <x-slot name="message">
+                            {{ session('status') }}
+                        </x-slot>
+                    </x-ark-alert>
+                @endif
 
-            <div class="mb-8">
                 <div class="flex flex-1">
                     @php
                         $username = \Laravel\Fortify\Fortify::username();
@@ -58,9 +58,7 @@
                         :errors="$errors"
                     />
                 </div>
-            </div>
 
-            <div class="mb-8">
                 <div class="flex flex-1">
                     <x-ark-input
                         type="password"
@@ -71,18 +69,18 @@
                         :errors="$errors"
                     />
                 </div>
-            </div>
 
-            <div class="flex flex-col-reverse items-center justify-between space-y-4 md:space-y-0 md:flex-row">
-                @if(Route::has('password.request'))
-                    <div class="flex-1 mt-8 md:mt-0">
-                        <a href="{{ route('password.request') }}" class="link">@lang('fortify::auth.sign-in.forgot_password')</a>
-                    </div>
-                @endif
+                <div class="flex flex-col-reverse items-center justify-between space-y-4 md:space-y-0 md:flex-row">
+                    @if(Route::has('password.request'))
+                        <div class="flex-1 mt-8 md:mt-0">
+                            <a href="{{ route('password.request') }}" class="link">@lang('fortify::auth.sign-in.forgot_password')</a>
+                        </div>
+                    @endif
 
-                <button type="submit" class="w-full button-secondary md:w-auto">
-                    @lang('fortify::actions.sign_in')
-                </button>
+                    <button type="submit" class="w-full button-secondary md:w-auto">
+                        @lang('fortify::actions.sign_in')
+                    </button>
+                </div>
             </div>
         </form>
 

@@ -1,4 +1,4 @@
-<div class="flex-1">
+<form id="newsletter" class="flex-1" wire:submit.prevent="subscribe">
     <x-ark-input-with-icon
         type="email"
         id="subscribe_email"
@@ -8,11 +8,10 @@
         keydown-enter="subscribe"
         autocomplete="email"
         input-class="w-full"
-        container-class="overflow-hidden rounded-lg"
         :errors="$errors"
         :hide-label="true"
     >
-        <button wire:click="subscribe" class="block px-2 text-theme-secondary-500">
+        <button type="submit" class="block px-2 text-theme-secondary-500 bg-white">
             @svg('paper-plane', 'w-5 h-5')
         </button>
     </x-ark-input-with-icon>
@@ -32,4 +31,4 @@
             <div class="mt-1 text-sm font-semibold">{{ $status }}</div>
         @endif
     @endif
-</div>
+</form>

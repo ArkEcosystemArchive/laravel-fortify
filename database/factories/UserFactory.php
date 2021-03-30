@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use ARKEcosystem\Fortify\Models\User;
+use ARKEcosystem\Fortify\Rules\PoliteUsername;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -56,5 +57,23 @@ final class UserFactory extends Factory
         return $this->state(fn () => [
             'username' => $this->faker->unique()->userName,
         ]);
+    }
+
+    /**
+     * Ensures the name doesnt have any profanity
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function withoutProfanities()
+    {
+        $rule = resolve(PoliteUsername::class);
+
+        dd($rule);
+        // // do {
+        // //     $this->faker->unique()->userName
+        // // } while()
+        // return $this->state(fn () => [
+        //     'name' => $this->faker->unique()->userName,
+        // ]);
     }
 }

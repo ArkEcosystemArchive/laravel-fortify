@@ -113,7 +113,7 @@ class Username extends Fortify
 
             case $this->hasReachedMaxLength:
                 return trans('fortify::validation.messages.username.max_length', [
-                    'length'    => Constants::MAX_USERNAME_CHARACTERS,
+                    'length' => Constants::MAX_USERNAME_CHARACTERS,
                 ]);
 
             default:

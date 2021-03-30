@@ -7,6 +7,7 @@ use ARKEcosystem\Fortify\Models;
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
+
 use function Tests\expectValidationError;
 use Tests\stubs\TestUser;
 
@@ -70,6 +71,7 @@ it('should require an email', function () {
     expectValidationError(fn () => (new CreateNewUser())->create([
         'name'                  => 'John Doe',
         'username'              => 'alfonsobries',
+        'email'                 => '',
         'password'              => $this->validPassword,
         'password_confirmation' => $this->validPassword,
         'terms'                 => true,
@@ -229,4 +231,35 @@ it('should require to not have any profanity in the name', function () {
         'password_confirmation' => 'sec$r2t12345',
         'terms'                 => true,
     ]), 'name', trans('fortify::validation.messages.polite_username'));
+});
+
+it('should require to have a properly formatted username', function () {
+    Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
+
+    expectValidationError(fn () => (new CreateNewUser())->create([
+        'name'                  => 'John Doe',
+        'username'              => '_johndoe',
+        'email'                 => 'john@doe.com',
+        'password'              => 'sec$r2t12345',
+        'password_confirmation' => 'sec$r2t12345',
+        'terms'                 => true,
+    ]), 'username', trans('fortify::validation.messages.username.special_character_start'));
+});
+
+it('should work with username authentication', function () {
+    Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
+    Config::set('fortify.username_alt', 'username');
+
+    $user = (new CreateNewUser())->create([
+        'name'                  => 'John Doe',
+        'username'              => 'alfonsobries',
+        'email'                 => 'john@doe.com',
+        'password'              => $this->validPassword,
+        'password_confirmation' => $this->validPassword,
+        'terms'                 => true,
+    ]);
+
+    $this->assertSame('john@doe.com', $user->email);
+    $this->assertSame('John Doe', $user->name);
+    $this->assertTrue(Hash::check($this->validPassword, $user->password));
 });

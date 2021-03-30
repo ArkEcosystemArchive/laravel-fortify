@@ -51,6 +51,8 @@ return [
 
 **Note:** If you use the `username_alt` setting, you need to ensure that your users table has that column.
 
+**Note:** Currently fortify is intended to be used with `'username' => 'email'` in your config, as it expect the `email` property to be set when creating a new user.
+
 7. Register databags in your `AppServiceProvider` that are used by the auth pages
 
 ```php

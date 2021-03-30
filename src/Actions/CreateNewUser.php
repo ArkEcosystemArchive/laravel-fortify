@@ -67,10 +67,6 @@ class CreateNewUser implements CreatesNewUsers
             ];
         }
 
-        if (Config::get('fortify.username')) {
-            $rules['email'] = ['email', 'required'];
-        }
-
         return Validator::make($input, $rules);
     }
 
@@ -84,10 +80,6 @@ class CreateNewUser implements CreatesNewUsers
 
         if ($usernameAlt = Config::get('fortify.username_alt')) {
             $userData[$usernameAlt] = $input[$usernameAlt];
-        }
-
-        if (Config::get('fortify.username')) {
-            $userData['email'] = $input['email'];
         }
 
         return $userData;

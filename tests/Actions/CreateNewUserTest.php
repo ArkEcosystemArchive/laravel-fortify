@@ -248,7 +248,7 @@ it('should require to have a properly formatted username', function () {
 
 it('should work with username authentication', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
-    Config::set('fortify.username', 'username');
+    Config::set('fortify.username_alt', 'username');
 
     $user = (new CreateNewUser())->create([
         'name'                  => 'John Doe',

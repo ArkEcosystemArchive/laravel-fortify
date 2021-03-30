@@ -60,7 +60,7 @@ final class UserFactory extends Factory
     }
 
     /**
-     * Ensures the name doesnt have any profanity
+     * Ensures the name doesnt have any profanity.
      *
      * @return \Illuminate\Database\Eloquent\Factories\Factory
      */

@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace ARKEcosystem\Fortify\Components;
 
 use ARKEcosystem\Fortify\Components\Concerns\InteractsWithUser;
+use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
+use DanHarrin\LivewireRateLimiting\WithRateLimiting;
+use Illuminate\Support\Facades\RateLimiter;
 use Livewire\Component;
 use Spatie\PersonalDataExport\Jobs\CreatePersonalDataExportJob;
-use DanHarrin\LivewireRateLimiting\WithRateLimiting;
-use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
-use Illuminate\Support\Facades\RateLimiter;
 
 class ExportUserData extends Component
 {

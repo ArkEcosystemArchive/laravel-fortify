@@ -19,7 +19,7 @@ final class OneLetter implements Rule
     public function passes($attribute, $value)
     {
         // At least one (unicode) letter
-        $regex = '/^.*\p{L}.*$/u';;
+        $regex = '/^.*\p{L}.*$/u';
 
         return preg_match($regex, $value) > 0;
     }

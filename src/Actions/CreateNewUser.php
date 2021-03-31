@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace ARKEcosystem\Fortify\Actions;
 
 use ARKEcosystem\Fortify\Models;
+use ARKEcosystem\Fortify\Rules\DisplayNameCharacters;
+use ARKEcosystem\Fortify\Rules\OneLetter;
 use ARKEcosystem\Fortify\Rules\PoliteUsername;
+use ARKEcosystem\Fortify\Rules\StartsWithLetterOrNumber;
 use ARKEcosystem\Fortify\Rules\Username;
 use ARKEcosystem\Fortify\Support\Enums\Constants;
 use Illuminate\Support\Facades\Config;
@@ -54,7 +57,15 @@ class CreateNewUser implements CreatesNewUsers
     private function buildValidator(array $input): ValidationValidator
     {
         $rules = [
-            'name'              => ['required', 'string', 'min:'.Constants::MIN_DISPLAY_NAME_CHARACTERS, 'max:'.Constants::MAX_DISPLAY_NAME_CHARACTERS, resolve(PoliteUsername::class)],
+            'name'              => [
+                'required',
+                'max:'.Constants::MAX_DISPLAY_NAME_CHARACTERS,
+                'min:'.Constants::MIN_DISPLAY_NAME_CHARACTERS,
+                new DisplayNameCharacters(),
+                new OneLetter(),
+                new StartsWithLetterOrNumber(),
+                resolve(PoliteUsername::class),
+            ],
             Fortify::username() => $this->usernameRules(),
             'password'          => $this->passwordRules(),
             'terms'             => ['required', 'accepted'],

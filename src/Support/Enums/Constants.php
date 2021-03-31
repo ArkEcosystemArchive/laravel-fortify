@@ -6,7 +6,7 @@ namespace ARKEcosystem\Fortify\Support\Enums;
 
 final class Constants
 {
-    const MAX_DISPLAY_NAME_CHARACTERS = 40;
+    const MAX_DISPLAY_NAME_CHARACTERS = 30;
 
     const MIN_DISPLAY_NAME_CHARACTERS = 3;
 

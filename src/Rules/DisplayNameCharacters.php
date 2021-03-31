@@ -31,6 +31,6 @@ final class DisplayNameCharacters implements Rule
      */
     public function message()
     {
-        return trans('validation.messages.some_special_characters');
+        return trans('fortify::validation.messages.some_special_characters');
     }
 }

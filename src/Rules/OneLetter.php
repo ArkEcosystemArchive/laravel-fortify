@@ -31,6 +31,6 @@ final class OneLetter implements Rule
      */
     public function message()
     {
-        return trans('validation.messages.include_letters');
+        return trans('fortify::validation.messages.include_letters');
     }
 }

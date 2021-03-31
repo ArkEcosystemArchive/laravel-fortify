@@ -41,7 +41,6 @@ it('accepts name with single quote', function () {
 it('doesnt accept other special characters', function ($name) {
     $rule = new DisplayNameCharacters();
     $this->assertFalse($rule->passes('name', $name));
-    $this->assertEquals(trans('validation.messages.some_special_characters'), $rule->message());
 })->with([
     'Martin Henriksen!',
     '@alfonsobries',
@@ -50,5 +49,5 @@ it('doesnt accept other special characters', function ($name) {
 
 it('has a message', function () {
     $rule = new DisplayNameCharacters();
-    $this->assertEquals(trans('validation.messages.some_special_characters'), $rule->message());
+    $this->assertEquals(trans('fortify::validation.messages.some_special_characters'), $rule->message());
 });

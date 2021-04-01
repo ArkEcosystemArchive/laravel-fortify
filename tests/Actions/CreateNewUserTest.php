@@ -220,19 +220,6 @@ it('doesnt mark the user email as verified if no ivitation ', function () {
     $this->assertNull($user->email_verified_at);
 });
 
-it('should require to not have any profanity in the name', function () {
-    Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
-
-    expectValidationError(fn () => (new CreateNewUser())->create([
-        'name'                  => 'John Penis',
-        'username'              => 'alfonsobries',
-        'email'                 => 'john@doe.com',
-        'password'              => 'sec$r2t12345',
-        'password_confirmation' => 'sec$r2t12345',
-        'terms'                 => true,
-    ]), 'name', trans('fortify::validation.messages.polite_username'));
-});
-
 it('should require to have a properly formatted username', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
 

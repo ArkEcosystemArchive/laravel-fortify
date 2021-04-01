@@ -7,7 +7,6 @@ namespace ARKEcosystem\Fortify\Actions;
 use ARKEcosystem\Fortify\Models;
 use ARKEcosystem\Fortify\Rules\DisplayNameCharacters;
 use ARKEcosystem\Fortify\Rules\OneLetter;
-use ARKEcosystem\Fortify\Rules\PoliteUsername;
 use ARKEcosystem\Fortify\Rules\StartsWithLetterOrNumber;
 use ARKEcosystem\Fortify\Rules\Username;
 use ARKEcosystem\Fortify\Support\Enums\Constants;
@@ -64,7 +63,6 @@ class CreateNewUser implements CreatesNewUsers
                 new DisplayNameCharacters(),
                 new OneLetter(),
                 new StartsWithLetterOrNumber(),
-                resolve(PoliteUsername::class),
             ],
             Fortify::username() => $this->usernameRules(),
             'password'          => $this->passwordRules(),
@@ -74,7 +72,7 @@ class CreateNewUser implements CreatesNewUsers
 
         if ($usernameAlt = Config::get('fortify.username_alt')) {
             $rules[$usernameAlt] = [
-                'required', 'string', 'unique:users', resolve(PoliteUsername::class), resolve(Username::class),
+                'required', 'string', 'unique:users', resolve(Username::class),
             ];
         }
 

@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace ARKEcosystem\Fortify\Actions;
 
+use ARKEcosystem\Fortify\Rules\DisplayNameCharacters;
+use ARKEcosystem\Fortify\Rules\OneLetter;
 use ARKEcosystem\Fortify\Rules\PoliteUsername;
+use ARKEcosystem\Fortify\Rules\StartsWithLetterOrNumber;
 use ARKEcosystem\Fortify\Support\Enums\Constants;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Validator;
@@ -24,7 +27,15 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     public function update($user, array $input)
     {
         Validator::make($input, [
-            'name'  => ['required', 'string', 'min:'.Constants::MIN_DISPLAY_NAME_CHARACTERS, 'max:'.Constants::MAX_DISPLAY_NAME_CHARACTERS, resolve(PoliteUsername::class)],
+            'name'  => [
+                'required',
+                'max:'.Constants::MAX_DISPLAY_NAME_CHARACTERS,
+                'min:'.Constants::MIN_DISPLAY_NAME_CHARACTERS,
+                new DisplayNameCharacters(),
+                new OneLetter(),
+                new StartsWithLetterOrNumber(),
+                resolve(PoliteUsername::class),
+            ],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
         ])->validateWithBag('updateProfileInformation');
 

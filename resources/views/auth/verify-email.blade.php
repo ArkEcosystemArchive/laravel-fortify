@@ -1,4 +1,4 @@
-@extends('layouts.app', ['fullWidth' => true])
+@extends('layouts.app')
 
 @section('title')
     <x-data-bag key="fortify-content" resolver="name" view="ark-fortify::components.page-title" />
@@ -12,7 +12,7 @@
 @endsection
 
 @section('content')
-    <div class="flex max-w-xl py-8 px-4 sm:px-8 mx-auto my-6 bg-white rounded-lg">
+    <div class="flex max-w-xl p-8 mx-auto my-6 bg-white rounded-lg">
         <div class="flex flex-col w-full text-center space-y-6">
             <div class="space-y-4">
                 <h1>@lang('fortify::auth.verify.page_header')</h1>

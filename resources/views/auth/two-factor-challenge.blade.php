@@ -28,7 +28,7 @@
             x-show="!recovery"
             method="POST"
             action="{{ route('two-factor.login') }}"
-            class="flex flex-col p-8 mx-4 border-2 rounded-lg border-theme-secondary-200"
+                class="flex flex-col py-8 px-4 sm:px-8 mx-4 border-2 rounded-lg border-theme-secondary-200"
         >
             @csrf
 
@@ -51,7 +51,7 @@
                 <button @click="recovery = true" type="button" class="w-full mt-4 font-semibold link sm:w-auto sm:mt-0">
                     @lang('fortify::actions.enter_recovery_code')
                 </button>
-                
+
                 <button type="submit" class="w-full button-secondary sm:w-auto">
                     @lang('fortify::actions.sign_in')
                 </button>

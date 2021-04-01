@@ -14,11 +14,11 @@
 @section('content')
     <x-data-bag key="fortify-content" resolver="name" view="ark-fortify::components.component-heading" />
 
-    <div class="max-w-xl p-8 mx-auto">
+    <div class="max-w-xl py-8 mx-auto">
         <form
             method="POST"
             action="{{ route('login') }}"
-            class="flex flex-col p-8 mx-4 border-2 rounded-lg border-theme-secondary-200"
+            class="flex flex-col py-8 px-4 sm:px-8 mx-4 border-2 rounded-lg border-theme-secondary-200"
         >
             @csrf
 

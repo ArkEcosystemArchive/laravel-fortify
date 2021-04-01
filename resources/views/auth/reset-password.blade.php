@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['fullWidth' => true])
 
 @slot('title')
     <x-data-bag key="fortify-content" resolver="name" view="ark-fortify::components.page-title" />

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['fullWidth' => true])
 
 @section('title')
     <x-data-bag key="fortify-content" resolver="name" view="ark-fortify::components.page-title" />
@@ -26,7 +26,7 @@
                 <form
                     method="POST"
                     action="{{ route('password.email') }}"
-                    class="flex flex-col p-8 mx-4 border rounded-lg border-theme-secondary-200 md:mx-0 lg:p-8 xl:mx-8"
+                    class="flex flex-col py-8 px-4 sm:px-8 mx-4 border rounded-lg border-theme-secondary-200 md:mx-0 lg:p-8 xl:mx-8"
                 >
                     @csrf
 
@@ -44,8 +44,8 @@
                         </div>
                     </div>
 
-                    <div class="flex flex-col-reverse space-y-4 sm:space-y-0 sm:flex-row items-center justify-between">
-                        <div class="flex-1 mt-8 sm:mt-0">
+                    <div class="flex flex-col-reverse space-y-4 md:space-y-0 md:flex-row items-center justify-between">
+                        <div class="flex-1 mt-8 md:mt-0">
                             <a href="{{ route('login') }}" class="link">@lang('fortify::actions.cancel')</a>
                         </div>
 

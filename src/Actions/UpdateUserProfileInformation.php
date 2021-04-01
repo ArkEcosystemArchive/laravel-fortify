@@ -6,7 +6,6 @@ namespace ARKEcosystem\Fortify\Actions;
 
 use ARKEcosystem\Fortify\Rules\DisplayNameCharacters;
 use ARKEcosystem\Fortify\Rules\OneLetter;
-use ARKEcosystem\Fortify\Rules\PoliteUsername;
 use ARKEcosystem\Fortify\Rules\StartsWithLetterOrNumber;
 use ARKEcosystem\Fortify\Support\Enums\Constants;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -34,7 +33,6 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 new DisplayNameCharacters(),
                 new OneLetter(),
                 new StartsWithLetterOrNumber(),
-                resolve(PoliteUsername::class),
             ],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
         ])->validateWithBag('updateProfileInformation');

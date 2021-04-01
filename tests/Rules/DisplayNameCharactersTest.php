@@ -31,6 +31,7 @@ it('accepts name with unicode characters', function ($name) {
     'Père Noël',
     'Alfonso & sons',
     'Coca.Cola',
+    'Procter, Cremin and Crist',
 ]);
 
 it('accepts name with single quote', function () {

@@ -21,7 +21,8 @@
         "spatie/laravel-medialibrary": "^9.4",
         "konceiver/laravel-data-bags": "^1.1",
         "snipe/banbuilder": "^2.3",
-        "spatie/laravel-newsletter": "^4.9"
+        "spatie/laravel-newsletter": "^4.9",
+        "danharrin/livewire-rate-limiting": "^0.2.0"
     },
     "autoload": {
         "psr-4": {

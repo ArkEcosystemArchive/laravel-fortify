@@ -16,3 +16,18 @@ it('can export the user data', function () {
         ->call('export')
         ->assertSee(trans('fortify::pages.user-settings.data_exported'));
 });
+
+it('can only export the user data once every 15 min', function () {
+    $this->expectsJobs(CreatePersonalDataExportJob::class);
+
+    $component = Livewire::actingAs(createUserModel())
+        ->test(ExportUserData::class)
+        ->call('export')
+        ->assertSee(trans('fortify::pages.user-settings.data_exported'))
+        ->call('export')
+        ->assertDontSee(trans('fortify::pages.user-settings.data_exported'));
+
+    $this->travel(16)->minutes();
+
+    $component->call('export')->assertSee(trans('fortify::pages.user-settings.data_exported'));
+});

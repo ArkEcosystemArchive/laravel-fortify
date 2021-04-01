@@ -8,7 +8,11 @@
         </div>
 
         <div class="flex justify-end mt-8">
-            <button wire:loading.attr="disabled" type="submit" class="w-full button-secondary sm:w-auto" wire:click="export">@lang('fortify::actions.export_personal_data')</button>
+            <div @if($this->rateLimitReached()) data-tippy-content="@lang('fortify::messages.export_limit_reached')" @endif >
+                <button @if($this->rateLimitReached()) disabled @endif wire:loading.attr="disabled" type="submit" class="w-full button-secondary sm:w-auto" wire:click="export">
+                    @lang('fortify::actions.export_personal_data')
+                </button>
+            </div>
         </div>
     </div>
 </div>

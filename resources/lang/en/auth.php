@@ -9,18 +9,18 @@ return [
 
     'forgot-password' => [
         'page_header' => 'Password Reset Email',
-        'reset_link'  => 'Send Password Reset Link',
+        'reset_link'  => 'Send Reset Link',
     ],
 
     'sign-in' => [
         'forgot_password'  => 'Forgot password?',
-        'register_now'     => 'Not a member? <a href=":route" class="underline link font-semibold">Sign up</a>',
+        'register_now'     => 'Not a member? <a href=":route" class="font-semibold underline link">Sign up</a>',
     ],
 
     'register-form' => [
         'conditions'         => "Creating an account means you're okay with our <a href=':termsOfServiceRoute' class='link'>Terms of Service</a> and <a href=':privacyPolicyRoute' class='link'>Privacy Policy</a>.",
         'create_account'     => 'Create Account',
-        'already_member'     => 'Already have an account? <a href=":route" class="underline link font-semibold">Sign in</a>',
+        'already_member'     => 'Already have an account? <a href=":route" class="font-semibold underline link">Sign in</a>',
     ],
 
     'register' => [

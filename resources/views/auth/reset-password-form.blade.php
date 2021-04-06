@@ -1,7 +1,7 @@
 <form
     method="POST"
     action="{{ route('password.update') }}"
-    class="flex flex-col py-8 px-4 sm:px-8 mx-4 border rounded-lg border-theme-secondary-200 md:mx-0 lg:p-8 xl:mx-8"
+    class="flex flex-col px-4 py-8 mx-4 border-2 rounded-lg sm:px-8 border-theme-secondary-200"
     x-data="{ isTyping: false }"
 >
     @csrf
@@ -55,10 +55,12 @@
         </div>
     </div>
 
-    <div class="flex flex-col items-center justify-between w-full space-y-2 md:flex-row md:space-y-0">
-        <a href="{{ route('login') }}" class="link">@lang('fortify::actions.cancel')</a>
+    <div class="flex flex-col-reverse items-center justify-between space-y-4 md:space-y-0 md:flex-row">
+        <div class="flex-1 mt-8 md:mt-0">
+            <a href="{{ route('login') }}" class="link">@lang('fortify::actions.cancel')</a>
+        </div>
 
-        <button type="submit" class="w-full button-primary md:w-auto">
+        <button type="submit" class="w-full button-secondary md:w-auto">
             @lang('fortify::actions.reset_password')
         </button>
     </div>

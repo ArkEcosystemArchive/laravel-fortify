@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Validator as ValidationValidator;
+use Illuminate\Validation\Validator as Illuminate;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Fortify\Fortify;
 
@@ -53,7 +53,7 @@ class CreateNewUser implements CreatesNewUsers
         });
     }
 
-    private function buildValidator(array $input): ValidationValidator
+    protected function createValidationRules(): array
     {
         $rules = [
             'name'              => [
@@ -76,7 +76,12 @@ class CreateNewUser implements CreatesNewUsers
             ];
         }
 
-        return Validator::make($input, $rules);
+        return $rules;
+    }
+
+    private function buildValidator(array $input): Illuminate
+    {
+        return Validator::make($input, $this->createValidationRules());
     }
 
     private function getUserData(array $input): array

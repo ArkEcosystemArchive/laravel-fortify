@@ -39,6 +39,6 @@ return [
     'verify' => [
         'page_header'         => 'Verify Your Email Address',
         'link_description'    => 'A verification link has been sent to your email address.',
-        'resend_verification' => '<span>Before proceeding, please check your email for a verification link.</span> <span>If you did not receive the email, <button type="submit" class="link">click here to request another</button>.</span>',
+        'resend_verification' => '<span>Before proceeding, please check your email for a verification link.</span> <span>If you did not receive the email, <button x-ref="resend_submit" type="submit" class="link"><span x-ref="resend_tooltip" class="inline-block pointer-events-none" data-tippy-content="You need to wait 5 minutes before sending the link again. In the meantime you can check your spam folder.">click here to request another</span></button>.</span>',
     ],
 ];

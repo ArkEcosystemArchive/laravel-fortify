@@ -43,7 +43,14 @@ class Username extends Fortify
      *
      * @var bool
      */
-    public $hasReachedMaxLength = false;
+    protected $hasReachedMaxLength = false;
+
+    /**
+     * Indicates if the username contains any uppercase character.
+     *
+     * @var bool
+     */
+    protected $hasUpperCaseCharacters = false;
 
     /**
      * Determine if the validation rule passes.
@@ -88,6 +95,12 @@ class Username extends Fortify
             return false;
         }
 
+        if ($this->needsLowercase($value)) {
+            $this->hasUpperCaseCharacters = true;
+
+            return false;
+        }
+
         return ! $this->needsMinimumLength($value);
     }
 
@@ -115,6 +128,9 @@ class Username extends Fortify
                 return trans('fortify::validation.messages.username.max_length', [
                     'length' => Constants::MAX_USERNAME_CHARACTERS,
                 ]);
+
+            case $this->hasUpperCaseCharacters:
+                return trans('fortify::validation.messages.username.lowercase_only');
 
             default:
                 return trans('fortify::validation.messages.username.min_length', [
@@ -151,5 +167,10 @@ class Username extends Fortify
     public function needsMaximumLength(string $value): bool
     {
         return Str::length($value) > Constants::MAX_USERNAME_CHARACTERS;
+    }
+
+    public function needsLowercase(string $value): bool
+    {
+        return $value !== strtolower($value);
     }
 }

@@ -87,3 +87,27 @@ it('would not reject if value is using allowed characters', function () {
     expect($subject->passes('username', 'foo_123.baz'))->toBeTrue();
     expect($subject->passes('username', 'foo.123_baz'))->toBeTrue();
 });
+
+it('will reject if the value contains any uppercase character', function () {
+    $subject = new Username();
+
+    expect($subject->passes('username', 'Foo'))->toBeFalse();
+    expect($subject->passes('username', 'fOo'))->toBeFalse();
+    expect($subject->passes('username', 'foO'))->toBeFalse();
+    expect($subject->passes('username', 'Foo_bar'))->toBeFalse();
+    expect($subject->passes('username', 'foo_Bar'))->toBeFalse();
+    expect($subject->passes('username', 'Foo_Bar'))->toBeFalse();
+    expect($subject->passes('username', 'Foo.bar'))->toBeFalse();
+    expect($subject->passes('username', 'foo.Bar'))->toBeFalse();
+    expect($subject->passes('username', 'Foo.Bar'))->toBeFalse();
+
+    expect($subject->message())->toBe(trans('fortify::validation.messages.username.lowercase_only'));
+});
+
+it('will not reject if the value contains only lowercase character', function () {
+    $subject = new Username();
+
+    expect($subject->passes('username', 'foo'))->tobeTrue();
+    expect($subject->passes('username', 'foo_bar'))->tobeTrue();
+    expect($subject->passes('username', 'foo.bar'))->tobeTrue();
+});

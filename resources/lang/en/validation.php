@@ -11,7 +11,6 @@ return [
         'some_special_characters'                             => 'The :attribute can only contain letters, numbers and . & - _ ,',
         'include_letters'                                     => 'The :attribute needs at least one letter',
         'start_with_letter_or_number'                         => 'The :attribute must start with a letter or a number',
-        'lowercase_only'                                      => 'The :attribute must be lowercased.',
 
         'username' => [
             'special_character_start'         => 'Username must not start or end with special characters',
@@ -20,6 +19,7 @@ return [
             'forbidden_special_characters'    => 'Username must only contain letters, numbers and _ .',
             'max_length'                      => 'Username may not have more than :length characters.',
             'min_length'                      => 'Username must be at least :length characters.',
+            'lowercase_only'                  => 'Username must be lowercase characters.',
         ],
     ],
 ];

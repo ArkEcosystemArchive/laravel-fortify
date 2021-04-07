@@ -29,6 +29,8 @@ final class FooterEmailSubscriptionForm extends Component
         }
 
         $this->email = null;
+
+        $this->status = null;
     }
 
     /**

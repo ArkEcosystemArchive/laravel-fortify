@@ -47,7 +47,7 @@ class UpdatePasswordForm extends Component
             'password_confirmation' => '',
         ];
 
-        $this->emit('saved');
+        $this->dispatchBrowserEvent('saved');
         $this->resetRules();
 
         flash()->success(trans('fortify::pages.user-settings.password_updated'));

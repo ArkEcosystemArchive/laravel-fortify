@@ -1,5 +1,7 @@
 @extends('layouts.app', ['fullWidth' => true])
 
+<x-ark-metadata page="sign-in" />
+
 @section('title')
     <x-data-bag key="fortify-content" resolver="name" view="ark-fortify::components.page-title" />
 @endsection

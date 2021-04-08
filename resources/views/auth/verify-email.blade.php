@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+<x-ark-metadata page="verification.notice" no-description no-image />
+
 @section('title')
     <x-data-bag key="fortify-content" resolver="name" view="ark-fortify::components.page-title" />
 @endsection

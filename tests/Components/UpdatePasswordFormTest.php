@@ -23,7 +23,7 @@ it('can interact with the form', function () {
         ->set('state.password', 'abcd1234ABCD%')
         ->set('state.password_confirmation', 'abcd1234ABCD%')
         ->call('updatePassword')
-        ->assertDispatchedBrowserEvent('saved');
+        ->assertDispatchedBrowserEvent('updated-password');
 });
 
 it('clears password rules on update', function () {

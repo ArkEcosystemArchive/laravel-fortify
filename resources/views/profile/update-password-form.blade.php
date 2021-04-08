@@ -1,4 +1,4 @@
-<div x-data="{isTyping: false}" dusk="update-password-form" @saved.window="isTyping = false">
+<div x-data="{isTyping: false}" dusk="update-password-form" @updated-password.window="isTyping = false">
     <div class="flex flex-col space-y-4 mt-4">
         <div>
             <x-ark-flash />

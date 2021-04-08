@@ -35,5 +35,5 @@ it('should return false if not subscribed', function () {
     Config::set('newsletter.apiKey', 'test-test');
     Config::set('newsletter.lists.subscribers.id', 'list-id');
 
-    resolve(SubscribeToNewsletter::class)->execute('email@email.com', 'subscribers');
+    expect(resolve(SubscribeToNewsletter::class)->execute('email@email.com', 'subscribers'))->toBeFalse();
 });

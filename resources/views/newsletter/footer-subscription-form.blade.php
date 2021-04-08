@@ -12,7 +12,7 @@
         :hide-label="true"
     >
         <button type="submit" class="block px-2 text-theme-secondary-500 bg-white">
-            @svg('paper-plane', 'w-5 h-5')
+            <x-ark-icon name="paper-plane" />
         </button>
     </x-ark-input-with-icon>
 

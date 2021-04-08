@@ -23,7 +23,6 @@ class DeleteUserForm extends Component
 
     public string $feedback = '';
 
-    /** @phpstan-ignore-next-line  */
     protected $rules = [
         'feedback' => 'present|string|min:5|max:500',
     ];

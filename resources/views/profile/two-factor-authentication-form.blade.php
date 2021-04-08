@@ -91,7 +91,8 @@
             <span class="header-4">@lang('fortify::pages.user-settings.2fa_title')</span>
             <span class="mt-4">@lang('fortify::pages.user-settings.2fa_description')</span>
 
-            <div class="flex mt-8">
+            <div class="mt-4 sm:mt-8 flex flex-col items-center space-y-4 sm:items-start sm:flex-row sm:space-y-0 sm:space-x-6">
+                @svg('fortify-profile.2fa', 'w-48')
                 <div class="flex flex-col">
                     <span class="text-lg font-bold leading-7 text-theme-secondary-900">
                         @lang('fortify::pages.user-settings.2fa_enabled_title')
@@ -102,7 +103,11 @@
                 </div>
             </div>
 
-            <div class="flex sm:justify-end mt-8 space-x-3 w-full">
+            <div class="mt-8 flex flex-col space-y-3 sm:flex-row sm:justify-end sm:space-y-0 sm:space-x-3 w-full">
+                <button type="button" class="button-secondary w-full sm:w-auto" wire:click="showConfirmPassword">
+                    @lang('fortify::actions.recovery_codes')
+                </button>
+
                 <button type="submit" class="button-primary w-full sm:w-auto" wire:click="disableTwoFactorAuthentication">
                     @lang('fortify::actions.disable')
                 </button>
@@ -167,25 +172,39 @@
         </x-ark-modal>
     @endif
 
-    {{-- TODO: check if we allow users to show their recovery codes / generate new ones again --}}
-    {{-- <div class="mt-5">
-        @if (! $this->enabled)
-            <form class="space-y-8" wire:submit.prevent="enableTwoFactorAuthentication">
-                <x-ark-input type="number" name="state.otp" model="state.otp" :errors="$errors" :label="trans('fortify::pages.user-settings.one_time_password')" />
+    @if($this->confirmPasswordShown)
+        <x-ark-modal title-class="header-2" width-class="max-w-2xl" wire-close="closeConfirmPassword">
+            <x-slot name="title">
+                @lang('fortify::forms.confirm-password.title')
+            </x-slot>
 
-                <button type="submit" class="button-secondary" wire:loading.attr="disabled">@lang('fortify::actions.enable')</button>
-            </form>
-        @else
-            @if ($showingRecoveryCodes)
-                <button class="mr-3" wire:click="regenerateRecoveryCodes">
-                    {{ trans('Regenerate Recovery Codes') }}
-                </button>
-            @else
-                <button class="mr-3" wire:click="showRecoveryCodes">
-                    {{ trans('Show Recovery Codes') }}
-                </button>
-            @endif
+            <x-slot name="description">
+                <div class="flex flex-col mt-4">
+                    <div class="flex justify-center w-full mt-4">
+                        @svg('fortify-modal.confirm-password', 'w-full')
+                    </div>
+                    <div class="mt-4">
+                        @lang('fortify::forms.confirm-password.description')
+                    </div>
+                </div>
+                <form class="mt-8">
+                    <div class="space-y-2">
+                        <x-ark-input type="password" name="password" model="confirmedPassword" :label="trans('fortify::forms.password')" />
+                    </div>
+                </form>
+            </x-slot>
 
-        @endif
-    </div> --}}
+            <x-slot name="buttons">
+                <div class="flex flex-col-reverse w-full sm:flex-row justify-end space-y-4 space-y-reverse sm:space-y-0 sm:space-x-3">
+                    <button type="button" dusk="confirm-password-form-cancel" class="button-secondary" wire:click="closeConfirmPassword">
+                        @lang('fortify::actions.cancel')
+                    </button>
+
+                    <button type="submit" dusk="confirm-password-form-submit" class="inline-flex justify-center items-center button-primary" wire:click="showRecoveryCodesAfterPasswordConfirmation" {{ ! $this->hasConfirmedPassword() ? 'disabled' : ''}}>
+                        <span>@lang('fortify::actions.confirm')</span>
+                    </button>
+                </div>
+            </x-slot>
+        </x-ark-modal>
+    @endif
 </div>

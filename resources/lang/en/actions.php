@@ -24,4 +24,6 @@ return [
     'send'                    => 'Send',
     'skip'                    => 'Skip',
     'download'                => 'Download',
+    'recovery_codes'          => 'Recovery Codes',
+    'confirm'                 => 'Confirm',
 ];

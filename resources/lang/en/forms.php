@@ -58,4 +58,9 @@ return [
             'placeholder' => 'Describe your feedback here',
         ],
     ],
+
+    'confirm-password' => [
+        'title'        => '2FA Recovery Codes',
+        'description'  => 'Input your password to show your emergency two-factor recovery codes.',
+    ],
 ];

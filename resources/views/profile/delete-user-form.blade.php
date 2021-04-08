@@ -32,13 +32,17 @@
                 <form class="mt-8">
                     <div class="space-y-2">
                         <x-ark-input input-class="text-center" type="text" name="username" model="username" :label="trans('fortify::forms.confirm_username')" readonly />
-                        <x-ark-input type="text" name="username_confirmation" model="usernameConfirmation" :palceholder="trans('fortify::forms.delete-user.confirmation_placeholder')" :errors="$errors" hide-label />
+                        <x-ark-input type="text" name="username_confirmation" model="usernameConfirmation" :placeholder="trans('fortify::forms.delete-user.confirmation_placeholder')" :errors="$errors" hide-label />
+                    </div>
+                    <div class="mt-4">
+                        <label for="feedback" class="input-label">@lang('fortify::forms.feedback.label')</label>
+                        <x-ark-textarea name="feedback" model="feedback" :placeholder="trans('fortify::forms.feedback.placeholder')" rows="5" hide-label />
                     </div>
                 </form>
             </x-slot>
 
             <x-slot name="buttons">
-                <div class="flex flex-col w-full sm:flex-row justify-end space-y-4 sm:space-y-0 sm:space-x-3">
+                <div class="flex flex-col w-full sm:flex-row justify-end space-y-4 space-y-reverse sm:space-y-0 sm:space-x-3">
                     <button dusk="delete-user-form-cancel" class="button-secondary" wire:click="closeModal">
                         @lang('fortify::actions.cancel')
                     </button>

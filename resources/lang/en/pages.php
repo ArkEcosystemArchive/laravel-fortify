@@ -30,11 +30,6 @@ return [
         'password_updated'                  => 'Password was successfully updated',
     ],
 
-    'feedback' => [
-        'title'       => 'Provide feedback and help us improve!',
-        'description' => 'We are sad to see you go! Help us improve by providing the reason for your departure.',
-    ],
-
     'feedback_thank_you' => [
         'title'       => 'Thank you for your feedback',
         'description' => 'We\'re sorry to see you go. You can return anytime by creating a new account.',

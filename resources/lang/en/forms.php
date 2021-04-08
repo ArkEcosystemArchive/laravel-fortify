@@ -31,7 +31,7 @@ return [
 
     'delete-user' => [
         'title'                    => 'Delete Account',
-        'confirmation'             => 'Are you sure you want to delete your account? This action cannot be undone. Please input your username  to proceed or click cancel to go back.',
+        'confirmation'             => 'Deleting your account will also delete all Projects you own from MarketSquare, and these actions are permanent. Confirm your username below or click Cancel to go back.',
         'confirmation_placeholder' => 'Enter your username to confirm deletion',
     ],
 
@@ -53,9 +53,7 @@ return [
     ],
 
     'feedback' => [
-        'message' => [
-            'label'       => 'Feedback',
-            'placeholder' => 'Describe your feedback here',
-        ],
+        'label'       => 'Feedback&nbsp;<span class="text-theme-secondary-400">optional</span>',
+        'placeholder' => 'Provide feedback and help us...',
     ],
 ];

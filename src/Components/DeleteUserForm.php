@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace ARKEcosystem\Fortify\Components;
 
 use ARKEcosystem\Fortify\Contracts\DeleteUser;
+use ARKEcosystem\Fortify\Mail\SendFeedback;
 use ARKEcosystem\UserInterface\Http\Livewire\Concerns\HasModal;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
 use Livewire\Component;
 
@@ -18,6 +20,13 @@ class DeleteUserForm extends Component
     public string $username;
 
     public string $usernameConfirmation = '';
+
+    public string $feedback = '';
+
+    /** @phpstan-ignore-next-line  */
+    protected $rules = [
+        'feedback' => 'present|string|min:5|max:500',
+    ];
 
     public function mount()
     {
@@ -40,12 +49,25 @@ class DeleteUserForm extends Component
     public function deleteUser(DeleteUser $deleter, StatefulGuard $auth)
     {
         if ($this->hasConfirmedName()) {
+            $redirect = $this->sendFeedback();
+
             $deleter->delete(Auth::user()->fresh());
 
             $auth->logout();
 
-            $this->redirect(URL::temporarySignedRoute('profile.feedback', now()->addMinutes(15)));
+            $this->redirect($redirect);
         }
+    }
+
+    private function sendFeedback(): string
+    {
+        if ($this->feedback !== '' && $this->validate()) {
+            Mail::to(config('fortify.mail.feedback.address'))->send(new SendFeedback($this->feedback));
+
+            return URL::temporarySignedRoute('profile.feedback.thank-you', now()->addMinutes(15));
+        }
+
+        return route('home');
     }
 
     public function render()

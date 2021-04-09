@@ -92,7 +92,7 @@
             <span class="mt-4">@lang('fortify::pages.user-settings.2fa_description')</span>
 
             <div class="mt-4 sm:mt-8 flex flex-col items-center space-y-4 sm:items-start sm:flex-row sm:space-y-0 sm:space-x-6">
-                @svg('fortify-profile.2fa', 'w-48')
+                <img src="{{ asset('/images/profile/2fa.svg') }}" class="w-24 h-24" alt="">
                 <div class="flex flex-col">
                     <span class="text-lg font-bold leading-7 text-theme-secondary-900">
                         @lang('fortify::pages.user-settings.2fa_enabled_title')
@@ -180,10 +180,10 @@
 
             <x-slot name="description">
                 <div class="flex flex-col mt-4">
-                    <div class="flex justify-center w-full mt-4">
-                        @svg('fortify-modal.confirm-password', 'w-full')
+                    <div class="flex justify-center w-full mt-8">
+                        <img src="{{ asset('/images/auth/confirm-password.svg') }}" class="w-auto h-auto" alt="">
                     </div>
-                    <div class="mt-4">
+                    <div class="mt-8">
                         @lang('fortify::forms.confirm-password.description')
                     </div>
                 </div>

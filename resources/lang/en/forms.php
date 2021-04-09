@@ -16,6 +16,7 @@ return [
     '2fa_code'                 => '2FA Verification Code',
     'recovery_code'            => 'Recovery Code',
     'confirm_username'         => 'Your Username',
+    'optional'                 => 'optional',
 
     'update-password' => [
         'requirements_notice' => 'Password must be 12–128 characters, and include a number, a symbol, a lower and an upper case letter.',
@@ -53,7 +54,7 @@ return [
     ],
 
     'feedback' => [
-        'label'       => 'Feedback&nbsp;<span class="text-theme-secondary-400">optional</span>',
+        'label'       => 'Feedback',
         'placeholder' => 'Provide feedback and help us...',
     ],
 ];

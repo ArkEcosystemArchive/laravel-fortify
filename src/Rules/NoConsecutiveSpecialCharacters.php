@@ -19,7 +19,7 @@ final class NoConsecutiveSpecialCharacters implements Rule
     public function passes($attribute, $value)
     {
         // No consecutive characters
-        $regex = '/\A\W?(?>\w+\W)*\w*\z/u';
+        $regex = '/\A[^a-zA-Z0-9]?(?>[a-zA-Z0-9]+[^a-zA-Z0-9])*[a-zA-Z0-9]*\z/u';
 
         return preg_match($regex, $value) > 0;
     }

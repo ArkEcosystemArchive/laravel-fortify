@@ -36,13 +36,6 @@ class Username extends Fortify
      *
      * @var bool
      */
-    protected $withConsecutiveSpecialChars = false;
-
-    /**
-     * Indicates if the username contains consecutive special characters.
-     *
-     * @var bool
-     */
     protected $hasReachedMaxLength = false;
 
     /**
@@ -83,12 +76,6 @@ class Username extends Fortify
             return false;
         }
 
-        if ($this->withConsecutiveSpecialChars($value)) {
-            $this->withConsecutiveSpecialChars = true;
-
-            return false;
-        }
-
         if ($this->needsMaximumLength($value)) {
             $this->hasReachedMaxLength = true;
 
@@ -118,10 +105,7 @@ class Username extends Fortify
             case $this->withSpecialCharAtTheEnd:
                 return trans('fortify::validation.messages.username.special_character_end');
 
-            case $this->withConsecutiveSpecialChars:
-                return trans('fortify::validation.messages.username.consecutive_special_characters');
-
-            case $this->withForbiddenSpecialChars:
+                case $this->withForbiddenSpecialChars:
                 return trans('fortify::validation.messages.username.forbidden_special_characters');
 
             case $this->hasReachedMaxLength:
@@ -152,11 +136,6 @@ class Username extends Fortify
     public function withSpecialCharAtTheEnd(string $value): bool
     {
         return preg_match('/\W$|[_|\.]$/', $value) === 1;
-    }
-
-    public function withConsecutiveSpecialChars(string $value): bool
-    {
-        return preg_match('/^(?!.*([._])\1)[A-Za-z0-9._]+$/', $value) === 0;
     }
 
     public function needsMinimumLength(string $value): bool

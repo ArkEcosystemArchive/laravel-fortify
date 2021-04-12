@@ -12,6 +12,7 @@ it('doesnt accept a name with two consecutive special characters ', function ($n
     '..hello',
     'some.*string',
     'test$=2222',
+    'consecutive._special_.characters',
 ]);
 
 it('accepts a name with no consecutive special characters ', function ($name) {
@@ -22,6 +23,7 @@ it('accepts a name with no consecutive special characters ', function ($name) {
     '.hello.',
     'some*s.tring',
     '$test$2222$',
+    'consecutive.special_characters'
 ]);
 
 it('has a message', function () {

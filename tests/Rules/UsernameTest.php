@@ -29,6 +29,18 @@ it('will reject if the value ends with a special character', function () {
     expect($subject->message())->toBe(trans('fortify::validation.messages.username.special_character_end'));
 });
 
+it('will reject if the value contains consecutive special chars', function () {
+    $subject = new Username();
+
+    expect($subject->passes('username', 'foo__bar'))->toBeFalse();
+    expect($subject->passes('username', 'foo..bar'))->toBeFalse();
+    expect($subject->passes('username', 'foo_bar__baz'))->toBeFalse();
+    expect($subject->passes('username', 'foo.bar..baz'))->toBeFalse();
+    expect($subject->passes('username', 'consecutive._special_.characters'))->toBeFalse();
+
+    expect($subject->message())->toBe(trans('fortify::validation.messages.username.consecutive_special_characters'));
+});
+
 it('will reject if the value contains any forbidden special chars', function () {
     $subject = new Username();
 

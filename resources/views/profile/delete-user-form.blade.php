@@ -54,7 +54,7 @@
                             model="feedback"
                             :label="trans('fortify::forms.feedback.label')"
                             :placeholder="trans('fortify::forms.feedback.placeholder')"
-                            :optional="trans('fortify::forms.optional')"
+                            :auxiliary-title="trans('fortify::forms.optional')"
                             rows="5"
                         />
                     </div>

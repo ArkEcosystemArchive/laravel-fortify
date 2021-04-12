@@ -16,6 +16,7 @@ return [
     '2fa_code'                 => '2FA Verification Code',
     'recovery_code'            => 'Recovery Code',
     'confirm_username'         => 'Your Username',
+    'optional'                 => 'optional',
 
     'update-password' => [
         'requirements_notice' => 'Password must be 12–128 characters, and include a number, a symbol, a lower and an upper case letter.',
@@ -31,7 +32,7 @@ return [
 
     'delete-user' => [
         'title'                    => 'Delete Account',
-        'confirmation'             => 'Are you sure you want to delete your account? This action cannot be undone. Please input your username  to proceed or click cancel to go back.',
+        'confirmation'             => 'Deleting your account will also delete all Projects you own from MarketSquare, and these actions are permanent. Confirm your username below or click Cancel to go back.',
         'confirmation_placeholder' => 'Enter your username to confirm deletion',
     ],
 
@@ -53,9 +54,7 @@ return [
     ],
 
     'feedback' => [
-        'message' => [
-            'label'       => 'Feedback',
-            'placeholder' => 'Describe your feedback here',
-        ],
+        'label'       => 'Feedback',
+        'placeholder' => 'Provide feedback and help us...',
     ],
 ];

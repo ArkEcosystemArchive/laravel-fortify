@@ -24,8 +24,6 @@ it('accepts a name with no consecutive special characters ', function ($name) {
     '$test$2222$',
 ]);
 
-
-
 it('has a message', function () {
     $rule = new NoConsecutiveSpecialCharacters();
     $this->assertEquals(trans('fortify::validation.messages.no_consecutive_characters'), $rule->message());

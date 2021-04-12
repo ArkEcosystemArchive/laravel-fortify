@@ -1,3 +1,19 @@
+@php
+    use \Illuminate\View\ComponentAttributeBag;
+
+    $twoAuthLink1 = view('ark::external-link-confirm', [
+        'attributes' => new ComponentAttributeBag([]),
+        'text' => 'Authy',
+        'url' => 'https://authy.com',
+    ])->render();
+
+    $twoAuthLink2 = view('ark::external-link-confirm', [
+        'attributes' => new ComponentAttributeBag([]),
+        'text' => 'Google Authenticator',
+        'url' => 'https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2',
+    ])->render();
+@endphp
+
 <div>
     @if (! $this->enabled)
         <div class="flex flex-col w-full space-y-8">
@@ -16,8 +32,8 @@
                 </span>
                 <div class="mt-2 text-base leading-7 text-theme-secondary-600">
                     @lang('fortify::pages.user-settings.2fa_summary', [
-                        'link1' => view('components.external-link', ['text' => 'Authy', 'url'  => 'https://authy.com'])->render(),
-                        'link2' => view('components.external-link', ['text' => 'Google Authenticator', 'url'  => 'https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2'])->render(),
+                        'link1' => $twoAuthLink1,
+                        'link2' => $twoAuthLink2,
                     ])
                 </div>
             </div>
@@ -51,10 +67,12 @@
                     <span class="text-lg font-bold leading-7 text-theme-secondary-900">
                         @lang('fortify::pages.user-settings.2fa_not_enabled_title')
                     </span>
+
+
                     <div class="mt-2 text-base leading-7 text-theme-secondary-600">
                         @lang('fortify::pages.user-settings.2fa_summary', [
-                            'link1' => view('components.external-link', ['text' => 'Authy', 'url'  => 'https://authy.com'])->render(),
-                            'link2' => view('components.external-link', ['text' => 'Google Authenticator', 'url'  => 'https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2'])->render(),
+                            'link1' => $twoAuthLink1,
+                            'link2' => $twoAuthLink2,
                         ])
                     </div>
 
@@ -104,9 +122,10 @@
                         @lang('fortify::pages.user-settings.2fa_enabled_title')
                     </span>
                     <div class="mt-2 text-theme-secondary-600">
+
                         @lang('fortify::pages.user-settings.2fa_summary', [
-                            'link1' => view('components.external-link', ['text' => 'Authy', 'url'  => 'https://authy.com'])->render(),
-                            'link2' => view('components.external-link', ['text' => 'Google Authenticator', 'url'  => 'https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2'])->render(),
+                            'link1' => $twoAuthLink1,
+                            'link2' => $twoAuthLink2,
                         ])
                     </div>
                 </div>

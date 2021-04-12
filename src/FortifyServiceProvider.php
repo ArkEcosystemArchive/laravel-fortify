@@ -15,7 +15,6 @@ use ARKEcosystem\Fortify\Components\FooterEmailSubscriptionForm;
 use ARKEcosystem\Fortify\Components\LogoutOtherBrowserSessionsForm;
 use ARKEcosystem\Fortify\Components\RegisterForm;
 use ARKEcosystem\Fortify\Components\ResetPasswordForm;
-use ARKEcosystem\Fortify\Components\SendFeedbackForm;
 use ARKEcosystem\Fortify\Components\TwoFactorAuthenticationForm;
 use ARKEcosystem\Fortify\Components\UpdatePasswordForm;
 use ARKEcosystem\Fortify\Components\UpdateProfileInformationForm;
@@ -128,7 +127,6 @@ class FortifyServiceProvider extends ServiceProvider
         Livewire::component('profile.update-profile-information-form', UpdateProfileInformationForm::class);
         Livewire::component('profile.update-profile-photo-form', UpdateProfilePhotoForm::class);
         Livewire::component('profile.update-timezone-form', UpdateTimezoneForm::class);
-        Livewire::component('profile.send-feedback-form', SendFeedbackForm::class);
         Livewire::component('auth.register-form', RegisterForm::class);
         Livewire::component('auth.reset-password-form', ResetPasswordForm::class);
         Livewire::component('newsletter.footer-subscription-form', FooterEmailSubscriptionForm::class);
@@ -252,12 +250,9 @@ class FortifyServiceProvider extends ServiceProvider
     public function registerRoutes(): void
     {
         Route::middleware('web')->group(function () {
-            Route::view(config('fortify.routes.feedback'), 'ark-fortify::profile.feedback')
-                ->name('profile.feedback')
-                ->middleware('signed');
-
             Route::view(config('fortify.routes.feedback_thank_you'), 'ark-fortify::profile.feedback-thank-you')
-                ->name('profile.feedback.thank-you');
+                ->name('profile.feedback.thank-you')
+                ->middleware('signed');
         });
     }
 }

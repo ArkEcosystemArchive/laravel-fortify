@@ -8,6 +8,5 @@ return [
     'register'                => 'Register',
     'login_with_two_factor'   => 'Login With Two Factor',
     'verify'                  => 'Verify',
-    'feedback'                => 'Feedback',
     'feedback_thank_you'      => 'Thank You',
 ];

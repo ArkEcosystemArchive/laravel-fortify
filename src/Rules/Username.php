@@ -156,7 +156,7 @@ class Username extends Fortify
 
     public function withConsecutiveSpecialChars(string $value): bool
     {
-        return preg_match('/^(?!.*([._])\1)[A-Za-z0-9._]+$/', $value) === 0;
+        return preg_match('/^[^a-zA-Z0-9]?(?>[a-zA-Z0-9]+[^a-zA-Z0-9])*[a-zA-Z0-9]*$/', $value) === 0;
     }
 
     public function needsMinimumLength(string $value): bool

@@ -36,6 +36,7 @@ it('will reject if the value contains consecutive special chars', function () {
     expect($subject->passes('username', 'foo..bar'))->toBeFalse();
     expect($subject->passes('username', 'foo_bar__baz'))->toBeFalse();
     expect($subject->passes('username', 'foo.bar..baz'))->toBeFalse();
+    expect($subject->passes('username', 'consecutive._special_.chars'))->toBeFalse();
 
     expect($subject->message())->toBe(trans('fortify::validation.messages.username.consecutive_special_characters'));
 });

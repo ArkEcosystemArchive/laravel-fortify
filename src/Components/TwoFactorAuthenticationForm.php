@@ -16,6 +16,8 @@ use BaconQrCode\Renderer\RendererStyle\Fill;
 use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 use BaconQrCode\Writer;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\View\View;
 use Laravel\Fortify\Actions\DisableTwoFactorAuthentication;
 use Laravel\Fortify\Actions\GenerateNewRecoveryCodes;
 use Laravel\Fortify\Contracts\TwoFactorAuthenticationProvider;
@@ -26,25 +28,14 @@ class TwoFactorAuthenticationForm extends Component
     use InteractsWithUser;
     use HasModal;
 
-    /**
-     * Indicates if two factor authentication QR code is being displayed.
-     *
-     * @var bool
-     */
-    public $showingQrCode = false;
+    public bool $showingQrCode = false;
 
-    /**
-     * The component's state.
-     *
-     * @var array
-     */
-    public $state = [];
+    public array $state = [];
 
-    /**
-     * Mount the component.
-     *
-     * @return void
-     */
+    public bool $confirmPasswordShown = false;
+
+    public string $confirmedPassword = '';
+
     public function mount(): void
     {
         if (! $this->enabled) {
@@ -52,24 +43,12 @@ class TwoFactorAuthenticationForm extends Component
         }
     }
 
-    /**
-     * Render the component.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function render()
+    public function render(): View
     {
         return view('ark-fortify::profile.two-factor-authentication-form');
     }
 
-    /**
-     * Enable two factor authentication for the user.
-     *
-     * @param \ARKEcosystem\Fortify\Actions\EnableTwoFactorAuthentication $enable
-     *
-     * @return void
-     */
-    public function enableTwoFactorAuthentication()
+    public function enableTwoFactorAuthentication(): void
     {
         $this->validate([
             'state.otp' => ['required', new OneTimePassword($this->state['two_factor_secret'])],
@@ -81,55 +60,30 @@ class TwoFactorAuthenticationForm extends Component
         $this->showRecoveryCodes();
     }
 
-    /**
-     * Display the user's recovery codes.
-     *
-     * @return void
-     */
-    public function showRecoveryCodes()
+    public function showRecoveryCodes(): void
     {
         $this->openModal();
     }
 
-    /**
-     * Generate new recovery codes for the user.
-     *
-     * @return void
-     */
-    public function regenerateRecoveryCodes()
+    public function regenerateRecoveryCodes(): void
     {
         app(GenerateNewRecoveryCodes::class)(Auth::user());
 
         $this->showRecoveryCodes();
     }
 
-    /**
-     * Disable two factor authentication for the user.
-     *
-     * @return void
-     */
-    public function disableTwoFactorAuthentication()
+    public function disableTwoFactorAuthentication(): void
     {
         app(DisableTwoFactorAuthentication::class)(Auth::user());
 
         $this->generateSecretKey();
     }
 
-    /**
-     * Determine if two factor authentication is enabled.
-     *
-     * @return bool
-     */
-    public function getEnabledProperty()
+    public function getEnabledProperty(): bool
     {
         return ! empty($this->user->two_factor_secret);
     }
 
-    /**
-     * Get the QR code SVG of the user's two factor authentication QR code URL.
-     *
-     * @return string
-     */
     public function getTwoFactorQrCodeSvgProperty(): string
     {
         $svg = (new Writer(
@@ -142,11 +96,6 @@ class TwoFactorAuthenticationForm extends Component
         return trim(substr($svg, strpos($svg, "\n") + 1));
     }
 
-    /**
-     * Get the two factor authentication QR code URL.
-     *
-     * @return string
-     */
     public function getTwoFactorQrCodeUrlProperty(): string
     {
         return app(TwoFactorAuthenticationProvider::class)->qrCodeUrl(
@@ -156,23 +105,37 @@ class TwoFactorAuthenticationForm extends Component
         );
     }
 
-    /**
-     * Hide the user's recovery codes.
-     *
-     * @return void
-     */
-    public function hideRecoveryCodes()
+    public function hideRecoveryCodes(): void
     {
         $this->closeModal();
     }
 
-    /**
-     * Generate the Two-Factor Authentication Secret Key.
-     *
-     * @return void
-     */
     private function generateSecretKey(): void
     {
         $this->state['two_factor_secret'] = app(GenerateTwoFactorAuthenticationSecretKey::class)();
+    }
+
+    public function showConfirmPassword(): void
+    {
+        $this->confirmPasswordShown = true;
+    }
+
+    public function closeConfirmPassword(): void
+    {
+        $this->confirmPasswordShown = false;
+
+        $this->confirmedPassword = '';
+    }
+
+    public function hasConfirmedPassword(): bool
+    {
+        return Hash::check($this->confirmedPassword, $this->user->password);
+    }
+
+    public function showRecoveryCodesAfterPasswordConfirmation(): void
+    {
+        $this->closeConfirmPassword();
+
+        $this->showRecoveryCodes();
     }
 }

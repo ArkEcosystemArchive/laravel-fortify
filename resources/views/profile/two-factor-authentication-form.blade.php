@@ -1,3 +1,19 @@
+@php
+    use \Illuminate\View\ComponentAttributeBag;
+
+    $twoAuthLink1 = view('ark::external-link-confirm', [
+        'attributes' => new ComponentAttributeBag([]),
+        'text' => 'Authy',
+        'url' => 'https://authy.com',
+    ])->render();
+
+    $twoAuthLink2 = view('ark::external-link-confirm', [
+        'attributes' => new ComponentAttributeBag([]),
+        'text' => 'Google Authenticator',
+        'url' => 'https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2',
+    ])->render();
+@endphp
+
 <div>
     @if (! $this->enabled)
         <div class="flex flex-col w-full space-y-8">
@@ -15,11 +31,14 @@
                     @lang('fortify::pages.user-settings.2fa_not_enabled_title')
                 </span>
                 <div class="mt-2 text-base leading-7 text-theme-secondary-600">
-                    @lang('fortify::pages.user-settings.2fa_summary')
+                    @lang('fortify::pages.user-settings.2fa_summary', [
+                        'link1' => $twoAuthLink1,
+                        'link2' => $twoAuthLink2,
+                    ])
                 </div>
             </div>
 
-            <div class="flex sm:hidden w-full mt-8 space-y-4">
+            <div class="flex w-full mt-8 space-y-4 sm:hidden">
                 <div class="w-full">
                     <x-ark-input
                         type="number"
@@ -30,29 +49,34 @@
                 </div>
             </div>
 
-            <hr class="flex sm:hidden my-8 border-t border-theme-primary-100">
+            <hr class="flex my-8 border-t sm:hidden border-theme-primary-100">
 
-            <div class="flex flex-col sm:flex-row items-center sm:items-start sm:mt-8">
-                <div class="flex flex-col justify-center items-center border border-theme-secondary-400 rounded-md sm:mr-10">
-                    <div class="py-2 px-2">
+            <div class="flex flex-col items-center sm:flex-row sm:items-start sm:mt-8">
+                <div class="flex flex-col items-center justify-center border rounded-md border-theme-secondary-400 sm:mr-10">
+                    <div class="px-2 py-2">
                         {!! $this->twoFactorQrCodeSvg !!}
                     </div>
-                    <div class="border-t border-theme-secondary-400 w-full text-center mt-1 py-2 bg-theme-secondary-100 rounded-b-md">
+                    <div class="w-full py-2 mt-1 text-center border-t border-theme-secondary-400 bg-theme-secondary-100 rounded-b-md">
                         <span class="text-theme-secondary-900">{{ $this->state['two_factor_secret'] }}</span>
                     </div>
                 </div>
 
-                <div class="hidden sm:flex h-64 w-1 bg-theme-primary-100 mr-10"></div>
+                <div class="hidden w-1 h-64 mr-10 sm:flex bg-theme-primary-100"></div>
 
-                <div class="hidden sm:flex flex-col">
+                <div class="flex-col hidden sm:flex">
                     <span class="text-lg font-bold leading-7 text-theme-secondary-900">
                         @lang('fortify::pages.user-settings.2fa_not_enabled_title')
                     </span>
+
+
                     <div class="mt-2 text-base leading-7 text-theme-secondary-600">
-                        @lang('fortify::pages.user-settings.2fa_summary')
+                        @lang('fortify::pages.user-settings.2fa_summary', [
+                            'link1' => $twoAuthLink1,
+                            'link2' => $twoAuthLink2,
+                        ])
                     </div>
 
-                    <div class="hidden md:flex w-full mt-8">
+                    <div class="hidden w-full mt-8 md:flex">
                         <div class="w-full">
                             <x-ark-input
                                 type="number"
@@ -65,7 +89,7 @@
                 </div>
             </div>
 
-            <div class="hidden sm:flex md:hidden w-full mt-8 space-y-4">
+            <div class="hidden w-full mt-8 space-y-4 sm:flex md:hidden">
                 <div class="w-full">
                     <x-ark-input
                         type="number"
@@ -76,10 +100,10 @@
                 </div>
             </div>
 
-            <div class="flex sm:justify-end mt-8">
+            <div class="flex mt-8 sm:justify-end">
                 <button
                     type="button"
-                    class="button-secondary w-full sm:w-auto"
+                    class="w-full button-secondary sm:w-auto"
                     wire:click="enableTwoFactorAuthentication"
                 >
                     @lang('fortify::actions.enable')
@@ -91,19 +115,28 @@
             <span class="header-4">@lang('fortify::pages.user-settings.2fa_title')</span>
             <span class="mt-4">@lang('fortify::pages.user-settings.2fa_description')</span>
 
-            <div class="flex mt-8">
+            <div class="flex flex-col items-center mt-4 space-y-4 sm:mt-8 sm:items-start sm:flex-row sm:space-y-0 sm:space-x-6">
+                <img src="{{ asset('/images/profile/2fa.svg') }}" class="w-24 h-24" alt="">
                 <div class="flex flex-col">
                     <span class="text-lg font-bold leading-7 text-theme-secondary-900">
                         @lang('fortify::pages.user-settings.2fa_enabled_title')
                     </span>
                     <div class="mt-2 text-theme-secondary-600">
-                        @lang('fortify::pages.user-settings.2fa_summary')
+
+                        @lang('fortify::pages.user-settings.2fa_summary', [
+                            'link1' => $twoAuthLink1,
+                            'link2' => $twoAuthLink2,
+                        ])
                     </div>
                 </div>
             </div>
 
-            <div class="flex sm:justify-end mt-8 space-x-3 w-full">
-                <button type="submit" class="button-primary w-full sm:w-auto" wire:click="disableTwoFactorAuthentication">
+            <div class="flex flex-col w-full mt-8 space-y-3 sm:flex-row sm:justify-end sm:space-y-0 sm:space-x-3">
+                <button type="button" class="w-full button-secondary sm:w-auto" wire:click="showConfirmPassword">
+                    @lang('fortify::actions.recovery_codes')
+                </button>
+
+                <button type="submit" class="w-full button-primary sm:w-auto" wire:click="disableTwoFactorAuthentication">
                     @lang('fortify::actions.disable')
                 </button>
             </div>
@@ -117,22 +150,22 @@
             @endslot
 
             @slot('description')
-                <div class="flex flex-col space-y-4 mt-8">
+                <div class="flex flex-col mt-8 space-y-4">
                     <x-ark-alert type="warning">
                         <x-slot name="message">
                             @lang('fortify::pages.user-settings.2fa_warning_text')
                         </x-slot>
                     </x-ark-alert>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 grid-flow-row gap-x-4 gap-y-4">
+                    <div class="grid grid-flow-row grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-4">
                         @foreach (json_decode(decrypt($this->user->two_factor_recovery_codes), true) as $code)
-                            <div class="flex border border-theme-secondary-300 rounded font-medium text-theme-secondary-900 h-12 items-center">
-                                <span class="flex bg-theme-secondary-100 h-full w-8 justify-center items-center rounded-l">
+                            <div class="flex items-center h-12 font-medium border rounded border-theme-secondary-300 text-theme-secondary-900">
+                                <span class="flex items-center justify-center w-8 h-full rounded-l bg-theme-secondary-100">
                                     {{ $loop->index + 1 }}
                                 </span>
                                 <input
                                     type="text"
                                     id="resetCode_{{ $loop->index }}"
-                                    class="ml-4 w-full"
+                                    class="w-full ml-4"
                                     value="{{ $code }}"
                                     readonly
                                 />
@@ -147,18 +180,18 @@
             @endslot
 
             @slot('buttons')
-                <div class="flex flex-col-reverse sm:flex-row w-full sm:justify-between">
-                    <div class="flex justify-center sm:justify-start w-full mt-3 sm:mt-0">
+                <div class="flex flex-col-reverse w-full sm:flex-row sm:justify-between">
+                    <div class="flex justify-center w-full mt-3 sm:justify-start sm:mt-0">
                         <x-ark-file-download
                             :filename="'2fa_recovery_code_' . $this->user->name"
                             :content="implode('\n', json_decode(decrypt($this->user->two_factor_recovery_codes)))"
                             :title="trans('fortify::actions.download')"
                             wrapper-class="w-full sm:w-auto"
-                            class="w-full justify-center"
+                            class="justify-center w-full"
                         />
                     </div>
                     <div class="flex justify-center">
-                        <button class="button-primary items-center w-full sm:w-auto whitespace-nowrap" wire:click="hideRecoveryCodes">
+                        <button class="items-center w-full button-primary sm:w-auto whitespace-nowrap" wire:click="hideRecoveryCodes">
                             @lang('fortify::actions.understand')
                         </button>
                     </div>
@@ -167,25 +200,39 @@
         </x-ark-modal>
     @endif
 
-    {{-- TODO: check if we allow users to show their recovery codes / generate new ones again --}}
-    {{-- <div class="mt-5">
-        @if (! $this->enabled)
-            <form class="space-y-8" wire:submit.prevent="enableTwoFactorAuthentication">
-                <x-ark-input type="number" name="state.otp" model="state.otp" :errors="$errors" :label="trans('fortify::pages.user-settings.one_time_password')" />
+    @if($this->confirmPasswordShown)
+        <x-ark-modal title-class="header-2" width-class="max-w-2xl" wire-close="closeConfirmPassword">
+            <x-slot name="title">
+                @lang('fortify::forms.confirm-password.title')
+            </x-slot>
 
-                <button type="submit" class="button-secondary" wire:loading.attr="disabled">@lang('fortify::actions.enable')</button>
-            </form>
-        @else
-            @if ($showingRecoveryCodes)
-                <button class="mr-3" wire:click="regenerateRecoveryCodes">
-                    {{ trans('Regenerate Recovery Codes') }}
-                </button>
-            @else
-                <button class="mr-3" wire:click="showRecoveryCodes">
-                    {{ trans('Show Recovery Codes') }}
-                </button>
-            @endif
+            <x-slot name="description">
+                <div class="flex flex-col mt-4">
+                    <div class="flex justify-center w-full mt-8">
+                        <img src="{{ asset('/images/auth/confirm-password.svg') }}" class="w-auto h-auto" alt="">
+                    </div>
+                    <div class="mt-8">
+                        @lang('fortify::forms.confirm-password.description')
+                    </div>
+                </div>
+                <form class="mt-8">
+                    <div class="space-y-2">
+                        <x-ark-input type="password" name="password" model="confirmedPassword" :label="trans('fortify::forms.password')" />
+                    </div>
+                </form>
+            </x-slot>
 
-        @endif
-    </div> --}}
+            <x-slot name="buttons">
+                <div class="flex flex-col-reverse justify-end w-full space-y-4 space-y-reverse sm:flex-row sm:space-y-0 sm:space-x-3">
+                    <button type="button" dusk="confirm-password-form-cancel" class="button-secondary" wire:click="closeConfirmPassword">
+                        @lang('fortify::actions.cancel')
+                    </button>
+
+                    <button type="submit" dusk="confirm-password-form-submit" class="inline-flex items-center justify-center button-primary" wire:click="showRecoveryCodesAfterPasswordConfirmation" {{ ! $this->hasConfirmedPassword() ? 'disabled' : ''}}>
+                        <span>@lang('fortify::actions.confirm')</span>
+                    </button>
+                </div>
+            </x-slot>
+        </x-ark-modal>
+    @endif
 </div>

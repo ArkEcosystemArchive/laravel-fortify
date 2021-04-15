@@ -31,6 +31,11 @@ final class FooterEmailSubscriptionForm extends Component
         $this->email = null;
     }
 
+    public function updatedEmail(): void
+    {
+        $this->validateOnly('email', ['email' => ['required', 'email']]);
+    }
+
     /**
      * Render the component.
      *

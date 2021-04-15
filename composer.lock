@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "53dd04aa7fd1f053f5720bc9f4d393b7",
+    "content-hash": "444e0c5d097f34ea02bf48c15dab5064",
     "packages": [
         {
             "name": "arkecosystem/ui",
-            "version": "2.18.12",
+            "version": "3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ArkEcosystem/laravel-ui.git",
-                "reference": "46006d2008e267e6960ee39ea89dbfd061d7eff3"
+                "reference": "7bebb8b2ad3b58dae8b3a4f513f024ccd2a3f215"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ArkEcosystem/laravel-ui/zipball/46006d2008e267e6960ee39ea89dbfd061d7eff3",
-                "reference": "46006d2008e267e6960ee39ea89dbfd061d7eff3",
+                "url": "https://api.github.com/repos/ArkEcosystem/laravel-ui/zipball/7bebb8b2ad3b58dae8b3a4f513f024ccd2a3f215",
+                "reference": "7bebb8b2ad3b58dae8b3a4f513f024ccd2a3f215",
                 "shasum": ""
             },
             "require": {
@@ -78,9 +78,9 @@
             "description": "User-Interface Scaffolding for Laravel. Powered by TailwindCSS.",
             "support": {
                 "issues": "https://github.com/ArkEcosystem/laravel-ui/issues",
-                "source": "https://github.com/ArkEcosystem/laravel-ui/tree/2.18.12"
+                "source": "https://github.com/ArkEcosystem/laravel-ui/tree/3.0.1"
             },
-            "time": "2021-03-23T13:09:10+00:00"
+            "time": "2021-04-14T13:17:50+00:00"
         },
         {
             "name": "bacon/bacon-qr-code",

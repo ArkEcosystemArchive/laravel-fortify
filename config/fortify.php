@@ -168,7 +168,6 @@ return [
     */
 
     'routes' => [
-        'feedback'           => env('ROUTE_FEEDBACK', '/feedback'),
         'feedback_thank_you' => env('ROUTE_FEEDBACK_THANK_YOU', '/feedback/thank-you'),
     ],
 

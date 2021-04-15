@@ -1,4 +1,4 @@
-<div x-data="{isTyping: false}" dusk="update-password-form">
+<div x-data="{isTyping: false}" dusk="update-password-form" @updated-password.window="isTyping = false">
     <div class="flex flex-col space-y-4 mt-4">
         <div>
             <x-ark-flash />
@@ -21,6 +21,7 @@
                 model="state.current_password"
                 :label="trans('fortify::forms.current_password')"
                 :errors="$errors"
+                class="w-full"
             />
 
             <x:ark-fortify::password-rules
@@ -35,8 +36,8 @@
                     model="state.password"
                     class="w-full"
                     :label="trans('fortify::forms.new_password')"
-                    @keydown="isTyping=true"
                     :errors="$errors"
+                    @keydown="isTyping=true"
                 />
             </x:ark-fortify::password-rules>
 

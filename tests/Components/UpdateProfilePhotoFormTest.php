@@ -17,7 +17,7 @@ it('can upload a photo', function () {
         ->shouldReceive('createFromDisk->withResponsiveImages->toMediaCollection')
         ->once();
 
-    $photo = UploadedFile::fake()->image('logo.jpeg');
+    $photo = UploadedFile::fake()->image('logo.jpeg', 150, 150);
 
     Livewire::actingAs(MediaUser::fake())
         ->test(UpdateProfilePhotoForm::class)
@@ -34,7 +34,7 @@ it('cannot upload a photo with disallowed extension', function () {
 });
 
 it('cannot upload a photo that is too large', function () {
-    $photo = UploadedFile::fake()->image('logo.jpeg')->size(5000);
+    $photo = UploadedFile::fake()->image('logo.jpeg', 150, 150)->size(5000);
 
     Livewire::actingAs(MediaUser::fake())
         ->test(UpdateProfilePhotoForm::class)
@@ -64,7 +64,7 @@ it('can delete a photo', function () {
         ->andReturn($collection);
 
     $photo = UploadedFile::fake()
-        ->image('logo.jpeg')
+        ->image('logo.jpeg', 150, 150)
         ->size(1);
 
     Livewire::actingAs(MediaUser::fake())

@@ -19,6 +19,7 @@ return [
             'forbidden_special_characters'    => 'Username must only contain letters, numbers and _ .',
             'max_length'                      => 'Username may not have more than :length characters.',
             'min_length'                      => 'Username must be at least :length characters.',
+            'lowercase_only'                  => 'Username must be lowercase characters.',
         ],
     ],
 ];

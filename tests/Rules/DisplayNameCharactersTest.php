@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 use ARKEcosystem\Fortify\Rules\DisplayNameCharacters;
 
+beforeEach(function (): void {
+    $this->rule = new DisplayNameCharacters();
+});
+
 it('accepts name with regular characters', function ($name) {
-    $rule = new DisplayNameCharacters();
-    $this->assertTrue($rule->passes('name', $name));
+    expect($this->rule->passes('name', $name))->toBeTrue();
 })->with([
     'Elon Tusk',
     'Rick Astley',
@@ -19,8 +22,7 @@ it('accepts name with regular characters', function ($name) {
 ]);
 
 it('accepts name with unicode characters', function ($name) {
-    $rule = new DisplayNameCharacters();
-    $this->assertTrue($rule->passes('name', $name));
+    expect($this->rule->passes('name', $name))->toBeTrue();
 })->with([
     'André Svenson',
     'John Elkjærd',
@@ -28,6 +30,7 @@ it('accepts name with unicode characters', function ($name) {
     'Ñoño',
     'François Hollande',
     'Jean-François d\'Abiguäel',
+    'Jean-François d’Abiguäel',
     'Père Noël',
     'Alfonso & sons',
     'Coca.Cola',
@@ -35,20 +38,36 @@ it('accepts name with unicode characters', function ($name) {
 ]);
 
 it('accepts name with single quote', function () {
-    $rule = new DisplayNameCharacters();
-    $this->assertTrue($rule->passes('name', 'Marco d\'Almeida'));
+    expect($this->rule->passes('name', 'Marco d\'Almeida'))->toBeTrue();
 });
 
 it('doesnt accept other special characters', function ($name) {
-    $rule = new DisplayNameCharacters();
-    $this->assertFalse($rule->passes('name', $name));
+    expect($this->rule->passes('name', $name))->toBeFalse();
 })->with([
     'Martin Henriksen!',
     '@alfonsobries',
     'php=cool',
+    '🤓', // EMOJI
+    '¯', // MACRON
+    '­', // SOFT HYPHEN
+    '–', // EN DASH
+    '‑', // NON-BREAKING HYPHEN
+    '—', // EM DASH
+    '_', // UNDERSCORE
+]);
+
+it('doesnt accept repetitive characters', function ($name) {
+    expect($this->rule->passes('name', $name))->toBeFalse();
+})->with([
+    'Marco d\'\'Almeida',
+    'Marco d’’Almeida',
+    'Alfonso && sons',
+    'Jean--François',
+    'Coca..Cola',
+    'Procter,, Cremin and Crist',
 ]);
 
 it('has a message', function () {
-    $rule = new DisplayNameCharacters();
-    $this->assertEquals(trans('fortify::validation.messages.some_special_characters'), $rule->message());
+    expect($this->rule->message())
+        ->toBe(trans('fortify::validation.messages.some_special_characters'));
 });

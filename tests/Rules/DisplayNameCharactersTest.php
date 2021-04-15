@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 use ARKEcosystem\Fortify\Rules\DisplayNameCharacters;
 
+beforeEach(function (): void {
+    $this->subject = new DisplayNameCharacters();
+});
+
 it('accepts name with regular characters', function ($name) {
-    $rule = new DisplayNameCharacters();
-    $this->assertTrue($rule->passes('name', $name));
+    $this->assertTrue($this->subject->passes('name', $name));
 })->with([
     'Elon Tusk',
     'Rick Astley',
@@ -19,8 +22,7 @@ it('accepts name with regular characters', function ($name) {
 ]);
 
 it('accepts name with unicode characters', function ($name) {
-    $rule = new DisplayNameCharacters();
-    $this->assertTrue($rule->passes('name', $name));
+    $this->assertTrue($this->subject->passes('name', $name));
 })->with([
     'André Svenson',
     'John Elkjærd',
@@ -35,13 +37,11 @@ it('accepts name with unicode characters', function ($name) {
 ]);
 
 it('accepts name with single quote', function () {
-    $rule = new DisplayNameCharacters();
-    $this->assertTrue($rule->passes('name', 'Marco d\'Almeida'));
+    $this->assertTrue($this->subject->passes('name', 'Marco d\'Almeida'));
 });
 
 it('doesnt accept other special characters', function ($name) {
-    $rule = new DisplayNameCharacters();
-    $this->assertFalse($rule->passes('name', $name));
+    $this->assertFalse($this->subject->passes('name', $name));
 })->with([
     'Martin Henriksen!',
     '@alfonsobries',
@@ -49,6 +49,27 @@ it('doesnt accept other special characters', function ($name) {
 ]);
 
 it('has a message', function () {
-    $rule = new DisplayNameCharacters();
-    $this->assertEquals(trans('fortify::validation.messages.some_special_characters'), $rule->message());
+    $this->assertEquals(trans('fortify::validation.messages.some_special_characters'), $this->subject->message());
 });
+
+it('will reject if the value contains any blacklisted name', function ($name) {
+    expect($this->subject->passes('name', $name))->toBeFalse();
+
+    expect($this->subject->message())->toBe(trans('fortify::validation.messages.username.blacklisted'));
+})->with([
+    'admin',
+    'root',
+    'www',
+    'president',
+    'server',
+    'staff',
+]);
+
+it('will not reject if the value not contains blacklisted name', function ($name) {
+    expect($this->subject->passes('name', $name))->toBeTrue();
+})->with([
+    'johndoe',
+    'john.doe',
+    'aboutme',
+    'about.you',
+]);

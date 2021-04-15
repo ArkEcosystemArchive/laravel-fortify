@@ -14,7 +14,7 @@
                 <span>@lang('fortify::auth.verify.line_2')</span>
                 <span @if($this->rateLimitReached())data-tippy-content="@lang('fortify::messages.resend_email_verification_limit')" @endif>
                     <button @if($this->rateLimitReached()) disabled @endif wire:loading.attr="disabled" type="submit" class="link">
-                        @lang('fortify::auth.verify.call_to_action')
+                        @lang('fortify::actions.resend_email_verification')
                     </button>
                 </span>
             </p>

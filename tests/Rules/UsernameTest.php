@@ -45,6 +45,20 @@ it('will reject if the value contains any forbidden special chars', function () 
     expect($this->subject->passes('username', 'foo,baz'))->toBeFalse();
     expect($this->subject->passes('username', 'foo;baz'))->toBeFalse();
 
+    expect($this->subject->passes('username', 'foo¡baz'))->toBeFalse(); // inverted exclamation mark
+    expect($this->subject->passes('username', 'foo¿baz'))->toBeFalse(); // inverted question mark
+    expect($this->subject->passes('username', 'foo⸘baz'))->toBeFalse(); // inverted interrobang
+    expect($this->subject->passes('username', 'foo‽baz'))->toBeFalse(); // interrobang
+    expect($this->subject->passes('username', 'foo“baz'))->toBeFalse(); // letf double quotation mark
+    expect($this->subject->passes('username', 'foo–baz'))->toBeFalse(); // en dash
+    expect($this->subject->passes('username', 'foo—baz'))->toBeFalse(); // em dash
+    expect($this->subject->passes('username', 'foo‑baz'))->toBeFalse(); // non-breaking hyphen
+    expect($this->subject->passes('username', 'f😱😱baz'))->toBeFalse(); // emoji
+    expect($this->subject->passes('username', 'f(oo)baz'))->toBeFalse(); // parentheses
+    expect($this->subject->passes('username', 'f[oo]baz'))->toBeFalse();
+    expect($this->subject->passes('username', 'f{oo}baz'))->toBeFalse();
+    expect($this->subject->passes('username', 'f<oo>baz'))->toBeFalse();
+
     expect($this->subject->message())->toBe(trans('fortify::validation.messages.username.forbidden_special_characters'));
 });
 

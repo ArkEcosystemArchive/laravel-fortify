@@ -23,6 +23,13 @@ final class DisplayNameCharacters implements Rule
     protected bool $withReservedName = false;
 
     /**
+     * Indicates if the display name contains any repetitive special chars.
+     *
+     * @var bool
+     */
+    protected bool $withRepetitiveSpecialChars = false;
+
+    /**
      * Determine if the validation rule passes.
      *
      * @param string $attribute
@@ -34,6 +41,12 @@ final class DisplayNameCharacters implements Rule
     {
         if ($this->withForbiddenChars($value)) {
             $this->withForbiddenChars = true;
+
+            return false;
+        }
+
+        if ($this->withRepetitiveSpecialChars($value)) {
+            $this->withRepetitiveSpecialChars = true;
 
             return false;
         }
@@ -58,19 +71,26 @@ final class DisplayNameCharacters implements Rule
             return trans('fortify::validation.messages.username.blacklisted');
         }
 
+        if ($this->withRepetitiveSpecialChars) {
+            return trans('fortify::validation.messages.some_special_characters');
+        }
+
         return trans('fortify::validation.messages.some_special_characters');
     }
 
     public function withForbiddenChars(string $value): bool
     {
-        // Any (unicode letter or number and . - ' &)
-        $regex = '/^[[\p{L}\p{N}\p{Mn}\p{Pd} ._\'&,]+$/u';
-
-        return preg_match($regex, $value) === 0;
+        // Any (unicode letter or number and . , - ' ’ &
+        return preg_match('/^[\p{L}\p{N}\p{Mn} .,\-\'’&]+$/u', $value) === 0;
     }
 
     private function withReservedName($value): bool
     {
         return in_array($value, trans('fortify::username_blacklist'), true);
+    }
+
+    public function withRepetitiveSpecialChars(string $value): bool
+    {
+        return preg_match('/([.,\-\'’&])\1/u', $value) === 0;
     }
 }

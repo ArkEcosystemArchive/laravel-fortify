@@ -30,6 +30,7 @@ it('accepts name with unicode characters', function ($name) {
     'Ñoño',
     'François Hollande',
     'Jean-François d\'Abiguäel',
+    'Jean-François d’Abiguäel',
     'Père Noël',
     'Alfonso & sons',
     'Coca.Cola',
@@ -46,6 +47,24 @@ it('doesnt accept other special characters', function ($name) {
     'Martin Henriksen!',
     '@alfonsobries',
     'php=cool',
+    '🤓', // EMOJI
+    '¯', // MACRON
+    '­', // SOFT HYPHEN
+    '–', // EN DASH
+    '‑', // NON-BREAKING HYPHEN
+    '—', // EM DASH
+    '_', // UNDERSCORE
+]);
+
+it('doesnt accept repetitive characters', function ($name) {
+    expect($this->rule->passes('name', $name))->toBeFalse();
+})->with([
+    'Marco d\'\'Almeida',
+    'Marco d’’Almeida',
+    'Alfonso && sons',
+    'Jean--François',
+    'Coca..Cola',
+    'Procter,, Cremin and Crist',
 ]);
 
 it('has a message', function () {

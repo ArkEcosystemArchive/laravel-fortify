@@ -53,6 +53,13 @@ class Username extends Fortify
     protected $hasUpperCaseCharacters = false;
 
     /**
+     * Indicates if the username contains any reserved name.
+     *
+     * @var bool
+     */
+    protected $withReservedName = false;
+
+    /**
      * Determine if the validation rule passes.
      *
      * @param string $attribute
@@ -101,6 +108,12 @@ class Username extends Fortify
             return false;
         }
 
+        if ($this->withReservedName($value)) {
+            $this->withReservedName = true;
+
+            return false;
+        }
+
         return ! $this->needsMinimumLength($value);
     }
 
@@ -131,6 +144,9 @@ class Username extends Fortify
 
             case $this->hasUpperCaseCharacters:
                 return trans('fortify::validation.messages.username.lowercase_only');
+
+            case $this->withReservedName:
+                return trans('fortify::validation.messages.username.blacklisted');
 
             default:
                 return trans('fortify::validation.messages.username.min_length', [
@@ -172,5 +188,10 @@ class Username extends Fortify
     public function needsLowercase(string $value): bool
     {
         return $value !== strtolower($value);
+    }
+
+    private function withReservedName($value): bool
+    {
+        return in_array($value, trans('fortify::username_blacklist'), true);
     }
 }

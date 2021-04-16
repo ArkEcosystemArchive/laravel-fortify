@@ -20,6 +20,7 @@ return [
             'max_length'                      => 'Username may not have more than :length characters.',
             'min_length'                      => 'Username must be at least :length characters.',
             'lowercase_only'                  => 'Username must be lowercase characters.',
+            'blacklisted'                     => 'This :attribute is unavailable.',
         ],
     ],
 ];

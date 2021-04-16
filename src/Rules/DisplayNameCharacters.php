@@ -9,21 +9,21 @@ use Illuminate\Contracts\Validation\Rule;
 final class DisplayNameCharacters implements Rule
 {
     /**
-     * Indicates if the display name contains some forbidden characters.
+     * Indicates if the display name contains forbidden characters.
      *
      * @var bool
      */
     protected bool $withForbiddenChars = false;
 
     /**
-     * Indicates if the display name contains any reserved name.
+     * Indicates if the display name contains reserved name.
      *
      * @var bool
      */
     protected bool $withReservedName = false;
 
     /**
-     * Indicates if the display name contains any repetitive special chars.
+     * Indicates if the display name contains repetitive special chars.
      *
      * @var bool
      */
@@ -80,7 +80,7 @@ final class DisplayNameCharacters implements Rule
 
     public function withForbiddenChars(string $value): bool
     {
-        // Any (unicode letter or number and . , - ' ’ &
+        // Some (unicode letter or number and . , - ' ’ &
         return preg_match('/^[\p{L}\p{N}\p{Mn} .,\-\'’&]+$/u', $value) === 0;
     }
 
@@ -91,6 +91,6 @@ final class DisplayNameCharacters implements Rule
 
     public function withRepetitiveSpecialChars(string $value): bool
     {
-        return preg_match('/([.,\-\'’&])\1/u', $value) === 0;
+        return preg_match('/([.,\-\'’&])\1/u', $value) === 1;
     }
 }

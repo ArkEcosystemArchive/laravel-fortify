@@ -20,7 +20,7 @@
         <form
             method="POST"
             action="{{ route('login') }}"
-            class="flex flex-col px-4 py-8 mx-4 border-2 rounded-lg sm:px-8 border-theme-secondary-200"
+            class="flex flex-col px-4 py-8 mx-4 border-2 rounded-xl sm:px-8 border-theme-secondary-200"
         >
             @csrf
 

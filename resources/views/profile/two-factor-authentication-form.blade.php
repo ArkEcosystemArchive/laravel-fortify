@@ -52,11 +52,11 @@
             <hr class="flex my-8 border-t sm:hidden border-theme-primary-100">
 
             <div class="flex flex-col items-center sm:flex-row sm:items-start sm:mt-8">
-                <div class="flex flex-col items-center justify-center border rounded-md border-theme-secondary-400 sm:mr-10">
+                <div class="flex flex-col items-center justify-center border rounded-xl border-theme-secondary-400 sm:mr-10">
                     <div class="px-2 py-2">
                         {!! $this->twoFactorQrCodeSvg !!}
                     </div>
-                    <div class="w-full py-2 mt-1 text-center border-t border-theme-secondary-400 bg-theme-secondary-100 rounded-b-md">
+                    <div class="w-full py-2 mt-1 text-center border-t border-theme-secondary-400 bg-theme-secondary-100 rounded-b-xl">
                         <span class="text-theme-secondary-900">{{ $this->state['two_factor_secret'] }}</span>
                     </div>
                 </div>

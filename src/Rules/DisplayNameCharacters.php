@@ -18,10 +18,10 @@ final class DisplayNameCharacters implements Rule
      */
     public function passes($attribute, $value)
     {
-        // Any (unicode letter or number and . - ' &)
-        $regex = '/^[[\p{L}\p{N}\p{Mn}\p{Pd} ._\'&,]+$/u';
-
-        return preg_match($regex, $value) > 0;
+        // Any (unicode letter or number and . , - ' ’ &)
+        // avoid repetitive allowed special characters.
+        return preg_match('/^[\p{L}\p{N}\p{Mn} .,\-\'’&]+$/u', $value) > 0 &&
+                ! preg_match('/([.,\-\'’&])\1/u', $value);
     }
 
     /**

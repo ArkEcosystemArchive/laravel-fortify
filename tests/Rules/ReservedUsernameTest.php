@@ -19,6 +19,12 @@ it('doesnt allow adding username that is blacklisted', function ($username) {
     'president',
     'server',
     'staff',
+    'Admin',
+    'RoOt',
+    'Www',
+    'PresIDent',
+    'ServEr',
+    'StAfF',
 ]);
 
 it('allows adding username that isn\'t blacklisted', function ($username) {

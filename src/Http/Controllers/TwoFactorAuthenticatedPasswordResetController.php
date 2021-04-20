@@ -7,7 +7,6 @@ namespace ARKEcosystem\Fortify\Http\Controllers;
 use ARKEcosystem\Fortify\Http\Requests\TwoFactorResetPasswordRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Routing\Controller;
-use Illuminate\View\View;
 use Laravel\Fortify\Contracts\FailedTwoFactorLoginResponse;
 
 class TwoFactorAuthenticatedPasswordResetController extends Controller
@@ -20,7 +19,7 @@ class TwoFactorAuthenticatedPasswordResetController extends Controller
      *
      * @return mixed
      */
-    public function create(TwoFactorResetPasswordRequest $request, string $token): View
+    public function create(TwoFactorResetPasswordRequest $request, string $token)
     {
         if (! $request->hasChallengedUser()) {
             throw new HttpResponseException(redirect()->route('login'));
@@ -44,7 +43,7 @@ class TwoFactorAuthenticatedPasswordResetController extends Controller
      *
      * @return mixed
      */
-    public function store(TwoFactorResetPasswordRequest $request): View
+    public function store(TwoFactorResetPasswordRequest $request)
     {
         $user = $request->challengedUser();
 

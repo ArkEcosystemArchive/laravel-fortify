@@ -15,24 +15,18 @@ class VerifyEmail extends Component
 {
     use WithRateLimiting;
 
-    private const MAX_ATTEMPT = 1;
+    private const MAX_ATTEMPTS = 1;
     private const DECAY_SECONDS = 5 * 60;
-
-    private bool $limitReached = false;
 
     public function render(): View
     {
-        return view('ark-fortify::components.auth-verify-email', [
-            'limitReached' => $this->limitReached,
-        ]);
+        return view('ark-fortify::components.auth-verify-email');
     }
 
     public function resend(): void
     {
         try {
-            $this->rateLimit(self::MAX_ATTEMPT, self::DECAY_SECONDS);
-
-            $this->checkRateLimit();
+            $this->rateLimit(self::MAX_ATTEMPTS, self::DECAY_SECONDS);
         } catch (TooManyRequestsException $e) {
             return;
         }
@@ -40,8 +34,8 @@ class VerifyEmail extends Component
         (new EmailVerificationNotificationController())->store(request());
     }
 
-    public function checkRateLimit(): void
+    public function rateLimitReached(): bool
     {
-        $this->limitReached =  RateLimiter::tooManyAttempts($this->getRateLimitKey('resend'), self::MAX_ATTEMPT);
+        return RateLimiter::tooManyAttempts($this->getRateLimitKey('resend'), self::MAX_ATTEMPTS);
     }
 }

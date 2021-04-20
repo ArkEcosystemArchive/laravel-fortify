@@ -8,15 +8,20 @@
 
         <img class="mb-5 mx-12" src="/images/auth/verify-email.svg" />
 
-        <form wire:click.prevent="resend">
+        <form wire:click.prevent="resend" wire:poll>
             <p class="text-sm text-theme-secondary-600 lg:no-wrap-span-children">
                 <span>@lang('fortify::auth.verify.line_1')</span>
                 <span>@lang('fortify::auth.verify.line_2')</span>
-                <span wire:poll.visible="checkRateLimit" @if($limitReached) data-tippy-content="@lang('fortify::messages.resend_email_verification_limit')" @endif>
-                    <button @if($limitReached) disabled @endif wire:loading.attr="disabled" type="submit" class="link">
+
+                @if($this->rateLimitReached())
+                    <span class="link" data-tippy-content="@lang('fortify::messages.resend_email_verification_limit')">
+                        @lang('fortify::actions.resend_email_verification')
+                    </span>
+                @else
+                    <button wire:loading.attr="disabled" type="submit" class="link">
                         @lang('fortify::actions.resend_email_verification')
                     </button>
-                </span>
+                @endif
             </p>
         </form>
     </div>

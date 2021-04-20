@@ -16,6 +16,7 @@ class VerifyEmail extends Component
     use WithRateLimiting;
 
     private const MAX_ATTEMPTS = 1;
+
     private const DECAY_SECONDS = 5 * 60;
 
     public function render(): View

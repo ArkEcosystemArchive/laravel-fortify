@@ -169,6 +169,7 @@ return [
 
     'routes' => [
         'feedback_thank_you' => env('ROUTE_FEEDBACK_THANK_YOU', '/feedback/thank-you'),
+        'two_factor_reset_password' => env('ROUTE_TWO_RESET_PASSWORD', '/two-factor/reset-password/{token}'),
     ],
 
 ];

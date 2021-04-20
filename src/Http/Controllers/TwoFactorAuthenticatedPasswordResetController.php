@@ -16,7 +16,7 @@ class TwoFactorAuthenticatedPasswordResetController extends Controller
      * Show the two factor authentication challenge view.
      *
      * @param TwoFactorResetPasswordRequest $request
-     * @param string $oken
+     * @param string                        $oken
      *
      * @return mixed
      */
@@ -38,7 +38,7 @@ class TwoFactorAuthenticatedPasswordResetController extends Controller
     }
 
     /**
-     * Validates the 2fa code and shows the reset password form
+     * Validates the 2fa code and shows the reset password form.
      *
      * @param TwoFactorResetPasswordRequest $request
      *

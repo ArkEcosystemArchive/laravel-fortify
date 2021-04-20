@@ -21,7 +21,7 @@ it('validates the request token', function () {
         ->andReturn(true);
 
     $this->partialMock(TwoFactorResetPasswordRequest::class)
-        ->shouldReceive('get')
+        ->shouldReceive('route')
         ->with('token')
         ->andReturn($token)
         ->shouldReceive('challengedUser')

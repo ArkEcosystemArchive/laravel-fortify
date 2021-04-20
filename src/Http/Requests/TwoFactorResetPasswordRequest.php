@@ -21,7 +21,7 @@ class TwoFactorResetPasswordRequest extends TwoFactorLoginRequest
     {
         $user = $this->challengedUser();
 
-        return $user && app(PasswordBroker::class)->tokenExists($user, $this->get('token'));
+        return $user && app(PasswordBroker::class)->tokenExists($user, $this->route('token'));
     }
 
     /**

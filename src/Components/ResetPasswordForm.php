@@ -5,14 +5,15 @@ declare(strict_types=1);
 namespace ARKEcosystem\Fortify\Components;
 
 use ARKEcosystem\Fortify\Components\Concerns\ValidatesPassword;
-use Livewire\Component;
 use ARKEcosystem\Fortify\Models;
+use Livewire\Component;
 
 class ResetPasswordForm extends Component
 {
     use ValidatesPassword;
 
     public $token;
+
     public ?string $twoFactorSecret;
 
     public array $state = [
@@ -26,7 +27,6 @@ class ResetPasswordForm extends Component
         $this->token          = request()->route('token');
 
         $email = old('email', request()->email);
-
 
         if ($email !== null) {
             $this->state['email'] = $email;

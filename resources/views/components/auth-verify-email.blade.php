@@ -12,8 +12,8 @@
             <p class="text-sm text-theme-secondary-600 lg:no-wrap-span-children">
                 <span>@lang('fortify::auth.verify.line_1')</span>
                 <span>@lang('fortify::auth.verify.line_2')</span>
-                <span @if($this->rateLimitReached())data-tippy-content="@lang('fortify::messages.resend_email_verification_limit')" @endif>
-                    <button @if($this->rateLimitReached()) disabled @endif wire:loading.attr="disabled" type="submit" class="link">
+                <span wire:poll.visible="checkRateLimit" @if($limitReached) data-tippy-content="@lang('fortify::messages.resend_email_verification_limit')" @endif>
+                    <button @if($limitReached) disabled @endif wire:loading.attr="disabled" type="submit" class="link">
                         @lang('fortify::actions.resend_email_verification')
                     </button>
                 </span>

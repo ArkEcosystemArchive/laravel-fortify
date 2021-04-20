@@ -5,11 +5,11 @@ declare(strict_types=1);
 use ARKEcosystem\Fortify\Rules\DisplayNameCharacters;
 
 beforeEach(function (): void {
-    $this->rule = new DisplayNameCharacters();
+    $this->subject = new DisplayNameCharacters();
 });
 
 it('accepts name with regular characters', function ($name) {
-    expect($this->rule->passes('name', $name))->toBeTrue();
+    $this->assertTrue($this->subject->passes('name', $name));
 })->with([
     'Elon Tusk',
     'Rick Astley',
@@ -22,7 +22,7 @@ it('accepts name with regular characters', function ($name) {
 ]);
 
 it('accepts name with unicode characters', function ($name) {
-    expect($this->rule->passes('name', $name))->toBeTrue();
+    $this->assertTrue($this->subject->passes('name', $name));
 })->with([
     'André Svenson',
     'John Elkjærd',
@@ -38,11 +38,11 @@ it('accepts name with unicode characters', function ($name) {
 ]);
 
 it('accepts name with single quote', function () {
-    expect($this->rule->passes('name', 'Marco d\'Almeida'))->toBeTrue();
+    $this->assertTrue($this->subject->passes('name', 'Marco d\'Almeida'));
 });
 
 it('doesnt accept other special characters', function ($name) {
-    expect($this->rule->passes('name', $name))->toBeFalse();
+    $this->assertFalse($this->subject->passes('name', $name));
 })->with([
     'Martin Henriksen!',
     '@alfonsobries',
@@ -57,7 +57,9 @@ it('doesnt accept other special characters', function ($name) {
 ]);
 
 it('doesnt accept repetitive characters', function ($name) {
-    expect($this->rule->passes('name', $name))->toBeFalse();
+    expect($this->subject->passes('name', $name))->toBeFalse();
+
+    expect($this->subject->message())->toBe(trans('fortify::validation.messages.some_special_characters'));
 })->with([
     'Marco d\'\'Almeida',
     'Marco d’’Almeida',
@@ -68,6 +70,27 @@ it('doesnt accept repetitive characters', function ($name) {
 ]);
 
 it('has a message', function () {
-    expect($this->rule->message())
-        ->toBe(trans('fortify::validation.messages.some_special_characters'));
+    $this->assertEquals(trans('fortify::validation.messages.some_special_characters'), $this->subject->message());
 });
+
+it('will reject if the value contains any blacklisted name', function ($name) {
+    expect($this->subject->passes('name', $name))->toBeFalse();
+
+    expect($this->subject->message())->toBe(trans('fortify::validation.messages.username.blacklisted'));
+})->with([
+    'admin',
+    'root',
+    'www',
+    'president',
+    'server',
+    'staff',
+]);
+
+it('will not reject if the value does not contain blacklisted name', function ($name) {
+    expect($this->subject->passes('name', $name))->toBeTrue();
+})->with([
+    'johndoe',
+    'john.doe',
+    'aboutme',
+    'about.you',
+]);

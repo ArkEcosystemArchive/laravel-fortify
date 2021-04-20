@@ -8,7 +8,7 @@ return [
 
     'messages' => [
         'one_time_password'                                   => 'We were not able to enable two-factor authentication with this one-time password.',
-        'some_special_characters'                             => 'The :attribute can only contain letters, numbers and . & - _ ,',
+        'some_special_characters'                             => "The :attribute can only contain letters, numbers and . & - , '",
         'include_letters'                                     => 'The :attribute needs at least one letter',
         'start_with_letter_or_number'                         => 'The :attribute must start with a letter or a number',
 
@@ -20,6 +20,7 @@ return [
             'max_length'                      => 'Username may not have more than :length characters.',
             'min_length'                      => 'Username must be at least :length characters.',
             'lowercase_only'                  => 'Username must be lowercase characters.',
+            'blacklisted'                     => 'This :attribute is unavailable.',
         ],
     ],
 ];

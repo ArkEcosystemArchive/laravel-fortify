@@ -110,3 +110,25 @@ it('will not reject if the value contains only lowercase character', function ()
     expect($this->subject->passes('username', 'foo_bar'))->tobeTrue();
     expect($this->subject->passes('username', 'foo.bar'))->tobeTrue();
 });
+
+it('will reject if the value contains any blacklisted name', function ($username) {
+    expect($this->subject->passes('username', $username))->toBeFalse();
+
+    expect($this->subject->message())->toBe(trans('fortify::validation.messages.username.blacklisted'));
+})->with([
+    'admin',
+    'root',
+    'www',
+    'president',
+    'server',
+    'staff',
+]);
+
+it('will not reject if the value not contains blacklisted name', function ($username) {
+    expect($this->subject->passes('username', $username))->toBeTrue();
+})->with([
+    'johndoe',
+    'john.doe',
+    'aboutme',
+    'about.you',
+]);

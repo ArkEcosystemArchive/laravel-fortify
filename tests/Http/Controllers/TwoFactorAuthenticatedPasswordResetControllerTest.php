@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Illuminate\View\View;
 use function Tests\createUserModel;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use ARKEcosystem\Fortify\Responses\FailedTwoFactorLoginResponse;
 use ARKEcosystem\Fortify\Http\Requests\TwoFactorResetPasswordRequest;
 use ARKEcosystem\Fortify\Http\Controllers\TwoFactorAuthenticatedPasswordResetController;
 
@@ -71,4 +72,79 @@ it('throws an http exception if is not able to get the user', function () {
     $token = 'abcd';
 
     $controller->create($request, $token);
+});
+
+it('shows the reset form after validating the token', function () {
+    $user = createUserModel();
+
+    $user->two_factor_recovery_codes = encrypt('wharever');
+    $user->save();
+
+
+    $this->mock(TwoFactorResetPasswordRequest::class)
+        ->shouldReceive('hasChallengedUser')
+        ->andReturn(true)
+        ->shouldReceive('hasValidToken')
+        ->andReturn(true)
+        ->shouldReceive('challengedUser')
+        ->andReturn($user)
+        ->shouldReceive('validRecoveryCode')
+        ->andReturn(encrypt('the_code'));
+
+    $request = app(TwoFactorResetPasswordRequest::class);
+
+    $controller = app(TwoFactorAuthenticatedPasswordResetController::class);
+
+    $token = 'abcd';
+
+    $response = $controller->store($request, $token);
+    expect($response)->toBeInstanceOf(View::class);
+    expect($response->getName())->toBe('ark-fortify::auth.reset-password');
+});
+
+it('throws an http exception if the token is invalid when validating 2fa', function () {
+    $this->expectException(HttpResponseException::class);
+
+    $user = createUserModel();
+
+    $this->mock(TwoFactorResetPasswordRequest::class)
+        ->shouldReceive('challengedUser')
+        ->andReturn($user)
+        ->shouldReceive('hasChallengedUser')
+        ->andReturn(true)
+        ->shouldReceive('hasValidToken')
+        ->andReturn(false);
+
+    $request = app(TwoFactorResetPasswordRequest::class);
+
+    $controller = app(TwoFactorAuthenticatedPasswordResetController::class);
+
+    $token = 'abcd';
+
+    $controller->store($request, $token);
+});
+
+it('returns a failed two factor login response if the code is invalid', function () {
+    $user = createUserModel();
+
+    $this->mock(TwoFactorResetPasswordRequest::class)
+        ->shouldReceive('challengedUser')
+        ->andReturn($user)
+        ->shouldReceive('hasChallengedUser')
+        ->andReturn(true)
+        ->shouldReceive('hasValidToken')
+        ->andReturn(true)
+        ->shouldReceive('validRecoveryCode')
+        ->andReturn(false)
+        ->shouldReceive('hasValidCode')
+        ->andReturn(false);
+
+    $request = app(TwoFactorResetPasswordRequest::class);
+
+    $controller = app(TwoFactorAuthenticatedPasswordResetController::class);
+
+    $token = 'abcd';
+
+    $response = $controller->store($request, $token);
+    expect($response)->toBeInstanceOf(FailedTwoFactorLoginResponse::class);
 });

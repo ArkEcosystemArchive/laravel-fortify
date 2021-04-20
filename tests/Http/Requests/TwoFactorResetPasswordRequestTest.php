@@ -66,7 +66,7 @@ it('validates the user', function () {
 });
 
 it('validates not existing user', function () {
-    $user = createUserModel();
+    createUserModel();
 
     $this->partialMock(TwoFactorResetPasswordRequest::class)
         ->shouldReceive('get')
@@ -110,6 +110,9 @@ it('gets the challenged user', function () {
 
     $request = app(TwoFactorResetPasswordRequest::class);
 
+    expect($request->challengedUser()->is($user))->toBeTrue();
+
+    // A second time, now it comes from the protected property
     expect($request->challengedUser()->is($user))->toBeTrue();
 });
 

@@ -17,22 +17,6 @@ class TwoFactorResetPasswordRequest extends TwoFactorLoginRequest
     }
 
     /**
-     * Get the valid recovery code if one exists on the request.
-     *
-     * @return string|null
-     */
-    public function validRecoveryCode()
-    {
-        if (! $this->recovery_code) {
-            return;
-        }
-
-        return collect($this->challengedUser()->recoveryCodes())->first(function ($code) {
-            return hash_equals($this->recovery_code, $code) ? $code : null;
-        });
-    }
-
-    /**
      * Determine if the reset token is valid
      *
      * @return bool
@@ -51,6 +35,7 @@ class TwoFactorResetPasswordRequest extends TwoFactorLoginRequest
     public function hasChallengedUser()
     {
         $model = app(StatefulGuard::class)->getProvider()->getModel();
+
 
         return $this->has('email') &&
             $model::whereEmail($this->email)->exists();

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-use function Tests\createUserModel;
+use ARKEcosystem\Fortify\Http\Requests\TwoFactorResetPasswordRequest;
 use ARKEcosystem\Fortify\Models\User;
-use Illuminate\Contracts\Auth\UserProvider;
-use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Contracts\Auth\PasswordBroker;
+use Illuminate\Contracts\Auth\StatefulGuard;
+use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Laravel\Fortify\Contracts\FailedTwoFactorLoginResponse;
-use ARKEcosystem\Fortify\Http\Requests\TwoFactorResetPasswordRequest;
+use function Tests\createUserModel;
 
 it('validates the request token', function () {
     $user = createUserModel();
@@ -40,7 +40,6 @@ it('validates the request token', function () {
 
     expect($request->hasValidToken())->toBeFalse();
 });
-
 
 it('validates the user', function () {
     $user = createUserModel();
@@ -129,8 +128,7 @@ it('throws an exception if email not found', function () {
         ->shouldReceive('only')
         ->andReturn([])
         ->shouldReceive('wantsJson')
-        ->andReturn(false)
-        ;
+        ->andReturn(false);
 
     $this->mock(UserProvider::class)
         ->shouldReceive('getModel')
@@ -142,7 +140,7 @@ it('throws an exception if email not found', function () {
 
     $this->mock(FailedTwoFactorLoginResponse::class)
         ->shouldReceive('toResponse')
-        ->andReturn(new \Symfony\Component\HttpFoundation\Response);
+        ->andReturn(new \Symfony\Component\HttpFoundation\Response());
 
     $request = app(TwoFactorResetPasswordRequest::class);
 

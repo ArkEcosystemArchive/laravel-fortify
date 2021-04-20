@@ -1,17 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ARKEcosystem\Fortify\Http\Requests;
 
+use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Laravel\Fortify\Http\Requests\TwoFactorLoginRequest;
 use Laravel\Fortify\Contracts\FailedTwoFactorLoginResponse;
-use Illuminate\Contracts\Auth\PasswordBroker;
+use Laravel\Fortify\Http\Requests\TwoFactorLoginRequest;
 
 class TwoFactorResetPasswordRequest extends TwoFactorLoginRequest
 {
     /**
-     * Determine if the reset token is valid
+     * Determine if the reset token is valid.
      *
      * @return bool
      */
@@ -57,5 +59,4 @@ class TwoFactorResetPasswordRequest extends TwoFactorLoginRequest
 
         return $this->challengedUser = $user;
     }
-
 }

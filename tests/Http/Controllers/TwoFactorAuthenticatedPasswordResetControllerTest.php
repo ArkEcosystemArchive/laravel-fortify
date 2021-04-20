@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
+use ARKEcosystem\Fortify\Http\Controllers\TwoFactorAuthenticatedPasswordResetController;
+use ARKEcosystem\Fortify\Http\Requests\TwoFactorResetPasswordRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\View\View;
 use function Tests\createUserModel;
-use Illuminate\Http\Exceptions\HttpResponseException;
-use ARKEcosystem\Fortify\Http\Requests\TwoFactorResetPasswordRequest;
-use ARKEcosystem\Fortify\Http\Controllers\TwoFactorAuthenticatedPasswordResetController;
 
 it('shows the two auth challengue form', function () {
     $user = createUserModel();
@@ -29,9 +29,9 @@ it('shows the two auth challengue form', function () {
     expect($response)->toBeInstanceOf(View::class);
     expect($response->getName())->toBe('ark-fortify::auth.two-factor-challenge');
     expect($response->getData())->toEqual([
-        'token' => $token,
+        'token'         => $token,
         'resetPassword' => true,
-        'email' => $user->email,
+        'email'         => $user->email,
     ]);
 });
 

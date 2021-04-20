@@ -11,7 +11,7 @@ use ARKEcosystem\Fortify\Http\Controllers\TwoFactorAuthenticatedPasswordResetCon
 it('shows the two auth challengue form', function () {
     $user = createUserModel();
 
-    $request = $this->mock(TwoFactorResetPasswordRequest::class)
+    $this->mock(TwoFactorResetPasswordRequest::class)
         ->shouldReceive('hasChallengedUser')
         ->andReturn(true)
         ->shouldReceive('hasValidToken')
@@ -40,7 +40,7 @@ it('throws an http exception if the token is invalid', function () {
 
     createUserModel();
 
-    $request = $this->mock(TwoFactorResetPasswordRequest::class)
+    $this->mock(TwoFactorResetPasswordRequest::class)
         ->shouldReceive('hasChallengedUser')
         ->andReturn(true)
         ->shouldReceive('hasValidToken')

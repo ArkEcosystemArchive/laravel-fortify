@@ -4,18 +4,12 @@ namespace ARKEcosystem\Fortify\Http\Requests;
 
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Auth\Passwords\TokenRepositoryInterface;
 use Laravel\Fortify\Http\Requests\TwoFactorLoginRequest;
 use Laravel\Fortify\Contracts\FailedTwoFactorLoginResponse;
 use Illuminate\Contracts\Auth\PasswordBroker;
 
 class TwoFactorResetPasswordRequest extends TwoFactorLoginRequest
 {
-    public function __construct(protected PasswordBroker $passwordBroker)
-    {
-
-    }
-
     /**
      * Determine if the reset token is valid
      *
@@ -24,7 +18,8 @@ class TwoFactorResetPasswordRequest extends TwoFactorLoginRequest
     public function hasValidToken()
     {
         $user = $this->challengedUser();
-        return $user && $this->passwordBroker->tokenExists($user, $this->token);
+
+        return $user && app(PasswordBroker::class)->tokenExists($user, $this->get('token'));
     }
 
     /**
@@ -36,9 +31,8 @@ class TwoFactorResetPasswordRequest extends TwoFactorLoginRequest
     {
         $model = app(StatefulGuard::class)->getProvider()->getModel();
 
-
         return $this->has('email') &&
-            $model::whereEmail($this->email)->exists();
+            $model::whereEmail($this->get('email'))->exists();
     }
 
     /**
@@ -55,7 +49,7 @@ class TwoFactorResetPasswordRequest extends TwoFactorLoginRequest
         $model = app(StatefulGuard::class)->getProvider()->getModel();
 
         if (! $this->has('email') ||
-            ! $user = $model::whereEmail($this->email)->first()) {
+            ! $user = $model::whereEmail($this->get('email'))->first()) {
             throw new HttpResponseException(
                 app(FailedTwoFactorLoginResponse::class)->toResponse($this)
             );

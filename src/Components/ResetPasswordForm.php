@@ -21,12 +21,9 @@ class ResetPasswordForm extends Component
         'password_confirmation' => '',
     ];
 
-    public function mount()
+    public function mount(?string $token = null, ?string $email = null)
     {
-        $this->token          = request()->route('token');
-
-        $email = old('email', request()->email);
-
+        $this->token = $token;
 
         if ($email !== null) {
             $this->state['email'] = $email;

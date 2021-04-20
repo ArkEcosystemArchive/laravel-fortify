@@ -17,6 +17,6 @@
     <x-data-bag key="fortify-content" resolver="name" view="ark-fortify::components.component-heading" />
 
     <div class="max-w-xl py-8 mx-auto">
-        <livewire:auth.reset-password-form />
+        <livewire:auth.reset-password-form :token="request()->route('token')" :email="old('email', request()->email)" />
     </div>
 @endsection

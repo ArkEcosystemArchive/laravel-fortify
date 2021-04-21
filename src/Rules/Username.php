@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ARKEcosystem\Fortify\Rules;
 
+use ARKEcosystem\Fortify\Rules\Concerns\ReservedUsername;
 use ARKEcosystem\Fortify\Support\Enums\Constants;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Rules\Password as Fortify;
@@ -108,7 +109,7 @@ class Username extends Fortify
             return false;
         }
 
-        if ($this->withReservedName($value)) {
+        if ($this->withReservedName($attribute, $value)) {
             $this->withReservedName = true;
 
             return false;
@@ -146,7 +147,7 @@ class Username extends Fortify
                 return trans('fortify::validation.messages.username.lowercase_only');
 
             case $this->withReservedName:
-                return trans('fortify::validation.messages.username.blacklisted');
+                return ReservedUsername::message();
 
             default:
                 return trans('fortify::validation.messages.username.min_length', [
@@ -190,8 +191,8 @@ class Username extends Fortify
         return $value !== strtolower($value);
     }
 
-    private function withReservedName($value): bool
+    private function withReservedName($attribute, $value): bool
     {
-        return in_array($value, trans('fortify::username_blacklist'), true);
+        return ! ReservedUsername::passes($attribute, $value);
     }
 }

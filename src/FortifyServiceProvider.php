@@ -21,6 +21,7 @@ use ARKEcosystem\Fortify\Components\UpdateProfileInformationForm;
 use ARKEcosystem\Fortify\Components\UpdateProfilePhotoForm;
 use ARKEcosystem\Fortify\Components\UpdateTimezoneForm;
 use ARKEcosystem\Fortify\Http\Controllers\TwoFactorAuthenticatedPasswordResetController;
+use ARKEcosystem\Fortify\Components\VerifyEmail;
 use ARKEcosystem\Fortify\Http\Responses\FailedPasswordResetLinkRequestResponse as FortifyFailedPasswordResetLinkRequestResponse;
 use ARKEcosystem\Fortify\Http\Responses\SuccessfulPasswordResetLinkRequestResponse as FortifySuccessfulPasswordResetLinkRequestResponse;
 use ARKEcosystem\Fortify\Responses\FailedTwoFactorLoginResponse;
@@ -131,6 +132,7 @@ class FortifyServiceProvider extends ServiceProvider
         Livewire::component('auth.register-form', RegisterForm::class);
         Livewire::component('auth.reset-password-form', ResetPasswordForm::class);
         Livewire::component('newsletter.footer-subscription-form', FooterEmailSubscriptionForm::class);
+        Livewire::component('auth.verify-email', VerifyEmail::class);
     }
 
     /**

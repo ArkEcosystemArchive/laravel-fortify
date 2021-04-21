@@ -84,6 +84,12 @@ it('will reject if the value contains any blacklisted name', function ($name) {
     'president',
     'server',
     'staff',
+    'Admin',
+    'RoOt',
+    'Www',
+    'PresIDent',
+    'ServEr',
+    'StAfF',
 ]);
 
 it('will not reject if the value does not contain blacklisted name', function ($name) {

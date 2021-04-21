@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace ARKEcosystem\Fortify\Rules;
+namespace ARKEcosystem\Fortify\Rules\Concerns;
 
 use Illuminate\Support\Str;
 
-class ReservedUsername
+class ReservedUsername extends BaseRule
 {
-    public function passes($attribute, $value): bool
+    public static function passes($attribute, $value): bool
     {
         return ! in_array(Str::lower($value), trans('fortify::username_blacklist'), true);
     }
 
-    public function message(): string
+    public static function message(array $attributes = []): string
     {
         return trans('fortify::validation.messages.username.blacklisted');
     }

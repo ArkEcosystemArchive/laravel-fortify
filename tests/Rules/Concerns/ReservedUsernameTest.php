@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use ARKEcosystem\Fortify\Rules\ReservedUsername;
+use ARKEcosystem\Fortify\Rules\Concerns\ReservedUsername;
 
 beforeEach(function () {
     $this->subject = new ReservedUsername();

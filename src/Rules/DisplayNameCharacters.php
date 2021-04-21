@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ARKEcosystem\Fortify\Rules;
 
+use ARKEcosystem\Fortify\Rules\Concerns\ReservedUsername;
 use Illuminate\Contracts\Validation\Rule;
 
 final class DisplayNameCharacters implements Rule
@@ -51,7 +52,7 @@ final class DisplayNameCharacters implements Rule
             return false;
         }
 
-        if ($this->withReservedName($value)) {
+        if ($this->withReservedName($attribute, $value)) {
             $this->withReservedName = true;
 
             return false;
@@ -68,7 +69,7 @@ final class DisplayNameCharacters implements Rule
     public function message(): string
     {
         if ($this->withReservedName) {
-            return trans('fortify::validation.messages.username.blacklisted');
+            return ReservedUsername::message();
         }
 
         if ($this->withRepetitiveSpecialChars) {
@@ -84,9 +85,9 @@ final class DisplayNameCharacters implements Rule
         return preg_match('/^[\p{L}\p{N}\p{Mn} .,\-\'’&]+$/u', $value) === 0;
     }
 
-    private function withReservedName($value): bool
+    private function withReservedName($attribute, $value): bool
     {
-        return in_array($value, trans('fortify::username_blacklist'), true);
+        return ! ReservedUsername::passes($attribute, $value);
     }
 
     public function withRepetitiveSpecialChars(string $value): bool

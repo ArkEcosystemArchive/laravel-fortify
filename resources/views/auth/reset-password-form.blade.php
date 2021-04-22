@@ -1,14 +1,14 @@
 <form
     method="POST"
     action="{{ route('password.update') }}"
-    class="flex flex-col px-4 py-8 mx-4 border-2 rounded-xl sm:px-8 border-theme-secondary-200"
+    class="flex flex-col px-4 py-8 mx-4 space-y-5 border-2 rounded-xl sm:px-8 border-theme-secondary-200"
     x-data="{ isTyping: false }"
 >
     @csrf
 
     <input type="hidden" name="token" value="{{ $token }}">
 
-    <div class="mb-8">
+    <div>
         <div class="flex flex-1">
             <x-ark-input
                 wire:model.defer="state.email"
@@ -26,7 +26,7 @@
         </div>
     </div>
 
-    <x:ark-fortify::password-rules class="mb-8" :password-rules="$passwordRules">
+    <x:ark-fortify::password-rules :password-rules="$passwordRules" rules-wrapper-class="grid gap-4 mt-4 mb-4 sm:grid-cols-2">
         <x-ark-input
             model="state.password"
             type="password"
@@ -37,10 +37,11 @@
             required="true"
             @keydown="isTyping=true"
             :errors="$errors"
+
         />
     </x:ark-fortify::password-rules>
 
-    <div class="mb-8">
+    <div>
         <div class="flex flex-1">
             <x-ark-input
                 model="state.password_confirmation"

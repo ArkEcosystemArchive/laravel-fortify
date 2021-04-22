@@ -1,13 +1,13 @@
 <form
     method="POST"
     action="{{ $formUrl }}"
-    class="flex flex-col py-8 px-4 sm:px-8 mx-4 border-2 rounded-xl border-theme-secondary-200"
+    class="flex flex-col px-4 py-8 mx-4 border-2 sm:px-8 rounded-xl border-theme-secondary-200"
     x-data="{isTyping: false}"
 >
     @csrf
 
     @if(Config::get('fortify.username_alt'))
-        <div class="mb-8">
+        <div>
             <div class="flex flex-1">
                 <x-ark-input
                     wire:model.defer="state.username"
@@ -26,7 +26,7 @@
     @if($invitation)
         <input type="hidden" name="name" value="{{ $invitation->name }}" />
     @else
-        <div class="mb-8">
+        <div>
             <div class="flex flex-1">
                 <x-ark-input
                     wire:model.defer="state.name"
@@ -45,7 +45,7 @@
     @if($invitation)
         <input type="hidden" name="email" value="{{ $invitation->email }}" />
     @else
-        <div class="mb-8">
+        <div>
             <div class="flex flex-1">
                 <x-ark-input
                     wire:model.defer="state.email"
@@ -61,20 +61,20 @@
         </div>
     @endif
 
-    <x:ark-fortify::password-rules class="mb-8" :password-rules="$passwordRules" is-typing="isTyping" rules-wrapper-class="grid grid-cols-1 gap-4 mt-4">
+    <x:ark-fortify::password-rules :password-rules="$passwordRules" is-typing="isTyping" rules-wrapper-class="grid grid-cols-1 gap-4 mt-4">
         <x-ark-input
             model="state.password"
             type="password"
             name="password"
             :label="trans('fortify::forms.password')"
             autocomplete="new-password"
-            class="w-full mb-2"
+            class="w-full mb-4"
             @keydown="isTyping=true"
             :errors="$errors"
         />
     </x:ark-fortify::password-rules>
 
-    <div class="mb-4">
+    <div>
         <div class="flex flex-1">
             <x-ark-input
                 model="state.password_confirmation"
@@ -88,7 +88,23 @@
         </div>
     </div>
 
-    <div class="mb-8">
+    <div>
+        <x-ark-checkbox
+            model="state.terms"
+            name="terms"
+            :errors="$errors"
+        >
+            @slot('label')
+                @lang('fortify::auth.register-form.conditions', ['termsOfServiceRoute' => route('terms-of-service'), 'privacyPolicyRoute' => route('privacy-policy')])
+            @endslot
+        </x-ark-checkbox>
+
+        @error('terms')
+            <p class="input-help--error">{{ $message }}</p>
+        @enderror
+    </div>
+
+    <div>
         <x-ark-checkbox
             model="state.terms"
             name="terms"

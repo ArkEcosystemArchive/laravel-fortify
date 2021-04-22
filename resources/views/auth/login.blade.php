@@ -24,7 +24,7 @@
         >
             @csrf
 
-            <div class="flex flex-col space-y-8">
+            <div class="flex flex-col space-y-5">
                 @if (session('status'))
                     <x-ark-alert type="success">
                         <x-slot name="message">

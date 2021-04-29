@@ -62,8 +62,8 @@
             </x-slot>
 
             <x-slot name="buttons">
-                <div class="flex flex-col w-full sm:flex-row justify-end space-y-4 space-y-reverse sm:space-y-0 sm:space-x-3">
-                    <button dusk="delete-user-form-cancel" class="button-secondary" wire:click="closeModal">
+                <div class="flex flex-col w-full sm:flex-row justify-end sm:space-x-3">
+                    <button dusk="delete-user-form-cancel" class="button-secondary mb-4 sm:mb-0" wire:click="closeModal">
                         @lang('fortify::actions.cancel')
                     </button>
 

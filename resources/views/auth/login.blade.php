@@ -24,13 +24,14 @@
         >
             @csrf
 
-            <div class="flex flex-col space-y-8">
+            <div class="flex flex-col space-y-5">
                 @if (session('status'))
                     <x-ark-alert type="success">
                         <x-slot name="message">
                             {{ session('status') }}
                         </x-slot>
                     </x-ark-alert>
+
                 @endif
 
                 <div class="flex flex-1">

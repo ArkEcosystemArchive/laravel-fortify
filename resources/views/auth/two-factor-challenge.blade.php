@@ -36,11 +36,11 @@
         >
             @csrf
 
-            @isset($resetPassword)
-                <input type="hidden" name="email" value="{{ $email }}" />
-            @endisset
-
             <div class="mb-8">
+                @isset($resetPassword)
+                    <input type="hidden" name="email" value="{{ $email }}" />
+                @endisset
+
                 <div class="flex flex-1">
                     <x-ark-input
                         type="text"
@@ -69,12 +69,16 @@
         <form
             x-show="recovery"
             method="POST"
-            action="{{ route('two-factor.login') }}"
+            action="{{ isset($resetPassword) ? route('two-factor.reset-password-store', ['token' => $token]) : route('two-factor.login') }}"
             class="flex flex-col p-8 mx-4 border-2 rounded-xl border-theme-secondary-200"
         >
             @csrf
 
             <div class="mb-8" >
+                @isset($resetPassword)
+                    <input type="hidden" name="email" value="{{ $email }}" />
+                @endisset
+
                 <div class="flex flex-1">
                     <x-ark-input
                         type="password"

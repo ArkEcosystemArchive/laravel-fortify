@@ -9,7 +9,7 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\View\View;
 use function Tests\createUserModel;
 
-it('shows the two auth challengue form', function () {
+it('shows the two auth challenge form', function () {
     $user = createUserModel();
 
     $this->mock(TwoFactorResetPasswordRequest::class)

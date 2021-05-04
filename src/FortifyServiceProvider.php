@@ -21,6 +21,7 @@ use ARKEcosystem\Fortify\Components\UpdateProfileInformationForm;
 use ARKEcosystem\Fortify\Components\UpdateProfilePhotoForm;
 use ARKEcosystem\Fortify\Components\UpdateTimezoneForm;
 use ARKEcosystem\Fortify\Components\VerifyEmail;
+use ARKEcosystem\Fortify\Http\Controllers\TwoFactorAuthenticatedPasswordResetController;
 use ARKEcosystem\Fortify\Http\Responses\FailedPasswordResetLinkRequestResponse as FortifyFailedPasswordResetLinkRequestResponse;
 use ARKEcosystem\Fortify\Http\Responses\SuccessfulPasswordResetLinkRequestResponse as FortifySuccessfulPasswordResetLinkRequestResponse;
 use ARKEcosystem\Fortify\Responses\FailedTwoFactorLoginResponse;
@@ -180,16 +181,7 @@ class FortifyServiceProvider extends ServiceProvider
             $user = Models::user()::where('email', $request->get('email'))->firstOrFail();
 
             if ($user->two_factor_secret) {
-                if (! $request->session()->get('errors')) {
-                    $request->session()->put([
-                        'login.idFailure' => $user->getKey(),
-                        'login.id'        => $user->getKey(),
-                        'login.remember'  => true,
-                        'url.intended'    => route('account.settings.password'),
-                    ]);
-
-                    return redirect()->route('two-factor.login');
-                }
+                return redirect()->route('two-factor.reset-password', ['token' => $request->token, 'email' => $user->email]);
             }
 
             return view('ark-fortify::auth.reset-password', ['request' => $request]);
@@ -255,6 +247,14 @@ class FortifyServiceProvider extends ServiceProvider
             Route::view(config('fortify.routes.feedback_thank_you'), 'ark-fortify::profile.feedback-thank-you')
                 ->name('profile.feedback.thank-you')
                 ->middleware('signed');
+
+            Route::get(config('fortify.routes.two_factor_reset_password'), [TwoFactorAuthenticatedPasswordResetController::class, 'create'])
+                ->name('two-factor.reset-password')
+                ->middleware('guest');
+
+            Route::post(config('fortify.routes.two_factor_reset_password'), [TwoFactorAuthenticatedPasswordResetController::class, 'store'])
+                ->name('two-factor.reset-password-store')
+                ->middleware('guest');
         });
     }
 }

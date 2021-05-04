@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ARKEcosystem\Fortify\Components;
 
 use ARKEcosystem\Fortify\Components\Concerns\ValidatesPassword;
+use ARKEcosystem\Fortify\Models;
 use Livewire\Component;
 
 class ResetPasswordForm extends Component
@@ -13,16 +14,25 @@ class ResetPasswordForm extends Component
 
     public $token;
 
+    public ?string $twoFactorSecret;
+
     public array $state = [
         'email'                 => '',
         'password'              => '',
         'password_confirmation' => '',
     ];
 
-    public function mount()
+    public function mount(?string $token = null, ?string $email = null)
     {
-        $this->token          = request()->route('token');
-        $this->state['email'] = old('email', request()->email);
+        $this->token = $token;
+
+        if ($email !== null) {
+            $this->state['email'] = $email;
+
+            $user = Models::user()::where('email', $email)->firstOrFail();
+
+            $this->twoFactorSecret = $user->two_factor_secret;
+        }
     }
 
     /**

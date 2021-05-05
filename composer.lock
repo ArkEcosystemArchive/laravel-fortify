@@ -3379,16 +3379,16 @@
         },
         {
             "name": "spatie/laravel-personal-data-export",
-            "version": "2.0.0",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-personal-data-export.git",
-                "reference": "124fbb9b39c7291e666eda7e1bae780b5d931543"
+                "reference": "11caaa39a20ac0a715fe4a8b141e1c1a76f0f59d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-personal-data-export/zipball/124fbb9b39c7291e666eda7e1bae780b5d931543",
-                "reference": "124fbb9b39c7291e666eda7e1bae780b5d931543",
+                "url": "https://api.github.com/repos/spatie/laravel-personal-data-export/zipball/11caaa39a20ac0a715fe4a8b141e1c1a76f0f59d",
+                "reference": "11caaa39a20ac0a715fe4a8b141e1c1a76f0f59d",
                 "shasum": ""
             },
             "require": {
@@ -3442,7 +3442,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-personal-data-export/issues",
-                "source": "https://github.com/spatie/laravel-personal-data-export/tree/2.0.0"
+                "source": "https://github.com/spatie/laravel-personal-data-export/tree/2.0.1"
             },
             "funding": [
                 {
@@ -3450,7 +3450,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2020-12-14T07:31:28+00:00"
+            "time": "2021-03-11T21:38:16+00:00"
         },
         {
             "name": "spatie/laravel-schemaless-attributes",

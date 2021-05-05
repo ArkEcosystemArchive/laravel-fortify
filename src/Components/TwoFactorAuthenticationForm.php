@@ -125,6 +125,8 @@ class TwoFactorAuthenticationForm extends Component
         $this->confirmPasswordShown = false;
 
         $this->confirmedPassword = '';
+
+        $this->modalClosed();
     }
 
     public function hasConfirmedPassword(): bool

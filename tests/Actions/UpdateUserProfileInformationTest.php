@@ -65,7 +65,7 @@ it('should throw an exception if the name is too long', function () {
     expectValidationError(fn () => resolve(UpdateUserProfileInformation::class)->update($user, [
         'name'  => 'a'.str_repeat('a', 31),
         'email' => 'jane@doe.com',
-    ]), 'name', 'The name may not be greater than 30 characters.');
+    ]), 'name', 'The name must not be greater than 30 characters.');
 });
 
 it('should throw an exception if the email is missing', function () {
@@ -83,7 +83,7 @@ it('should throw an exception if the email is too long', function () {
     expectValidationError(fn () => resolve(UpdateUserProfileInformation::class)->update($user, [
         'name'  => 'Jane Doe',
         'email' => str_repeat('#', 256).'@doe.com',
-    ]), 'email', 'The email may not be greater than 255 characters.');
+    ]), 'email', 'The email must not be greater than 255 characters.');
 });
 
 it('should throw an exception if the email is not an email', function () {

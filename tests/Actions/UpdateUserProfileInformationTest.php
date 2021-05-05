@@ -60,7 +60,6 @@ it('should throw an exception if the name is too short', function () {
 });
 
 it('should throw an exception if the name is too long', function () {
-    $this->withoutExceptionHandling();
     $user = createUserModel();
 
     expectValidationError(fn () => resolve(UpdateUserProfileInformation::class)->update($user, [

@@ -35,9 +35,14 @@ class UpdateProfilePhotoForm extends Component
     {
         $this->validateImageSingle();
 
-        $file = $this->imageSingle->storePubliclyAs('uploads', $this->imageSingle->hashName());
+        $file = $this->imageSingle;
 
-        $this->user->addMediaFromDisk($file)->withResponsiveImages()->toMediaCollection('photo');
+        $this->user
+            ->addMedia($file->getRealPath())
+            ->withResponsiveImages()
+            ->usingFileName($file->hashName())
+            ->toMediaCollection('photo');
+
         $this->user->refresh();
     }
 

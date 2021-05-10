@@ -55,7 +55,7 @@ it('should handle subscription', function () {
         ->andReturn(false)
         ->once()
         ->mock(\Spatie\Newsletter\Newsletter::class)
-        ->shouldReceive('subscribe')
+        ->shouldReceive('subscribePending')
         ->andReturn(true)
         ->once();
 

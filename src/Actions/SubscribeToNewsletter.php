@@ -21,6 +21,6 @@ final class SubscribeToNewsletter
             return false;
         }
 
-        return Newsletter::subscribe($email, [], $list) !== false;
+        return Newsletter::subscribePending($email, [], $list) !== false;
     }
 }

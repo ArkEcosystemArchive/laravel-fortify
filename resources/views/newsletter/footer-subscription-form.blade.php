@@ -8,10 +8,11 @@
         keydown-enter="subscribe"
         autocomplete="email"
         input-class="w-full"
+        container-class="p-1 overflow-hidden bg-white rounded"
         :errors="$errors"
         :hide-label="true"
     >
-        <button type="submit" class="block px-2 text-theme-secondary-500 bg-white">
+        <button type="submit" class="block px-2 bg-white text-theme-secondary-500">
             <x-ark-icon name="paper-plane" />
         </button>
     </x-ark-input-with-icon>

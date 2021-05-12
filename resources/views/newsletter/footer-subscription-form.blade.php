@@ -3,7 +3,7 @@
         type="email"
         id="subscribe_email"
         name="subscribe_email"
-        placeholder="Enter your e-mail"
+        placeholder="Enter your email"
         model="email"
         keydown-enter="subscribe"
         autocomplete="email"

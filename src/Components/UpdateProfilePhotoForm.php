@@ -41,7 +41,9 @@ class UpdateProfilePhotoForm extends Component
 
     public function updatedImageSingle(): void
     {
-        $this->imageSingle = TemporaryUploadedFile::createFromLivewire($this->imageSingle);
+        if (! is_a($this->imageSingle, TemporaryUploadedFile::class)) {
+            $this->imageSingle = TemporaryUploadedFile::createFromLivewire($this->imageSingle);
+        }
 
         $this->validateImageSingle();
 

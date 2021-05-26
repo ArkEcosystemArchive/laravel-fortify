@@ -2,15 +2,14 @@
     <form wire:submit.prevent="store" id="livewire-form" class="{{ $formClass }}">
         <x-ark-upload-image-single
             id="profile-image"
-            :readonly="$readonly"
             :dimensions="$dimensions"
+            :readonly="$readonly"
             :image="$this->user->photo"
+            wire:model="imageSingle"
             :upload-text="__('fortify::forms.upload-avatar.upload_avatar')"
             :delete-tooltip="__('fortify::forms.upload-avatar.delete_avatar')"
+            :with-crop="$withCrop"
+            :crop-options="$cropOptions"
         />
     </form>
-
-    @error('singleImage')
-        <p class="input-help--error">{{ $message }}</p>
-    @enderror
 </div>

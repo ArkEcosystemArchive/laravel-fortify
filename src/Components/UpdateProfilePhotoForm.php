@@ -6,7 +6,9 @@ namespace ARKEcosystem\Fortify\Components;
 
 use ARKEcosystem\Fortify\Components\Concerns\InteractsWithUser;
 use ARKEcosystem\UserInterface\Components\UploadImageSingle;
+use Illuminate\View\View;
 use Livewire\Component;
+use Livewire\TemporaryUploadedFile;
 
 class UpdateProfilePhotoForm extends Component
 {
@@ -19,28 +21,33 @@ class UpdateProfilePhotoForm extends Component
 
     public string $formClass = '';
 
-    public function mount(string $dimensions = 'w-48 h-48', string $alignment = 'items-center mb-4 md:items-start', string $formClass = '')
+    public bool $withCrop = false;
+
+    public string $cropOptions = '{}';
+
+    public function mount(string $dimensions = 'w-48 h-48', string $alignment = 'items-center mb-4 md:items-start', string $formClass = '', bool $withCrop = false, string $cropOptions = '{}')
     {
-        $this->dimensions = $dimensions;
-        $this->alignment  = $alignment;
-        $this->formClass  = $formClass;
+        $this->dimensions  = $dimensions;
+        $this->alignment   = $alignment;
+        $this->formClass   = $formClass;
+        $this->withCrop    = $withCrop;
+        $this->cropOptions = $cropOptions;
     }
 
-    public function render(): \Illuminate\View\View
+    public function render(): View
     {
         return view('ark-fortify::profile.update-profile-photo-form');
     }
 
     public function updatedImageSingle(): void
     {
+        $this->imageSingle = TemporaryUploadedFile::createFromLivewire($this->imageSingle);
+
         $this->validateImageSingle();
 
-        $file = $this->imageSingle;
-
         $this->user
-            ->addMedia($file->getRealPath())
-            ->withResponsiveImages()
-            ->usingFileName($file->hashName())
+            ->addMedia($this->imageSingle->getRealPath())
+            ->usingName($this->imageSingle->hashName())
             ->toMediaCollection('photo');
 
         $this->user->refresh();
@@ -50,5 +57,11 @@ class UpdateProfilePhotoForm extends Component
     {
         $this->user->getFirstMedia('photo')->delete();
         $this->user->refresh();
+
+        if (is_a($this->imageSingle, TemporaryUploadedFile::class)) {
+            $this->imageSingle->delete();
+        }
+
+        $this->imageSingle = null;
     }
 }

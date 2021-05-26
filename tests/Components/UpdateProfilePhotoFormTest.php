@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use ARKEcosystem\Fortify\Components\UpdateProfilePhotoForm;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Livewire;
 use Spatie\MediaLibrary\MediaCollections\FileAdderFactory;
 use Spatie\MediaLibrary\MediaCollections\MediaRepository;
@@ -22,6 +23,22 @@ it('can upload a photo', function () {
     Livewire::actingAs(MediaUser::fake())
         ->test(UpdateProfilePhotoForm::class)
         ->set('imageSingle', $photo);
+});
+
+it('aaa can upload a photo from path', function () {
+    Storage::fake('tmp-for-tests');
+
+    $this
+        ->mock(FileAdderFactory::class)
+        ->shouldReceive('create->usingName->toMediaCollection')
+        ->once();
+
+    $tempPath = 'vendor/orchestra/testbench-core/laravel/storage/framework/testing/disks/tmp-for-tests/livewire-tmp';
+    UploadedFile::fake()->image('logo.jpeg', 150, 150)->move($tempPath, 'logo.jpg');
+
+    Livewire::actingAs(MediaUser::fake())
+        ->test(UpdateProfilePhotoForm::class)
+        ->set('imageSingle', 'logo.jpg');
 });
 
 it('cannot upload a photo with disallowed extension', function () {

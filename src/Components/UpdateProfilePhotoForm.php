@@ -6,6 +6,7 @@ namespace ARKEcosystem\Fortify\Components;
 
 use ARKEcosystem\Fortify\Components\Concerns\InteractsWithUser;
 use ARKEcosystem\UserInterface\Components\UploadImageSingle;
+use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 use Livewire\Component;
 use Livewire\TemporaryUploadedFile;
@@ -53,6 +54,8 @@ class UpdateProfilePhotoForm extends Component
             ->toMediaCollection('photo');
 
         $this->user->refresh();
+
+        $this->dispatchBrowserEvent('profile-image-updated', $this->user->photo);
     }
 
     public function deleteImageSingle(): void
@@ -65,5 +68,7 @@ class UpdateProfilePhotoForm extends Component
         }
 
         $this->imageSingle = null;
+
+        $this->dispatchBrowserEvent('profile-image-deleted');
     }
 }

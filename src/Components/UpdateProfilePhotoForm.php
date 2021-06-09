@@ -6,7 +6,6 @@ namespace ARKEcosystem\Fortify\Components;
 
 use ARKEcosystem\Fortify\Components\Concerns\InteractsWithUser;
 use ARKEcosystem\UserInterface\Components\UploadImageSingle;
-use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 use Livewire\Component;
 use Livewire\TemporaryUploadedFile;

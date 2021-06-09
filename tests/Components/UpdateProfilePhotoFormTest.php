@@ -25,7 +25,7 @@ it('can upload a photo', function () {
         ->set('imageSingle', $photo);
 });
 
-it('aaa can upload a photo from path', function () {
+it('can upload a photo from path', function () {
     Storage::fake('tmp-for-tests');
 
     $this
@@ -41,7 +41,7 @@ it('aaa can upload a photo from path', function () {
         ->set('imageSingle', 'logo.jpg');
 });
 
-it('cannot upload a photo with disallowed extension', function () {
+it('cannot upload a photo with invalid extension', function () {
     $photo = UploadedFile::fake()->create('logo.gif', 1000, 'image/gif');
 
     Livewire::actingAs(MediaUser::fake())

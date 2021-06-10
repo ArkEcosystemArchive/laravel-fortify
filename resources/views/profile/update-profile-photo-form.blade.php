@@ -1,5 +1,5 @@
 <div class="relative flex flex-col {{ $alignment }}">
-    <form id="livewire-form" class="{{ $formClass }}">
+    <form class="{{ $formClass }}">
         <x-ark-upload-image-single
             id="profile-image"
             :dimensions="$dimensions"

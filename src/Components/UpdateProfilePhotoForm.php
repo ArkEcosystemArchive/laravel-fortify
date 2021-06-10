@@ -50,6 +50,7 @@ class UpdateProfilePhotoForm extends Component
 
         $this->user
             ->addMedia($this->imageSingle->getRealPath())
+            ->withResponsiveImages()
             ->usingName($this->imageSingle->hashName())
             ->toMediaCollection('photo');
 

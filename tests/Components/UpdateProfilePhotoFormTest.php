@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use ARKEcosystem\Fortify\Components\UpdateProfilePhotoForm;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Livewire;
 use Spatie\MediaLibrary\MediaCollections\FileAdderFactory;
 use Spatie\MediaLibrary\MediaCollections\MediaRepository;
@@ -14,7 +15,7 @@ use Tests\MediaUser;
 it('can upload a photo', function () {
     $this
         ->mock(FileAdderFactory::class)
-        ->shouldReceive('create->withResponsiveImages->usingFileName->toMediaCollection')
+        ->shouldReceive('create->withResponsiveImages->usingName->toMediaCollection')
         ->once();
 
     $photo = UploadedFile::fake()->image('logo.jpeg', 150, 150);
@@ -24,7 +25,23 @@ it('can upload a photo', function () {
         ->set('imageSingle', $photo);
 });
 
-it('cannot upload a photo with disallowed extension', function () {
+it('can upload a photo from path', function () {
+    Storage::fake('tmp-for-tests');
+
+    $this
+        ->mock(FileAdderFactory::class)
+        ->shouldReceive('create->withResponsiveImages->usingName->toMediaCollection')
+        ->once();
+
+    $tempPath = 'vendor/orchestra/testbench-core/laravel/storage/framework/testing/disks/tmp-for-tests/livewire-tmp';
+    UploadedFile::fake()->image('logo.jpeg', 150, 150)->move($tempPath, 'logo.jpg');
+
+    Livewire::actingAs(MediaUser::fake())
+        ->test(UpdateProfilePhotoForm::class)
+        ->set('imageSingle', 'logo.jpg');
+});
+
+it('cannot upload a photo with invalid extension', function () {
     $photo = UploadedFile::fake()->create('logo.gif', 1000, 'image/gif');
 
     Livewire::actingAs(MediaUser::fake())
@@ -45,7 +62,7 @@ it('cannot upload a photo that is too large', function () {
 it('can delete a photo', function () {
     $this
         ->mock(FileAdderFactory::class)
-        ->shouldReceive('create->withResponsiveImages->usingFileName->toMediaCollection')
+        ->shouldReceive('create->withResponsiveImages->usingName->toMediaCollection')
         ->once();
 
     $media = Mockery::mock(Media::class);

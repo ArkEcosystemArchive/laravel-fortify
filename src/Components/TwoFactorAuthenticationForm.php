@@ -51,7 +51,7 @@ class TwoFactorAuthenticationForm extends Component
     public function enableTwoFactorAuthentication(): void
     {
         $this->validate([
-            'state.otp' => ['required', new OneTimePassword($this->state['two_factor_secret']), 'digits:6'],
+            'state.otp' => ['required', new OneTimePassword($this->state['two_factor_secret']), 'digits:10'],
         ]);
 
         app(EnableTwoFactorAuthentication::class)(Auth::user(), $this->state['two_factor_secret']);

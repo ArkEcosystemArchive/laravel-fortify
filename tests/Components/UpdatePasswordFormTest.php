@@ -15,11 +15,11 @@ it('can interact with the form', function () {
         ->test(UpdatePasswordForm::class)
         ->assertSet('currentPassword', '')
         ->assertSet('password', '')
-        ->assertSet('passwordConfirmation', '')
+        ->assertSet('password_confirmation', '')
         ->assertViewIs('ark-fortify::profile.update-password-form')
         ->set('currentPassword', 'password')
         ->set('password', 'abcd1234ABCD%')
-        ->set('passwordConfirmation', 'abcd1234ABCD%')
+        ->set('password_confirmation', 'abcd1234ABCD%')
         ->call('updatePassword')
         ->assertDispatchedBrowserEvent('updated-password');
 });
@@ -31,7 +31,7 @@ it('clears password rules on update', function () {
         ->test(UpdatePasswordForm::class)
         ->set('currentPassword', 'password')
         ->set('password', 'abcd1234ABCD%')
-        ->set('passwordConfirmation', 'abcd1234ABCD%')
+        ->set('password_confirmation', 'abcd1234ABCD%')
         ->assertSet('passwordRules', [
             'needsLowercase'        => true,
             'needsUppercase'        => true,
@@ -56,11 +56,11 @@ it('handles password being null', function () {
         ->test(UpdatePasswordForm::class)
         ->assertSet('currentPassword', '')
         ->assertSet('password', '')
-        ->assertSet('passwordConfirmation', '')
+        ->assertSet('password_confirmation', '')
         ->assertViewIs('ark-fortify::profile.update-password-form')
         ->set('currentPassword', 'password')
         ->set('password', null)
-        ->set('passwordConfirmation', null)
+        ->set('password_confirmation', null)
         ->call('updatePassword')
         ->assertSet('passwordRules', [
             'needsLowercase'        => false,

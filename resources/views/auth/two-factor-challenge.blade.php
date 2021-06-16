@@ -51,6 +51,7 @@
                         autocomplete="one-time-code"
                         input-mode="numeric"
                         pattern="[0-9]*"
+                        max="6"
                     />
                 </div>
             </div>

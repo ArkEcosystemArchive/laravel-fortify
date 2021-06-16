@@ -17,11 +17,11 @@ class UpdatePasswordForm extends Component
 
     protected $listeners = ['passwordUpdated' => 'passwordUpdated'];
 
-    public string $currentPassword      = '';
+    public string $currentPassword = '';
 
-    public string $password             = '';
+    public ?string $password = '';
 
-    public string $passwordConfirmation = '';
+    public ?string $passwordConfirmation = '';
 
     /**
      * Update the user's password.

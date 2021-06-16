@@ -12,14 +12,17 @@ class RegisterForm extends Component
 {
     use ValidatesPassword;
 
-    public array $state = [
-        'name'                  => '',
-        'username'              => '',
-        'email'                 => '',
-        'password'              => '',
-        'password_confirmation' => '',
-        'terms'                 => false,
-    ];
+    public string $name = '';
+
+    public string $username = '';
+
+    public string $email = '';
+
+    public string $password = '';
+
+    public string $passwordConfirmation = '';
+
+    public bool $terms = false;
 
     public string $formUrl;
 
@@ -27,12 +30,10 @@ class RegisterForm extends Component
 
     public function mount()
     {
-        $this->state = [
-            'name'     => old('name', ''),
-            'username' => old('username', ''),
-            'email'    => old('email', ''),
-            'terms'    => old('terms', ''),
-        ];
+        $this->name     = old('name', '');
+        $this->username = old('username', '');
+        $this->email    = old('email', '');
+        $this->terms    = old('terms', false);
 
         $this->formUrl = request()->fullUrl();
 

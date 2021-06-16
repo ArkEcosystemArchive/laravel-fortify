@@ -28,6 +28,10 @@ class TwoFactorAuthenticationForm extends Component
     use InteractsWithUser;
     use HasModal;
 
+    protected $messages = [
+        'state.otp.digits' => 'One Time Password must be :digits digits.',
+    ];
+
     public bool $showingQrCode = false;
 
     public array $state = [];
@@ -51,7 +55,7 @@ class TwoFactorAuthenticationForm extends Component
     public function enableTwoFactorAuthentication(): void
     {
         $this->validate([
-            'state.otp' => ['required', new OneTimePassword($this->state['two_factor_secret']), 'digits:6'],
+            'state.otp' => ['required', 'digits:6', new OneTimePassword($this->state['two_factor_secret'])],
         ]);
 
         app(EnableTwoFactorAuthentication::class)(Auth::user(), $this->state['two_factor_secret']);

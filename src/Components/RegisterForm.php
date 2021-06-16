@@ -33,7 +33,7 @@ class RegisterForm extends Component
         $this->name     = old('name', '');
         $this->username = old('username', '');
         $this->email    = old('email', '');
-        $this->terms    = old('terms', false);
+        $this->terms    = old('terms', false) === true;
 
         $this->formUrl = request()->fullUrl();
 

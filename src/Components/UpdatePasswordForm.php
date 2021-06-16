@@ -21,7 +21,7 @@ class UpdatePasswordForm extends Component
 
     public ?string $password = '';
 
-    public ?string $passwordConfirmation = '';
+    public ?string $password_confirmation = '';
 
     /**
      * Update the user's password.
@@ -37,7 +37,7 @@ class UpdatePasswordForm extends Component
         $updater->update(Auth::user(), [
             'current_password'      => $this->currentPassword,
             'password'              => $this->password,
-            'password_confirmation' => $this->passwordConfirmation,
+            'password_confirmation' => $this->password_confirmation,
         ]);
 
         $this->currentPassword      = '';

@@ -12,15 +12,15 @@ class RegisterForm extends Component
 {
     use ValidatesPassword;
 
-    public string $name = '';
+    public ?string $name = '';
 
-    public string $username = '';
+    public ?string $username = '';
 
-    public string $email = '';
+    public ?string $email = '';
 
-    public string $password = '';
+    public ?string $password = '';
 
-    public string $passwordConfirmation = '';
+    public ?string $password_confirmation = '';
 
     public bool $terms = false;
 

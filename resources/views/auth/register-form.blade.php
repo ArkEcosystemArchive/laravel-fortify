@@ -64,8 +64,7 @@
             rules-wrapper-class="grid grid-cols-1 gap-4 my-4"
         >
             <x-ark-input
-                wire:model.defer="password"
-                no-model
+                model="password"
                 type="password"
                 name="password"
                 :label="trans('fortify::forms.password')"

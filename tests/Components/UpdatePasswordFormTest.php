@@ -13,15 +13,13 @@ it('can interact with the form', function () {
 
     Livewire::actingAs($user)
         ->test(UpdatePasswordForm::class)
-        ->assertSet('state', [
-            'current_password'      => '',
-            'password'              => '',
-            'password_confirmation' => '',
-        ])
+        ->assertSet('currentPassword', '')
+        ->assertSet('password', '')
+        ->assertSet('passwordConfirmation', '')
         ->assertViewIs('ark-fortify::profile.update-password-form')
-        ->set('state.current_password', 'password')
-        ->set('state.password', 'abcd1234ABCD%')
-        ->set('state.password_confirmation', 'abcd1234ABCD%')
+        ->set('currentPassword', 'password')
+        ->set('password', 'abcd1234ABCD%')
+        ->set('passwordConfirmation', 'abcd1234ABCD%')
         ->call('updatePassword')
         ->assertDispatchedBrowserEvent('updated-password');
 });
@@ -31,9 +29,9 @@ it('clears password rules on update', function () {
 
     Livewire::actingAs($user)
         ->test(UpdatePasswordForm::class)
-        ->set('state.current_password', 'password')
-        ->set('state.password', 'abcd1234ABCD%')
-        ->set('state.password_confirmation', 'abcd1234ABCD%')
+        ->set('currentPassword', 'password')
+        ->set('password', 'abcd1234ABCD%')
+        ->set('passwordConfirmation', 'abcd1234ABCD%')
         ->assertSet('passwordRules', [
             'needsLowercase'        => true,
             'needsUppercase'        => true,
@@ -56,15 +54,13 @@ it('handles password being null', function () {
 
     Livewire::actingAs($user)
         ->test(UpdatePasswordForm::class)
-        ->assertSet('state', [
-            'current_password'      => '',
-            'password'              => '',
-            'password_confirmation' => '',
-        ])
+        ->assertSet('currentPassword', '')
+        ->assertSet('password', '')
+        ->assertSet('passwordConfirmation', '')
         ->assertViewIs('ark-fortify::profile.update-password-form')
-        ->set('state.current_password', 'password')
-        ->set('state.password', null)
-        ->set('state.password_confirmation', null)
+        ->set('currentPassword', 'password')
+        ->set('password', null)
+        ->set('passwordConfirmation', null)
         ->call('updatePassword')
         ->assertSet('passwordRules', [
             'needsLowercase'        => false,

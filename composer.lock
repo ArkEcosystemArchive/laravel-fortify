@@ -4,50 +4,44 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ecb481532d248bd3efb8a7ca5ee911cf",
+    "content-hash": "96505474928e858bd8efcb52af82e76e",
     "packages": [
         {
             "name": "arkecosystem/ui",
-            "version": "3.16.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ArkEcosystem/laravel-ui.git",
-                "reference": "727e3fd6dc81f7eddd2cfa5c968108b00aacea80"
-            },
+            "version": "dev-chore/upgrade-deps",
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ArkEcosystem/laravel-ui/zipball/727e3fd6dc81f7eddd2cfa5c968108b00aacea80",
-                "reference": "727e3fd6dc81f7eddd2cfa5c968108b00aacea80",
-                "shasum": ""
+                "type": "path",
+                "url": "/Users/alfonso/Projects/laravel-ui",
+                "reference": "3ec5e68aa583e21331b52b279c5bb116167bc88b"
             },
             "require": {
                 "google/recaptcha": "^1.2",
-                "illuminate/bus": "^7.0|^8.0",
-                "illuminate/http": "^7.0|^8.0",
-                "illuminate/mail": "^7.0|^8.0",
-                "illuminate/support": "^7.0|^8.0",
-                "livewire/livewire": "^2.0",
+                "illuminate/bus": "^8.48",
+                "illuminate/http": "^8.48",
+                "illuminate/mail": "^8.48",
+                "illuminate/support": "^8.48",
+                "livewire/livewire": "^2.5",
                 "php": "^7.4|^8.0",
-                "pragmarx/google2fa-laravel": "^1.3",
+                "pragmarx/google2fa-laravel": "^1.4",
                 "ruafozy/mersenne-twister": "^1.3",
-                "spatie/laravel-flash": "^1.7",
-                "spatie/laravel-schemaless-attributes": "^1.8"
+                "spatie/laravel-flash": "^1.8",
+                "spatie/laravel-schemaless-attributes": "^2.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.16",
-                "fzaninotto/faker": "^1.9.1",
+                "friendsofphp/php-cs-fixer": "^3.0",
+                "fzaninotto/faker": "^1.9",
                 "graham-campbell/analyzer": "^3.0",
-                "mockery/mockery": "^1.3.1",
-                "nunomaduro/larastan": "^0.6.4",
-                "nunomaduro/laravel-mojito": "^0.2.6",
-                "pestphp/pest": "^0.3.0",
-                "pestphp/pest-plugin-faker": "^0.3.0",
-                "pestphp/pest-plugin-laravel": "^0.3.0",
-                "pestphp/pest-plugin-livewire": "^0.3.0",
-                "phpunit/phpunit": "^9.3",
+                "mockery/mockery": "^1.4",
+                "nunomaduro/larastan": "^0.7.6",
+                "nunomaduro/laravel-mojito": "^0.2.8",
+                "pestphp/pest": "^1.7",
+                "pestphp/pest-plugin-faker": "^1.0",
+                "pestphp/pest-plugin-laravel": "^1.0",
+                "pestphp/pest-plugin-livewire": "^1.0",
+                "phpunit/phpunit": "^9.5",
                 "psalm/plugin-laravel": "^1.4",
-                "rector/rector": "^0.8.14",
-                "vimeo/psalm": "^3.16"
+                "rector/rector": "^0.11.20",
+                "vimeo/psalm": "^4.8"
             },
             "type": "library",
             "extra": {
@@ -65,7 +59,19 @@
                     "src/helpers.php"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "format": [
+                    "vendor/bin/php-cs-fixer fix"
+                ],
+                "test": [
+                    "./vendor/bin/pest --coverage --min=100 --coverage-html=.coverage --coverage-clover=coverage.xml"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -76,11 +82,9 @@
                 }
             ],
             "description": "User-Interface Scaffolding for Laravel. Powered by TailwindCSS.",
-            "support": {
-                "issues": "https://github.com/ArkEcosystem/laravel-ui/issues",
-                "source": "https://github.com/ArkEcosystem/laravel-ui/tree/3.16.0"
-            },
-            "time": "2021-06-22T12:55:48+00:00"
+            "transport-options": {
+                "relative": false
+            }
         },
         {
             "name": "bacon/bacon-qr-code",
@@ -836,6 +840,57 @@
                 "source": "https://github.com/guzzle/psr7/tree/1.8.2"
             },
             "time": "2021-04-26T09:17:50+00:00"
+        },
+        {
+            "name": "hamcrest/hamcrest-php",
+            "version": "v2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hamcrest/hamcrest-php.git",
+                "reference": "8c3d0a3f6af734494ad8f6fbbee0ba92422859f3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hamcrest/hamcrest-php/zipball/8c3d0a3f6af734494ad8f6fbbee0ba92422859f3",
+                "reference": "8c3d0a3f6af734494ad8f6fbbee0ba92422859f3",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3|^7.0|^8.0"
+            },
+            "replace": {
+                "cordoval/hamcrest-php": "*",
+                "davedevelopment/hamcrest-php": "*",
+                "kodova/hamcrest-php": "*"
+            },
+            "require-dev": {
+                "phpunit/php-file-iterator": "^1.4 || ^2.0",
+                "phpunit/phpunit": "^4.8.36 || ^5.7 || ^6.5 || ^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.1-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "hamcrest"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "This is the PHP port of Hamcrest Matchers",
+            "keywords": [
+                "test"
+            ],
+            "support": {
+                "issues": "https://github.com/hamcrest/hamcrest-php/issues",
+                "source": "https://github.com/hamcrest/hamcrest-php/tree/v2.0.1"
+            },
+            "time": "2020-07-09T08:09:16+00:00"
         },
         {
             "name": "intervention/image",
@@ -1874,6 +1929,78 @@
                 }
             ],
             "time": "2021-02-19T21:22:57+00:00"
+        },
+        {
+            "name": "mockery/mockery",
+            "version": "1.4.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mockery/mockery.git",
+                "reference": "d1339f64479af1bee0e82a0413813fe5345a54ea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mockery/mockery/zipball/d1339f64479af1bee0e82a0413813fe5345a54ea",
+                "reference": "d1339f64479af1bee0e82a0413813fe5345a54ea",
+                "shasum": ""
+            },
+            "require": {
+                "hamcrest/hamcrest-php": "^2.0.1",
+                "lib-pcre": ">=7.0",
+                "php": "^7.3 || ^8.0"
+            },
+            "conflict": {
+                "phpunit/phpunit": "<8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.5 || ^9.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Mockery": "library/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Pádraic Brady",
+                    "email": "padraic.brady@gmail.com",
+                    "homepage": "http://blog.astrumfutura.com"
+                },
+                {
+                    "name": "Dave Marshall",
+                    "email": "dave.marshall@atstsolutions.co.uk",
+                    "homepage": "http://davedevelopment.co.uk"
+                }
+            ],
+            "description": "Mockery is a simple yet flexible PHP mock object framework",
+            "homepage": "https://github.com/mockery/mockery",
+            "keywords": [
+                "BDD",
+                "TDD",
+                "library",
+                "mock",
+                "mock objects",
+                "mockery",
+                "stub",
+                "test",
+                "test double",
+                "testing"
+            ],
+            "support": {
+                "issues": "https://github.com/mockery/mockery/issues",
+                "source": "https://github.com/mockery/mockery/tree/1.4.3"
+            },
+            "time": "2021-02-24T09:51:49+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -3381,6 +3508,66 @@
             "time": "2021-05-18T11:28:48+00:00"
         },
         {
+            "name": "spatie/laravel-package-tools",
+            "version": "1.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-package-tools.git",
+                "reference": "cf4c4cec220575e2864c6082842d76822421f1b1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/cf4c4cec220575e2864c6082842d76822421f1b1",
+                "reference": "cf4c4cec220575e2864c6082842d76822421f1b1",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^7.0|^8.0",
+                "mockery/mockery": "^1.4",
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^5.0|^6.0",
+                "phpunit/phpunit": "^9.3",
+                "spatie/test-time": "^1.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\LaravelPackageTools\\": "src",
+                    "Spatie\\LaravelPackageTools\\Database\\Factories\\": "database/factories"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Tools for creating Laravel packages",
+            "homepage": "https://github.com/spatie/laravel-package-tools",
+            "keywords": [
+                "laravel-package-tools",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/laravel-package-tools/issues",
+                "source": "https://github.com/spatie/laravel-package-tools/tree/1.9.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-05-23T15:12:33+00:00"
+        },
+        {
             "name": "spatie/laravel-personal-data-export",
             "version": "2.0.2",
             "source": {
@@ -3457,26 +3644,31 @@
         },
         {
             "name": "spatie/laravel-schemaless-attributes",
-            "version": "1.8.3",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-schemaless-attributes.git",
-                "reference": "e3037a509683fe7fc0a2681b6f404b90aeffdaf0"
+                "reference": "a2b3ebace5e6f75fa0f0c102370f25323071c38b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-schemaless-attributes/zipball/e3037a509683fe7fc0a2681b6f404b90aeffdaf0",
-                "reference": "e3037a509683fe7fc0a2681b6f404b90aeffdaf0",
+                "url": "https://api.github.com/repos/spatie/laravel-schemaless-attributes/zipball/a2b3ebace5e6f75fa0f0c102370f25323071c38b",
+                "reference": "a2b3ebace5e6f75fa0f0c102370f25323071c38b",
                 "shasum": ""
             },
             "require": {
-                "illuminate/database": "^5.6|^6.0|^7.0|^8.0",
-                "illuminate/support": "^5.6|^6.0|^7.0|^8.0",
-                "php": "^7.3|^8.0"
+                "illuminate/contracts": "^7.0|^8.0",
+                "illuminate/database": "^7.0|^8.0",
+                "illuminate/support": "^7.0|^8.0",
+                "php": "^8.0",
+                "spatie/laravel-package-tools": "^1.4.3"
             },
             "require-dev": {
-                "orchestra/testbench": "^3.6|^4.0|^5.0|^6.0",
-                "phpunit/phpunit": "^7.0|^8.0|^9.0"
+                "brianium/paratest": "^6.2",
+                "mockery/mockery": "^1.4",
+                "nunomaduro/collision": "^5.3",
+                "orchestra/testbench": "^6.15",
+                "phpunit/phpunit": "^9.5.4"
             },
             "type": "library",
             "extra": {
@@ -3511,15 +3703,19 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-schemaless-attributes/issues",
-                "source": "https://github.com/spatie/laravel-schemaless-attributes/tree/1.8.3"
+                "source": "https://github.com/spatie/laravel-schemaless-attributes/tree/2.0.0"
             },
             "funding": [
                 {
                     "url": "https://spatie.be/open-source/support-us",
                     "type": "custom"
+                },
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
                 }
             ],
-            "time": "2020-11-04T13:21:43+00:00"
+            "time": "2021-04-09T20:44:12+00:00"
         },
         {
             "name": "spatie/regex",
@@ -7120,39 +7316,40 @@
         },
         {
             "name": "doctrine/cache",
-            "version": "2.0.3",
+            "version": "1.10.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "c9622c6820d3ede1e2315a6a377ea1076e421d88"
+                "reference": "13e3381b25847283a91948d04640543941309727"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/c9622c6820d3ede1e2315a6a377ea1076e421d88",
-                "reference": "c9622c6820d3ede1e2315a6a377ea1076e421d88",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/13e3381b25847283a91948d04640543941309727",
+                "reference": "13e3381b25847283a91948d04640543941309727",
                 "shasum": ""
             },
             "require": {
                 "php": "~7.1 || ^8.0"
             },
             "conflict": {
-                "doctrine/common": ">2.2,<2.4",
-                "psr/cache": ">=3"
+                "doctrine/common": ">2.2,<2.4"
             },
             "require-dev": {
                 "alcaeus/mongo-php-adapter": "^1.1",
-                "cache/integration-tests": "dev-master",
-                "doctrine/coding-standard": "^8.0",
+                "doctrine/coding-standard": "^6.0",
                 "mongodb/mongodb": "^1.1",
-                "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0",
-                "predis/predis": "~1.0",
-                "psr/cache": "^1.0 || ^2.0",
-                "symfony/cache": "^4.4 || ^5.2"
+                "phpunit/phpunit": "^7.0",
+                "predis/predis": "~1.0"
             },
             "suggest": {
                 "alcaeus/mongo-php-adapter": "Required to use legacy MongoDB driver"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.9.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Doctrine\\Common\\Cache\\": "lib/Doctrine/Common/Cache"
@@ -7199,7 +7396,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/cache/issues",
-                "source": "https://github.com/doctrine/cache/tree/2.0.3"
+                "source": "https://github.com/doctrine/cache/tree/1.10.x"
             },
             "funding": [
                 {
@@ -7215,7 +7412,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-25T09:43:04+00:00"
+            "time": "2020-07-07T18:54:01+00:00"
         },
         {
             "name": "doctrine/dbal",
@@ -7979,57 +8176,6 @@
             "time": "2020-10-07T15:56:32+00:00"
         },
         {
-            "name": "hamcrest/hamcrest-php",
-            "version": "v2.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/hamcrest/hamcrest-php.git",
-                "reference": "8c3d0a3f6af734494ad8f6fbbee0ba92422859f3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/hamcrest/hamcrest-php/zipball/8c3d0a3f6af734494ad8f6fbbee0ba92422859f3",
-                "reference": "8c3d0a3f6af734494ad8f6fbbee0ba92422859f3",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.3|^7.0|^8.0"
-            },
-            "replace": {
-                "cordoval/hamcrest-php": "*",
-                "davedevelopment/hamcrest-php": "*",
-                "kodova/hamcrest-php": "*"
-            },
-            "require-dev": {
-                "phpunit/php-file-iterator": "^1.4 || ^2.0",
-                "phpunit/phpunit": "^4.8.36 || ^5.7 || ^6.5 || ^7.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.1-dev"
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "hamcrest"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "This is the PHP port of Hamcrest Matchers",
-            "keywords": [
-                "test"
-            ],
-            "support": {
-                "issues": "https://github.com/hamcrest/hamcrest-php/issues",
-                "source": "https://github.com/hamcrest/hamcrest-php/tree/v2.0.1"
-            },
-            "time": "2020-07-09T08:09:16+00:00"
-        },
-        {
             "name": "justinrainbow/json-schema",
             "version": "5.2.10",
             "source": {
@@ -8098,78 +8244,6 @@
                 "source": "https://github.com/justinrainbow/json-schema/tree/5.2.10"
             },
             "time": "2020-05-27T16:41:55+00:00"
-        },
-        {
-            "name": "mockery/mockery",
-            "version": "1.4.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mockery/mockery.git",
-                "reference": "d1339f64479af1bee0e82a0413813fe5345a54ea"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mockery/mockery/zipball/d1339f64479af1bee0e82a0413813fe5345a54ea",
-                "reference": "d1339f64479af1bee0e82a0413813fe5345a54ea",
-                "shasum": ""
-            },
-            "require": {
-                "hamcrest/hamcrest-php": "^2.0.1",
-                "lib-pcre": ">=7.0",
-                "php": "^7.3 || ^8.0"
-            },
-            "conflict": {
-                "phpunit/phpunit": "<8.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^8.5 || ^9.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.4.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Mockery": "library/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Pádraic Brady",
-                    "email": "padraic.brady@gmail.com",
-                    "homepage": "http://blog.astrumfutura.com"
-                },
-                {
-                    "name": "Dave Marshall",
-                    "email": "dave.marshall@atstsolutions.co.uk",
-                    "homepage": "http://davedevelopment.co.uk"
-                }
-            ],
-            "description": "Mockery is a simple yet flexible PHP mock object framework",
-            "homepage": "https://github.com/mockery/mockery",
-            "keywords": [
-                "BDD",
-                "TDD",
-                "library",
-                "mock",
-                "mock objects",
-                "mockery",
-                "stub",
-                "test",
-                "test double",
-                "testing"
-            ],
-            "support": {
-                "issues": "https://github.com/mockery/mockery/issues",
-                "source": "https://github.com/mockery/mockery/tree/1.4.3"
-            },
-            "time": "2021-02-24T09:51:49+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -9570,16 +9644,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.12.88",
+            "version": "0.12.90",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "464d1a81af49409c41074aa6640ed0c4cbd9bb68"
+                "reference": "f0e4b56630fc3d4eb5be86606d07212ac212ede4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/464d1a81af49409c41074aa6640ed0c4cbd9bb68",
-                "reference": "464d1a81af49409c41074aa6640ed0c4cbd9bb68",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/f0e4b56630fc3d4eb5be86606d07212ac212ede4",
+                "reference": "f0e4b56630fc3d4eb5be86606d07212ac212ede4",
                 "shasum": ""
             },
             "require": {
@@ -9610,11 +9684,15 @@
             "description": "PHPStan - PHP Static Analysis Tool",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/0.12.88"
+                "source": "https://github.com/phpstan/phpstan/tree/0.12.90"
             },
             "funding": [
                 {
                     "url": "https://github.com/ondrejmirtes",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/phpstan",
                     "type": "github"
                 },
                 {
@@ -9626,7 +9704,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-17T12:24:49+00:00"
+            "time": "2021-06-18T07:15:38+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -10116,16 +10194,16 @@
         },
         {
             "name": "psr/cache",
-            "version": "2.0.0",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/cache.git",
-                "reference": "213f9dbc5b9bfbc4f8db86d2838dc968752ce13b"
+                "reference": "aa5030cfa5405eccfdcb1083ce040c2cb8d253bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/cache/zipball/213f9dbc5b9bfbc4f8db86d2838dc968752ce13b",
-                "reference": "213f9dbc5b9bfbc4f8db86d2838dc968752ce13b",
+                "url": "https://api.github.com/repos/php-fig/cache/zipball/aa5030cfa5405eccfdcb1083ce040c2cb8d253bf",
+                "reference": "aa5030cfa5405eccfdcb1083ce040c2cb8d253bf",
                 "shasum": ""
             },
             "require": {
@@ -10159,9 +10237,9 @@
                 "psr-6"
             ],
             "support": {
-                "source": "https://github.com/php-fig/cache/tree/2.0.0"
+                "source": "https://github.com/php-fig/cache/tree/3.0.0"
             },
-            "time": "2021-02-03T23:23:37+00:00"
+            "time": "2021-02-03T23:26:27+00:00"
         },
         {
             "name": "react/promise",
@@ -10215,21 +10293,21 @@
         },
         {
             "name": "rector/rector",
-            "version": "0.11.20",
+            "version": "0.11.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "eb2f72236ad821dd9f19144a05d8b685480fd9a2"
+                "reference": "2765b17fc9de0792c9795cdc1a7704c6a9343691"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/eb2f72236ad821dd9f19144a05d8b685480fd9a2",
-                "reference": "eb2f72236ad821dd9f19144a05d8b685480fd9a2",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/2765b17fc9de0792c9795cdc1a7704c6a9343691",
+                "reference": "2765b17fc9de0792c9795cdc1a7704c6a9343691",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1|^8.0",
-                "phpstan/phpstan": ">=0.12.86 <=0.12.88"
+                "phpstan/phpstan": ">=0.12.86 <=0.12.90"
             },
             "conflict": {
                 "phpstan/phpdoc-parser": "<=0.5.3",
@@ -10263,7 +10341,7 @@
             "description": "Prefixed and PHP 7.1 downgraded version of rector/rector",
             "support": {
                 "issues": "https://github.com/rectorphp/rector/issues",
-                "source": "https://github.com/rectorphp/rector/tree/0.11.20"
+                "source": "https://github.com/rectorphp/rector/tree/0.11.21"
             },
             "funding": [
                 {
@@ -10271,7 +10349,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-06-13T23:57:37+00:00"
+            "time": "2021-06-22T19:36:35+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -11412,16 +11490,16 @@
         },
         {
             "name": "spatie/laravel-ray",
-            "version": "1.20.2",
+            "version": "1.21.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-ray.git",
-                "reference": "41797d058a626878754342205d83ca6c4db7f6b2"
+                "reference": "4d8c8647f5697130710c4770ac3a9f18c8183ed0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-ray/zipball/41797d058a626878754342205d83ca6c4db7f6b2",
-                "reference": "41797d058a626878754342205d83ca6c4db7f6b2",
+                "url": "https://api.github.com/repos/spatie/laravel-ray/zipball/4d8c8647f5697130710c4770ac3a9f18c8183ed0",
+                "reference": "4d8c8647f5697130710c4770ac3a9f18c8183ed0",
                 "shasum": ""
             },
             "require": {
@@ -11477,7 +11555,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-ray/issues",
-                "source": "https://github.com/spatie/laravel-ray/tree/1.20.2"
+                "source": "https://github.com/spatie/laravel-ray/tree/1.21.0"
             },
             "funding": [
                 {
@@ -11489,7 +11567,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2021-06-21T07:02:32+00:00"
+            "time": "2021-06-22T19:33:13+00:00"
         },
         {
             "name": "spatie/macroable",

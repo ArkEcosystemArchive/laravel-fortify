@@ -12,14 +12,14 @@
     "require": {
         "php": "^8.0",
         "livewire/livewire": "^2.5",
-        "arkecosystem/ui": "dev-master",
         "spatie/laravel-medialibrary": "^9.6",
         "laravel/fortify": "^1.7",
         "danharrin/livewire-rate-limiting": "^0.3.0",
         "spatie/laravel-personal-data-export": "^2.0",
         "jenssegers/agent": "^2.6",
         "spatie/laravel-newsletter": "^4.10",
-        "pragmarx/google2fa-laravel": "^1.4"
+        "pragmarx/google2fa-laravel": "^1.4",
+        "arkecosystem/ui": "^3.16"
     },
     "require-dev": {
         "pestphp/pest": "^1.7",
@@ -53,11 +53,5 @@
         ]
     },
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "repositories": [
-        {
-            "type": "path",
-            "url": "/Users/alfonso/Projects/laravel-ui"
-        }
-    ]
+    "prefer-stable": true
 }

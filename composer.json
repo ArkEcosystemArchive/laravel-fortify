@@ -10,18 +10,21 @@
         }
     ],
     "require": {
-        "php": "^7.4|^8.0",
-        "illuminate/support": "^8.48",
+        "php": "^8.0",
         "livewire/livewire": "^2.5",
-        "pragmarx/google2fa-laravel": "^1.4",
-        "laravel/fortify": "^1.7",
-        "jenssegers/agent": "^2.6",
-        "arkecosystem/ui": "^3.16",
-        "spatie/laravel-personal-data-export": "^2.0",
+        "arkecosystem/ui": "dev-master",
         "spatie/laravel-medialibrary": "^9.6",
-        "konceiver/laravel-data-bags": "^1.4",
+        "laravel/fortify": "^1.7",
+        "danharrin/livewire-rate-limiting": "^0.3.0",
+        "spatie/laravel-personal-data-export": "^2.0",
+        "jenssegers/agent": "^2.6",
         "spatie/laravel-newsletter": "^4.10",
-        "danharrin/livewire-rate-limiting": "^0.3.0"
+        "pragmarx/google2fa-laravel": "^1.4"
+    },
+    "require-dev": {
+        "pestphp/pest": "^1.7",
+        "orchestra/testbench": "^6.18",
+        "graham-campbell/analyzer": "^3.0"
     },
     "autoload": {
         "psr-4": {
@@ -51,20 +54,10 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.0",
-        "graham-campbell/analyzer": "^3.0",
-        "mockery/mockery": "^1.4",
-        "nunomaduro/larastan": "^0.7.6",
-        "nunomaduro/laravel-mojito": "^0.2.8",
-        "pestphp/pest": "^1.7",
-        "pestphp/pest-plugin-faker": "^1.0",
-        "pestphp/pest-plugin-laravel": "^1.0",
-        "pestphp/pest-plugin-livewire": "^1.0",
-        "phpunit/phpunit": "^9.5",
-        "psalm/plugin-laravel": "^1.4",
-        "rector/rector": "^0.11.20",
-        "vimeo/psalm": "^4.8",
-        "orchestra/testbench": "^6.18"
-    }
+    "repositories": [
+        {
+            "type": "path",
+            "url": "/Users/alfonso/Projects/laravel-ui"
+        }
+    ]
 }

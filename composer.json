@@ -21,7 +21,7 @@
         "pragmarx/google2fa-laravel": "^1.4",
         "arkecosystem/ui": "^3.16",
         "nunomaduro/larastan": "^0.7.6",
-        "friendsofphp/php-cs-fixer": "^3.0"
+        "friendsofphp/php-cs-fixer": "^2.0"
     },
     "require-dev": {
         "pestphp/pest": "^1.7",

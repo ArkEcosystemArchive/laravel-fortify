@@ -138,9 +138,8 @@ $finder = Finder::create()
     ->ignoreDotFiles(true)
     ->ignoreVCS(true);
 
-$config = new Config();
-
-return $config->setFinder($finder)
+return Config::create()
+    ->setFinder($finder)
     ->setRules($rules)
     ->setRiskyAllowed(true)
     ->setUsingCache(true);

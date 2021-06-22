@@ -12,7 +12,7 @@ use function Tests\createUserModel;
 it('shows the two auth challenge form', function () {
     $user = createUserModel();
 
-    $this->mock(TwoFactorResetPasswordRequest::class)
+    $this->partialMock(TwoFactorResetPasswordRequest::class)
         ->shouldReceive('hasChallengedUser')
         ->andReturn(true)
         ->shouldReceive('hasValidToken')
@@ -41,7 +41,7 @@ it('throws an http exception if the token is invalid', function () {
 
     createUserModel();
 
-    $this->mock(TwoFactorResetPasswordRequest::class)
+    $this->partialMock(TwoFactorResetPasswordRequest::class)
         ->shouldReceive('hasChallengedUser')
         ->andReturn(true)
         ->shouldReceive('hasValidToken')
@@ -61,7 +61,7 @@ it('throws an http exception if is not able to get the user', function () {
 
     createUserModel();
 
-    $request = $this->mock(TwoFactorResetPasswordRequest::class)
+    $request = $this->partialMock(TwoFactorResetPasswordRequest::class)
         ->shouldReceive('hasChallengedUser')
         ->andReturn(false);
 
@@ -80,7 +80,7 @@ it('shows the reset form after validating the token', function () {
     $user->two_factor_recovery_codes = encrypt('wharever');
     $user->save();
 
-    $this->mock(TwoFactorResetPasswordRequest::class)
+    $this->partialMock(TwoFactorResetPasswordRequest::class)
         ->shouldReceive('hasChallengedUser')
         ->andReturn(true)
         ->shouldReceive('hasValidToken')
@@ -106,7 +106,7 @@ it('throws an http exception if the token is invalid when validating 2fa', funct
 
     $user = createUserModel();
 
-    $this->mock(TwoFactorResetPasswordRequest::class)
+    $this->partialMock(TwoFactorResetPasswordRequest::class)
         ->shouldReceive('challengedUser')
         ->andReturn($user)
         ->shouldReceive('hasChallengedUser')
@@ -126,7 +126,7 @@ it('throws an http exception if the token is invalid when validating 2fa', funct
 it('returns a failed two factor login response if the code is invalid', function () {
     $user = createUserModel();
 
-    $this->mock(TwoFactorResetPasswordRequest::class)
+    $this->partialMock(TwoFactorResetPasswordRequest::class)
         ->shouldReceive('challengedUser')
         ->andReturn($user)
         ->shouldReceive('hasChallengedUser')

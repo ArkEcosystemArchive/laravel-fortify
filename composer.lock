@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1c0e4c46ce3ecf75a8e0175f419f3c09",
+    "content-hash": "4f99ec3004adc66f21fb616aa5c8192c",
     "packages": [
         {
             "name": "arkecosystem/ui",
@@ -1814,6 +1814,82 @@
                 "source": "https://github.com/justinrainbow/json-schema/tree/5.2.10"
             },
             "time": "2020-05-27T16:41:55+00:00"
+        },
+        {
+            "name": "konceiver/laravel-data-bags",
+            "version": "1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/konceiver/laravel-data-bags.git",
+                "reference": "4c7ee8e3484a362324c18dee81ec2ca5b51ea311"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/konceiver/laravel-data-bags/zipball/4c7ee8e3484a362324c18dee81ec2ca5b51ea311",
+                "reference": "4c7ee8e3484a362324c18dee81ec2ca5b51ea311",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^8.0",
+                "illuminate/support": "^8.0",
+                "illuminate/view": "^8.0",
+                "php": "^7.4|^8.0",
+                "spatie/regex": "^1.4"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.16",
+                "graham-campbell/analyzer": "^3.0",
+                "guzzlehttp/guzzle": "^7.2",
+                "orchestra/testbench": "^6.4",
+                "pestphp/pest": "^0.3",
+                "phpunit/phpunit": "^9.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Konceiver\\DataBags\\Providers\\DataBagsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Konceiver\\DataBags\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brian Faust",
+                    "email": "brian@konceiver.dev",
+                    "homepage": "https://konceiver.dev",
+                    "role": "Developer"
+                }
+            ],
+            "description": ":package_description",
+            "homepage": "https://github.com/konceiver/laravel-data-bags",
+            "keywords": [
+                "konceiver",
+                "laravel-data-bags"
+            ],
+            "support": {
+                "issues": "https://github.com/konceiver/laravel-data-bags/issues",
+                "source": "https://github.com/konceiver/laravel-data-bags/tree/1.4.0"
+            },
+            "funding": [
+                {
+                    "url": "https://konceiver.dev/open-source/support-us",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/faustbrian",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-11-27T12:58:45+00:00"
         },
         {
             "name": "laravel/fortify",
@@ -4711,6 +4787,69 @@
                 }
             ],
             "time": "2020-11-04T13:21:43+00:00"
+        },
+        {
+            "name": "spatie/regex",
+            "version": "1.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/regex.git",
+                "reference": "1500ed75af430df3a32047494c43d79d45cf152b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/regex/zipball/1500ed75af430df3a32047494c43d79d45cf152b",
+                "reference": "1500ed75af430df3a32047494c43d79d45cf152b",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Regex\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian De Deyne",
+                    "email": "sebastian@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A sane interface for php's built in preg_* functions",
+            "homepage": "https://github.com/spatie/regex",
+            "keywords": [
+                "expression",
+                "expressions",
+                "regex",
+                "regular",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/regex/issues",
+                "source": "https://github.com/spatie/regex/tree/1.4.2"
+            },
+            "funding": [
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-11-03T23:05:25+00:00"
         },
         {
             "name": "spatie/temporary-directory",

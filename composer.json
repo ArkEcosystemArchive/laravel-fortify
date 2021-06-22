@@ -19,9 +19,10 @@
         "jenssegers/agent": "^2.6",
         "spatie/laravel-newsletter": "^4.10",
         "pragmarx/google2fa-laravel": "^1.4",
-        "arkecosystem/ui": "^3.16",
         "nunomaduro/larastan": "^0.7.6",
-        "friendsofphp/php-cs-fixer": "^2.0"
+        "friendsofphp/php-cs-fixer": "^2.0",
+        "konceiver/laravel-data-bags": "^1.4",
+        "arkecosystem/ui": "^3.16"
     },
     "require-dev": {
         "pestphp/pest": "^1.7",

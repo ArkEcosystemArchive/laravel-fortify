@@ -4,50 +4,26 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4f99ec3004adc66f21fb616aa5c8192c",
+    "content-hash": "85cdf5cdde767c33fc5ef3e7d1e94ce5",
     "packages": [
         {
             "name": "arkecosystem/ui",
-            "version": "3.16.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ArkEcosystem/laravel-ui.git",
-                "reference": "727e3fd6dc81f7eddd2cfa5c968108b00aacea80"
-            },
+            "version": "dev-chore/upgrade-deps",
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ArkEcosystem/laravel-ui/zipball/727e3fd6dc81f7eddd2cfa5c968108b00aacea80",
-                "reference": "727e3fd6dc81f7eddd2cfa5c968108b00aacea80",
-                "shasum": ""
+                "type": "path",
+                "url": "../laravel-ui",
+                "reference": "7cb7a51047a82b32622d2963bf8a8e9b67b2015b"
             },
             "require": {
-                "google/recaptcha": "^1.2",
-                "illuminate/bus": "^7.0|^8.0",
-                "illuminate/http": "^7.0|^8.0",
-                "illuminate/mail": "^7.0|^8.0",
-                "illuminate/support": "^7.0|^8.0",
-                "livewire/livewire": "^2.0",
-                "php": "^7.4|^8.0",
-                "pragmarx/google2fa-laravel": "^1.3",
+                "livewire/livewire": "^2.5",
+                "php": "^8.0",
                 "ruafozy/mersenne-twister": "^1.3",
-                "spatie/laravel-flash": "^1.7",
-                "spatie/laravel-schemaless-attributes": "^1.8"
+                "spatie/laravel-flash": "^1.8"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.16",
-                "fzaninotto/faker": "^1.9.1",
-                "graham-campbell/analyzer": "^3.0",
-                "mockery/mockery": "^1.3.1",
-                "nunomaduro/larastan": "^0.6.4",
-                "nunomaduro/laravel-mojito": "^0.2.6",
-                "pestphp/pest": "^0.3.0",
-                "pestphp/pest-plugin-faker": "^0.3.0",
-                "pestphp/pest-plugin-laravel": "^0.3.0",
-                "pestphp/pest-plugin-livewire": "^0.3.0",
-                "phpunit/phpunit": "^9.3",
-                "psalm/plugin-laravel": "^1.4",
-                "rector/rector": "^0.8.14",
-                "vimeo/psalm": "^3.16"
+                "nunomaduro/laravel-mojito": "^0.2.8",
+                "orchestra/testbench": "^6.18",
+                "pestphp/pest": "^1.7"
             },
             "type": "library",
             "extra": {
@@ -65,7 +41,19 @@
                     "src/helpers.php"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "format": [
+                    "vendor/bin/php-cs-fixer fix"
+                ],
+                "test": [
+                    "./vendor/bin/pest --coverage --min=100 --coverage-html=.coverage --coverage-clover=coverage.xml"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -76,11 +64,9 @@
                 }
             ],
             "description": "User-Interface Scaffolding for Laravel. Powered by TailwindCSS.",
-            "support": {
-                "issues": "https://github.com/ArkEcosystem/laravel-ui/issues",
-                "source": "https://github.com/ArkEcosystem/laravel-ui/tree/3.16.0"
-            },
-            "time": "2021-06-22T12:55:48+00:00"
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "bacon/bacon-qr-code",
@@ -1293,58 +1279,6 @@
             "time": "2021-05-03T21:43:24+00:00"
         },
         {
-            "name": "google/recaptcha",
-            "version": "1.2.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/google/recaptcha.git",
-                "reference": "614f25a9038be4f3f2da7cbfd778dc5b357d2419"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/google/recaptcha/zipball/614f25a9038be4f3f2da7cbfd778dc5b357d2419",
-                "reference": "614f25a9038be4f3f2da7cbfd778dc5b357d2419",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.2.20|^2.15",
-                "php-coveralls/php-coveralls": "^2.1",
-                "phpunit/phpunit": "^4.8.36|^5.7.27|^6.59|^7.5.11"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.2.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "ReCaptcha\\": "src/ReCaptcha"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "Client library for reCAPTCHA, a free service that protects websites from spam and abuse.",
-            "homepage": "https://www.google.com/recaptcha/",
-            "keywords": [
-                "Abuse",
-                "captcha",
-                "recaptcha",
-                "spam"
-            ],
-            "support": {
-                "forum": "https://groups.google.com/forum/#!forum/recaptcha",
-                "issues": "https://github.com/google/recaptcha/issues",
-                "source": "https://github.com/google/recaptcha"
-            },
-            "time": "2020-03-31T17:50:54+00:00"
-        },
-        {
             "name": "graham-campbell/result-type",
             "version": "v1.0.1",
             "source": {
@@ -1817,16 +1751,16 @@
         },
         {
             "name": "konceiver/laravel-data-bags",
-            "version": "1.4.0",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/konceiver/laravel-data-bags.git",
-                "reference": "4c7ee8e3484a362324c18dee81ec2ca5b51ea311"
+                "reference": "a30c139adc763664cc7720e13c00de74c869f220"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/konceiver/laravel-data-bags/zipball/4c7ee8e3484a362324c18dee81ec2ca5b51ea311",
-                "reference": "4c7ee8e3484a362324c18dee81ec2ca5b51ea311",
+                "url": "https://api.github.com/repos/konceiver/laravel-data-bags/zipball/a30c139adc763664cc7720e13c00de74c869f220",
+                "reference": "a30c139adc763664cc7720e13c00de74c869f220",
                 "shasum": ""
             },
             "require": {
@@ -1834,7 +1768,7 @@
                 "illuminate/support": "^8.0",
                 "illuminate/view": "^8.0",
                 "php": "^7.4|^8.0",
-                "spatie/regex": "^1.4"
+                "spatie/regex": "^2.0"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.16",
@@ -1877,7 +1811,7 @@
             ],
             "support": {
                 "issues": "https://github.com/konceiver/laravel-data-bags/issues",
-                "source": "https://github.com/konceiver/laravel-data-bags/tree/1.4.0"
+                "source": "https://github.com/konceiver/laravel-data-bags/tree/2.0.0"
             },
             "funding": [
                 {
@@ -1889,7 +1823,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-11-27T12:58:45+00:00"
+            "time": "2021-06-23T14:52:37+00:00"
         },
         {
             "name": "laravel/fortify",
@@ -1956,16 +1890,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.48.0",
+            "version": "v8.48.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "014443366257e4fa34071882e2b04217274a3ec9"
+                "reference": "edc138060a13c9e5f15c005fad5f6a39b4ccf5fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/014443366257e4fa34071882e2b04217274a3ec9",
-                "reference": "014443366257e4fa34071882e2b04217274a3ec9",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/edc138060a13c9e5f15c005fad5f6a39b4ccf5fa",
+                "reference": "edc138060a13c9e5f15c005fad5f6a39b4ccf5fa",
                 "shasum": ""
             },
             "require": {
@@ -2120,7 +2054,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2021-06-22T13:41:32+00:00"
+            "time": "2021-06-23T13:41:59+00:00"
         },
         {
             "name": "league/commonmark",
@@ -4723,87 +4657,21 @@
             "time": "2021-05-05T07:26:14+00:00"
         },
         {
-            "name": "spatie/laravel-schemaless-attributes",
-            "version": "1.8.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/laravel-schemaless-attributes.git",
-                "reference": "e3037a509683fe7fc0a2681b6f404b90aeffdaf0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-schemaless-attributes/zipball/e3037a509683fe7fc0a2681b6f404b90aeffdaf0",
-                "reference": "e3037a509683fe7fc0a2681b6f404b90aeffdaf0",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/database": "^5.6|^6.0|^7.0|^8.0",
-                "illuminate/support": "^5.6|^6.0|^7.0|^8.0",
-                "php": "^7.3|^8.0"
-            },
-            "require-dev": {
-                "orchestra/testbench": "^3.6|^4.0|^5.0|^6.0",
-                "phpunit/phpunit": "^7.0|^8.0|^9.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Spatie\\SchemalessAttributes\\SchemalessAttributesServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Spatie\\SchemalessAttributes\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Add schemaless attributes to Eloquent models",
-            "homepage": "https://github.com/spatie/laravel-schemaless-attributes",
-            "keywords": [
-                "laravel-schemaless-attributes",
-                "spatie"
-            ],
-            "support": {
-                "issues": "https://github.com/spatie/laravel-schemaless-attributes/issues",
-                "source": "https://github.com/spatie/laravel-schemaless-attributes/tree/1.8.3"
-            },
-            "funding": [
-                {
-                    "url": "https://spatie.be/open-source/support-us",
-                    "type": "custom"
-                }
-            ],
-            "time": "2020-11-04T13:21:43+00:00"
-        },
-        {
             "name": "spatie/regex",
-            "version": "1.4.2",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/regex.git",
-                "reference": "1500ed75af430df3a32047494c43d79d45cf152b"
+                "reference": "6671b64ff0aaae5fbe98bb292eec93a8cd6281d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/regex/zipball/1500ed75af430df3a32047494c43d79d45cf152b",
-                "reference": "1500ed75af430df3a32047494c43d79d45cf152b",
+                "url": "https://api.github.com/repos/spatie/regex/zipball/6671b64ff0aaae5fbe98bb292eec93a8cd6281d3",
+                "reference": "6671b64ff0aaae5fbe98bb292eec93a8cd6281d3",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.3|^8.0"
+                "php": "^8.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^9.3"
@@ -4837,7 +4705,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/regex/issues",
-                "source": "https://github.com/spatie/regex/tree/1.4.2"
+                "source": "https://github.com/spatie/regex/tree/2.0.1"
             },
             "funding": [
                 {
@@ -4849,7 +4717,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-11-03T23:05:25+00:00"
+            "time": "2021-04-20T08:33:46+00:00"
         },
         {
             "name": "spatie/temporary-directory",
@@ -8371,23 +8239,23 @@
         },
         {
             "name": "pestphp/pest",
-            "version": "v1.7.0",
+            "version": "v1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pestphp/pest.git",
-                "reference": "1680613e1250070ab6ccfcbec429d04f1830f5bc"
+                "reference": "e68c7b0e76918bd9983dd5c6582ac989a321db5a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pestphp/pest/zipball/1680613e1250070ab6ccfcbec429d04f1830f5bc",
-                "reference": "1680613e1250070ab6ccfcbec429d04f1830f5bc",
+                "url": "https://api.github.com/repos/pestphp/pest/zipball/e68c7b0e76918bd9983dd5c6582ac989a321db5a",
+                "reference": "e68c7b0e76918bd9983dd5c6582ac989a321db5a",
                 "shasum": ""
             },
             "require": {
                 "nunomaduro/collision": "^5.4.0",
                 "pestphp/pest-plugin": "^1.0.0",
                 "php": "^7.3 || ^8.0",
-                "phpunit/phpunit": ">= 9.3.7 <= 9.5.5"
+                "phpunit/phpunit": ">= 9.3.7 <= 9.5.6"
             },
             "require-dev": {
                 "illuminate/console": "^8.47.0",
@@ -8446,7 +8314,7 @@
             ],
             "support": {
                 "issues": "https://github.com/pestphp/pest/issues",
-                "source": "https://github.com/pestphp/pest/tree/v1.7.0"
+                "source": "https://github.com/pestphp/pest/tree/v1.8.0"
             },
             "funding": [
                 {
@@ -8474,7 +8342,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-06-19T13:42:29+00:00"
+            "time": "2021-06-23T09:31:27+00:00"
         },
         {
             "name": "pestphp/pest-plugin",
@@ -9204,16 +9072,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "9.5.5",
+            "version": "9.5.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "89ff45ea9d70e35522fb6654a2ebc221158de276"
+                "reference": "fb9b8333f14e3dce976a60ef6a7e05c7c7ed8bfb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/89ff45ea9d70e35522fb6654a2ebc221158de276",
-                "reference": "89ff45ea9d70e35522fb6654a2ebc221158de276",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/fb9b8333f14e3dce976a60ef6a7e05c7c7ed8bfb",
+                "reference": "fb9b8333f14e3dce976a60ef6a7e05c7c7ed8bfb",
                 "shasum": ""
             },
             "require": {
@@ -9243,7 +9111,7 @@
                 "sebastian/global-state": "^5.0.1",
                 "sebastian/object-enumerator": "^4.0.3",
                 "sebastian/resource-operations": "^3.0.3",
-                "sebastian/type": "^2.3.2",
+                "sebastian/type": "^2.3.4",
                 "sebastian/version": "^3.0.2"
             },
             "require-dev": {
@@ -9291,7 +9159,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.5"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.6"
             },
             "funding": [
                 {
@@ -9303,7 +9171,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-06-05T04:49:07+00:00"
+            "time": "2021-06-23T05:14:38+00:00"
         },
         {
             "name": "sebastian/cli-parser",

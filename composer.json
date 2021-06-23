@@ -21,7 +21,7 @@
         "pragmarx/google2fa-laravel": "^1.4",
         "nunomaduro/larastan": "^0.7.6",
         "friendsofphp/php-cs-fixer": "^2.0",
-        "arkecosystem/ui": "*",
+        "arkecosystem/ui": "^3.16",
         "konceiver/laravel-data-bags": "^2.0"
     },
     "require-dev": {
@@ -56,11 +56,5 @@
         ]
     },
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../laravel-ui"
-        }
-    ]
+    "prefer-stable": true
 }

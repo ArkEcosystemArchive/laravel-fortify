@@ -18,7 +18,7 @@
             <x-ark-input
                 type="password"
                 name="current_password"
-                model="state.current_password"
+                model="currentPassword"
                 :label="trans('fortify::forms.current_password')"
                 :errors="$errors"
                 class="w-full"
@@ -33,7 +33,7 @@
                 <x-ark-input
                     type="password"
                     name="password"
-                    model="state.password"
+                    model="password"
                     class="w-full"
                     :label="trans('fortify::forms.new_password')"
                     :errors="$errors"
@@ -44,7 +44,7 @@
             <x-ark-input
                 type="password"
                 name="password_confirmation"
-                model="state.password_confirmation"
+                model="password_confirmation"
                 :label="trans('fortify::forms.confirm_password')"
                 :errors="$errors"
             />

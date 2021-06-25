@@ -16,7 +16,7 @@ trait ValidatesPassword
         'needsMinimumLength'    => false,
     ];
 
-    public function updatedStatePassword($password)
+    public function updatedPassword($password)
     {
         if (is_null($password)) {
             return;

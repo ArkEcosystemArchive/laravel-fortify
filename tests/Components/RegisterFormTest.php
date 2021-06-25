@@ -25,10 +25,10 @@ it('can interact with the form', function () {
 
     Livewire::withQueryParams(['invitation' => $invitationUuid])
         ->test(RegisterForm::class)
-        ->set('state.name', 'John Doe')
-        ->set('state.username', 'jdoe')
-        ->set('state.email', 'jdoe@example.org')
-        ->set('state.email', 'jdoe@example.org')
+        ->set('name', 'John Doe')
+        ->set('username', 'jdoe')
+        ->set('email', 'jdoe@example.org')
+        ->set('email', 'jdoe@example.org')
         ->assertViewIs('ark-fortify::auth.register-form')
         ->assertViewHas('invitation');
 });

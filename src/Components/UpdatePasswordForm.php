@@ -17,16 +17,11 @@ class UpdatePasswordForm extends Component
 
     protected $listeners = ['passwordUpdated' => 'passwordUpdated'];
 
-    /**
-     * The component's state.
-     *
-     * @var array
-     */
-    public $state = [
-        'current_password'      => '',
-        'password'              => '',
-        'password_confirmation' => '',
-    ];
+    public string $currentPassword = '';
+
+    public ?string $password = '';
+
+    public ?string $password_confirmation = '';
 
     /**
      * Update the user's password.
@@ -39,13 +34,15 @@ class UpdatePasswordForm extends Component
     {
         $this->resetErrorBag();
 
-        $updater->update(Auth::user(), $this->state);
+        $updater->update(Auth::user(), [
+            'current_password'      => $this->currentPassword,
+            'password'              => $this->password,
+            'password_confirmation' => $this->password_confirmation,
+        ]);
 
-        $this->state = [
-            'current_password'      => '',
-            'password'              => '',
-            'password_confirmation' => '',
-        ];
+        $this->currentPassword      = '';
+        $this->password             = '';
+        $this->passwordConfirmation = '';
 
         $this->dispatchBrowserEvent('updated-password');
         $this->resetRules();

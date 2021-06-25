@@ -13,7 +13,7 @@ trait PasswordValidationRules
      *
      * @return array
      */
-    protected function passwordRules()
+    protected static function passwordRules()
     {
         return [
             'required',

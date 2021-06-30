@@ -23,11 +23,11 @@ return [
     ],
 
     'password-rules' => [
-        'needs_lowercase'         => 'One lowercase character',
-        'needs_uppercase'         => 'One uppercase character',
-        'needs_numeric'           => 'One number',
-        'needs_special_character' => 'One special character',
-        'needs_minimum_length'    => '12 characters minumum',
+        'lowercase'         => 'One lowercase character',
+        'uppercase'         => 'One uppercase character',
+        'numbers'           => 'One number',
+        'symbols' => 'One special character',
+        'min'    => '12 characters minumum',
     ],
 
     'delete-user' => [

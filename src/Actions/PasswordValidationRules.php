@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ARKEcosystem\Fortify\Actions;
 
-use ARKEcosystem\Fortify\Rules\Password;
+use Illuminate\Validation\Rules\Password;
 
 trait PasswordValidationRules
 {
@@ -18,12 +18,12 @@ trait PasswordValidationRules
         return [
             'required',
             'string',
-            (new Password())
-                ->length(12)
-                ->requireLowercase()
-                ->requireUppercase()
-                ->requireNumeric()
-                ->requireSpecialCharacter(),
+            Password::min(12)
+                ->letters()
+                ->mixedCase()
+                ->numbers()
+                ->symbols()
+                ->uncompromised(),
             'confirmed',
         ];
     }

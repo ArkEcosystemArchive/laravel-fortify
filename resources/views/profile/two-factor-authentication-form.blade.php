@@ -84,7 +84,7 @@
                                 name="state.otp"
                                 :label="trans('fortify::pages.user-settings.one_time_password')"
                                 :errors="$errors"
-                                pattern="[0-9]{6}""
+                                pattern="[0-9]{6}"
                             />
                         </div>
                     </div>

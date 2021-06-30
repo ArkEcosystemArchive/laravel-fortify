@@ -7,6 +7,11 @@ namespace Tests\Components;
 use ARKEcosystem\Fortify\Components\UpdatePasswordForm;
 use Livewire\Livewire;
 use function Tests\createUserModel;
+use Illuminate\Contracts\Validation\UncompromisedVerifier;
+
+beforeEach(function () {
+    $this->mock(UncompromisedVerifier::class)->shouldReceive('verify')->andReturn(true);
+});
 
 it('can interact with the form', function () {
     $user = createUserModel();
@@ -33,19 +38,19 @@ it('clears password rules on update', function () {
         ->set('password', 'abcd1234ABCD%')
         ->set('password_confirmation', 'abcd1234ABCD%')
         ->assertSet('passwordRules', [
-            'needsLowercase'        => true,
-            'needsUppercase'        => true,
-            'needsNumeric'          => true,
-            'needsSpecialCharacter' => true,
-            'needsMinimumLength'    => true,
+            'lowercase'  => true,
+            'uppercase'  => true,
+            'numbers'    => true,
+            'symbols'    => true,
+            'min'        => true,
         ])
         ->call('updatePassword')
         ->assertSet('passwordRules', [
-            'needsLowercase'        => false,
-            'needsUppercase'        => false,
-            'needsNumeric'          => false,
-            'needsSpecialCharacter' => false,
-            'needsMinimumLength'    => false,
+            'lowercase'  => false,
+            'uppercase'  => false,
+            'numbers'    => false,
+            'symbols'    => false,
+            'min'        => false,
         ]);
 });
 
@@ -63,10 +68,10 @@ it('handles password being null', function () {
         ->set('password_confirmation', null)
         ->call('updatePassword')
         ->assertSet('passwordRules', [
-            'needsLowercase'        => false,
-            'needsUppercase'        => false,
-            'needsNumeric'          => false,
-            'needsSpecialCharacter' => false,
-            'needsMinimumLength'    => false,
+            'lowercase'  => false,
+            'uppercase'  => false,
+            'numbers'    => false,
+            'symbols'    => false,
+            'min'        => false,
         ]);
 });

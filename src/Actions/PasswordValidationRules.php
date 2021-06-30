@@ -23,8 +23,7 @@ trait PasswordValidationRules
                 ->mixedCase()
                 ->numbers()
                 ->symbols()
-                ->uncompromised()
-                ,
+                ->uncompromised(),
             'confirmed',
         ];
     }

@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Tests\Components;
 
 use ARKEcosystem\Fortify\Components\UpdatePasswordForm;
+use Illuminate\Contracts\Validation\UncompromisedVerifier;
 use Livewire\Livewire;
 use function Tests\createUserModel;
-use Illuminate\Contracts\Validation\UncompromisedVerifier;
 
 beforeEach(function () {
     $this->mock(UncompromisedVerifier::class)->shouldReceive('verify')->andReturn(true);

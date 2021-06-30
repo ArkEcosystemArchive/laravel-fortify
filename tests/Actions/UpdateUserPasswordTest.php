@@ -8,11 +8,9 @@ use Illuminate\Contracts\Validation\UncompromisedVerifier;
 use function Tests\createUserModel;
 use function Tests\expectValidationError;
 
-
 beforeEach(function () {
     $this->mock(UncompromisedVerifier::class)->shouldReceive('verify')->andReturn(true);
 });
-
 
 it('should reset the user password', function () {
     $user = createUserModel();

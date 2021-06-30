@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-use Tests\stubs\TestUser;
+use ARKEcosystem\Fortify\Actions\CreateNewUser;
 use ARKEcosystem\Fortify\Models;
 
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Contracts\Validation\UncompromisedVerifier;
 use Illuminate\Support\Facades\Config;
 
+use Illuminate\Support\Facades\Hash;
 use function Tests\expectValidationError;
-use ARKEcosystem\Fortify\Actions\CreateNewUser;
-use Illuminate\Contracts\Validation\UncompromisedVerifier;
+use Tests\stubs\TestUser;
 
 beforeEach(function () {
     $this->validPassword = 'Pas3w05d&123456';
@@ -20,8 +20,6 @@ beforeEach(function () {
 
 it('should create a valid user with the create user action', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
-
-
 
     $user = (new CreateNewUser())->create([
         'name'                  => 'John Doe',

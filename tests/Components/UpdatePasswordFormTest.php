@@ -75,3 +75,25 @@ it('handles password being null', function () {
             'min'        => false,
         ]);
 });
+
+it('handles password being empty string', function () {
+    $user = createUserModel();
+
+    Livewire::actingAs($user)
+        ->test(UpdatePasswordForm::class)
+        ->assertSet('currentPassword', '')
+        ->assertSet('password', '')
+        ->assertSet('password_confirmation', '')
+        ->assertViewIs('ark-fortify::profile.update-password-form')
+        ->set('currentPassword', 'password')
+        ->set('password', '')
+        ->set('password_confirmation', '')
+        ->call('updatePassword')
+        ->assertSet('passwordRules', [
+            'lowercase'  => false,
+            'uppercase'  => false,
+            'numbers'    => false,
+            'symbols'    => false,
+            'min'        => false,
+        ]);
+});

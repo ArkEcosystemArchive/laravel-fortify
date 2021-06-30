@@ -24,16 +24,16 @@ trait ValidatesPassword
             return;
         }
 
-        $this->passwordRules['lowercase'] = $password && !! preg_match('/\p{Ll}/u', $password);
-        $this->passwordRules['uppercase'] = $password && !! preg_match('/\p{Lu}/u', $password);
-        $this->passwordRules['min'] = $this->passes(Password::min(12), $password);
-        $this->passwordRules['numbers'] = $this->passes(Password::min(0)->numbers(), $password);
-        $this->passwordRules['symbols'] = $this->passes(Password::min(0)->symbols(), $password);
+        $this->passwordRules['lowercase'] = $password && (bool) preg_match('/\p{Ll}/u', $password);
+        $this->passwordRules['uppercase'] = $password && (bool) preg_match('/\p{Lu}/u', $password);
+        $this->passwordRules['min']       = $this->passes(Password::min(12), $password);
+        $this->passwordRules['numbers']   = $this->passes(Password::min(0)->numbers(), $password);
+        $this->passwordRules['symbols']   = $this->passes(Password::min(0)->symbols(), $password);
     }
 
     private function passes(Rule $rule, string $password): bool
     {
-        if (!$password) {
+        if (! $password) {
             return false;
         }
 

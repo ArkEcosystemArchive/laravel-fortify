@@ -60,7 +60,7 @@ class RegisterForm extends Component
 
         $requiredProperties = array_filter(
             $this->getPublicPropertiesDefinedBySubClass(),
-            fn ($key) => in_array($key, ['code', 'name', 'username', 'email', 'password', 'password_confirmation', 'terms']),
+            fn ($key) => in_array($key, ['code', 'name', 'username', 'email', 'password', 'password_confirmation', 'terms'], true),
             ARRAY_FILTER_USE_KEY
         );
 

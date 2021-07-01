@@ -54,10 +54,6 @@ class RegisterForm extends Component
 
     public function canSubmit(): bool
     {
-        if ($this->getErrorBag()->count() !== 0) {
-            return false;
-        }
-
         $requiredProperties = array_filter(
             $this->getPublicPropertiesDefinedBySubClass(),
             fn ($key) => in_array($key, ['code', 'name', 'username', 'email', 'password', 'password_confirmation', 'terms'], true),
@@ -70,6 +66,6 @@ class RegisterForm extends Component
             }
         }
 
-        return true;
+        return $this->getErrorBag()->count() === 0;
     }
 }

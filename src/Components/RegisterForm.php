@@ -51,4 +51,25 @@ class RegisterForm extends Component
             'invitation' => $this->invitationId ? Models::invitation()::findByUuid($this->invitationId) : null,
         ]);
     }
+
+    public function canSubmit(): bool
+    {
+        if ($this->getErrorBag()->count() !== 0) {
+            return false;
+        }
+
+        $requiredProperties = array_filter(
+            $this->getPublicPropertiesDefinedBySubClass(),
+            fn ($key) => in_array($key, ['code', 'name', 'username', 'email', 'password', 'password_confirmation', 'terms']),
+            ARRAY_FILTER_USE_KEY
+        );
+
+        foreach ($requiredProperties as $property) {
+            if (! $property) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

@@ -41,6 +41,6 @@ trait HasPhoto
                         ->height($size * $x));
                 });
             });
-            // @codeCoverageIgnoreEnd
+        // @codeCoverageIgnoreEnd
     }
 }

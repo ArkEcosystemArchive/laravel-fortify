@@ -23,6 +23,23 @@ trait HasPhoto
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('photo')->singleFile();
+
+        $this->addMediaCollection('photo')
+            ->singleFile()
+            ->registerMediaConversions(function () {
+                $conversions =  collect(config('fortify.media.conversions'));
+
+                $conversions->each(function ($size, $name) {
+                    $this
+                        ->addMediaConversion($name)
+                        ->width($size)
+                        ->height($size);
+
+                    collect(config('fortify.media.srcset_sizes'))->each(fn($x) => $this
+                        ->addMediaConversion($name . $x . 'x')
+                        ->width($size * $x)
+                        ->height($size * $x));
+                });
+            });
     }
 }

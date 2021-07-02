@@ -23,7 +23,6 @@ trait HasPhoto
 
     public function registerMediaCollections(): void
     {
-
         $this->addMediaCollection('photo')
             ->singleFile()
             ->registerMediaConversions(function () {
@@ -35,8 +34,8 @@ trait HasPhoto
                         ->width($size)
                         ->height($size);
 
-                    collect(config('ui.media.srcset_sizes'))->each(fn($x) => $this
-                        ->addMediaConversion($name . $x . 'x')
+                    collect(config('ui.media.srcset_sizes'))->each(fn ($x) => $this
+                        ->addMediaConversion($name.$x.'x')
                         ->width($size * $x)
                         ->height($size * $x));
                 });

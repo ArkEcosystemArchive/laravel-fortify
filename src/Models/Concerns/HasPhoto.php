@@ -25,6 +25,7 @@ trait HasPhoto
     {
         $this->addMediaCollection('photo')
             ->singleFile()
+            // @codeCoverageIgnoreStart
             ->registerMediaConversions(function () {
                 $conversions =  collect(config('ui.media.conversions'));
 
@@ -40,5 +41,6 @@ trait HasPhoto
                         ->height($size * $x));
                 });
             });
+            // @codeCoverageIgnoreEnd
     }
 }

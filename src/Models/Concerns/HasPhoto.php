@@ -27,7 +27,7 @@ trait HasPhoto
         $this->addMediaCollection('photo')
             ->singleFile()
             ->registerMediaConversions(function () {
-                $conversions =  collect(config('fortify.media.conversions'));
+                $conversions =  collect(config('ui.media.conversions'));
 
                 $conversions->each(function ($size, $name) {
                     $this
@@ -35,7 +35,7 @@ trait HasPhoto
                         ->width($size)
                         ->height($size);
 
-                    collect(config('fortify.media.srcset_sizes'))->each(fn($x) => $this
+                    collect(config('ui.media.srcset_sizes'))->each(fn($x) => $this
                         ->addMediaConversion($name . $x . 'x')
                         ->width($size * $x)
                         ->height($size * $x));

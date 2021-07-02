@@ -39,7 +39,7 @@ it('can access the photo url', function () {
 
 it('can register media collections', function () {
     $collection = Mockery::mock(MediaCollection::class);
-    $collection->shouldReceive('singleFile');
+    $collection->shouldReceive('singleFile->registerMediaConversions');
 
     $subject = $this->getMockForTrait(HasPhoto::class, [], '', true, true, true, ['addMediaCollection']);
     $subject->expects($this->any())

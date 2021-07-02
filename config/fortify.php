@@ -177,13 +177,14 @@ return [
         'two_factor_reset_password' => env('ROUTE_TWO_RESET_PASSWORD', '/two-factor/reset-password/{token}'),
     ],
 
-
     /*
     |--------------------------------------------------------------------------
     | Avatar generation media conversions
     |--------------------------------------------------------------------------
     */
     'media' => [
+        // If you change these values ensure to run `php artisan media-library:regenerate`
+        // to regenerate the images
         'conversions' => [
             'mini' => 18,
             'small' => 42,

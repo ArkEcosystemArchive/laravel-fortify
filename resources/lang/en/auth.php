@@ -15,6 +15,7 @@ return [
     'sign-in' => [
         'forgot_password'  => 'Forgot password?',
         'register_now'     => 'Not a member? <a href=":route" class="font-semibold underline link">Sign up</a>',
+        'remember_me'      => 'Remember Me',
     ],
 
     'register-form' => [

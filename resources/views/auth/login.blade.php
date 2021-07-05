@@ -80,6 +80,15 @@
                         </div>
                     @endif
 
+                     <x-ark-checkbox
+                        name="remember"
+                        :errors="$errors"
+                    >
+                        @slot('label')
+                            @lang('fortify::auth.sign-in.remember_me')
+                        @endslot
+                    </x-ark-checkbox>
+
                     <button type="submit" class="w-full button-secondary md:w-auto">
                         @lang('fortify::actions.sign_in')
                     </button>

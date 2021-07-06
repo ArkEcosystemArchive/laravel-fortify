@@ -106,7 +106,7 @@
         </div>
 
         <div class="text-right">
-            <button type="submit" class="w-full button-secondary sm:w-auto" {{ ! $this->canSubmit() ? 'disabled' : '' }}>
+            <button type="submit" class="w-full button-secondary sm:w-auto">
                 @lang('fortify::actions.sign_up')
             </button>
         </div>

@@ -46,6 +46,7 @@
                         :label="trans('fortify::pages.user-settings.one_time_password')"
                         :errors="$errors"
                         pattern="[0-9]{6}"
+                        class="hide-number-input-arrows"
                     />
                 </div>
             </div>
@@ -85,6 +86,7 @@
                                 :label="trans('fortify::pages.user-settings.one_time_password')"
                                 :errors="$errors"
                                 pattern="[0-9]{6}"
+                                class="hide-number-input-arrows"
                             />
                         </div>
                     </div>
@@ -99,6 +101,7 @@
                         :label="trans('fortify::pages.user-settings.one_time_password')"
                         :errors="$errors"
                         pattern="[0-9]{6}"
+                        class="hide-number-input-arrows"
                     />
                 </div>
             </div>

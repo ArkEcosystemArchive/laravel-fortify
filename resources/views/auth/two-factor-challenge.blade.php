@@ -46,7 +46,7 @@
                         type="text"
                         name="code"
                         :label="trans('fortify::forms.2fa_code')"
-                        class="w-full"
+                        class="w-full hide-number-input-arrows"
                         :errors="$errors"
                         autocomplete="one-time-code"
                         input-mode="numeric"

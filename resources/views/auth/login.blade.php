@@ -73,14 +73,20 @@
                     />
                 </div>
 
-                <div class="flex flex-col-reverse items-center justify-between space-y-4 md:space-y-0 md:flex-row">
+                <x-ark-checkbox name="remember" :errors="$errors">
+                    @slot('label')
+                        @lang('fortify::auth.sign-in.remember_me')
+                    @endslot
+                </x-ark-checkbox>
+
+                <div class="flex flex-col-reverse items-center justify-between space-y-4 sm:space-y-0 sm:flex-row">
                     @if(Route::has('password.request'))
-                        <div class="flex-1 mt-8 md:mt-0">
-                            <a href="{{ route('password.request') }}" class="link">@lang('fortify::auth.sign-in.forgot_password')</a>
+                        <div class="flex-1 mt-8 sm:mt-0">
+                            <a href="{{ route('password.request') }}" class="link font-semibold">@lang('fortify::auth.sign-in.forgot_password')</a>
                         </div>
                     @endif
 
-                    <button type="submit" class="w-full button-secondary md:w-auto">
+                    <button type="submit" class="w-full button-secondary sm:w-auto">
                         @lang('fortify::actions.sign_in')
                     </button>
                 </div>

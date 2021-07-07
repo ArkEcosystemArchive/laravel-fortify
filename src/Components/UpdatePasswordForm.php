@@ -40,9 +40,9 @@ class UpdatePasswordForm extends Component
             'password_confirmation' => $this->password_confirmation,
         ]);
 
-        $this->currentPassword      = '';
-        $this->password             = '';
-        $this->passwordConfirmation = '';
+        $this->currentPassword       = '';
+        $this->password              = '';
+        $this->password_confirmation = '';
 
         $this->dispatchBrowserEvent('updated-password');
         $this->resetRules();

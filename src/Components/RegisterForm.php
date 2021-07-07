@@ -12,6 +12,8 @@ class RegisterForm extends Component
 {
     use ValidatesPassword;
 
+    public ?string $code = '';
+
     public ?string $name = '';
 
     public ?string $username = '';

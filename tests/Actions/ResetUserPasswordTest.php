@@ -3,9 +3,14 @@
 declare(strict_types=1);
 
 use ARKEcosystem\Fortify\Actions\ResetUserPassword;
+use Illuminate\Contracts\Validation\UncompromisedVerifier;
 
 use function Tests\createUserModel;
 use function Tests\expectValidationError;
+
+beforeEach(function () {
+    $this->mock(UncompromisedVerifier::class)->shouldReceive('verify')->andReturn(true);
+});
 
 it('should reset the user password', function () {
     $user = createUserModel();
@@ -24,8 +29,8 @@ it('should throw an exception if the password is too short', function () {
     $user = createUserModel();
 
     expectValidationError(fn () => resolve(ResetUserPassword::class)->reset($user, [
-        'password' => 'passwordpassword',
-    ]), 'password', 'The password must be at least 12 characters and contain at least one uppercase character, one number, and one special character.');
+        'password' => 'pass',
+    ]), 'password', 'The password must be at least 12 characters.');
 });
 
 it('should throw an exception if the password is too weak', function () {
@@ -33,7 +38,7 @@ it('should throw an exception if the password is too weak', function () {
 
     expectValidationError(fn () => resolve(ResetUserPassword::class)->reset($user, [
         'password' => 'weak',
-    ]), 'password', 'The password must be at least 12 characters and contain at least one uppercase character, one number, and one special character.');
+    ]), 'password', 'The password must be at least 12 characters.');
 });
 
 it('should throw an exception if the password is not confirmed', function () {

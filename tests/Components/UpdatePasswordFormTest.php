@@ -97,3 +97,17 @@ it('handles password being empty string', function () {
             'min'        => false,
         ]);
 });
+
+it('clears password values', function () {
+    $user = createUserModel();
+
+    Livewire::actingAs($user)
+        ->test(UpdatePasswordForm::class)
+        ->set('currentPassword', 'password')
+        ->set('password', 'abcd1234ABCD%')
+        ->set('password_confirmation', 'abcd1234ABCD%')
+        ->call('updatePassword')
+        ->assertSet('currentPassword', '')
+        ->assertSet('password', '')
+        ->assertSet('password_confirmation', '');
+});

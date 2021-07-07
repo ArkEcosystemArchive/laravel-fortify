@@ -54,14 +54,14 @@ class RegisterForm extends Component
 
     public function canSubmit(): bool
     {
-        $requiredProperties = array_filter(
-            $this->getPublicPropertiesDefinedBySubClass(),
-            fn ($key) => in_array($key, ['code', 'name', 'username', 'email', 'password', 'password_confirmation', 'terms'], true),
-            ARRAY_FILTER_USE_KEY
-        );
+        $requiredProperties = ['name', 'username', 'email', 'password', 'password_confirmation', 'terms'];
+
+        if ($this->invitationId) {
+            array_push($requiredProperties, 'code');
+        }
 
         foreach ($requiredProperties as $property) {
-            if (! $property) {
+            if (! $this->$property) {
                 return false;
             }
         }

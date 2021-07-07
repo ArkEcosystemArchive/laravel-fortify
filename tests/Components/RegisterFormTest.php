@@ -34,7 +34,6 @@ it('can interact with the form', function () {
 });
 
 it('cannot submit if all required fields are not filled', function () {
-    Config::set('fortify.models.invitation', RegisterFormTest::class);
     Route::get('terms-of-service', function () {
         return view('');
     })->name('terms-of-service');
@@ -42,10 +41,7 @@ it('cannot submit if all required fields are not filled', function () {
         return view('');
     })->name('privacy-policy');
 
-    $invitationUuid = Uuid::uuid();
-
-    $instance = Livewire::withQueryParams(['invitation' => $invitationUuid])
-        ->test(RegisterForm::class);
+    $instance = Livewire::test(RegisterForm::class);
 
     expect($instance->instance()->canSubmit())->toBeFalse();
 

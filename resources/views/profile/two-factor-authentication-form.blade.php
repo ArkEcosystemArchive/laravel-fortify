@@ -14,7 +14,7 @@
     ])->render();
 @endphp
 
-<div>
+<div dusk="two-factor-authentication-form">
     @if (! $this->enabled)
         <div class="flex flex-col w-full space-y-8">
             <div class="flex flex-col">

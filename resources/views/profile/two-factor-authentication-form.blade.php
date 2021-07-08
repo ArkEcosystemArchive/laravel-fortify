@@ -112,6 +112,7 @@
                     type="button"
                     class="w-full button-secondary sm:w-auto"
                     wire:click="enableTwoFactorAuthentication"
+                    dusk="enable-one-time-password"
                 >
                     @lang('fortify::actions.enable')
                 </button>
@@ -143,7 +144,12 @@
                     @lang('fortify::actions.recovery_codes')
                 </button>
 
-                <button type="submit" class="w-full button-primary sm:w-auto" wire:click="disableTwoFactorAuthentication">
+                <button
+                    type="submit"
+                    class="w-full button-primary sm:w-auto"
+                    wire:click="disableTwoFactorAuthentication"
+                    dusk="disable-one-time-password"
+                >
                     @lang('fortify::actions.disable')
                 </button>
             </div>

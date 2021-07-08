@@ -16,18 +16,18 @@ class ResetPasswordForm extends Component
 
     public ?string $twoFactorSecret;
 
-    public array $state = [
-        'email'                 => '',
-        'password'              => '',
-        'password_confirmation' => '',
-    ];
+    public ?string $email = '';
+
+    public ?string $password = '';
+
+    public ?string $password_confirmation = '';
 
     public function mount(?string $token = null, ?string $email = null)
     {
         $this->token = $token;
 
         if ($email !== null) {
-            $this->state['email'] = $email;
+            $this->email = $email;
 
             $user = Models::user()::where('email', $email)->firstOrFail();
 

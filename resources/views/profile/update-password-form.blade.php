@@ -15,6 +15,8 @@
 
     <form class="mt-8" wire:submit.prevent="updatePassword">
         <div class="space-y-4">
+            <input type="text" autocomplete="email" hidden />
+
             <x-ark-input
                 type="password"
                 name="current_password"
@@ -22,6 +24,7 @@
                 :label="trans('fortify::forms.current_password')"
                 :errors="$errors"
                 class="w-full"
+                autocomplete="current-password"
             />
 
             <x:ark-fortify::password-rules
@@ -38,6 +41,7 @@
                     :label="trans('fortify::forms.new_password')"
                     :errors="$errors"
                     @keydown="isTyping=true"
+                    autocomplete="new-password"
                 />
             </x:ark-fortify::password-rules>
 
@@ -47,6 +51,7 @@
                 model="password_confirmation"
                 :label="trans('fortify::forms.confirm_password')"
                 :errors="$errors"
+                autocomplete="new-password"
             />
         </div>
 

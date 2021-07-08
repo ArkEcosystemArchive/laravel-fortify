@@ -87,6 +87,7 @@
                                 :errors="$errors"
                                 pattern="[0-9]{6}"
                                 class="hide-number-input-arrows"
+                                dusk="one-time-password"
                             />
                         </div>
                     </div>

@@ -28,6 +28,7 @@
                 :password-rules="$passwordRules"
                 is-typing="isTyping"
                 rules-wrapper-class="grid gap-4 my-4 sm:grid-cols-2 lg:grid-cols-3"
+                @typing="isTyping=true"
             >
                 <x-ark-password-toggle
                     name="password"

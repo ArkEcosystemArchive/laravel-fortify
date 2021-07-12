@@ -47,7 +47,7 @@ class UpdatePasswordForm extends Component
         $this->dispatchBrowserEvent('updated-password');
         $this->resetRules();
 
-        flash()->success(trans('fortify::pages.user-settings.password_updated'));
+        $this->emit('toastMessage', [trans('fortify::pages.user-settings.password_updated'), 'success']);
     }
 
     /**

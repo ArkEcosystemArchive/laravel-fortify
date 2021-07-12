@@ -223,7 +223,7 @@
                 </div>
                 <form class="mt-8">
                     <div class="space-y-2">
-                        <input type="text" autocomplete="email" hidden />
+                        <input type="hidden" autocomplete="email" />
                         <x-ark-input
                             type="password"
                             name="password"

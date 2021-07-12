@@ -15,7 +15,7 @@
 
     <form class="mt-8" wire:submit.prevent="updatePassword">
         <div class="space-y-4">
-            <input type="text" autocomplete="email" hidden />
+            <input type="hidden" autocomplete="email" />
 
             <x-ark-input
                 type="password"

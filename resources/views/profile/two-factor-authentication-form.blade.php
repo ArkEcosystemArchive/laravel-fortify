@@ -112,7 +112,7 @@
                     type="button"
                     class="w-full button-secondary sm:w-auto"
                     wire:click="enableTwoFactorAuthentication"
-                    dusk="enable-one-time-password"
+                    dusk="enable-two-factor-authentication"
                 >
                     @lang('fortify::actions.enable')
                 </button>

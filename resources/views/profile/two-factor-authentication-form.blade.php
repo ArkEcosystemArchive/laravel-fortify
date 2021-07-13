@@ -148,7 +148,7 @@
                     type="submit"
                     class="w-full button-primary sm:w-auto"
                     wire:click="disableTwoFactorAuthentication"
-                    dusk="disable-one-time-password"
+                    dusk="disable-two-factor-authentication"
                 >
                     @lang('fortify::actions.disable')
                 </button>

@@ -12,8 +12,6 @@ class RegisterForm extends Component
 {
     use ValidatesPassword;
 
-    public ?array $additionalRequiredProperties = [];
-
     public ?string $name = '';
 
     public ?string $username = '';
@@ -56,7 +54,7 @@ class RegisterForm extends Component
 
     public function canSubmit(): bool
     {
-        $requiredProperties = array_merge(['name', 'username', 'email', 'password', 'password_confirmation', 'terms'], $this->additionalRequiredProperties);
+        $requiredProperties = ['name', 'username', 'email', 'password', 'password_confirmation', 'terms'];
 
         foreach ($requiredProperties as $property) {
             if (! $this->$property) {

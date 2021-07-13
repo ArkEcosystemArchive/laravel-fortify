@@ -49,9 +49,6 @@ it('cannot submit if all required fields are not filled', function () {
 
     expect($instance->instance()->canSubmit())->toBeFalse();
 
-    $instance->set('code', $invitationUuid);
-    expect($instance->instance()->canSubmit())->toBeFalse();
-
     $instance->set('name', 'John Doe');
     expect($instance->instance()->canSubmit())->toBeFalse();
 

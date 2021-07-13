@@ -63,8 +63,7 @@
                 </div>
 
                 <div class="flex flex-1">
-                    <x-ark-input
-                        type="password"
+                    <x-ark-password-toggle
                         name="password"
                         :label="trans('fortify::forms.password')"
                         autocomplete="password"

@@ -17,8 +17,7 @@
         <div class="space-y-4">
             <input type="hidden" autocomplete="email" />
 
-            <x-ark-input
-                type="password"
+            <x-ark-password-toggle
                 name="current_password"
                 model="currentPassword"
                 :label="trans('fortify::forms.current_password')"
@@ -32,9 +31,9 @@
                 :password-rules="$passwordRules"
                 is-typing="isTyping"
                 rules-wrapper-class="grid gap-4 my-4 sm:grid-cols-2 lg:grid-cols-3"
+                @typing="isTyping=true"
             >
-                <x-ark-input
-                    type="password"
+                <x-ark-password-toggle
                     name="password"
                     model="password"
                     class="w-full"
@@ -45,8 +44,7 @@
                 />
             </x:ark-fortify::password-rules>
 
-            <x-ark-input
-                type="password"
+            <x-ark-password-toggle
                 name="password_confirmation"
                 model="password_confirmation"
                 :label="trans('fortify::forms.confirm_password')"

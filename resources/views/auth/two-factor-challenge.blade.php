@@ -80,8 +80,7 @@
                 @endisset
 
                 <div class="flex flex-1">
-                    <x-ark-input
-                        type="password"
+                    <x-ark-password-toggle
                         name="recovery_code"
                         :label="trans('fortify::forms.recovery_code')"
                         class="w-full"

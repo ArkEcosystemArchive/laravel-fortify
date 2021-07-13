@@ -63,9 +63,8 @@
             is-typing="isTyping"
             rules-wrapper-class="grid grid-cols-1 gap-4 my-4"
         >
-            <x-ark-input
+            <x-ark-password-toggle
                 model="password"
-                type="password"
                 name="password"
                 :label="trans('fortify::forms.password')"
                 autocomplete="new-password"
@@ -77,9 +76,8 @@
 
         <div>
             <div class="flex flex-1">
-                <x-ark-input
+                <x-ark-password-toggle
                     model="password_confirmation"
-                    type="password"
                     name="password_confirmation"
                     :label="trans('fortify::forms.confirm_password')"
                     autocomplete="new-password"

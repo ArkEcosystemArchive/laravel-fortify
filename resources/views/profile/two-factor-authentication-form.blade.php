@@ -233,8 +233,7 @@
                 <form class="mt-8">
                     <div class="space-y-2">
                         <input type="hidden" autocomplete="email" />
-                        <x-ark-input
-                            type="password"
+                        <x-ark-password-toggle
                             name="password"
                             model="confirmedPassword"
                             :label="trans('fortify::forms.password')"

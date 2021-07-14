@@ -78,8 +78,10 @@
                     @endslot
                 </x-ark-checkbox>
 
-                <div class="flex flex-col-reverse items-center justify-between space-y-4 sm:space-y-0 sm:flex-row">
-                    @if(Route::has('password.request'))
+                @php($hasForgotPassword = Route::has('password.request'))
+
+                <div class="flex flex-col-reverse items-center space-y-4 sm:space-y-0 sm:flex-row {{ $hasForgotPassword ? 'justify-between' : 'justify-end' }}">
+                    @if($hasForgotPassword)
                         <div class="flex-1 mt-8 sm:mt-0">
                             <a href="{{ route('password.request') }}" class="link font-semibold">@lang('fortify::auth.sign-in.forgot_password')</a>
                         </div>

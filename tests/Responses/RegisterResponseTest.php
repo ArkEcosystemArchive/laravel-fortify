@@ -103,3 +103,24 @@ it('redirects to the default url if no route for accept an invitation is set', f
     expect($response->status())->toBe(302);
     expect($response->content())->toContain(route('verification.notice'));
 });
+
+it('redirects to home if the username is used instead of the email', function () {
+    Config::set('fortify.email', null);
+    Config::set('fortify.username', 'username');
+    Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
+
+    $request = Mockery::mock(\Illuminate\Http\Request::class);
+
+    $request
+        ->shouldReceive('get')
+        ->once()
+        ->shouldReceive('wantsJson')
+        ->once()
+        ->andReturnFalse();
+
+    $response = (new RegisterResponse())->toResponse($request);
+
+    expect($response)->toBeInstanceOf(RedirectResponse::class);
+    expect($response->status())->toBe(302);
+    expect($response->getTargetUrl())->toBe('http://localhost');
+});

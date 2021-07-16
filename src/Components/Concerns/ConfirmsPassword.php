@@ -22,7 +22,7 @@ trait ConfirmsPassword
 
     public string $confirmPasswordDescription = '';
 
-    public ?string $confirmPasswordOnConfirm = null;
+    private ?string $confirmPasswordOnConfirm = null;
 
     private function showConfirmPassword(
         string $title = '',

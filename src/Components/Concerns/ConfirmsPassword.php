@@ -20,23 +20,18 @@ trait ConfirmsPassword
 
     public string $confirmPasswordDescription = '';
 
-    public ?string $confirmPasswordOnClose = null;
-
     public ?string $confirmPasswordOnConfirm = null;
 
     public function showConfirmPassword(
         string $title = '',
         string $description = '',
         ?string $onConfirm = null,
-        ?string $onClose = null,
     ): void {
         $this->confirmPasswordTitle = $title;
 
         $this->confirmPasswordDescription = $description;
 
         $this->confirmPasswordOnConfirm = $onConfirm;
-
-        $this->confirmPasswordOnClose = $onClose;
 
         $this->confirmPasswordShown = true;
     }
@@ -51,8 +46,6 @@ trait ConfirmsPassword
 
         $this->confirmPasswordDescription = '';
 
-        $this->confirmPasswordOnClose = null;
-
         $this->confirmPasswordOnConfirm = null;
 
         $this->modalClosed();
@@ -60,10 +53,6 @@ trait ConfirmsPassword
 
     public function cancelConfirmPassword(): void
     {
-        if ($this->confirmPasswordOnClose && method_exists($this, $this->confirmPasswordOnClose)) {
-            $this->{$this->confirmPasswordOnClose}();
-        }
-
         $this->resetConfirmModal();
     }
 

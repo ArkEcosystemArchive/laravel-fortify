@@ -33,12 +33,17 @@ it('can interact with the form', function () {
         ->assertSee('Two-Factor Authentication Recovery Codes')
         ->call('hideRecoveryCodes')
         ->assertSee('You have enabled two factor authentication')
-        ->call('showConfirmPassword')
+        // Show recovery codes
+        ->call('showRecoveryCodesConfirmationModal')
         ->assertSee('Input your password to show your emergency two-factor recovery codes.')
         ->set('confirmedPassword', 'password')
-        ->call('showRecoveryCodesAfterPasswordConfirmation')
+        ->call('submitConfirmPassword')
         ->assertSee('If you lose your two-factor authentication device')
         ->call('hideRecoveryCodes')
-        ->call('disableTwoFactorAuthentication')
+        // Disable 2FA
+        ->call('showDisable2FAModal')
+        ->assertSee('Input your password to disable the two-factor authentication method.')
+        ->set('confirmedPassword', 'password')
+        ->call('submitConfirmPassword')
         ->assertSee('You have not enabled two factor authentication');
 });

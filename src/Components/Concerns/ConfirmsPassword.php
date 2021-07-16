@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace ARKEcosystem\Fortify\Components\Concerns;
 
 use ARKEcosystem\UserInterface\Http\Livewire\Concerns\HasModal;
-use Error;
 use Exception;
 use Illuminate\Support\Facades\Hash;
 

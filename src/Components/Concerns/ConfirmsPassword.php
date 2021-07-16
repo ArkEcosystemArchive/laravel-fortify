@@ -24,7 +24,7 @@ trait ConfirmsPassword
 
     public ?string $confirmPasswordOnConfirm = null;
 
-    public function showConfirmPassword(
+    private function showConfirmPassword(
         string $title = '',
         string $description = '',
         ?string $onConfirm = null,
@@ -38,7 +38,7 @@ trait ConfirmsPassword
         $this->confirmPasswordShown = true;
     }
 
-    public function resetConfirmModal(): void
+    private function resetConfirmModal(): void
     {
         $this->confirmPasswordShown = false;
 

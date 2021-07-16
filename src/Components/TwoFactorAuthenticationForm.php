@@ -6,6 +6,7 @@ namespace ARKEcosystem\Fortify\Components;
 
 use ARKEcosystem\Fortify\Actions\EnableTwoFactorAuthentication;
 use ARKEcosystem\Fortify\Actions\GenerateTwoFactorAuthenticationSecretKey;
+use ARKEcosystem\Fortify\Components\Concerns\ConfirmsPassword;
 use ARKEcosystem\Fortify\Components\Concerns\InteractsWithUser;
 use ARKEcosystem\Fortify\Rules\OneTimePassword;
 use ARKEcosystem\UserInterface\Http\Livewire\Concerns\HasModal;
@@ -16,7 +17,6 @@ use BaconQrCode\Renderer\RendererStyle\Fill;
 use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 use BaconQrCode\Writer;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 use Laravel\Fortify\Actions\DisableTwoFactorAuthentication;
 use Laravel\Fortify\Actions\GenerateNewRecoveryCodes;
@@ -25,6 +25,7 @@ use Livewire\Component;
 
 class TwoFactorAuthenticationForm extends Component
 {
+    use ConfirmsPassword;
     use InteractsWithUser;
     use HasModal;
 
@@ -35,10 +36,6 @@ class TwoFactorAuthenticationForm extends Component
     public bool $showingQrCode = false;
 
     public array $state = [];
-
-    public bool $confirmPasswordShown = false;
-
-    public string $confirmedPassword = '';
 
     public function mount(): void
     {
@@ -83,6 +80,24 @@ class TwoFactorAuthenticationForm extends Component
         $this->generateSecretKey();
     }
 
+    public function showRecoveryCodesConfirmationModal(): void
+    {
+        $this->showConfirmPassword(
+            title: trans('fortify::forms.confirm-password.recovery-codes.title'),
+            description: trans('fortify::forms.confirm-password.recovery-codes.description'),
+            onConfirm: 'showRecoveryCodes',
+        );
+    }
+
+    public function showDisable2FAModal(): void
+    {
+        $this->showConfirmPassword(
+            title: trans('fortify::forms.confirm-password.disable-2fa.title'),
+            description: trans('fortify::forms.confirm-password.disable-2fa.description'),
+            onConfirm: 'disableTwoFactorAuthentication',
+        );
+    }
+
     public function getEnabledProperty(): bool
     {
         return ! empty($this->user->two_factor_secret);
@@ -117,31 +132,5 @@ class TwoFactorAuthenticationForm extends Component
     private function generateSecretKey(): void
     {
         $this->state['two_factor_secret'] = app(GenerateTwoFactorAuthenticationSecretKey::class)();
-    }
-
-    public function showConfirmPassword(): void
-    {
-        $this->confirmPasswordShown = true;
-    }
-
-    public function closeConfirmPassword(): void
-    {
-        $this->confirmPasswordShown = false;
-
-        $this->confirmedPassword = '';
-
-        $this->modalClosed();
-    }
-
-    public function hasConfirmedPassword(): bool
-    {
-        return Hash::check($this->confirmedPassword, $this->user->password);
-    }
-
-    public function showRecoveryCodesAfterPasswordConfirmation(): void
-    {
-        $this->closeConfirmPassword();
-
-        $this->showRecoveryCodes();
     }
 }

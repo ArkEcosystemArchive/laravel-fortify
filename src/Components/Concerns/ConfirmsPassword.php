@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace ARKEcosystem\Fortify\Components\Concerns;
 
 use ARKEcosystem\UserInterface\Http\Livewire\Concerns\HasModal;
+use Error;
+use Exception;
 use Illuminate\Support\Facades\Hash;
 
 trait ConfirmsPassword
@@ -58,6 +60,11 @@ trait ConfirmsPassword
 
     public function submitConfirmPassword(): void
     {
+        if (! $this->hasConfirmedPassword()) {
+            // the only way to get here is if the user faked the ajax request
+            throw new Exception();
+        }
+
         if ($this->confirmPasswordOnConfirm && method_exists($this, $this->confirmPasswordOnConfirm)) {
             $this->{$this->confirmPasswordOnConfirm}();
         }

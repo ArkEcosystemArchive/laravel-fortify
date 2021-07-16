@@ -29,8 +29,7 @@ trait ConfirmsPassword
         string $description = '',
         ?string $onConfirm = null,
         ?string $onClose = null,
-    ): void
-    {
+    ): void {
         $this->confirmPasswordTitle = $title;
 
         $this->confirmPasswordDescription = $description;
@@ -41,7 +40,6 @@ trait ConfirmsPassword
 
         $this->confirmPasswordShown = true;
     }
-
 
     public function resetConfirmModal(): void
     {
@@ -59,7 +57,6 @@ trait ConfirmsPassword
 
         $this->modalClosed();
     }
-
 
     public function cancelConfirmPassword(): void
     {

@@ -66,6 +66,6 @@ return [
         'disable-2fa' => [
             'title'        => 'Disable 2FA',
             'description'  => 'Input your password to disable the two-factor authentication method.',
-        ]
+        ],
     ],
 ];

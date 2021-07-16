@@ -56,7 +56,6 @@ it('can interact with the form', function () {
         ->assertSee('You have not enabled two factor authentication');
 });
 
-
 it('cannot disable 2FA if password is not confirmed', function () {
     // Expecting exception
     $this->expectException(Exception::class);

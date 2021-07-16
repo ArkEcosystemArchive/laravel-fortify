@@ -40,7 +40,14 @@ it('can interact with the form', function () {
         ->call('submitConfirmPassword')
         ->assertSee('If you lose your two-factor authentication device')
         ->call('hideRecoveryCodes')
-        // Disable 2FA
+        // Show disable 2FA confirmation modal
+        ->call('showDisable2FAModal')
+        ->assertSee('Input your password to disable the two-factor authentication method.')
+        // Cancel disable 2FA
+        ->call('cancelConfirmPassword')
+        ->assertDontSee('Input your password to disable the two-factor authentication method.')
+        ->assertDontSee('You have not enabled two factor authentication')
+        // Try again
         ->call('showDisable2FAModal')
         ->assertSee('Input your password to disable the two-factor authentication method.')
         ->set('confirmedPassword', 'password')

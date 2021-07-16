@@ -61,7 +61,7 @@ class TwoFactorAuthenticationForm extends Component
         $this->showRecoveryCodes();
     }
 
-    public function showRecoveryCodes(): void
+    private function showRecoveryCodes(): void
     {
         $this->openModal();
     }
@@ -73,7 +73,7 @@ class TwoFactorAuthenticationForm extends Component
         $this->showRecoveryCodes();
     }
 
-    public function disableTwoFactorAuthentication(): void
+    private function disableTwoFactorAuthentication(): void
     {
         app(DisableTwoFactorAuthentication::class)(Auth::user());
 

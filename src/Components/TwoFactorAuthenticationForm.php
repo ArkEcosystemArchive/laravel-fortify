@@ -38,6 +38,8 @@ class TwoFactorAuthenticationForm extends Component
 
     public bool $confirmPasswordShown = false;
 
+    public bool $disableConfirmPasswordShown = false;
+
     public string $confirmedPassword = '';
 
     public function mount(): void
@@ -81,6 +83,7 @@ class TwoFactorAuthenticationForm extends Component
         app(DisableTwoFactorAuthentication::class)(Auth::user());
 
         $this->generateSecretKey();
+        $this->closeDisableConfirmPassword();
     }
 
     public function getEnabledProperty(): bool
@@ -122,13 +125,27 @@ class TwoFactorAuthenticationForm extends Component
     public function showConfirmPassword(): void
     {
         $this->confirmPasswordShown = true;
+        $this->confirmedPassword    = '';
     }
 
     public function closeConfirmPassword(): void
     {
         $this->confirmPasswordShown = false;
+        $this->confirmedPassword    = '';
 
-        $this->confirmedPassword = '';
+        $this->modalClosed();
+    }
+
+    public function showDisableConfirmPassword(): void
+    {
+        $this->disableConfirmPasswordShown = true;
+        $this->confirmedPassword           = '';
+    }
+
+    public function closeDisableConfirmPassword(): void
+    {
+        $this->disableConfirmPasswordShown = false;
+        $this->confirmedPassword           = '';
 
         $this->modalClosed();
     }

@@ -19,7 +19,8 @@
         "jenssegers/agent": "^2.6",
         "spatie/laravel-newsletter": "^4.10",
         "pragmarx/google2fa-laravel": "^1.4",
-        "konceiver/laravel-data-bags": "^2.0"
+        "konceiver/laravel-data-bags": "^2.0",
+        "laravel/fortify": "^1.7"
     },
     "autoload": {
         "psr-4": {

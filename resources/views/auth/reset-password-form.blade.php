@@ -28,7 +28,12 @@
             </div>
         </div>
 
-        <x:ark-fortify::password-rules :password-rules="$passwordRules" rules-wrapper-class="grid gap-4 my-4 sm:grid-cols-2">
+        <x:ark-fortify::password-rules
+            :password-rules="$this->passwordRules"
+            rules-wrapper-class="grid gap-4 my-4 sm:grid-cols-2"
+            is-typing="isTyping"
+            @typing="isTyping=true"
+        >
             <x-ark-password-toggle
                 model="password"
                 name="password"

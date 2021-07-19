@@ -81,11 +81,13 @@
                 @php($hasForgotPassword = Route::has('password.request'))
 
                 <div class="flex flex-col-reverse items-center space-y-4 sm:space-y-0 sm:flex-row {{ $hasForgotPassword ? 'justify-between' : 'justify-end' }}">
+                    <div>
                     @if($hasForgotPassword)
                         <div class="flex-1 mt-8 sm:mt-0">
                             <a href="{{ route('password.request') }}" class="link font-semibold">@lang('fortify::auth.sign-in.forgot_password')</a>
                         </div>
                     @endif
+                    </div>
 
                     <button type="submit" class="w-full button-secondary sm:w-auto">
                         @lang('fortify::actions.sign_in')

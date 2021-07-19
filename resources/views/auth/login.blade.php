@@ -40,7 +40,10 @@
                         $usernameAlt = Config::get('fortify.username_alt');
                         $type = 'text';
 
-                        if ($usernameAlt) {
+                        if ($username === $usernameAlt && ! Config::get('fortify.email') === null) {
+                            $label = trans('fortify::forms.'.$username);
+                        }
+                        elseif ($usernameAlt) {
                             $label = trans('fortify::forms.'.$username).' or '.trans('fortify::forms.'.$usernameAlt);
                         } else {
                             $label = trans('fortify::forms.'.$username);

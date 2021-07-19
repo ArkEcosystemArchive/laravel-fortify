@@ -109,3 +109,25 @@ private function registerDataBags(): void
     ]);
 }
 ```
+
+### Two Factor Authentication
+
+1. Add file download JS to Mix file
+
+```js
+.copy('vendor/arkecosystem/ui/resources/assets/js/file-download.js', 'public/js/file-download.js')
+```
+
+2. Include file on any page that needs it (e.g. Account Settings)
+
+```blade
+@push('scripts')
+    <script src="{{ mix('js/file-download.js')}}"></script>
+@endpush
+```
+
+3. Build assets
+
+```bash
+yarn prod
+```

@@ -7,6 +7,7 @@ namespace ARKEcosystem\Fortify\Responses;
 use ARKEcosystem\Fortify\Models;
 use Illuminate\Contracts\Routing\UrlGenerator;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Arr;
 use Laravel\Fortify\Contracts\RegisterResponse as RegisterResponseContract;
 
 final class RegisterResponse implements RegisterResponseContract
@@ -37,10 +38,8 @@ final class RegisterResponse implements RegisterResponseContract
             }
         }
 
-        if (is_null(config('fortify.email'))) {
-            return redirect('/');
+        if (config('fortify.features') && in_array('email-verification', config('fortify.features'))) {
+            return redirect()->route('verification.notice');
         }
-
-        return redirect()->route('verification.notice');
     }
 }

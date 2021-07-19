@@ -104,10 +104,18 @@ it('redirects to the default url if no route for accept an invitation is set', f
     expect($response->content())->toContain(route('verification.notice'));
 });
 
-it('redirects to home if the username is used instead of the email', function () {
+it('does not redirect to the verification.notice route at all if the email verification feature is disabled', function () {
     Config::set('fortify.email', null);
     Config::set('fortify.username', 'username');
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
+
+    Config::set('fortify.features', [
+        "registration",
+        "reset-passwords",
+        "update-profile-information",
+        "update-passwords",
+        "two-factor-authentication",
+    ]);
 
     $request = Mockery::mock(\Illuminate\Http\Request::class);
 
@@ -120,7 +128,5 @@ it('redirects to home if the username is used instead of the email', function ()
 
     $response = (new RegisterResponse())->toResponse($request);
 
-    expect($response)->toBeInstanceOf(RedirectResponse::class);
-    expect($response->status())->toBe(302);
-    expect($response->getTargetUrl())->toBe('http://localhost');
+    expect($response)->toBeNull();
 });

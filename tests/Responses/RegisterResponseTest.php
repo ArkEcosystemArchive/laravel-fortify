@@ -110,11 +110,11 @@ it('does not redirect to the verification.notice route at all if the email verif
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
 
     Config::set('fortify.features', [
-        "registration",
-        "reset-passwords",
-        "update-profile-information",
-        "update-passwords",
-        "two-factor-authentication",
+        'registration',
+        'reset-passwords',
+        'update-profile-information',
+        'update-passwords',
+        'two-factor-authentication',
     ]);
 
     $request = Mockery::mock(\Illuminate\Http\Request::class);

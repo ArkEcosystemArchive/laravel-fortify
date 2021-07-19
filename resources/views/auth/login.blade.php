@@ -63,8 +63,7 @@
                 </div>
 
                 <div class="flex flex-1">
-                    <x-ark-input
-                        type="password"
+                    <x-ark-password-toggle
                         name="password"
                         :label="trans('fortify::forms.password')"
                         autocomplete="password"
@@ -73,14 +72,24 @@
                     />
                 </div>
 
-                <div class="flex flex-col-reverse items-center justify-between space-y-4 md:space-y-0 md:flex-row">
-                    @if(Route::has('password.request'))
-                        <div class="flex-1 mt-8 md:mt-0">
-                            <a href="{{ route('password.request') }}" class="link">@lang('fortify::auth.sign-in.forgot_password')</a>
+                <x-ark-checkbox name="remember" :errors="$errors">
+                    @slot('label')
+                        @lang('fortify::auth.sign-in.remember_me')
+                    @endslot
+                </x-ark-checkbox>
+
+                @php($hasForgotPassword = Route::has('password.request'))
+
+                <div class="flex flex-col-reverse items-center space-y-4 sm:space-y-0 sm:flex-row {{ $hasForgotPassword ? 'justify-between' : 'justify-end' }}">
+                    <div>
+                    @if($hasForgotPassword)
+                        <div class="flex-1 mt-8 sm:mt-0">
+                            <a href="{{ route('password.request') }}" class="link font-semibold">@lang('fortify::auth.sign-in.forgot_password')</a>
                         </div>
                     @endif
+                    </div>
 
-                    <button type="submit" class="w-full button-secondary md:w-auto">
+                    <button type="submit" class="w-full button-secondary sm:w-auto">
                         @lang('fortify::actions.sign_in')
                     </button>
                 </div>

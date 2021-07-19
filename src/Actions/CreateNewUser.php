@@ -53,7 +53,7 @@ class CreateNewUser implements CreatesNewUsers
         });
     }
 
-    protected function createValidationRules(): array
+    public static function createValidationRules(): array
     {
         $rules = [
             'name'              => [
@@ -64,8 +64,8 @@ class CreateNewUser implements CreatesNewUsers
                 new OneLetter(),
                 new StartsWithLetterOrNumber(),
             ],
-            Fortify::username() => $this->usernameRules(),
-            'password'          => $this->passwordRules(),
+            Fortify::username() => static::usernameRules(),
+            'password'          => static::passwordRules(),
             'terms'             => ['required', 'accepted'],
             'invitation'        => ['sometimes', 'required', 'string'],
         ];
@@ -81,7 +81,7 @@ class CreateNewUser implements CreatesNewUsers
 
     private function buildValidator(array $input): Illuminate
     {
-        return Validator::make($input, $this->createValidationRules());
+        return Validator::make($input, static::createValidationRules());
     }
 
     private function getUserData(array $input): array
@@ -99,7 +99,7 @@ class CreateNewUser implements CreatesNewUsers
         return $userData;
     }
 
-    private function usernameRules(): array
+    private static function usernameRules(): array
     {
         $rules = ['required', 'string', 'max:255', 'unique:users'];
 

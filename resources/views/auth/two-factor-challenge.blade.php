@@ -46,7 +46,7 @@
                         type="text"
                         name="code"
                         :label="trans('fortify::forms.2fa_code')"
-                        class="w-full"
+                        class="w-full hide-number-input-arrows"
                         :errors="$errors"
                         autocomplete="one-time-code"
                         input-mode="numeric"
@@ -80,8 +80,7 @@
                 @endisset
 
                 <div class="flex flex-1">
-                    <x-ark-input
-                        type="password"
+                    <x-ark-password-toggle
                         name="recovery_code"
                         :label="trans('fortify::forms.recovery_code')"
                         class="w-full"

@@ -14,7 +14,7 @@ it('can export the user data', function () {
     Livewire::actingAs(createUserModel())
         ->test(ExportUserData::class)
         ->call('export')
-        ->assertSee(trans('fortify::pages.user-settings.data_exported'));
+        ->assertEmitted('toastMessage', [trans('fortify::pages.user-settings.data_exported'), 'success']);
 });
 
 it('can only export the user data once every 15 min', function () {
@@ -23,11 +23,12 @@ it('can only export the user data once every 15 min', function () {
     $component = Livewire::actingAs(createUserModel())
         ->test(ExportUserData::class)
         ->call('export')
-        ->assertSee(trans('fortify::pages.user-settings.data_exported'))
+        ->assertEmitted('toastMessage', [trans('fortify::pages.user-settings.data_exported'), 'success'])
         ->call('export')
-        ->assertDontSee(trans('fortify::pages.user-settings.data_exported'));
+        ->assertNotEmitted('toastMessage', [trans('fortify::pages.user-settings.data_exported'), 'success']);
 
     $this->travel(16)->minutes();
 
-    $component->call('export')->assertSee(trans('fortify::pages.user-settings.data_exported'));
+    $component->call('export')
+        ->assertEmitted('toastMessage', [trans('fortify::pages.user-settings.data_exported'), 'success']);
 });

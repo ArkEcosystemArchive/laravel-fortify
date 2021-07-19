@@ -15,13 +15,15 @@
 
     <form class="mt-8" wire:submit.prevent="updatePassword">
         <div class="space-y-4">
-            <x-ark-input
-                type="password"
+            <input type="hidden" autocomplete="email" />
+
+            <x-ark-password-toggle
                 name="current_password"
-                model="state.current_password"
+                model="currentPassword"
                 :label="trans('fortify::forms.current_password')"
                 :errors="$errors"
                 class="w-full"
+                autocomplete="current-password"
             />
 
             <x:ark-fortify::password-rules
@@ -29,24 +31,25 @@
                 :password-rules="$passwordRules"
                 is-typing="isTyping"
                 rules-wrapper-class="grid gap-4 my-4 sm:grid-cols-2 lg:grid-cols-3"
+                @typing="isTyping=true"
             >
-                <x-ark-input
-                    type="password"
+                <x-ark-password-toggle
                     name="password"
-                    model="state.password"
+                    model="password"
                     class="w-full"
                     :label="trans('fortify::forms.new_password')"
                     :errors="$errors"
                     @keydown="isTyping=true"
+                    autocomplete="new-password"
                 />
             </x:ark-fortify::password-rules>
 
-            <x-ark-input
-                type="password"
+            <x-ark-password-toggle
                 name="password_confirmation"
-                model="state.password_confirmation"
+                model="password_confirmation"
                 :label="trans('fortify::forms.confirm_password')"
                 :errors="$errors"
+                autocomplete="new-password"
             />
         </div>
 

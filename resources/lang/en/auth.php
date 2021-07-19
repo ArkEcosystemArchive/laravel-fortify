@@ -15,6 +15,7 @@ return [
     'sign-in' => [
         'forgot_password'  => 'Forgot password?',
         'register_now'     => 'Not a member? <a href=":route" class="font-semibold underline link">Sign up</a>',
+        'remember_me'      => 'Remember Me',
     ],
 
     'register-form' => [
@@ -33,7 +34,7 @@ return [
 
     'two-factor' => [
         'page_header'      => '2FA Authentication',
-        'page_description' => 'Enter your 2FA code below to sign in.',
+        'page_description' => 'Enter your 2FA or recovery code below to sign in.',
     ],
 
     'verify' => [

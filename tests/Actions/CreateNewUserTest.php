@@ -5,14 +5,17 @@ declare(strict_types=1);
 use ARKEcosystem\Fortify\Actions\CreateNewUser;
 use ARKEcosystem\Fortify\Models;
 
+use Illuminate\Contracts\Validation\UncompromisedVerifier;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Hash;
 
+use Illuminate\Support\Facades\Hash;
 use function Tests\expectValidationError;
 use Tests\stubs\TestUser;
 
 beforeEach(function () {
     $this->validPassword = 'Pas3w05d&123456';
+
+    $this->mock(UncompromisedVerifier::class)->shouldReceive('verify')->andReturn(true);
 });
 
 it('should create a valid user with the create user action', function () {
@@ -127,7 +130,7 @@ it('should be equal to or longer than 12 characters', function () {
         'password'              => 'Sec$r2t',
         'password_confirmation' => 'Sec$r2t',
         'terms'                 => true,
-    ]), 'password', 'The password must be at least 12 characters and contain at least one uppercase character, one number, and one special character.');
+    ]), 'password', 'The password must be at least 12 characters.');
 });
 
 it('should require an uppercase letter', function () {
@@ -140,7 +143,7 @@ it('should require an uppercase letter', function () {
         'password'              => 'sec$r2t12345',
         'password_confirmation' => 'sec$r2t12345',
         'terms'                 => true,
-    ]), 'password', 'The password must be at least 12 characters and contain at least one uppercase character, one number, and one special character.');
+    ]), 'password', 'The password must contain at least one uppercase and one lowercase letter.');
 });
 
 it('should require one number', function () {
@@ -153,7 +156,7 @@ it('should require one number', function () {
         'password'              => 'sec$%Asfhhdfhfdhgd',
         'password_confirmation' => 'sec$%Asfhhdfhfdhgd',
         'terms'                 => true,
-    ]), 'password', 'The password must be at least 12 characters and contain at least one uppercase character, one number, and one special character.');
+    ]), 'password', 'The password must contain at least one number.');
 });
 
 it('should require one special character', function () {
@@ -166,7 +169,7 @@ it('should require one special character', function () {
         'password'              => 'sec23Asfhhdfhfdhgd',
         'password_confirmation' => 'sec23Asfhhdfhfdhgd',
         'terms'                 => true,
-    ]), 'password', 'The password must be at least 12 characters and contain at least one uppercase character, one number, and one special character.');
+    ]), 'password', 'The password must contain at least one symbol.');
 });
 
 it('handles the invitation parameter', function () {

@@ -16,8 +16,7 @@
             <div>
                 <div class="flex flex-1">
                     <x-ark-input
-                        wire:model.defer="state.username"
-                        no-model
+                        model="username"
                         type="text"
                         name="username"
                         :label="trans('fortify::forms.username')"
@@ -33,8 +32,7 @@
             <div>
                 <div class="flex flex-1">
                     <x-ark-input
-                        wire:model.defer="state.name"
-                        no-model
+                        model="name"
                         name="name"
                         :label="trans('fortify::forms.display_name')"
                         autocomplete="name"
@@ -48,8 +46,7 @@
             <div>
                 <div class="flex flex-1">
                     <x-ark-input
-                        wire:model.defer="state.email"
-                        no-model
+                        model="email"
                         type="email"
                         name="email"
                         :label="trans('fortify::forms.email')"
@@ -61,10 +58,13 @@
             </div>
         @endunless
 
-        <x:ark-fortify::password-rules :password-rules="$passwordRules" is-typing="isTyping" rules-wrapper-class="grid grid-cols-1 gap-4 my-4">
-            <x-ark-input
-                model="state.password"
-                type="password"
+        <x:ark-fortify::password-rules
+            :password-rules="$passwordRules"
+            is-typing="isTyping"
+            rules-wrapper-class="grid grid-cols-1 gap-4 my-4"
+        >
+            <x-ark-password-toggle
+                model="password"
                 name="password"
                 :label="trans('fortify::forms.password')"
                 autocomplete="new-password"
@@ -76,9 +76,8 @@
 
         <div>
             <div class="flex flex-1">
-                <x-ark-input
-                    model="state.password_confirmation"
-                    type="password"
+                <x-ark-password-toggle
+                    model="password_confirmation"
                     name="password_confirmation"
                     :label="trans('fortify::forms.confirm_password')"
                     autocomplete="new-password"
@@ -90,7 +89,7 @@
 
         <div>
             <x-ark-checkbox
-                model="state.terms"
+                model="terms"
                 name="terms"
                 :errors="$errors"
             >

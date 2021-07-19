@@ -13,7 +13,7 @@
         <div>
             <div class="flex flex-1">
                 <x-ark-input
-                    wire:model.defer="state.email"
+                    wire:model.defer="email"
                     no-model
                     type="email"
                     name="email"
@@ -29,9 +29,8 @@
         </div>
 
         <x:ark-fortify::password-rules :password-rules="$passwordRules" rules-wrapper-class="grid gap-4 my-4 sm:grid-cols-2">
-            <x-ark-input
-                model="state.password"
-                type="password"
+            <x-ark-password-toggle
+                model="password"
                 name="password"
                 :label="trans('fortify::forms.password')"
                 autocomplete="new-password"
@@ -45,9 +44,8 @@
 
         <div>
             <div class="flex flex-1">
-                <x-ark-input
-                    model="state.password_confirmation"
-                    type="password"
+                <x-ark-password-toggle
+                    model="password_confirmation"
                     name="password_confirmation"
                     :label="trans('fortify::forms.confirm_password')"
                     autocomplete="new-password"

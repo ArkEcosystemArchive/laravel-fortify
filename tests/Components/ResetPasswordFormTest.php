@@ -14,11 +14,9 @@ it('can interact with the form', function () {
 
     Livewire::actingAs($user)
         ->test(ResetPasswordForm::class)
-        ->assertSet('state', [
-            'email'                 => null,
-            'password'              => '',
-            'password_confirmation' => '',
-        ])
+        ->assertSet('email', null)
+        ->assertSet('password', '')
+        ->assertSet('password_confirmation', '')
         ->assertViewIs('ark-fortify::auth.reset-password-form');
 });
 
@@ -32,11 +30,9 @@ it('gets the two factor code and the email', function () {
 
     Livewire::actingAs($user)
         ->test(ResetPasswordForm::class, ['email' => $user->email])
-        ->assertSet('state', [
-            'email'                 => $user->email,
-            'password'              => '',
-            'password_confirmation' => '',
-        ])
+        ->assertSet('email', $user->email)
+        ->assertSet('password', '')
+        ->assertSet('password_confirmation', '')
         ->assertSet('twoFactorSecret', 'secret')
         ->assertViewIs('ark-fortify::auth.reset-password-form');
 });

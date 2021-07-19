@@ -12,14 +12,17 @@ class RegisterForm extends Component
 {
     use ValidatesPassword;
 
-    public array $state = [
-        'name'                  => '',
-        'username'              => '',
-        'email'                 => '',
-        'password'              => '',
-        'password_confirmation' => '',
-        'terms'                 => false,
-    ];
+    public ?string $name = '';
+
+    public ?string $username = '';
+
+    public ?string $email = '';
+
+    public ?string $password = '';
+
+    public ?string $password_confirmation = '';
+
+    public bool $terms = false;
 
     public string $formUrl;
 
@@ -27,12 +30,10 @@ class RegisterForm extends Component
 
     public function mount()
     {
-        $this->state = [
-            'name'     => old('name', ''),
-            'username' => old('username', ''),
-            'email'    => old('email', ''),
-            'terms'    => old('terms', ''),
-        ];
+        $this->name     = old('name', '');
+        $this->username = old('username', '');
+        $this->email    = old('email', '');
+        $this->terms    = old('terms', false) === true;
 
         $this->formUrl = request()->fullUrl();
 
@@ -49,5 +50,18 @@ class RegisterForm extends Component
         return view('ark-fortify::auth.register-form', [
             'invitation' => $this->invitationId ? Models::invitation()::findByUuid($this->invitationId) : null,
         ]);
+    }
+
+    public function canSubmit(): bool
+    {
+        $requiredProperties = ['name', 'username', 'email', 'password', 'password_confirmation', 'terms'];
+
+        foreach ($requiredProperties as $property) {
+            if (! $this->$property) {
+                return false;
+            }
+        }
+
+        return $this->getErrorBag()->count() === 0;
     }
 }

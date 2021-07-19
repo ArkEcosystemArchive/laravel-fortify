@@ -24,6 +24,7 @@ it('login the user by default username (email)', function () {
 
     $this->assertNotNull($loggedUser);
     $this->assertTrue($user->is($loggedUser));
+    $this->assertFalse($request->filled('remember'));
 });
 
 it('login the user by the email when alt username is set', function () {
@@ -44,6 +45,7 @@ it('login the user by the email when alt username is set', function () {
 
     $this->assertNotNull($loggedUser);
     $this->assertTrue($user->is($loggedUser));
+    $this->assertFalse($request->filled('remember'));
 });
 
 it('login the user by the alt username (username)', function () {
@@ -64,6 +66,7 @@ it('login the user by the alt username (username)', function () {
 
     $this->assertNotNull($loggedUser);
     $this->assertTrue($user->is($loggedUser));
+    $this->assertFalse($request->filled('remember'));
 });
 
 it('doesnt login the user by the alt username if not set (username)', function () {
@@ -83,6 +86,7 @@ it('doesnt login the user by the alt username if not set (username)', function (
     $loggedUser = $authenticator->handle();
 
     $this->assertNull($loggedUser);
+    $this->assertFalse($request->filled('remember'));
 });
 
 it('doesnt login the user if password is incorrect', function () {
@@ -101,4 +105,29 @@ it('doesnt login the user if password is incorrect', function () {
     $loggedUser = $authenticator->handle();
 
     $this->assertNull($loggedUser);
+});
+
+it('should handle the remember me checkbox', function () {
+    Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
+    Config::set('fortify.username_alt', 'username');
+
+    $user = User::factory()->withUsername()->create();
+
+    $request = new Request();
+
+    $this->assertFalse($request->filled('remember'));
+
+    $request->replace([
+        'email'    => $user->username,
+        'password' => 'password',
+        'remember' => true,
+    ]);
+
+    $authenticator = new AuthenticateUser($request);
+    $loggedUser = $authenticator->handle();
+
+    $this->assertNotNull($loggedUser);
+    $this->assertTrue($user->is($loggedUser));
+
+    $this->assertTrue($request->filled('remember'));
 });

@@ -31,7 +31,7 @@ class ExportUserData extends Component
 
         dispatch(new CreatePersonalDataExportJob($this->user));
 
-        flash()->success(trans('fortify::pages.user-settings.data_exported'));
+        $this->emit('toastMessage', [trans('fortify::pages.user-settings.data_exported'), 'success']);
     }
 
     public function rateLimitReached(): bool

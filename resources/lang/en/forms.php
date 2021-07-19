@@ -62,4 +62,9 @@ return [
         'title'        => '2FA Recovery Codes',
         'description'  => 'Input your password to show your emergency two-factor recovery codes.',
     ],
+
+    'disable-2fa' => [
+        'title'        => 'Disable 2FA',
+        'description'  => 'Input your password to disable the two-factor authentication method.',
+    ],
 ];

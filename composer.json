@@ -11,23 +11,15 @@
     ],
     "require": {
         "php": "^8.0",
+        "arkecosystem/ui": "^3.16",
         "livewire/livewire": "^2.5",
         "spatie/laravel-medialibrary": "^9.6",
-        "laravel/fortify": "^1.7",
         "danharrin/livewire-rate-limiting": "^0.3.0",
         "spatie/laravel-personal-data-export": "^2.0",
         "jenssegers/agent": "^2.6",
         "spatie/laravel-newsletter": "^4.10",
         "pragmarx/google2fa-laravel": "^1.4",
-        "nunomaduro/larastan": "^0.7.6",
-        "friendsofphp/php-cs-fixer": "^2.0",
-        "arkecosystem/ui": "^3.16",
         "konceiver/laravel-data-bags": "^2.0"
-    },
-    "require-dev": {
-        "pestphp/pest": "^1.7",
-        "orchestra/testbench": "^6.18",
-        "graham-campbell/analyzer": "^3.0"
     },
     "autoload": {
         "psr-4": {

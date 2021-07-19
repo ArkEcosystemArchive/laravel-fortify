@@ -1,25 +1,34 @@
+@props([
+    'actionMethod',
+    'closeMethod',
+    'title',
+    'description',
+    'image' => '/images/auth/confirm-password.svg',
+])
+
 <x-ark-modal
     title-class="header-2"
     width-class="max-w-2xl"
-    wire-close="closeConfirmPassword"
+    :wire-close="$closeMethod"
 >
     <x-slot name="title">
-        @lang('fortify::forms.confirm-password.title')
+        {{ $title }}
     </x-slot>
 
     <x-slot name="description">
         <div class="flex flex-col">
             <div class="flex justify-center w-full mt-8">
                 <img
-                    src="{{ asset('/images/auth/confirm-password.svg') }}"
+                    src="{{ asset($image) }}"
                     class="h-28"
                 />
             </div>
 
             <div class="mt-8">
-                @lang('fortify::forms.confirm-password.description')
+                {{ $description }}
             </div>
         </div>
+
         <form class="mt-8">
             <div class="space-y-2">
                 <input
@@ -43,7 +52,7 @@
                 type="button"
                 dusk="confirm-password-form-cancel"
                 class="button-secondary"
-                wire:click="closeConfirmPassword"
+                wire:click="{{ $closeMethod }}"
             >
                 @lang('fortify::actions.cancel')
             </button>
@@ -52,10 +61,10 @@
                 type="submit"
                 dusk="confirm-password-form-submit"
                 class="inline-flex items-center justify-center button-primary"
-                wire:click="showRecoveryCodesAfterPasswordConfirmation"
+                wire:click="{{ $actionMethod }}"
                 {{ ! $this->hasConfirmedPassword() ? 'disabled' : ''}}
             >
-                <span>@lang('fortify::actions.confirm')</span>
+                @lang('fortify::actions.confirm')
             </button>
         </div>
     </x-slot>

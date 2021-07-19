@@ -158,15 +158,25 @@
 
     <div dusk="recovery-codes-modal">
         @if($this->modalShown)
-            @include('ark-fortify::modals.2fa-recovery-codes')
+            <x:ark-fortify::modals.2fa-recovery-codes />
         @endif
     </div>
 
     @if($this->confirmPasswordShown)
-        @include('ark-fortify::modals.2fa-recovery-password')
+        <x:ark-fortify::modals.2fa-password-confirmation
+            :title="trans('fortify::forms.confirm-password.title')"
+            :description="trans('fortify::forms.confirm-password.description')"
+            action-method="showRecoveryCodesAfterPasswordConfirmation"
+            close-method="closeConfirmPassword"
+        />
     @endif
 
     @if($this->disableConfirmPasswordShown)
-        @include('ark-fortify::modals.2fa-disable-password')
+        <x:ark-fortify::modals.2fa-password-confirmation
+            :title="trans('fortify::forms.disable-2fa.title')"
+            :description="trans('fortify::forms.disable-2fa.description')"
+            action-method="disableTwoFactorAuthentication"
+            close-method="closeDisableConfirmPassword"
+        />
     @endif
 </div>

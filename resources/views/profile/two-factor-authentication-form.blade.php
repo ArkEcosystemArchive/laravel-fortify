@@ -147,7 +147,7 @@
                 <button
                     type="submit"
                     class="w-full button-primary sm:w-auto"
-                    wire:click="disableTwoFactorAuthentication"
+                    wire:click="showDisableConfirmPassword"
                     dusk="disable-two-factor-authentication"
                 >
                     @lang('fortify::actions.disable')
@@ -158,102 +158,15 @@
 
     <div dusk="recovery-codes-modal">
         @if($this->modalShown)
-            <x-ark-modal title-class="header-2">
-                @slot('title')
-                    @lang('fortify::pages.user-settings.2fa_reset_code_title')
-                @endslot
-
-                @slot('description')
-                    <div class="flex flex-col mt-8 space-y-4">
-                        <x-ark-alert type="warning">
-                            <x-slot name="message">
-                                @lang('fortify::pages.user-settings.2fa_warning_text')
-                            </x-slot>
-                        </x-ark-alert>
-                        <div class="grid grid-flow-row grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-4">
-                            @foreach (json_decode(decrypt($this->user->two_factor_recovery_codes), true) as $code)
-                                <div class="flex items-center h-12 font-medium border rounded border-theme-secondary-300 text-theme-secondary-900">
-                                    <span class="flex items-center justify-center w-8 h-full rounded-l bg-theme-secondary-100">
-                                        {{ $loop->index + 1 }}
-                                    </span>
-                                    <input
-                                        type="text"
-                                        id="resetCode_{{ $loop->index }}"
-                                        class="w-full ml-4"
-                                        value="{{ $code }}"
-                                        readonly
-                                    />
-                                </div>
-                            @endforeach
-                            {{-- TODO: check if we need this or not --}}
-                            {{-- <div class="mt-6">
-                                <x-ark-clipboard :value="$this->resetCode"/>
-                            </div> --}}
-                        </div>
-                    </div>
-                @endslot
-
-                @slot('buttons')
-                    <div class="flex flex-col-reverse w-full sm:flex-row sm:justify-between">
-                        <div class="flex justify-center w-full mt-3 sm:justify-start sm:mt-0">
-                            <x-ark-file-download
-                                :filename="'2fa_recovery_code_' . $this->user->name"
-                                :content="implode('\n', json_decode(decrypt($this->user->two_factor_recovery_codes)))"
-                                :title="trans('fortify::actions.download')"
-                                wrapper-class="w-full sm:w-auto"
-                                class="justify-center w-full"
-                            />
-                        </div>
-                        <div class="flex justify-center">
-                            <button class="items-center w-full button-primary sm:w-auto whitespace-nowrap" wire:click="hideRecoveryCodes" dusk="recovery-codes-understand">
-                                @lang('fortify::actions.understand')
-                            </button>
-                        </div>
-                    </div>
-                @endslot
-            </x-ark-modal>
+            @include('ark-fortify::modals.2fa-recovery-codes')
         @endif
     </div>
 
     @if($this->confirmPasswordShown)
-        <x-ark-modal title-class="header-2" width-class="max-w-2xl" wire-close="closeConfirmPassword">
-            <x-slot name="title">
-                @lang('fortify::forms.confirm-password.title')
-            </x-slot>
+        @include('ark-fortify::modals.2fa-recovery-password')
+    @endif
 
-            <x-slot name="description">
-                <div class="flex flex-col mt-4">
-                    <div class="flex justify-center w-full mt-8">
-                        <img src="{{ asset('/images/auth/confirm-password.svg') }}" class="w-auto h-auto" alt="">
-                    </div>
-                    <div class="mt-8">
-                        @lang('fortify::forms.confirm-password.description')
-                    </div>
-                </div>
-                <form class="mt-8">
-                    <div class="space-y-2">
-                        <input type="hidden" autocomplete="email" />
-                        <x-ark-password-toggle
-                            name="password"
-                            model="confirmedPassword"
-                            :label="trans('fortify::forms.password')"
-                            autocomplete="current-password"
-                        />
-                    </div>
-                </form>
-            </x-slot>
-
-            <x-slot name="buttons">
-                <div class="flex flex-col-reverse justify-end w-full space-y-4 space-y-reverse sm:flex-row sm:space-y-0 sm:space-x-3">
-                    <button type="button" dusk="confirm-password-form-cancel" class="button-secondary" wire:click="closeConfirmPassword">
-                        @lang('fortify::actions.cancel')
-                    </button>
-
-                    <button type="submit" dusk="confirm-password-form-submit" class="inline-flex items-center justify-center button-primary" wire:click="showRecoveryCodesAfterPasswordConfirmation" {{ ! $this->hasConfirmedPassword() ? 'disabled' : ''}}>
-                        <span>@lang('fortify::actions.confirm')</span>
-                    </button>
-                </div>
-            </x-slot>
-        </x-ark-modal>
+    @if($this->disableConfirmPasswordShown)
+        @include('ark-fortify::modals.2fa-disable-password')
     @endif
 </div>

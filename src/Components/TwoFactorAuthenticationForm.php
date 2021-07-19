@@ -80,6 +80,10 @@ class TwoFactorAuthenticationForm extends Component
 
     public function disableTwoFactorAuthentication(): void
     {
+        if (! $this->hasConfirmedPassword()) {
+            return;
+        }
+
         app(DisableTwoFactorAuthentication::class)(Auth::user());
 
         $this->generateSecretKey();
@@ -157,6 +161,10 @@ class TwoFactorAuthenticationForm extends Component
 
     public function showRecoveryCodesAfterPasswordConfirmation(): void
     {
+        if (! $this->hasConfirmedPassword()) {
+            return;
+        }
+
         $this->closeConfirmPassword();
 
         $this->showRecoveryCodes();

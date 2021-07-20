@@ -17,7 +17,6 @@ use BaconQrCode\Renderer\RendererStyle\Fill;
 use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 use BaconQrCode\Writer;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 use Laravel\Fortify\Actions\DisableTwoFactorAuthentication;
 use Laravel\Fortify\Actions\GenerateNewRecoveryCodes;
@@ -98,7 +97,7 @@ class TwoFactorAuthenticationForm extends Component
 
         $this->emit('toastMessage', [
             trans('fortify::messages.2fa_disabled'),
-            'success'
+            'success',
         ]);
     }
 

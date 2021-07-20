@@ -41,10 +41,10 @@
                 />
 
                 <x-ark-password-toggle
-                    name="password"
-                    model="confirmedPassword"
+                    name="confirmedPassword"
                     :label="trans('fortify::forms.password')"
                     autocomplete="current-password"
+                    :errors="$errors"
                 />
             </div>
         </form>
@@ -66,7 +66,6 @@
                 dusk="confirm-password-form-submit"
                 class="inline-flex items-center justify-center button-primary"
                 wire:click="{{ $actionMethod }}"
-                {{ ! $this->hasConfirmedPassword() ? 'disabled' : ''}}
             >
                 @lang('fortify::actions.confirm')
             </button>

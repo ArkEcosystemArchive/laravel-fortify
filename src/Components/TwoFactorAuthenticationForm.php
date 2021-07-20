@@ -9,6 +9,7 @@ use ARKEcosystem\Fortify\Actions\GenerateTwoFactorAuthenticationSecretKey;
 use ARKEcosystem\Fortify\Components\Concerns\InteractsWithUser;
 use ARKEcosystem\Fortify\Rules\OneTimePassword;
 use ARKEcosystem\UserInterface\Http\Livewire\Concerns\HasModal;
+use ARKEcosystem\UserInterface\Rules\CurrentPassword;
 use BaconQrCode\Renderer\Color\Rgb;
 use BaconQrCode\Renderer\Image\SvgImageBackEnd;
 use BaconQrCode\Renderer\ImageRenderer;
@@ -41,6 +42,13 @@ class TwoFactorAuthenticationForm extends Component
     public bool $disableConfirmPasswordShown = false;
 
     public string $confirmedPassword = '';
+
+    protected function rules()
+    {
+        return [
+            'confirmedPassword' => ['required', new CurrentPassword(Auth::user())],
+        ];
+    }
 
     public function mount(): void
     {
@@ -80,9 +88,7 @@ class TwoFactorAuthenticationForm extends Component
 
     public function disableTwoFactorAuthentication(): void
     {
-        if (! $this->hasConfirmedPassword()) {
-            return;
-        }
+        $this->validate();
 
         app(DisableTwoFactorAuthentication::class)(Auth::user());
 
@@ -133,6 +139,7 @@ class TwoFactorAuthenticationForm extends Component
 
     public function showConfirmPassword(): void
     {
+        $this->resetValidation();
         $this->confirmPasswordShown = true;
         $this->confirmedPassword    = '';
     }
@@ -147,6 +154,7 @@ class TwoFactorAuthenticationForm extends Component
 
     public function showDisableConfirmPassword(): void
     {
+        $this->resetValidation();
         $this->disableConfirmPasswordShown = true;
         $this->confirmedPassword           = '';
     }
@@ -159,16 +167,9 @@ class TwoFactorAuthenticationForm extends Component
         $this->modalClosed();
     }
 
-    public function hasConfirmedPassword(): bool
-    {
-        return Hash::check($this->confirmedPassword, $this->user->password);
-    }
-
     public function showRecoveryCodesAfterPasswordConfirmation(): void
     {
-        if (! $this->hasConfirmedPassword()) {
-            return;
-        }
+        $this->validate();
 
         $this->closeConfirmPassword();
 

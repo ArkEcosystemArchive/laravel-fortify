@@ -71,6 +71,7 @@ class TwoFactorAuthenticationForm extends Component
         app(EnableTwoFactorAuthentication::class)(Auth::user(), $this->state['two_factor_secret']);
 
         $this->showingQrCode = true;
+        $this->state['otp']  = null;
         $this->showRecoveryCodes();
     }
 

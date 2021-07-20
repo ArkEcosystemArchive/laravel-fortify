@@ -88,6 +88,11 @@ class TwoFactorAuthenticationForm extends Component
 
         $this->generateSecretKey();
         $this->closeDisableConfirmPassword();
+
+        $this->emit('toastMessage', [
+            trans('fortify::messages.2fa_disabled'),
+            'success'
+        ]);
     }
 
     public function getEnabledProperty(): bool

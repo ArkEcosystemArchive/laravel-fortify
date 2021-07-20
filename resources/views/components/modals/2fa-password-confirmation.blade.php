@@ -29,7 +29,11 @@
             </div>
         </div>
 
-        <form class="mt-8">
+        <form
+            class="mt-8"
+            @keydown.enter="$wire.{{ $actionMethod }}()"
+            x-on:submit.prevent
+        >
             <div class="space-y-2">
                 <input
                     type="hidden"

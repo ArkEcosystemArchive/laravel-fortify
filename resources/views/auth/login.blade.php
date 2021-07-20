@@ -38,13 +38,11 @@
                     @php
                         $username = \Laravel\Fortify\Fortify::username();
                         $usernameAlt = Config::get('fortify.username_alt');
+                        $email = Config::get('fortify.email');
                         $type = 'text';
 
-                        if ($username === $usernameAlt && ! Config::get('fortify.email') === null) {
-                            $label = trans('fortify::forms.'.$username);
-                        }
-                        elseif ($usernameAlt) {
-                            $label = trans('fortify::forms.'.$username).' or '.trans('fortify::forms.'.$usernameAlt);
+                        if ($usernameAlt === $username && ! is_null($email)) {
+                            $label = trans('fortify::forms.'.$username).' or '.trans('fortify::forms.'.$email);
                         } else {
                             $label = trans('fortify::forms.'.$username);
                             if ($username === 'email') {

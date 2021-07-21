@@ -1,15 +1,7 @@
-<form
-    method="POST"
-    action="{{ route('password.update') }}"
-    class="flex flex-col px-4 py-8 mx-4 border-2 rounded-xl sm:px-8 border-theme-secondary-200"
-    x-data="{ isTyping: false }"
->
-    @csrf
-
+<x:ark-fortify::form-wrapper :action="route('password.update')" x-data="{ isTyping: false }">
     <input type="hidden" name="token" value="{{ $token }}">
 
     <div class="space-y-5">
-
         <div>
             <div class="flex flex-1">
                 <x-ark-input
@@ -71,4 +63,4 @@
             </button>
         </div>
     </div>
-</form>
+</x:ark-fortify::form-wrapper>

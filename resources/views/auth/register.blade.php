@@ -16,11 +16,11 @@
 @section('content')
     <x-data-bag key="fortify-content" resolver="name" view="ark-fortify::components.component-heading" />
 
-    <div class="max-w-xl py-8 mx-auto">
+    <div class="sm:max-w-xl py-8 mx-auto">
         <livewire:auth.register-form />
 
         <div class="text-center">
-            <div class="pb-8 mt-8">
+            <div class="mt-8">
                 @lang('fortify::auth.register-form.already_member', ['route' => route('login')])
             </div>
         </div>

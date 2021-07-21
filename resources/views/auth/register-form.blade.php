@@ -1,11 +1,4 @@
-<form
-    method="POST"
-    action="{{ $formUrl }}"
-    class="flex flex-col px-4 py-8 mx-4 border-2 sm:px-8 rounded-xl border-theme-secondary-200"
-    x-data="{isTyping: false}"
->
-    @csrf
-
+<x:ark-fortify::form-wrapper :action="$formUrl" x-data="{isTyping: false}">
     @if($invitation)
         <input type="hidden" name="name" value="{{ $invitation->name }}" />
         <input type="hidden" name="email" value="{{ $invitation->email }}" />
@@ -109,4 +102,4 @@
             </button>
         </div>
     </div>
-</form>
+</x:ark-fortify::form-wrapper>

@@ -1,34 +1,28 @@
 @extends('layouts.app', ['fullWidth' => true])
 
-<x-ark-metadata page="password.reset" />
+<x-ark-metadata page="password.reset"/>
 
 @section('title')
-    <x-data-bag key="fortify-content" resolver="name" view="ark-fortify::components.page-title" />
+    <x-data-bag key="fortify-content" resolver="name" view="ark-fortify::components.page-title"/>
 @endsection
 
 @section('breadcrumbs')
     <x-ark-breadcrumbs :crumbs="[
         ['route' => 'login', 'label' => trans('fortify::menu.sign_in')],
         ['label' => trans('fortify::menu.password_reset_email')],
-    ]" />
+    ]"/>
 @endsection
 
 @section('content')
-    <x-data-bag key="fortify-content" resolver="name" view="ark-fortify::components.component-heading" />
+    <x-data-bag key="fortify-content" resolver="name" view="ark-fortify::components.component-heading"/>
 
     <div class="max-w-xl py-8 mx-auto">
         <div class="px-8">
-            <x-ark-flash />
+            <x-ark-flash/>
         </div>
 
         <div class="mt-5 lg:mt-8">
-            <form
-                method="POST"
-                action="{{ route('password.email') }}"
-                class="flex flex-col px-4 py-8 mx-4 border-2 rounded-xl sm:px-8 border-theme-secondary-200"
-            >
-                @csrf
-
+            <x:ark-fortify::form-wrapper :action="route('password.email')">
                 <div class="mb-8">
                     <div class="flex flex-1">
                         <x-ark-input
@@ -52,7 +46,7 @@
                         @lang('fortify::auth.forgot-password.reset_link')
                     </button>
                 </div>
-            </form>
+            </x:ark-fortify::form-wrapper>
         </div>
     </div>
 @endsection

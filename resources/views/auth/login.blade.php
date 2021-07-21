@@ -92,7 +92,7 @@
     </x:ark-fortify::form-wrapper>
 
     @if(Route::has('register'))
-        <div class="text-center">
+        <div class="text-center mb-8">
             <x-data-bag key="fortify-content" resolver="name" view="ark-fortify::components.register-now"/>
         </div>
     @endif

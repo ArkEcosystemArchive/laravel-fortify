@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ARKEcosystem\Fortify\Responses;
 
 use ARKEcosystem\Fortify\Models;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Routing\UrlGenerator;
 use Illuminate\Http\JsonResponse;
 use Laravel\Fortify\Contracts\RegisterResponse as RegisterResponseContract;
@@ -37,6 +38,10 @@ final class RegisterResponse implements RegisterResponseContract
             }
         }
 
-        return redirect()->route('verification.notice');
+        if ($request->user() instanceof MustVerifyEmail) {
+            return redirect()->route('verification.notice');
+        }
+
+        return redirect('/');
     }
 }

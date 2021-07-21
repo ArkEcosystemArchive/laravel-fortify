@@ -21,11 +21,7 @@
         </div>
     </div>
 
-    <div
-        x-data="{ recovery: @json($errors->has('recovery_code')) }"
-        x-cloak
-        class="max-w-xl p-8 mx-auto"
-    >
+    <div x-data="{ recovery: @json($errors->has('recovery_code')) }" x-cloak>
         @include('ark-fortify::auth.two-factor.form')
         @include('ark-fortify::auth.two-factor.recovery-form')
     </div>

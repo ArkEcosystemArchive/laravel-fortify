@@ -39,7 +39,7 @@ it('redirects to the accept invite route', function () {
 
     $this->mock(\Illuminate\Contracts\Routing\UrlGenerator::class, function (MockInterface $mock) use ($invitation) {
         $mock->shouldReceive('route')
-        ->with('invitations.accept', $invitation)
+            ->with('invitations.accept', $invitation)
             ->andReturn('http://localhost/accept-invite');
     });
 

@@ -84,7 +84,7 @@ class CreateNewUser implements CreatesNewUsers
         return Validator::make($input, static::createValidationRules());
     }
 
-    private function getUserData(array $input): array
+    public function getUserData(array $input): array
     {
         $userData = [
             'name'              => $input['name'],
@@ -99,7 +99,7 @@ class CreateNewUser implements CreatesNewUsers
         return $userData;
     }
 
-    private static function usernameRules(): array
+    protected static function usernameRules(): array
     {
         $rules = ['required', 'string', 'max:255', 'unique:users'];
 

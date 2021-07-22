@@ -51,7 +51,7 @@ it('cannot upload a photo with invalid extension', function () {
 });
 
 it('cannot upload a photo that is too large', function () {
-    $photo = UploadedFile::fake()->image('logo.jpeg', 150, 150)->size(5000);
+    $photo = UploadedFile::fake()->image('logo.jpg', 150, 150)->size(10000);
 
     Livewire::actingAs(MediaUser::fake())
         ->test(UpdateProfilePhotoForm::class)

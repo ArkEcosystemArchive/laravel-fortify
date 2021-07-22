@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 return [
     'invalid_2fa_authentication_code' => 'The provided two factor authentication code was invalid',
+    '2fa_disabled'                    => 'Two-Factor Authentication successfully disabled',
     'export_limit_reached'            => 'You can export your personal data once every 15 minutes.',
     'subscription'                    => [
         'duplicate' => "You're already subscribed.",

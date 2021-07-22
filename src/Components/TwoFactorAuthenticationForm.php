@@ -9,6 +9,7 @@ use ARKEcosystem\Fortify\Actions\GenerateTwoFactorAuthenticationSecretKey;
 use ARKEcosystem\Fortify\Components\Concerns\InteractsWithUser;
 use ARKEcosystem\Fortify\Rules\OneTimePassword;
 use ARKEcosystem\UserInterface\Http\Livewire\Concerns\HasModal;
+use ARKEcosystem\UserInterface\Rules\CurrentPassword;
 use BaconQrCode\Renderer\Color\Rgb;
 use BaconQrCode\Renderer\Image\SvgImageBackEnd;
 use BaconQrCode\Renderer\ImageRenderer;
@@ -16,7 +17,6 @@ use BaconQrCode\Renderer\RendererStyle\Fill;
 use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 use BaconQrCode\Writer;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 use Laravel\Fortify\Actions\DisableTwoFactorAuthentication;
 use Laravel\Fortify\Actions\GenerateNewRecoveryCodes;
@@ -38,7 +38,16 @@ class TwoFactorAuthenticationForm extends Component
 
     public bool $confirmPasswordShown = false;
 
+    public bool $disableConfirmPasswordShown = false;
+
     public string $confirmedPassword = '';
+
+    protected function rules()
+    {
+        return [
+            'confirmedPassword' => ['required', new CurrentPassword(Auth::user())],
+        ];
+    }
 
     public function mount(): void
     {
@@ -61,6 +70,7 @@ class TwoFactorAuthenticationForm extends Component
         app(EnableTwoFactorAuthentication::class)(Auth::user(), $this->state['two_factor_secret']);
 
         $this->showingQrCode = true;
+        $this->state['otp']  = null;
         $this->showRecoveryCodes();
     }
 
@@ -78,9 +88,17 @@ class TwoFactorAuthenticationForm extends Component
 
     public function disableTwoFactorAuthentication(): void
     {
+        $this->validate();
+
         app(DisableTwoFactorAuthentication::class)(Auth::user());
 
         $this->generateSecretKey();
+        $this->closeDisableConfirmPassword();
+
+        $this->emit('toastMessage', [
+            trans('fortify::messages.2fa_disabled'),
+            'success',
+        ]);
     }
 
     public function getEnabledProperty(): bool
@@ -121,25 +139,38 @@ class TwoFactorAuthenticationForm extends Component
 
     public function showConfirmPassword(): void
     {
+        $this->resetValidation();
         $this->confirmPasswordShown = true;
+        $this->confirmedPassword    = '';
     }
 
     public function closeConfirmPassword(): void
     {
         $this->confirmPasswordShown = false;
-
-        $this->confirmedPassword = '';
+        $this->confirmedPassword    = '';
 
         $this->modalClosed();
     }
 
-    public function hasConfirmedPassword(): bool
+    public function showDisableConfirmPassword(): void
     {
-        return Hash::check($this->confirmedPassword, $this->user->password);
+        $this->resetValidation();
+        $this->disableConfirmPasswordShown = true;
+        $this->confirmedPassword           = '';
+    }
+
+    public function closeDisableConfirmPassword(): void
+    {
+        $this->disableConfirmPasswordShown = false;
+        $this->confirmedPassword           = '';
+
+        $this->modalClosed();
     }
 
     public function showRecoveryCodesAfterPasswordConfirmation(): void
     {
+        $this->validate();
+
         $this->closeConfirmPassword();
 
         $this->showRecoveryCodes();

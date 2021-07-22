@@ -131,3 +131,9 @@ private function registerDataBags(): void
 ```bash
 yarn prod
 ```
+
+### Required images
+
+#### Password Confirmation modal
+
+The password confirmation modal requires an image to be added to to the path `resources/images/auth/confirm-password.svg` for the projects that use it.

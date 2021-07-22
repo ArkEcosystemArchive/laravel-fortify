@@ -163,7 +163,7 @@
     </div>
 
     @if($this->confirmPasswordShown)
-        <x:ark-fortify::modals.2fa-password-confirmation
+        <x:ark-fortify::modals.password-confirmation
             :title="trans('fortify::forms.confirm-password.title')"
             :description="trans('fortify::forms.confirm-password.description')"
             action-method="showRecoveryCodesAfterPasswordConfirmation"
@@ -172,7 +172,7 @@
     @endif
 
     @if($this->disableConfirmPasswordShown)
-        <x:ark-fortify::modals.2fa-password-confirmation
+        <x:ark-fortify::modals.password-confirmation
             :title="trans('fortify::forms.disable-2fa.title')"
             :description="trans('fortify::forms.disable-2fa.description')"
             action-method="disableTwoFactorAuthentication"

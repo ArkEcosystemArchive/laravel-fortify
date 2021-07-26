@@ -112,6 +112,11 @@ private function registerDataBags(): void
 
 ### Two Factor Authentication
 
+> Under the hood we use [**Pragmarx Google2fa-laravel**](https://github.com/antonioribeiro/google2fa-laravel#readme) package.  
+> 
+> For custom configuration like [generating QR-Code using SVG render](https://github.com/antonioribeiro/google2fa-laravel#qrcode-backend) instead of a default Imagemagick, 
+> you can [publish the default configuration](https://github.com/antonioribeiro/google2fa-laravel#publish-the-config-file) and adjust it as per your needs.
+
 1. Add file download JS to Mix file
 
 ```js
@@ -131,14 +136,6 @@ private function registerDataBags(): void
 ```bash
 yarn prod
 ```
-
-> Be sure to have `Imagick` extension installed.
-
-To check if you have the extension installed on your system, run this command on your terminal: 
-```bash
-$ php -m | grep -i magic
-```
-if the extension is already installed you'll see the name `imagick` as a result.
 
 ### Required images
 

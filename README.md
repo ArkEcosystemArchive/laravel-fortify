@@ -132,6 +132,14 @@ private function registerDataBags(): void
 yarn prod
 ```
 
+> Be sure to have `Imagick` extension installed.
+
+To check if you have the extension installed on your system, run this command on your terminal: 
+```bash
+$ php -m | grep -i magic
+```
+if the extension is already installed you'll see the name `imagick` as a result.
+
 ### Required images
 
 #### Password Confirmation modal

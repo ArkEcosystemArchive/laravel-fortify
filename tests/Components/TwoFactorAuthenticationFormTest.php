@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use ARKEcosystem\Fortify\Components\TwoFactorAuthenticationForm;
+use Illuminate\Support\Facades\Config;
 use Livewire\Livewire;
 use PragmaRX\Google2FALaravel\Google2FA;
 use function Tests\createUserModel;
@@ -96,4 +97,26 @@ it('should not disable if wrong password', function () {
         ->set('confirmedPassword', 'wrong password')
         ->call('disableTwoFactorAuthentication')
         ->assertDontSee('You have not enabled two factor authentication');
+});
+
+it('shows email after scanning qr-code on mobile device', function (): void {
+    $user = createUserModel();
+
+    $instance = Livewire::actingAs($user)
+        ->test(TwoFactorAuthenticationForm::class)
+        ->instance();
+
+    expect($instance->twoFactorQrCodeUrl)->toContain(urlencode($user->email));
+});
+
+it('shows username after scanning qr-code on mobile device', function (): void {
+    Config::set('fortify.username', 'username');
+
+    $user = createUserModel();
+
+    $instance = Livewire::actingAs($user)
+        ->test(TwoFactorAuthenticationForm::class)
+        ->instance();
+
+    expect($instance->twoFactorQrCodeUrl)->toContain(urlencode($user->username));
 });

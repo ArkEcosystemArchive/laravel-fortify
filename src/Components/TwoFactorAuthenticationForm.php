@@ -122,7 +122,7 @@ class TwoFactorAuthenticationForm extends Component
     {
         return app(TwoFactorAuthenticationProvider::class)->qrCodeUrl(
             config('app.name'),
-            $this->user->email,
+            (string) data_get($this->user, config('fortify.username'), 'email'),
             $this->state['two_factor_secret']
         );
     }

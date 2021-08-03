@@ -1,16 +1,18 @@
 @php
     use \Illuminate\View\ComponentAttributeBag;
 
-    $twoAuthLink1 = view('ark::external-link-confirm', [
+    $twoAuthLink1 = view('ark::external-link', [
         'attributes' => new ComponentAttributeBag([]),
         'text' => 'Authy',
         'url' => 'https://authy.com',
+        'inline' => true,
     ])->render();
 
-    $twoAuthLink2 = view('ark::external-link-confirm', [
+    $twoAuthLink2 = view('ark::external-link', [
         'attributes' => new ComponentAttributeBag([]),
         'text' => 'Google Authenticator',
         'url' => 'https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2',
+        'inline' => true,
     ])->render();
 @endphp
 

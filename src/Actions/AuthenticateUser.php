@@ -50,10 +50,10 @@ class AuthenticateUser
 
         $query = Models::user()::query();
 
-        $query->where(Fortify::username(), $username);
+        $query->whereRaw(sprintf('LOWER(%s) = ?', Fortify::username()), [$username]);
 
         if ($usernameAlt = Config::get('fortify.username_alt')) {
-            $query->orWhere($usernameAlt, $username);
+            $query->orWhereRaw(sprintf('LOWER(%s) = ?', $usernameAlt), [$username]);
         }
 
         return $query->first();
@@ -61,6 +61,6 @@ class AuthenticateUser
 
     private function getUsername(): ?string
     {
-        return $this->request->get($this->username);
+        return strtolower($this->request->get($this->username));
     }
 }

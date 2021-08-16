@@ -88,12 +88,12 @@ class CreateNewUser implements CreatesNewUsers
     {
         $userData = [
             'name'              => $input['name'],
-            Fortify::username() => $input[Fortify::username()],
+            Fortify::username() => strtolower($input[Fortify::username()]),
             'password'          => Hash::make($input['password']),
         ];
 
         if ($usernameAlt = Config::get('fortify.username_alt')) {
-            $userData[$usernameAlt] = $input[$usernameAlt];
+            $userData[$usernameAlt] = strtolower($input[$usernameAlt]);
         }
 
         return $userData;

@@ -27,6 +27,26 @@ it('login the user by default username (email)', function () {
     $this->assertFalse($request->filled('remember'));
 });
 
+it('login the user with case insensitive email', function () {
+    Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
+
+    $user = User::factory()->create();
+
+    $request = new Request();
+
+    $request->replace([
+        'email'    => strtoupper($user->email),
+        'password' => 'password',
+    ]);
+
+    $authenticator = new AuthenticateUser($request);
+    $loggedUser = $authenticator->handle();
+
+    $this->assertNotNull($loggedUser);
+    $this->assertTrue($user->is($loggedUser));
+    $this->assertFalse($request->filled('remember'));
+});
+
 it('login the user by the email when alt username is set', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
     Config::set('fortify.username_alt', 'username');
@@ -58,6 +78,27 @@ it('login the user by the alt username (username)', function () {
 
     $request->replace([
         'email'    => $user->username,
+        'password' => 'password',
+    ]);
+
+    $authenticator = new AuthenticateUser($request);
+    $loggedUser = $authenticator->handle();
+
+    $this->assertNotNull($loggedUser);
+    $this->assertTrue($user->is($loggedUser));
+    $this->assertFalse($request->filled('remember'));
+});
+
+it('login the user with case insensitive alt username', function () {
+    Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
+    Config::set('fortify.username_alt', 'username');
+
+    $user = User::factory()->withUsername()->create();
+
+    $request = new Request();
+
+    $request->replace([
+        'email'    => strtoupper($user->username),
         'password' => 'password',
     ]);
 

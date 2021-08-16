@@ -35,6 +35,36 @@ it('should create a valid user with the create user action', function () {
     $this->assertTrue(Hash::check($this->validPassword, $user->password));
 });
 
+it('should create user and force lowercase email', function () {
+    Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
+
+    $user = (new CreateNewUser())->create([
+        'name'                  => 'John Doe',
+        'username'              => 'alfonsobries',
+        'email'                 => 'JOHN@DOE.COM',
+        'password'              => $this->validPassword,
+        'password_confirmation' => $this->validPassword,
+        'terms'                 => true,
+    ]);
+
+    $this->assertSame('john@doe.com', $user->email);
+    $this->assertSame('John Doe', $user->name);
+    $this->assertTrue(Hash::check($this->validPassword, $user->password));
+});
+
+it('should not create user with uppercase characters', function () {
+    Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
+
+    expectValidationError(fn () => (new CreateNewUser())->create([
+        'name'                  => 'John Doe',
+        'username'              => 'JOHNDOE',
+        'email'                 => 'john@doe.com',
+        'password'              => 'sec$r2t12345',
+        'password_confirmation' => 'sec$r2t12345',
+        'terms'                 => true,
+    ]), 'username', trans('fortify::validation.messages.username.lowercase_only'));
+});
+
 it('should create a valid user with username if the username_alt setting is set', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
     Config::set('fortify.username_alt', 'username');

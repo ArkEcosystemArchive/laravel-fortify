@@ -41,6 +41,38 @@ it('should update the profile information for a user that requires verification'
     expect($user->email_verified_at)->toBeNull();
 });
 
+it('should update with lowercase email', function () {
+    $user = createUserModel(UserWithoutVerification::class);
+
+    expect($user->name)->toBe('John Doe');
+    expect($user->email)->toBe('john@doe.com');
+
+    resolve(UpdateUserProfileInformation::class)->update($user, [
+        'name'  => 'Jane Doe',
+        'email' => 'JANE@DOE.COM',
+    ]);
+
+    expect($user->name)->toBe('Jane Doe');
+    expect($user->email)->toBe('jane@doe.com');
+});
+
+it('should update with lowercase email for a user that requires verification', function () {
+    $user = createUserModel(UserWithNotifications::class);
+
+    expect($user->name)->toBe('John Doe');
+    expect($user->email)->toBe('john@doe.com');
+    expect($user->email_verified_at)->not()->toBeNull();
+
+    resolve(UpdateUserProfileInformation::class)->update($user, [
+        'name'  => 'Jane Doe',
+        'email' => 'JANE@DOE.COM',
+    ]);
+
+    expect($user->name)->toBe('Jane Doe');
+    expect($user->email)->toBe('jane@doe.com');
+    expect($user->email_verified_at)->toBeNull();
+});
+
 it('should throw an exception if the name is missing', function () {
     $user = createUserModel();
 

@@ -137,7 +137,7 @@ it('should require the terms to be accepted', function () {
     ]), 'terms', 'The terms must be accepted.');
 });
 
-it('should match the confirmation', function () {
+it('password should match the confirmation', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
 
     expectValidationError(fn () => (new CreateNewUser())->create([
@@ -150,7 +150,7 @@ it('should match the confirmation', function () {
     ]), 'password', 'The password confirmation does not match.');
 });
 
-it('should be equal to or longer than 12 characters', function () {
+it('password should be equal to or longer than 12 characters', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
 
     expectValidationError(fn () => (new CreateNewUser())->create([
@@ -163,7 +163,7 @@ it('should be equal to or longer than 12 characters', function () {
     ]), 'password', 'The password must be at least 12 characters.');
 });
 
-it('should require an uppercase letter', function () {
+it('password should require an uppercase letter', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
 
     expectValidationError(fn () => (new CreateNewUser())->create([
@@ -176,7 +176,7 @@ it('should require an uppercase letter', function () {
     ]), 'password', 'The password must contain at least one uppercase and one lowercase letter.');
 });
 
-it('should require one number', function () {
+it('password should require one number', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
 
     expectValidationError(fn () => (new CreateNewUser())->create([
@@ -189,7 +189,7 @@ it('should require one number', function () {
     ]), 'password', 'The password must contain at least one number.');
 });
 
-it('should require one special character', function () {
+it('password should require one special character', function () {
     Config::set('fortify.models.user', \ARKEcosystem\Fortify\Models\User::class);
 
     expectValidationError(fn () => (new CreateNewUser())->create([

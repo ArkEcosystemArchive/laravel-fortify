@@ -43,9 +43,7 @@
                 <x-ark-password-toggle
                     name="confirmedPassword"
                     :label="trans('fortify::forms.password')"
-                    autocomplete="current-password"
                     :errors="$errors"
-                    masked
                 />
             </div>
         </form>

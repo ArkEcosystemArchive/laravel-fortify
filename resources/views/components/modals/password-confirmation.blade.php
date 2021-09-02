@@ -8,7 +8,7 @@
 
 <x-ark-modal
     title-class="header-2"
-    width-class="max-w-2xl"
+    width-class="max-w-xl"
     :wire-close="$closeMethod"
 >
     <x-slot name="title">

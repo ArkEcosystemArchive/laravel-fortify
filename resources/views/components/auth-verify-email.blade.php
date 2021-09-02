@@ -6,7 +6,7 @@
             <p>@lang('fortify::auth.verify.link_description')</p>
         </div>
 
-        <img class="mb-5 mx-12" src="/images/auth/verify-email.svg" />
+        <img class="mb-5 mx-12" src="/images/auth/verify-email.svg" alt="" />
 
         <form wire:click.prevent="resend" wire:poll>
             <p class="text-sm text-theme-secondary-600 lg:no-wrap-span-children">

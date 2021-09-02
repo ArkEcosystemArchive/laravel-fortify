@@ -45,7 +45,7 @@
                 />
             </div>
             <div class="flex justify-center">
-                <button class="items-center w-full button-primary sm:w-auto whitespace-nowrap" wire:click="hideRecoveryCodes" dusk="recovery-codes-understand">
+                <button type="button" class="items-center w-full button-primary sm:w-auto whitespace-nowrap" wire:click="hideRecoveryCodes" dusk="recovery-codes-understand">
                     @lang('fortify::actions.understand')
                 </button>
             </div>

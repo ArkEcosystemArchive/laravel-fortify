@@ -21,6 +21,7 @@
                 <img
                     src="{{ asset($image) }}"
                     class="h-28"
+                    alt=""
                 />
             </div>
 

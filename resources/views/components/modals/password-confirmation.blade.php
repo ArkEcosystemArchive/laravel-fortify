@@ -31,6 +31,7 @@
         </div>
 
         <form
+            id="password-confirmation"
             class="mt-8"
             @keydown.enter="$wire.{{ $actionMethod }}()"
             x-on:submit.prevent
@@ -44,9 +45,7 @@
                 <x-ark-password-toggle
                     name="confirmedPassword"
                     :label="trans('fortify::forms.password')"
-                    autocomplete="current-password"
                     :errors="$errors"
-                    masked
                 />
             </div>
         </form>
@@ -65,6 +64,7 @@
 
             <button
                 type="submit"
+                form="password-confirmation"
                 dusk="confirm-password-form-submit"
                 class="inline-flex items-center justify-center button-primary"
                 wire:click="{{ $actionMethod }}"

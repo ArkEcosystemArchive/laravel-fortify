@@ -7,7 +7,7 @@ namespace ARKEcosystem\Fortify\Components\Concerns;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
-
+use GuzzleHttp\Client;
 trait ValidatesPassword
 {
     public array $passwordRules = [

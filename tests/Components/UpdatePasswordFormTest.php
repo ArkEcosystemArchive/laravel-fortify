@@ -112,7 +112,7 @@ it('handles password being leaked', function () {
         $mock
             ->shouldReceive('verify')
             ->with([
-                'value' => 'Password!1234',
+                'value'     => 'Password!1234',
                 'threshold' => 0,
             ])
             ->andReturn(false);

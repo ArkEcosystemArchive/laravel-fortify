@@ -27,7 +27,7 @@ return [
         'uppercase'         => 'One uppercase character',
         'numbers'           => 'One number',
         'symbols'           => 'One special character',
-        'min'               => '12 characters minumum',
+        'min'               => '12 characters minimum',
     ],
 
     'delete-user' => [

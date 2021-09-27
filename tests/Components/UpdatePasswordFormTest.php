@@ -6,9 +6,7 @@ namespace Tests\Components;
 
 use ARKEcosystem\Fortify\Components\UpdatePasswordForm;
 use Illuminate\Contracts\Validation\UncompromisedVerifier;
-use Illuminate\Validation\NotPwnedVerifier;
 use Livewire\Livewire;
-use Mockery\MockInterface;
 
 use function Tests\createUserModel;
 

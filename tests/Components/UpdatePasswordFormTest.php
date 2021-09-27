@@ -7,7 +7,6 @@ namespace Tests\Components;
 use ARKEcosystem\Fortify\Components\UpdatePasswordForm;
 use Illuminate\Contracts\Validation\UncompromisedVerifier;
 use Livewire\Livewire;
-
 use function Tests\createUserModel;
 
 beforeEach(function () {

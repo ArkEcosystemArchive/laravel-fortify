@@ -5,7 +5,6 @@ declare(strict_types=1);
 use ARKEcosystem\Fortify\Actions\UpdateUserProfileInformation;
 use function Tests\createUserModel;
 use function Tests\expectValidationError;
-
 use Tests\UserWithNotifications;
 use Tests\UserWithoutVerification;
 

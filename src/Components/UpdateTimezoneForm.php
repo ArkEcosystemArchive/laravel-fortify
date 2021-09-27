@@ -19,8 +19,6 @@ class UpdateTimezoneForm extends Component
 
     /**
      * Mount the component.
-     *
-     * @return \Illuminate\View\View
      */
     public function mount()
     {

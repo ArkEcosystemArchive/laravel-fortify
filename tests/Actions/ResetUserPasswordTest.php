@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use ARKEcosystem\Fortify\Actions\ResetUserPassword;
 use Illuminate\Contracts\Validation\UncompromisedVerifier;
-
 use function Tests\createUserModel;
 use function Tests\expectValidationError;
 

@@ -7,6 +7,7 @@ namespace Tests\Components;
 use ARKEcosystem\Fortify\Components\UpdatePasswordForm;
 use Illuminate\Contracts\Validation\UncompromisedVerifier;
 use Livewire\Livewire;
+
 use function Tests\createUserModel;
 
 beforeEach(function () {
@@ -44,6 +45,7 @@ it('clears password rules on update', function () {
             'numbers'    => true,
             'symbols'    => true,
             'min'        => true,
+            'leak'       => true,
         ])
         ->call('updatePassword')
         ->assertSet('passwordRules', [
@@ -52,6 +54,7 @@ it('clears password rules on update', function () {
             'numbers'    => false,
             'symbols'    => false,
             'min'        => false,
+            'leak'       => false,
         ]);
 });
 
@@ -74,6 +77,7 @@ it('handles password being null', function () {
             'numbers'    => false,
             'symbols'    => false,
             'min'        => false,
+            'leak'       => false,
         ]);
 });
 
@@ -96,6 +100,29 @@ it('handles password being empty string', function () {
             'numbers'    => false,
             'symbols'    => false,
             'min'        => false,
+            'leak'       => false,
+        ]);
+});
+
+it('handles password being leaked', function () {
+    $user = createUserModel();
+
+    Livewire::actingAs($user)
+        ->test(UpdatePasswordForm::class)
+        ->assertSet('currentPassword', '')
+        ->assertSet('password', '')
+        ->assertSet('password_confirmation', '')
+        ->assertViewIs('ark-fortify::profile.update-password-form')
+        ->set('currentPassword', 'password')
+        ->set('password', 'password')
+        ->set('password_confirmation', 'password')
+        ->assertSet('passwordRules', [
+            'lowercase'  => true,
+            'uppercase'  => false,
+            'numbers'    => false,
+            'symbols'    => false,
+            'min'        => false,
+            'leak'       => false,
         ]);
 });
 

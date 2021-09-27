@@ -27,7 +27,8 @@ return [
         'uppercase'         => 'One uppercase character',
         'numbers'           => 'One number',
         'symbols'           => 'One special character',
-        'min'               => '12 characters minimum',
+        'min'               => '12 characters minumum',
+        'leak'              => 'No match in leaked database',
     ],
 
     'delete-user' => [

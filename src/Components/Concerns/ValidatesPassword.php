@@ -16,6 +16,7 @@ trait ValidatesPassword
         'numbers'    => false,
         'symbols'    => false,
         'min'        => false,
+        'leak'       => false,
     ];
 
     public function updatedPassword($password)
@@ -29,6 +30,11 @@ trait ValidatesPassword
         $this->passwordRules['min']       = $this->passes(Password::min(12), $password);
         $this->passwordRules['numbers']   = $this->passes(Password::min(0)->numbers(), $password);
         $this->passwordRules['symbols']   = $this->passes(Password::min(0)->symbols(), $password);
+        $this->passwordRules['leak']      = $this->passes(Password::min(8)->uncompromised(0)->symbols(), $password);
+
+        if (! $this->passwordRules['leak']) {
+            $this->addError('password', trans('fortify::validation.password_leaked'));
+        }
     }
 
     private function passes(Rule $rule, string $password): bool

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use ARKEcosystem\Fortify\Components\VerifyEmail;
 use Livewire\Livewire;
-
 use function Tests\createUserModel;
 
 it('can resend a verification email', function (): void {

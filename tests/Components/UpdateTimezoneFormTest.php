@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use ARKEcosystem\Fortify\Components\UpdateTimezoneForm;
 use Livewire\Livewire;
-
 use function Tests\createUserModel;
 
 it('should have UTC as default timezone', function () {

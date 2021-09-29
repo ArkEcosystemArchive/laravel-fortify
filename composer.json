@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": "^8.0",
-        "arkecosystem/ui": "^4.0",
+        "arkecosystem/ui": "^5.0",
         "danharrin/livewire-rate-limiting": "^0.3.0",
         "illuminate/support": "^8.0",
         "jenssegers/agent": "^2.6",
